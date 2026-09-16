@@ -91,10 +91,18 @@ follow-up. HTTP 200 or `/health` alone does not pass this scenario.
    through the public endpoint without creating a ledger entry.
 4. Ask the user to select FarmQA in Linear's mention menu on a test issue; observe
    the visible reply and a follow-up, matching both to the local delivery ledger.
-5. Publish the Windows fix and evidence as a follow-up change: a merged PR cannot
-   accept additional branch commits as updates to its merged diff.
 
 This is a supervised connection test. Interactive tasks require the Windows user
 to be logged in and the machine awake. The temporary hostname requires manual
 Linear URL updates after a tunnel restart. Stable DNS/TLS and unattended boot-time
 hosting are not established. Gameplay remains disabled.
+
+## Publication
+
+Published the fix and evidence in [draft PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2),
+`codex/farmqa-windows-deploy` into `main`. A merged PR cannot accept new commits
+as changes to its merged diff, so PR #1 remains unchanged. No PR was merged in
+this session. The initial Git push selected a different credential-manager
+account and was denied. The already signed-in GitHub CLI account `dunadain`
+reported repository push access; using its credential helper for this command
+only succeeded. Global Git credential settings were not changed.

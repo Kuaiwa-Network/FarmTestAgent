@@ -1,0 +1,64 @@
+{
+  "captured_at": "2026-09-16T20:54:49.4959407+08:00",
+  "revision": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "status": [
+    " M tools/device-mcp/README.md",
+    " M tools/device-mcp/compile_cs.py",
+    " M tools/device-mcp/requirements.txt",
+    "?? tools/device-mcp/test_compile_cs.py"
+  ],
+  "status_matches_before": true,
+  "dirty_files": [
+    {
+      "path": "tools/device-mcp/test_compile_cs.py",
+      "sha256": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/README.md",
+      "sha256": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/compile_cs.py",
+      "sha256": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/requirements.txt",
+      "sha256": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb",
+      "matches_before": true
+    }
+  ],
+  "assemblies": [
+    {
+      "name": "HotUpdate",
+      "loaded_mvid": "58847d20-a524-43d9-b9da-3e2c9a1bc5ec",
+      "disk_mvid": "58847d20-a524-43d9-b9da-3e2c9a1bc5ec",
+      "loaded_and_disk_mvid_match": true,
+      "sha256": "2d14c0a776e192e7a6c4f96b5cd3781a35a4a21af99b32a436e6653cb31dd256"
+    },
+    {
+      "name": "MCPForUnity.Editor",
+      "loaded_mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "disk_mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "loaded_and_disk_mvid_match": true,
+      "sha256": "2278e28cfe1f77784944e3e7ff1700b8277988e544a319fc44107b3508af36ba"
+    },
+    {
+      "name": "AOTScripts",
+      "loaded_mvid": "dab78d1a-d8b3-44ab-a9a1-d51afe01059d",
+      "disk_mvid": "dab78d1a-d8b3-44ab-a9a1-d51afe01059d",
+      "loaded_and_disk_mvid_match": true,
+      "sha256": "af0c1c05b4e0400301859b0eb500d43faf4e54ddbbbf0118114a20577b290fc7"
+    },
+    {
+      "name": "Nova.Runtime",
+      "loaded_mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "disk_mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "loaded_and_disk_mvid_match": true,
+      "sha256": "46084323f7401f1ee1710bf35caa8f139d1f2eb2a6162b1ee65ccba889092bbe"
+    }
+  ],
+  "note": "Matching module IDs identify the loaded and on-disk assembly modules; no reproducible build from this Git revision was performed."
+}

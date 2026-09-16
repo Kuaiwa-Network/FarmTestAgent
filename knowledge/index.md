@@ -19,6 +19,9 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
   — fresh Linear session and follow-up both PASS; Editor installed but stopped
 - [FarmQA Stop handling](../reports/2026-09-16-farmqa-stop/report.md)
   — queued cancellation/reply suppression deployed; automatic active-task interruption blocked
+- [Windows Unity read-only readiness](../reports/2026-09-16-unity-readiness/report.md)
+  — Editor connection, loaded assembly identity, Console, and screenshots verified;
+  Play Mode off and gameplay still disabled
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

@@ -16,6 +16,14 @@ observation, not empty farm state. Evidence: synthetic serializer probe + two of
 runner reproductions. Adopted procedure: required-field gate before any state assertion.
 Validation limit: applied in inspection; not yet replayed in a gameplay journey.
 
+L03 — **observed**, 2026-09-16; prerequisites: Linear AgentSessionEvent fixtures;
+platform/build: FarmQA v0 / published Linear SDK schema read this date. Claim:
+follow-up type is `agentActivity.content.type`; a fixture with top-level `type`
+can falsely validate an incompatible handler. Evidence: corrected fixture failed
+with `ignored` instead of `accepted`; handler fix and full 12-test replay passed.
+Procedure: compare integration fixtures with authoritative schema before judging
+mocked tests. Live Linear routing remains unverified. (Infrastructure lesson only.)
+
 ## Candidate lessons (not verified gameplay knowledge)
 
 C01 — **inferred**, reviewed 2026-09-16; prerequisite: designated single-plot crop;

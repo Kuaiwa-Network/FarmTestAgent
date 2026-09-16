@@ -1,0 +1,278 @@
+#!/usr/bin/env python3
+"""FarmQA v0: verified Linear agent events -> one fixed response. No game control."""
+import argparse
+import getpass
+import hashlib
+import hmac
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import json
+import math
+import os
+from pathlib import Path
+import sqlite3
+import threading
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import uuid
+
+REPLY = ("FarmQA is connected 🌱 I received your message. "
+         "This is a connection test; gameplay testing is not enabled yet.")
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_CONFIG = ROOT / ".local/farmqa/config.json"
+SCOPES = "read,write,app:mentionable"
+MAX_BODY = 1024 * 1024
+
+
+class Service:
+    def __init__(self, db_path, secret, client_id, app_id, org_id, send):
+        self.secret = secret.encode()
+        self.identity = {"oauthClientId": client_id, "appUserId": app_id, "organizationId": org_id}
+        self.send = send
+        self.lock = threading.Lock()
+        self.db = sqlite3.connect(db_path, check_same_thread=False)
+        self.db.row_factory = sqlite3.Row
+        self.db.execute("""CREATE TABLE IF NOT EXISTS events (
+            event_key TEXT PRIMARY KEY, session_id TEXT NOT NULL,
+            activity_id TEXT NOT NULL, status TEXT NOT NULL,
+            received_at REAL NOT NULL, completed_at REAL, error TEXT)""")
+        # A previous process may have sent the request without receiving its reply.
+        self.db.execute("UPDATE events SET status='uncertain', error='InterruptedSend' WHERE status='sending'")
+        self.db.commit()
+        if str(db_path) != ":memory:":
+            os.chmod(db_path, 0o600)
+
+    def close(self):
+        with self.lock:
+            self.db.close()
+
+    def receive(self, raw, signature, now_ms=None):
+        expected = hmac.new(self.secret, raw, hashlib.sha256).hexdigest()
+        if not isinstance(signature, str) or not hmac.compare_digest(expected, signature):
+            return 401, "invalid signature"
+        try:
+            event = json.loads(raw)
+        except (ValueError, UnicodeError):
+            return 400, "invalid json"
+        if not isinstance(event, dict):
+            return 400, "invalid event"
+        timestamp = event.get("webhookTimestamp")
+        now_ms = time.time() * 1000 if now_ms is None else now_ms
+        if (type(timestamp) not in (int, float) or not math.isfinite(timestamp)
+                or abs(timestamp - now_ms) > 60_000):
+            return 401, "invalid timestamp"
+        if event.get("type") != "AgentSessionEvent":
+            return 200, "ignored"
+        if any(event.get(k) != v for k, v in self.identity.items()):
+            return 403, "identity mismatch"
+        action = event.get("action")
+        if action not in ("created", "prompted"):
+            return 200, "ignored"
+        session = event.get("agentSession")
+        session_id = session.get("id") if isinstance(session, dict) else None
+        if not isinstance(session_id, str) or not session_id or len(session_id) > 128:
+            return 400, "missing session"
+        event_id = session_id
+        if action == "prompted":
+            activity = event.get("agentActivity")
+            if not isinstance(activity, dict) or not activity.get("id"):
+                return 400, "missing prompt"
+            content = activity.get("content")
+            if not isinstance(content, dict) or content.get("type") != "prompt":
+                return 200, "ignored"
+            event_id = activity["id"]
+            if not isinstance(event_id, str) or len(event_id) > 128:
+                return 400, "invalid prompt id"
+        key = f"{self.identity['organizationId']}:{action}:{event_id}"
+        with self.lock, self.db:
+            cursor = self.db.execute("INSERT OR IGNORE INTO events VALUES (?, ?, ?, 'pending', ?, NULL, NULL)",
+                                     (key, session_id, str(uuid.uuid4()), time.time()))
+            inserted = cursor.rowcount > 0
+        return 200, "accepted" if inserted else "duplicate"
+
+    def process_one(self):
+        with self.lock, self.db:
+            row = self.db.execute("SELECT * FROM events WHERE status='pending' ORDER BY received_at LIMIT 1").fetchone()
+            if row is None:
+                return False
+            self.db.execute("UPDATE events SET status='sending' WHERE event_key=?", (row["event_key"],))
+        status, error = "sent", None
+        try:
+            result = self.send({"id": row["activity_id"], "agentSessionId": row["session_id"],
+                                "content": {"type": "response", "body": REPLY}})
+            if not isinstance(result, dict) or result.get("success") is not True or not result.get("agentActivity", {}).get("id"):
+                raise RuntimeError("Linear did not confirm activity creation")
+        except Exception as exc:
+            status, error = "uncertain", type(exc).__name__
+        with self.lock, self.db:
+            self.db.execute("UPDATE events SET status=?, completed_at=?, error=? WHERE event_key=?",
+                            (status, time.time(), error, row["event_key"]))
+        print(json.dumps({"event": "reply", "session_id": row["session_id"],
+                          "activity_id": row["activity_id"], "status": status, "error": error}), flush=True)
+        return True
+
+    def results(self):
+        with self.lock:
+            return [dict(r) for r in self.db.execute("SELECT * FROM events ORDER BY received_at")]
+
+
+class LinearAPI:
+    def __init__(self, client_id, client_secret, request=None):
+        self.client_id, self.client_secret = client_id, client_secret
+        self.request = request or urllib.request.urlopen
+        self.token, self.expires = None, 0
+
+    def _request(self, url, data, headers):
+        req = urllib.request.Request(url, data=data, headers=headers)
+        with self.request(req, timeout=8) as response:
+            return json.load(response)
+
+    def authenticate(self):
+        result = self._request("https://api.linear.app/oauth/token", urllib.parse.urlencode({
+            "grant_type": "client_credentials", "client_id": self.client_id,
+            "client_secret": self.client_secret, "scope": SCOPES}).encode(),
+            {"Content-Type": "application/x-www-form-urlencoded"})
+        self.token = result["access_token"]
+        self.expires = time.time() + float(result["expires_in"]) - 60
+
+    def graphql(self, query, variables=None):
+        if not self.token or time.time() >= self.expires:
+            self.authenticate()
+        for attempt in range(2):
+            try:
+                result = self._request("https://api.linear.app/graphql",
+                    json.dumps({"query": query, "variables": variables or {}}).encode(),
+                    {"Content-Type": "application/json", "Authorization": f"Bearer {self.token}"})
+                break
+            except urllib.error.HTTPError as exc:
+                if exc.code != 401 or attempt:
+                    raise
+                self.authenticate()  # 401 means the mutation was not authorized.
+        if result.get("errors") or not isinstance(result.get("data"), dict):
+            raise RuntimeError("Linear GraphQL rejected the request")
+        return result["data"]
+
+    def identity(self):
+        data = self.graphql("query FarmQAIdentity { viewer { id name } organization { id name } }")
+        if data["viewer"]["name"] != "FarmQA":
+            raise RuntimeError("Expected FarmQA app identity")
+        return data
+
+    def send(self, activity):
+        return self.graphql("""mutation FarmQAReply($input: AgentActivityCreateInput!) {
+            agentActivityCreate(input: $input) { success agentActivity { id } }
+        }""", {"input": activity})["agentActivityCreate"]
+
+
+def make_server(service, port=8765):
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *_args):
+            pass  # Never log URLs, headers, prompts or credentials.
+
+        def respond(self, status, message):
+            data = json.dumps({"status": message}).encode()
+            self.send_response(status)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(data)
+
+        def do_GET(self):
+            self.respond(200, "FarmQA ready") if self.path == "/health" else self.respond(404, "not found")
+
+        def do_POST(self):
+            if self.path != "/webhook":
+                return self.respond(404, "not found")
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+            except ValueError:
+                return self.respond(400, "invalid length")
+            if length <= 0 or length > MAX_BODY:
+                return self.respond(413, "invalid body size")
+            self.connection.settimeout(3)
+            try:
+                raw = self.rfile.read(length)
+                if len(raw) != length:
+                    return self.respond(400, "incomplete body")
+                status, message = service.receive(raw, self.headers.get("Linear-Signature"))
+            except TimeoutError:
+                return self.respond(408, "body timeout")
+            except Exception:
+                return self.respond(500, "receiver error")
+            self.respond(status, message)
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    server.daemon_threads = True
+    return server
+
+
+def configure(path):
+    if path.exists():
+        raise RuntimeError("Config already exists; edit it locally to avoid replacing credentials")
+    config = {"client_id": input("Linear FarmQA client ID: ").strip(),
+              "client_secret": getpass.getpass("Linear client secret (hidden): ").strip(),
+              "webhook_secret": getpass.getpass("Linear webhook signing secret (hidden): ").strip()}
+    if not all(config.values()):
+        raise ValueError("All three fields are required")
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    with os.fdopen(os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600), "w") as file:
+        json.dump(config, file, indent=2)
+    print(f"Saved private configuration to {path}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=["configure", "serve", "status"])
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--port", type=int, default=8765)
+    args = parser.parse_args()
+    if args.command == "configure":
+        return configure(args.config)
+    db_path = args.config.parent / "events.sqlite3"
+    if args.command == "status":
+        if not db_path.exists():
+            print("No event database yet.")
+            return
+        with sqlite3.connect(f"file:{db_path}?mode=ro", uri=True) as db:
+            db.row_factory = sqlite3.Row
+            print(json.dumps([dict(row) for row in db.execute("SELECT * FROM events ORDER BY received_at")], indent=2))
+        return
+    config = json.loads(args.config.read_text())
+    if any(not isinstance(config.get(k), str) or not config[k].strip()
+           for k in ("client_id", "client_secret", "webhook_secret")):
+        raise ValueError("Configuration is incomplete")
+    os.chmod(args.config, 0o600)
+    api = LinearAPI(config["client_id"], config["client_secret"])
+    identity = api.identity()
+    service = Service(db_path, config["webhook_secret"], config["client_id"],
+                      identity["viewer"]["id"], identity["organization"]["id"], api.send)
+    stop = threading.Event()
+    def work():
+        while not stop.is_set():
+            if not service.process_one():
+                stop.wait(0.1)
+    server = make_server(service, args.port)
+    worker = threading.Thread(target=work, daemon=True)
+    worker.start()
+    print(json.dumps({"event": "ready", "app": identity["viewer"], "workspace": identity["organization"],
+                      "listen": f"http://127.0.0.1:{args.port}", "reply": REPLY}), flush=True)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.server_close()
+        stop.set()
+        worker.join(timeout=20)
+        if not worker.is_alive():
+            service.close()
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as error:
+        # Remote responses and configuration must not leak through tracebacks.
+        print(f"FarmQA stopped: {type(error).__name__}. Check local configuration and Linear app settings.", flush=True)
+        raise SystemExit(1)

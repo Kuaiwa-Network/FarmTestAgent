@@ -90,3 +90,10 @@ Fresh validation: `python3 -m unittest discover -s tests -p 'test_*.py' -v`
 passed all 12 tests in 0.534s, exit 0; `git diff --check 903efc4..HEAD` passed.
 Independent read-only review found no blocking defects within the supervised
 prototype scope. Live permissions and real mention/reply behavior remain untested.
+
+## Windows continuation
+
+See [the Windows deployment report](../2026-09-16-farmqa-windows/report.md).
+It supersedes this report's historical merge status and Mac tunnel details.
+PR #1 was already merged before the Windows session; that session performs no
+merge. It uses newly inspected infrastructure and a fresh temporary tunnel.

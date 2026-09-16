@@ -11,6 +11,8 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [FarmQA Linear integration](linear-farmqa.md) — local implementation; activation pending
 - [Gameplay infrastructure report](../reports/2026-09-16-initial-learning/report.md)
 - [Latest: FarmQA mention implementation](../reports/2026-09-16-farmqa-hello/report.md)
+- [Windows FarmQA deployment](../reports/2026-09-16-farmqa-windows/report.md) — fresh
+  tunnel and Windows fixes; consult this report for current activation evidence
 
 Current request: activate and smoke-test **@FarmQA**'s fixed Linear reply. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

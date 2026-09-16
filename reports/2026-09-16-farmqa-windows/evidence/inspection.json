@@ -1,0 +1,41 @@
+{
+  "inspectedAtUtc": "2026-09-16T08:17:36.3072174Z",
+  "os": "Windows 11 Home Chinese, x64, build 26200",
+  "python": "3.14.3",
+  "repositoryBase": "fc1e202334118b3c47605b3e30eb7c57c281d336",
+  "originalPr": {
+    "number": 1,
+    "state": "MERGED",
+    "mergedAt": "2026-09-16T08:03:01Z",
+    "head": "77cbcbcdb9cb9149d55afc99248083c5d77219aa",
+    "headBranchDeleted": true
+  },
+  "checkoutInitiallyClean": true,
+  "publicIpProvided": "112.65.142.50",
+  "localLanIp": "192.168.1.202",
+  "existing443Service": "VisualSVN HTTP Service",
+  "trustedLocalTlsEndpointFound": false,
+  "publicIpTlsProbe": "handshake failed from this host",
+  "firewall": {
+    "Domain": true,
+    "Private": false,
+    "Public": false,
+    "changed": false
+  },
+  "receiverBind": "127.0.0.1:8765",
+  "cloudflared": {
+    "version": "2026.9.1",
+    "sha256": "2837888cc0f5d58f15b6dc478376de90b4d3ba5241c7947455d1e0a0df429712",
+    "url": "https://github.com/cloudflare/cloudflared/releases/download/2026.9.1/cloudflared-windows-amd64.exe"
+  },
+  "workspace": {
+    "id": "ff27325f-34a2-4e64-be44-5746fd1b3ea3",
+    "name": "Kuaiwa AI",
+    "slug": "kuaiwagames"
+  },
+  "farmTeam": {
+    "id": "9676b5f9-eff3-485b-80ed-900ed137e21a",
+    "name": "农场"
+  },
+  "liveDelivery": "not yet verified"
+}

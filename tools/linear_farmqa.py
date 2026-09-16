@@ -9,6 +9,7 @@ import json
 import math
 import os
 from pathlib import Path
+import socket
 import sqlite3
 import threading
 import time
@@ -166,6 +167,15 @@ class LinearAPI:
 
 
 def make_server(service, port=8765):
+    class ExclusiveServer(ThreadingHTTPServer):
+        # Windows SO_REUSEADDR permits two live listeners on the same port.
+        allow_reuse_address = os.name != "nt"
+
+        def server_bind(self):
+            if os.name == "nt":
+                self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+            super().server_bind()
+
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
             pass  # Never log URLs, headers, prompts or credentials.
@@ -196,13 +206,14 @@ def make_server(service, port=8765):
                 raw = self.rfile.read(length)
                 if len(raw) != length:
                     return self.respond(400, "incomplete body")
-                status, message = service.receive(raw, self.headers.get("Linear-Signature"))
+                status, message = self.server.service.receive(raw, self.headers.get("Linear-Signature"))
             except TimeoutError:
                 return self.respond(408, "body timeout")
             except Exception:
                 return self.respond(500, "receiver error")
             self.respond(status, message)
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    server = ExclusiveServer(("127.0.0.1", port), Handler)
+    server.service = service
     server.daemon_threads = True
     return server
 
@@ -245,14 +256,21 @@ def main():
     os.chmod(args.config, 0o600)
     api = LinearAPI(config["client_id"], config["client_secret"])
     identity = api.identity()
-    service = Service(db_path, config["webhook_secret"], config["client_id"],
-                      identity["viewer"]["id"], identity["organization"]["id"], api.send)
+    # Reserve the listening port before opening/recovering the delivery ledger.
+    # A second receiver must not mark an active send from the first uncertain.
+    server = make_server(None, args.port)
+    try:
+        service = Service(db_path, config["webhook_secret"], config["client_id"],
+                          identity["viewer"]["id"], identity["organization"]["id"], api.send)
+    except Exception:
+        server.server_close()
+        raise
+    server.service = service
     stop = threading.Event()
     def work():
         while not stop.is_set():
             if not service.process_one():
                 stop.wait(0.1)
-    server = make_server(service, args.port)
     worker = threading.Thread(target=work, daemon=True)
     worker.start()
     print(json.dumps({"event": "ready", "app": identity["viewer"], "workspace": identity["organization"],

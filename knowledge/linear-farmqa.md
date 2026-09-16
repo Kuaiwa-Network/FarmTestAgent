@@ -29,3 +29,22 @@ observing the actual Linear activity.
 The earlier architecture discussion (shared identity, separate Editor/device
 workers, exclusive instance/device/account ownership, human device priority,
 queued full-suite jobs) is a proposal only. None of it is implemented in v0.
+
+## Windows continuation, 2026-09-16
+
+The earlier publication/merge status above is superseded: GitHub reported PR #1
+already merged by `dunadain` at 08:03:01 UTC, commit `fc1e202`, and the source
+branch deleted. This deployment session did not merge it. Fetching PR #1's head
+confirmed the original `77cbcbc` tree matches main. Work continues on
+`codex/farmqa-windows-deploy`.
+
+Observed on Windows 11 x64 / Python 3.14.3: all 12 original tests pass. A direct
+bind probe reproduced two simultaneous Windows listeners on one port; exclusive
+binding fixes it, and all 13 tests pass. This remains mocked API evidence, not
+proof of a live reply. The Windows account is not elevated. VisualSVN occupies
+443; use the fresh temporary tunnel selected by the user and keep the receiver
+on loopback. The app settings page, after user login, showed no OAuth apps.
+
+See [the Windows report](../reports/2026-09-16-farmqa-windows/report.md) for current
+activation state, process supervision, endpoint, evidence, and next steps.
+Windows private storage requires NTFS ACLs; POSIX mode bits alone are insufficient.

@@ -24,7 +24,9 @@ Reply:
 
    This prompts for client ID and hides the client secret and webhook signing
    secret. The resulting `.local/farmqa/config.json` is ignored by Git and mode
-   0600. No access token is persisted. `--config PATH` selects another location.
+   0600 on POSIX. On Windows, restrict the parent directory's NTFS ACL before
+   configuring; `chmod(0600)` does not establish a private Windows ACL. No access
+   token is persisted. `--config PATH` selects another location.
 4. Start the receiver:
 
    ```sh
@@ -81,6 +83,64 @@ a supervised low-volume test; do not run two copies against one database.
 Stop the receiver and tunnel with Ctrl-C. Disable its webhook or revoke the
 app's access from Linear when retiring the test. No client or server game code
 is changed by this service.
+
+## Windows connection-test deployment
+
+See [the Windows run report](../reports/2026-09-16-farmqa-windows/report.md)
+for this machine's actual endpoint, service status, and live verification.
+The receiver remains on `127.0.0.1:8765`. VisualSVN owns port 443 on this host;
+the connection test uses a fresh Cloudflare quick tunnel without changing SVN,
+router forwarding, or firewall policy. A quick tunnel hostname changes when its
+process restarts, so update the Linear app webhook URL before another live test.
+
+Before `python3 tools/linear_farmqa.py configure`, prepare private local storage
+from the repository root in PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force .local/farmqa/bin,.local/farmqa/logs | Out-Null
+$farmqaSid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+icacls.exe .local/farmqa /inheritance:r /grant:r ("*$($farmqaSid):(OI)(CI)F") '*S-1-5-18:(OI)(CI)F'
+python3 tools/linear_farmqa.py configure
+```
+
+Install `cloudflared.exe` from the official Cloudflare release into
+`.local/farmqa/bin/`, checking its SHA-256 against the official release asset's
+digest. The runtime Python program still uses only the standard library.
+
+`farmqa-windows-supervisor.ps1` runs either `receiver` or `tunnel` hidden, restarts
+its child after 10 seconds, and takes a file lock to prevent two supervisors for
+the same component. It keeps child PID files and the latest launch's stdout/stderr
+under the private local directory. It can adopt an existing child with a matching
+executable path, arguments, and PID. Only this deployment's PID files belong there.
+
+Create two current-user scheduled tasks named `FarmQA-Receiver` and
+`FarmQA-Tunnel`, with an at-logon trigger, `Interactive` logon, `Limited` run
+level, `IgnoreNew` multiple-instance policy, no execution time limit, and restart
+on failure (one minute, three attempts). Use an installed PowerShell host whose
+policy permits these local scripts. Pass absolute paths to the supervisor and
+Python executable. Do not change execution policy globally. Example action:
+
+```text
+pwsh.exe -NoProfile -WindowStyle Hidden -File "<repo>\tools\farmqa-windows-supervisor.ps1" -Component receiver -Python "<absolute-python.exe>"
+pwsh.exe -NoProfile -WindowStyle Hidden -File "<repo>\tools\farmqa-windows-supervisor.ps1" -Component tunnel
+```
+
+These tasks run while that Windows user is logged in. They are appropriate for
+this supervised connection test, not unattended boot-time hosting. Keep the PC
+awake. A permanent endpoint and boot-time service are separate future work.
+
+```powershell
+Get-ScheduledTask FarmQA-Receiver,FarmQA-Tunnel
+Get-Content .local/farmqa/logs/receiver.stdout.log
+python3 tools/linear_farmqa.py status
+Select-String -Path .local/farmqa/logs/tunnel.stderr.log -Pattern 'https://[-a-z]+\.trycloudflare\.com'
+```
+
+To stop: disable and stop both scheduled tasks, then stop only their verified
+child PIDs (check executable path against this deployment before `Stop-Process`).
+Stopping the task alone may leave a child running. Never delete the SQLite ledger
+to resolve an uncertain send; inspect Linear first. Do not start another receiver
+using the same database on a different port.
 
 ## Authoritative API references
 

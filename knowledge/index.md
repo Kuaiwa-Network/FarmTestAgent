@@ -8,7 +8,7 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [Open issues and next steps](issues.md)
 - [Verified lessons and candidate lessons](lessons/learning-log.md)
 - [Coverage and improvement measurements](metrics.md)
-- [FarmQA Linear integration](linear-farmqa.md) — activated; live mention verification pending
+- [FarmQA Linear integration](linear-farmqa.md) — activated; live mention and follow-up verified
 - [Gameplay infrastructure report](../reports/2026-09-16-initial-learning/report.md)
 - [Latest: FarmQA mention implementation](../reports/2026-09-16-farmqa-hello/report.md)
 - [Windows FarmQA deployment](../reports/2026-09-16-farmqa-windows/report.md) — fresh

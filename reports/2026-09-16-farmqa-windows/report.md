@@ -71,7 +71,7 @@ for start, inspect, stop, and retirement instructions.
 
 ## Activation and live evidence
 
-**Activated; user mention/follow-up verification pending.** The user confirmed
+**PASS: activated; user mention and follow-up both verified live.** The user confirmed
 "Create and activate FarmQA" in chat. Created one private OAuth application
 named exactly FarmQA, developer Kuaiwa, with client credentials and only Agent
 session events enabled. App settings URL:
@@ -110,8 +110,23 @@ HTTPS verification before inviting the user to test:
   evidence. The independent probes establish external reachability; the separate
   Python TLS check establishes trust and hostname validation.
 
-The user selected FARM-1188 for the real mention and follow-up test. No live
-reply is claimed until its visible activity and delivery ledger match.
+The user selected [FARM-1188](https://linear.app/kuaiwagames/issue/FARM-1188) and
+sent a selected FarmQA mention, then a follow-up in the same agent chat. Both
+exact fixed replies were observed in the browser. The chat showed **Finished**;
+the live API reported session `complete`. Queried that actual Linear session and
+matched both outgoing activity IDs, FarmQA author, and exact reply body to the
+two local `sent` rows. See [redacted live evidence](evidence/live-delivery.json).
+
+Session: `48c4dcca-6be9-4ca6-8a13-255828bfd2e7`.
+
+| Event | Incoming identity | Confirmed outgoing activity | Receipt to API confirmation |
+|---|---|---|---|
+| Initial mention (`created`) | Session ID above | `d4f90247-de65-4538-b18c-5a28a6529c9b` | 1.283 seconds |
+| Follow-up (`prompted`) | `bf7d0faf-fd56-4a94-bf73-0769baa6414c` | `921e06e1-6ed7-4bd8-9b51-a5e86c1bcb0d` | 1.018 seconds |
+
+These durations use local receipt/completion timestamps, not end-to-end user
+latency. Prompt text and the human user's identity are omitted from saved API
+evidence. No uncertain rows were present. No gameplay was executed.
 
 Live acceptance requires both a visible exact fixed reply and a matching `sent`
 record with the actual session/activity IDs, for a user-selected mention and a
@@ -119,10 +134,12 @@ follow-up. HTTP 200 or `/health` alone does not pass this scenario.
 
 ## Remaining work and limits
 
-1. Observe the user's selected FarmQA mention on FARM-1188 and its follow-up.
-2. Match both visible replies to successful local delivery records; record actual
-   session/activity IDs and any integration failure without retrying uncertain
-   deliveries automatically.
+The requested connection-test activation and both live deliveries are complete.
+Keep the supervised processes running while using this temporary endpoint.
+Inspect `status` and Linear if a future delivery is uncertain; never automatically
+retry an uncertain send. Live duplicate delivery, interrupted-send recovery, and
+boot/logon recovery were not tested; duplicate/restart semantics have local
+mocked coverage only. No additional gameplay functionality is enabled.
 
 This is a supervised connection test. Interactive tasks require the Windows user
 to be logged in and the machine awake. The temporary hostname requires manual

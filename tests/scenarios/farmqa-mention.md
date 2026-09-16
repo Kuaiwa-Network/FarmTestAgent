@@ -1,6 +1,9 @@
 # FarmQA mention connection test
 
-Status: PREPARED; real Linear mention/reply not yet verified.
+Status: PASS on 2026-09-16, Windows deployment, FARM-1188: real user mention and
+follow-up produced the exact visible replies and matched confirmed delivery
+records. See [live evidence](../../reports/2026-09-16-farmqa-windows/evidence/live-delivery.json).
+Duplicate/restart checks remain synthetic; this establishes no gameplay coverage.
 
 Prerequisites: private FarmQA app activated in the intended workspace and Farm
 team, receiver authenticated as FarmQA, signed webhook route publicly reachable,

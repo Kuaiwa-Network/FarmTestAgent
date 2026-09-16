@@ -147,7 +147,7 @@ class CodexBridge:
             client.tool("send_message_to_thread", {"threadId": self.thread_id,
                         "hostId": "local", "prompt": prompt})
 
-    def result(self, event_key):
+    def _matching_turn(self, event_key):
         data = self.read()
         event_marker = marker(event_key)
         for turn in data.get("turns", []):
@@ -164,6 +164,17 @@ class CodexBridge:
                           and isinstance(item.get("output"), dict))
             if not any(event_marker in text for text in inputs):
                 continue
+            return turn
+        return None
+
+    def execution_state(self, event_key):
+        """Observe the exact turn. The installed app-tools connector cannot interrupt it."""
+        turn = self._matching_turn(event_key)
+        return {"turn_id": turn["id"], "status": turn["status"]} if turn else None
+
+    def result(self, event_key):
+        turn = self._matching_turn(event_key)
+        if turn:
             if turn.get("status") in ("failed", "interrupted"):
                 return {"turn_id": turn["id"], "type": "error",
                         "body": "The Codex task did not complete. Please inspect FarmQA Linear inbox in Codex."}

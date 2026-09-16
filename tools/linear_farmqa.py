@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verified Linear agent events -> fixed response or an opt-in Codex app bridge."""
 import argparse
+from datetime import datetime
 import getpass
 import hashlib
 import hmac
@@ -85,6 +86,10 @@ class Service:
             event_id = activity["id"]
             if not isinstance(event_id, str) or len(event_id) > 128:
                 return 400, "invalid prompt id"
+            if activity.get("agentSessionId", session_id) != session_id:
+                return 403, "activity session mismatch"
+            if activity.get("signal") == "stop":
+                return self.receive_stop(event)
         key = f"{self.identity['organizationId']}:{action}:{event_id}"
         try:
             prepared = self.prepare_event(event)
@@ -100,6 +105,18 @@ class Service:
 
     def prepare_event(self, event):
         return None
+
+    def receive_stop(self, event):
+        # Never interpret a control signal as an ordinary fixed-reply prompt.
+        with self.lock, self.db:
+            key = f"{self.identity['organizationId']}:stop:{event['agentActivity']['id']}"
+            inserted = self.db.execute("INSERT OR IGNORE INTO events VALUES (?,?,?,'cancelled',?,?,NULL)",
+                (key, event["agentSession"]["id"], str(uuid.uuid4()), time.time(), time.time())).rowcount
+            if inserted:
+                self.db.execute("""UPDATE events SET status='cancelled',completed_at=?
+                    WHERE session_id=? AND status='pending'""",
+                    (time.time(), event["agentSession"]["id"]))
+        return 200, "stop received" if inserted else "duplicate"
 
     def enqueue(self, key, prepared):
         pass
@@ -139,9 +156,56 @@ class BridgeService(Service):
             event_key TEXT PRIMARY KEY, input_json TEXT, ack_id TEXT NOT NULL,
             thread_id TEXT NOT NULL, turn_id TEXT, reply_json TEXT,
             next_check REAL NOT NULL DEFAULT 0, deadline REAL NOT NULL)""")
+        columns = {r[1] for r in self.db.execute("PRAGMA table_info(bridge_jobs)")}
+        for name, definition in (("source_ms", "REAL"), ("stop_requested", "INTEGER NOT NULL DEFAULT 0"),
+                                 ("dispatch_started", "INTEGER NOT NULL DEFAULT 0"), ("stop_outcome", "TEXT")):
+            if name not in columns:
+                self.db.execute(f"ALTER TABLE bridge_jobs ADD COLUMN {name} {definition}")
+        # Migration preserves possible execution even if an old dispatch was ambiguous.
+        if "dispatch_started" not in columns:
+            self.db.execute("""UPDATE bridge_jobs SET dispatch_started=1 WHERE event_key IN
+                (SELECT event_key FROM events WHERE status IN
+                 ('dispatching','waiting','reply_ready','sending','sent','uncertain','stop_pending'))""")
+        self.db.execute("""CREATE TABLE IF NOT EXISTS stop_requests (
+            stop_key TEXT PRIMARY KEY, session_id TEXT NOT NULL, cutoff_ms REAL NOT NULL,
+            activity_id TEXT NOT NULL, status TEXT NOT NULL, received_at REAL NOT NULL,
+            completed_at REAL, error TEXT)""")
+        self.db.execute("""UPDATE stop_requests SET status='uncertain',error='InterruptedStopReply'
+            WHERE status='sending'""")
         self.db.execute("""UPDATE events SET status='uncertain', error='InterruptedBridgeSend'
                            WHERE status IN ('acknowledging', 'dispatching')""")
         self.db.commit()
+
+    @staticmethod
+    def source_time(event):
+        source = event.get("agentActivity") if event["action"] == "prompted" else event["agentSession"]
+        value = source.get("createdAt") if isinstance(source, dict) else None
+        if not isinstance(value, str):
+            return None
+        try:
+            parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            return parsed.timestamp() * 1000 if parsed.tzinfo else None
+        except ValueError:
+            return None
+
+    def receive_stop(self, event):
+        session_id = event["agentSession"]["id"]
+        stop_key = f"{self.identity['organizationId']}:stop:{event['agentActivity']['id']}"
+        cutoff = self.source_time(event)
+        cutoff = event["webhookTimestamp"] if cutoff is None else cutoff
+        with self.lock, self.db:
+            inserted = self.db.execute("INSERT OR IGNORE INTO stop_requests VALUES (?,?,?,?, 'pending',?,NULL,NULL)",
+                (stop_key, session_id, cutoff, str(uuid.uuid4()), time.time())).rowcount
+            if inserted:
+                self.db.execute("""UPDATE bridge_jobs SET stop_outcome='reply_delivery_uncertain'
+                    WHERE reply_json IS NOT NULL AND event_key IN
+                    (SELECT event_key FROM events WHERE session_id=? AND status IN ('sending','uncertain'))
+                    AND (source_ms IS NULL OR source_ms<=?)""", (session_id, cutoff))
+                self.db.execute("""UPDATE bridge_jobs SET stop_requested=1,next_check=0,
+                    input_json=NULL,reply_json=NULL WHERE event_key IN
+                    (SELECT event_key FROM events WHERE session_id=? AND status NOT IN ('sent','cancelled'))
+                    AND (source_ms IS NULL OR source_ms<=?)""", (session_id, cutoff))
+        return 200, "stop received" if inserted else "duplicate"
 
     def prepare_event(self, event):
         session = event["agentSession"]
@@ -157,25 +221,88 @@ class BridgeService(Service):
         url = issue.get("url", "")
         if not isinstance(url, str) or len(url) > 2000:
             raise ValueError("Invalid issue URL")
-        return {"session_id": session["id"], "issue_url": url, "prompt": prompt}
+        return {"session_id": session["id"], "issue_url": url, "prompt": prompt,
+                "source_ms": self.source_time(event)}
 
     def enqueue(self, key, prepared):
+        source_ms = prepared.pop("source_ms")
+        cutoff = self.db.execute("SELECT max(cutoff_ms) FROM stop_requests WHERE session_id=?",
+                                 (prepared["session_id"],)).fetchone()[0]
+        stopped = cutoff is not None and (source_ms is None or source_ms <= cutoff)
         self.db.execute("""INSERT INTO bridge_jobs
-            (event_key,input_json,ack_id,thread_id,deadline) VALUES (?,?,?,?,?)""",
-            (key, json.dumps(prepared), str(uuid.uuid4()), self.bridge.thread_id, time.time() + 900))
+            (event_key,input_json,ack_id,thread_id,deadline,source_ms,stop_requested) VALUES (?,?,?,?,?,?,?)""",
+            (key, None if stopped else json.dumps(prepared), str(uuid.uuid4()), self.bridge.thread_id,
+             time.time() + 900, source_ms, int(stopped)))
 
-    def _update(self, row, status, error=None, **fields):
+    def _update(self, row, status, error=None, claim=False, **fields):
         with self.lock, self.db:
+            stopped = self.db.execute("SELECT stop_requested FROM bridge_jobs WHERE event_key=?",
+                                      (row["event_key"],)).fetchone()[0]
+            if claim and stopped:
+                return False
+            if stopped:
+                fields.update(input_json=None, reply_json=None)
+                if status == "sent":
+                    # A request already handed to Linear cannot be recalled.
+                    error = "StopDuringSend"
+                    fields["stop_outcome"] = "reply_already_in_flight"
+                elif status == "uncertain" and row["status"] == "reply_ready":
+                    fields["stop_outcome"] = "reply_delivery_uncertain"
             self.db.execute("UPDATE events SET status=?,error=?,completed_at=? WHERE event_key=?",
-                            (status, error, time.time() if status in ("sent", "uncertain") else None,
+                            (status, error, time.time() if status in ("sent", "uncertain", "cancelled") else None,
                              row["event_key"]))
             for name, value in fields.items():
-                if name not in ("turn_id", "reply_json", "next_check", "input_json"):
+                if name not in ("turn_id", "reply_json", "next_check", "input_json", "dispatch_started", "stop_outcome"):
                     raise ValueError("Invalid ledger field")
                 self.db.execute(f"UPDATE bridge_jobs SET {name}=? WHERE event_key=?", (value, row["event_key"]))
-        if status in ("sent", "uncertain"):
+        if status in ("sent", "uncertain", "cancelled"):
             print(json.dumps({"event": "bridge", "session_id": row["session_id"],
                               "thread_id": row["thread_id"], "status": status, "error": error}), flush=True)
+        return True
+
+    def _process_stop_reply(self):
+        with self.lock, self.db:
+            row = self.db.execute("SELECT * FROM stop_requests WHERE status='pending' ORDER BY received_at LIMIT 1").fetchone()
+            if row is None:
+                return False
+            active = self.db.execute("""SELECT 1 FROM events e JOIN bridge_jobs b USING(event_key)
+                WHERE e.session_id=? AND b.stop_requested=1 AND b.dispatch_started=1
+                AND e.status NOT IN ('sent','cancelled') LIMIT 1""", (row["session_id"],)).fetchone()
+            self.db.execute("UPDATE stop_requests SET status='sending' WHERE stop_key=?", (row["stop_key"],))
+        if active:
+            content = {"type": "error", "body": "Stop received. Pending replies are suppressed. "
+                "Active Codex work is not confirmed stopped: this desktop connector cannot interrupt it. "
+                "Click Stop in FarmQA Linear inbox in Codex. No new work will be dispatched until the matching turn ends."}
+        else:
+            content = {"type": "response", "body": "FarmQA stopped forwarding pending work for this session. "
+                "No pending Codex execution remains for the stopped requests."}
+        status, error = "sent", None
+        try:
+            self._send(row, row["activity_id"], content)
+        except Exception as exc:
+            status, error = "uncertain", type(exc).__name__
+        with self.lock, self.db:
+            self.db.execute("UPDATE stop_requests SET status=?,completed_at=?,error=? WHERE stop_key=?",
+                            (status, time.time(), error, row["stop_key"]))
+        return True
+
+    def _process_stopped(self, row):
+        if not row["dispatch_started"]:
+            self._update(row, "cancelled", stop_outcome="never_dispatched", input_json=None, reply_json=None)
+            return
+        try:
+            state = self.bridge.execution_state(row["event_key"])
+            if state and state["status"] in ("completed", "interrupted", "failed"):
+                outcome = state["status"]
+                if row["stop_outcome"] == "reply_delivery_uncertain":
+                    outcome += "_with_uncertain_reply_delivery"
+                self._update(row, "cancelled", turn_id=state["turn_id"],
+                             stop_outcome=outcome, input_json=None, reply_json=None)
+            else:
+                self._update(row, "stop_pending", "DesktopInterruptUnavailable", next_check=time.time()+3,
+                             stop_outcome=row["stop_outcome"] or "execution_not_confirmed_stopped")
+        except Exception as exc:
+            self._update(row, "stop_pending", type(exc).__name__, next_check=time.time()+10)
 
     def _send(self, row, activity_id, content):
         result = self.send({"id": activity_id, "agentSessionId": row["session_id"], "content": content})
@@ -186,18 +313,26 @@ class BridgeService(Service):
         now = time.time()
         with self.lock:
             row = self.db.execute("""SELECT e.*,b.* FROM events e JOIN bridge_jobs b USING(event_key)
-                WHERE e.status IN ('pending','queued','waiting','reply_ready') AND b.next_check<=?
-                ORDER BY CASE e.status WHEN 'pending' THEN 0 WHEN 'reply_ready' THEN 1
+                WHERE (e.status IN ('pending','queued','waiting','reply_ready') OR
+                    (b.stop_requested=1 AND e.status IN ('stop_pending','uncertain'))) AND b.next_check<=?
+                ORDER BY b.stop_requested DESC, CASE e.status WHEN 'pending' THEN 0 WHEN 'reply_ready' THEN 1
                     WHEN 'waiting' THEN 2 ELSE 3 END, e.received_at LIMIT 1""", (now,)).fetchone()
-            if row is None:
-                return False
-            busy = self.db.execute("SELECT 1 FROM events WHERE status IN ('waiting','dispatching') LIMIT 1").fetchone()
+            busy = self.db.execute("""SELECT 1 FROM events e JOIN bridge_jobs b USING(event_key)
+                WHERE b.dispatch_started=1 AND e.status NOT IN ('sent','cancelled') LIMIT 1""").fetchone()
+        if self._process_stop_reply():
+            return True
+        if row is None:
+            return False
         if row["thread_id"] != self.bridge.thread_id:
-            self._update(row, "uncertain", "DestinationChanged")
+            self._update(row, "uncertain", "DestinationChanged", next_check=now+10)
+            return True
+        if row["stop_requested"]:
+            self._process_stopped(row)
             return True
         status = row["status"]
         if status == "pending":
-            self._update(row, "acknowledging")
+            if not self._update(row, "acknowledging", claim=True):
+                return True
             try:
                 self._send(row, row["ack_id"], {"type": "thought",
                     "body": "FarmQA received your message. It is queued for the Codex app task."})
@@ -217,7 +352,8 @@ class BridgeService(Service):
                 except Exception as exc:
                     self._update(row, "queued", type(exc).__name__, next_check=now + 10)
                     return False  # Read-only availability checks may be retried.
-                self._update(row, "dispatching")
+                if not self._update(row, "dispatching", claim=True, dispatch_started=1):
+                    return True
                 try:
                     self.bridge.dispatch(row["event_key"], json.loads(row["input_json"]))
                     self._update(row, "waiting", next_check=now + 3)
@@ -234,7 +370,8 @@ class BridgeService(Service):
                 except Exception as exc:
                     self._update(row, "waiting", type(exc).__name__, next_check=now + 10)
         else:
-            self._update(row, "sending")
+            if not self._update(row, "sending", claim=True):
+                return True
             try:
                 self._send(row, row["activity_id"], json.loads(row["reply_json"]))
                 self._update(row, "sent", row["error"], input_json=None, reply_json=None)

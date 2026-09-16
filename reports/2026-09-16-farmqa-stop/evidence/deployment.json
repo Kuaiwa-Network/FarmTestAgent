@@ -1,0 +1,39 @@
+{
+  "verified_at_utc": "2026-09-16T12:25:38.733898+00:00",
+  "receiver_pid": 8848,
+  "listener": "127.0.0.1:8765",
+  "receiver_task": "Running",
+  "tunnel_task": "Running",
+  "startup": {
+    "event": "ready",
+    "app": {
+      "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+      "name": "FarmQA"
+    },
+    "workspace": {
+      "id": "ff27325f-34a2-4e64-be44-5746fd1b3ea3",
+      "name": "Kuaiwa AI"
+    },
+    "listen": "http://127.0.0.1:8765",
+    "mode": "codex"
+  },
+  "http_checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/webhook",
+      "status": 401
+    }
+  ],
+  "ledger_status_counts": {
+    "sent": 7
+  },
+  "desktop_task_status": {
+    "type": "idle"
+  },
+  "live_linear_stop": "pending"
+}

@@ -79,3 +79,15 @@ snapshot. The subsequent user test on FARM-1186 verified both visible replies
 against their completed Codex turns, actual FarmQA-authored Linear activities,
 and separate `sent` records. Temporary prompt/final fields were cleared; the
 session completed. This is transport/continuity coverage, not game interaction.
+
+## Stop handling increment
+
+User authorized the next cancellation increment on 2026-09-16. The deployed bridge
+now handles authenticated Linear `agentActivity.signal: stop` events, durably
+cancels queued work, suppresses pending ordinary replies, and records stop outcomes.
+The installed app-tools 0.1.4 catalog has no active-turn interrupt tool. A possibly
+running request stays `stop_pending` and blocks subsequent dispatch until its exact
+turn is observed ending; FarmQA tells the operator to stop it manually in Codex.
+Never treat reply suppression or a normal completion as successful interruption.
+46 local tests and live-ledger-copy migration passed; the real Linear Stop test
+remains pending. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).

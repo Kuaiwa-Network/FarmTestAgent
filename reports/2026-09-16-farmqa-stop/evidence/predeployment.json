@@ -1,0 +1,18 @@
+{
+  "verified_at_utc": "2026-09-16T12:24:13.357025+00:00",
+  "migration": {
+    "events_unchanged": 7,
+    "bridge_rows": 3,
+    "stop_rows": 0,
+    "integrity_check": "ok"
+  },
+  "desktop_capabilities": {
+    "tool_count": 38,
+    "interrupt_or_stop_tools": [],
+    "connector": "codex-app-tools 0.1.4",
+    "active_turn_interrupt_supported": false
+  },
+  "private_backup_created": true,
+  "live_linear_stop": "pending",
+  "migration_probe_note": "First probe cleanup failed because a SQLite backup connection remained open on Windows. Retry explicitly closed connections and passed."
+}

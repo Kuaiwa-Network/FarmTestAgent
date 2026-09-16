@@ -96,6 +96,12 @@ ordinary final replies were suppressed. No interruption occurred. The FARM-961
 error was visibly verified and accurately states the active-stop limitation.
 Post-stop resume also passed on FARM-961 in 8.779 seconds, matching visible reply,
 actual FarmQA activity, completed Codex turn, and `sent` ledger record. Manual
-interruption remains unverified. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
-The continuation is published as [draft PR #3](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/3)
-on `codex/farmqa-stop`; it is unmerged.
+interruption had not yet been tested in that run. See
+[evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
+
+The later [manual Stop verification](../reports/2026-09-16-farmqa-manual-stop/report.md)
+on FARM-961 ended the exact Codex waiting turn as `interrupted` after the user
+clicked Stop. The ordinary Linear response was absent, and a newer follow-up
+visibly returned `READY` in 12.914 seconds. This verifies the manual fallback,
+not automatic interruption. PR #3 was subsequently merged by the user; this
+later manual test did not change the deployed bridge code.

@@ -96,3 +96,8 @@ The temporary HTTPS hostname, logged-in Windows user, and running desktop app
 remain required. Reports/knowledge from the prior fresh-session verification are
 included on this continuation branch. PR #2 was already merged by the user; no
 merge was performed here.
+
+Later result: the [manual Stop follow-up](../2026-09-16-farmqa-manual-stop/report.md)
+verified a user-clicked Codex interruption, ordinary-reply suppression, and a
+newer successful Linear reply. This does not change the automatic-interruption
+limit described in this report.

@@ -16,7 +16,7 @@ or ordinary reply, not just an HTTP response.
 
 ## Live supervised check
 
-1. On an existing authorized Farm test issue, ask FarmQA to wait for 60 seconds
+1. On an existing authorized Farm test issue, ask FarmQA to wait for 60–90 seconds
    without changing files or game state, then reply `STOP TEST COMPLETE`.
 2. While its exact Codex turn is running, use **Send stop request** in Linear's
    agent chat menu. Confirm a real authenticated Stop control record arrives.
@@ -37,5 +37,9 @@ Both executed Codex turns completed normally, so interruption was not achieved.
 The FARM-961 stop error was visibly verified against its actual Linear activity.
 Post-stop resume PASS on FARM-961: a newer message returned its contextual reply in
 8.779 seconds, matched across the browser, API, Codex turn, and ledger. Manual
-interruption remains unverified. Automatic interruption remains BLOCKED by the
-installed connector's capabilities. See the dated Stop report.
+interruption was not tested in that earlier run. A later supervised FARM-961
+request completed this manual branch: Codex turn `01a0aa68-e62a-7f11-986e-009a0f4566ac`
+ended `interrupted` after the user clicked Stop, the ordinary Linear reply was
+absent, and the new follow-up returned `READY` visibly and in the delivery ledger.
+See the [manual Stop report](../../reports/2026-09-16-farmqa-manual-stop/report.md).
+Automatic interruption remains BLOCKED by the installed connector's capabilities.

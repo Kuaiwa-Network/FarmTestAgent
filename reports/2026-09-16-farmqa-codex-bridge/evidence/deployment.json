@@ -1,0 +1,23 @@
+{
+  "verified_at_utc": "2026-09-16T11:13:43Z",
+  "mode": "codex",
+  "identity": {
+    "viewer": {
+      "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+      "name": "FarmQA"
+    },
+    "organization": {
+      "id": "ff27325f-34a2-4e64-be44-5746fd1b3ea3",
+      "name": "Kuaiwa AI"
+    }
+  },
+  "https_endpoint": "https://stephen-impact-subdivision-scenic.trycloudflare.com",
+  "health_status": 200,
+  "invalid_signature_status": 401,
+  "codex_thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+  "codex_title": "FarmQA Linear inbox",
+  "codex_status": {
+    "type": "idle"
+  },
+  "live_linear_bridge_test": "pending"
+}

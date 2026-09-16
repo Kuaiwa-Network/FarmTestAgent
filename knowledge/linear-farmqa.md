@@ -4,7 +4,7 @@ Last reviewed 2026-09-16. Load this for mention-service work, not gameplay rules
 
 | Claim | Prerequisites / evidence | Platform/build | Status / verified |
 |---|---|---|---|
-| Agent name is **FarmQA**, invoked as **@FarmQA**, with no space; emits only the fixed connection reply. | Explicit user instruction; `tools/linear_farmqa.py`. | Platform-independent requirement | user-confirmed, 2026-09-16 |
+| Agent name is **FarmQA**, invoked as **@FarmQA**, with no space. Fixed reply remains the default/rollback mode; this machine now uses the explicitly requested Codex bridge. | User's later request to forward messages into a Codex app session; `tools/linear_farmqa.py`. | Windows deployment | user-confirmed, 2026-09-16 |
 | The private OAuth app is created and installed in Kuaiwa AI (`kuaiwagames`), with `read,write,app:mentionable`, client credentials, and only Agent session events. | User explicitly confirmed creation; app settings and live API identity in Windows report. | Linear / Windows deployment | observed, 2026-09-16 |
 | Installed-app access is restricted to **Only select teams: 农场**. | Saved admin UI setting; fresh app token reports only Farm team. | Linear / `linear-identity.json` | observed, 2026-09-16 |
 | User mention and follow-up on FARM-1188 produced two exact visible replies and a completed session, matching both local `sent` records and actual Linear activity IDs. | Browser agent chat and `live-delivery.json`. | Windows 11 x64 / Python 3.14.3 | observed, 2026-09-16; mention and follow-up both pass |
@@ -35,8 +35,32 @@ The deleted branch's fetched PR head `77cbcbc` has the same tree as that main
 commit. Windows work is in [draft PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2)
 on `codex/farmqa-windows-deploy`. Keep it unmerged unless requested.
 
-The live mention and follow-up both pass. Never infer delivery success from
+The original fixed-reply live mention and follow-up both pass. Never infer delivery success from
 HTTP 200 or `/health`. Uncertain send outcomes are
 not automatically retried. Duplicate/restart delivery behavior is locally tested,
-not established by a real Linear retry. No gameplay, issue creation, model calls,
-workers, or suite scheduling are enabled, and no gameplay coverage is claimed.
+not established by a real Linear retry. No gameplay, issue creation, game workers,
+or suite scheduling are enabled, and no gameplay coverage is claimed.
+
+## Codex forwarding increment
+
+The user subsequently requested forwarding messages into a Codex app task.
+The destination is **FarmQA Linear inbox**, task
+`01a0a9da-3777-7640-b19c-1aa1646ba210`, on this Windows host. It uses a Codex-managed
+worktree. Requests and final answers now use Codex model turns; no OpenAI API key
+or standalone `codex exec` worker is configured.
+
+`tools/farmqa_codex.py` talks MCP stdio to the installed Codex app-tools plugin.
+That plugin delivers messages to the running desktop app over its local pipe.
+The CLI's separate default daemon socket was unavailable and is not used.
+Two real adapter-to-app tests verified message delivery, preserved conversation
+context, and read-only Computer Use discovery through `@oai/sky`. This is not
+proof of successful app clicking or gameplay. New live Linear round-trip
+verification is recorded separately in the
+[bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md).
+
+All sessions currently share one dedicated Codex task and are processed serially.
+The app must remain running. Its local pipe/runtime paths are installation-specific;
+rebind after an app restart/update if the connection changes. Keep `.local/farmqa/codex.json`
+private. Bridge prompts/final text are temporarily stored in the private SQLite
+ledger, omitted from logs/status/reports, and cleared from active rows after
+confirmed Linear delivery. Ambiguous dispatch or reply sends are not retried.

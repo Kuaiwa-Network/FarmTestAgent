@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FarmQA v0: verified Linear agent events -> one fixed response. No game control."""
+"""Verified Linear agent events -> fixed response or an opt-in Codex app bridge."""
 import argparse
 import getpass
 import hashlib
@@ -86,11 +86,23 @@ class Service:
             if not isinstance(event_id, str) or len(event_id) > 128:
                 return 400, "invalid prompt id"
         key = f"{self.identity['organizationId']}:{action}:{event_id}"
+        try:
+            prepared = self.prepare_event(event)
+        except ValueError:
+            return 400, "invalid prompt"
         with self.lock, self.db:
             cursor = self.db.execute("INSERT OR IGNORE INTO events VALUES (?, ?, ?, 'pending', ?, NULL, NULL)",
                                      (key, session_id, str(uuid.uuid4()), time.time()))
             inserted = cursor.rowcount > 0
+            if inserted:
+                self.enqueue(key, prepared)
         return 200, "accepted" if inserted else "duplicate"
+
+    def prepare_event(self, event):
+        return None
+
+    def enqueue(self, key, prepared):
+        pass
 
     def process_one(self):
         with self.lock, self.db:
@@ -116,6 +128,119 @@ class Service:
     def results(self):
         with self.lock:
             return [dict(r) for r in self.db.execute("SELECT * FROM events ORDER BY received_at")]
+
+
+class BridgeService(Service):
+    """One desktop task, serialized prompts, durable stages, no ambiguous resends."""
+    def __init__(self, *args, bridge, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.bridge = bridge
+        self.db.execute("""CREATE TABLE IF NOT EXISTS bridge_jobs (
+            event_key TEXT PRIMARY KEY, input_json TEXT, ack_id TEXT NOT NULL,
+            thread_id TEXT NOT NULL, turn_id TEXT, reply_json TEXT,
+            next_check REAL NOT NULL DEFAULT 0, deadline REAL NOT NULL)""")
+        self.db.execute("""UPDATE events SET status='uncertain', error='InterruptedBridgeSend'
+                           WHERE status IN ('acknowledging', 'dispatching')""")
+        self.db.commit()
+
+    def prepare_event(self, event):
+        session = event["agentSession"]
+        issue = session.get("issue") or {}
+        if not isinstance(issue, dict):
+            raise ValueError("Invalid issue")
+        if event["action"] == "prompted":
+            prompt = event["agentActivity"]["content"].get("body")
+        else:
+            prompt = event.get("promptContext") or (session.get("comment") or {}).get("body")
+        if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 32000:
+            raise ValueError("Missing or oversized prompt")
+        url = issue.get("url", "")
+        if not isinstance(url, str) or len(url) > 2000:
+            raise ValueError("Invalid issue URL")
+        return {"session_id": session["id"], "issue_url": url, "prompt": prompt}
+
+    def enqueue(self, key, prepared):
+        self.db.execute("""INSERT INTO bridge_jobs
+            (event_key,input_json,ack_id,thread_id,deadline) VALUES (?,?,?,?,?)""",
+            (key, json.dumps(prepared), str(uuid.uuid4()), self.bridge.thread_id, time.time() + 900))
+
+    def _update(self, row, status, error=None, **fields):
+        with self.lock, self.db:
+            self.db.execute("UPDATE events SET status=?,error=?,completed_at=? WHERE event_key=?",
+                            (status, error, time.time() if status in ("sent", "uncertain") else None,
+                             row["event_key"]))
+            for name, value in fields.items():
+                if name not in ("turn_id", "reply_json", "next_check", "input_json"):
+                    raise ValueError("Invalid ledger field")
+                self.db.execute(f"UPDATE bridge_jobs SET {name}=? WHERE event_key=?", (value, row["event_key"]))
+        if status in ("sent", "uncertain"):
+            print(json.dumps({"event": "bridge", "session_id": row["session_id"],
+                              "thread_id": row["thread_id"], "status": status, "error": error}), flush=True)
+
+    def _send(self, row, activity_id, content):
+        result = self.send({"id": activity_id, "agentSessionId": row["session_id"], "content": content})
+        if not isinstance(result, dict) or result.get("success") is not True or not result.get("agentActivity", {}).get("id"):
+            raise RuntimeError("Linear did not confirm activity creation")
+
+    def process_one(self):
+        now = time.time()
+        with self.lock:
+            row = self.db.execute("""SELECT e.*,b.* FROM events e JOIN bridge_jobs b USING(event_key)
+                WHERE e.status IN ('pending','queued','waiting','reply_ready') AND b.next_check<=?
+                ORDER BY CASE e.status WHEN 'pending' THEN 0 WHEN 'reply_ready' THEN 1
+                    WHEN 'waiting' THEN 2 ELSE 3 END, e.received_at LIMIT 1""", (now,)).fetchone()
+            if row is None:
+                return False
+            busy = self.db.execute("SELECT 1 FROM events WHERE status IN ('waiting','dispatching') LIMIT 1").fetchone()
+        if row["thread_id"] != self.bridge.thread_id:
+            self._update(row, "uncertain", "DestinationChanged")
+            return True
+        status = row["status"]
+        if status == "pending":
+            self._update(row, "acknowledging")
+            try:
+                self._send(row, row["ack_id"], {"type": "thought",
+                    "body": "FarmQA received your message. It is queued for the Codex app task."})
+                self._update(row, "queued")
+            except Exception as exc:
+                self._update(row, "uncertain", type(exc).__name__)
+        elif status in ("queued", "waiting"):
+            if now > row["deadline"]:
+                self._update(row, "reply_ready", "CodexTimeout", reply_json=json.dumps({"type": "error",
+                    "body": "A Codex result was not confirmed in time. Inspect FarmQA Linear inbox in Codex before retrying."}))
+                return True
+            if status == "queued":
+                try:
+                    if busy or not self.bridge.is_idle():
+                        self._update(row, "queued", next_check=now + 5)
+                        return False
+                except Exception as exc:
+                    self._update(row, "queued", type(exc).__name__, next_check=now + 10)
+                    return False  # Read-only availability checks may be retried.
+                self._update(row, "dispatching")
+                try:
+                    self.bridge.dispatch(row["event_key"], json.loads(row["input_json"]))
+                    self._update(row, "waiting", next_check=now + 3)
+                except Exception as exc:
+                    self._update(row, "uncertain", type(exc).__name__)
+            else:
+                try:
+                    result = self.bridge.result(row["event_key"])
+                    if result is None:
+                        self._update(row, "waiting", next_check=now + 3)
+                    else:
+                        self._update(row, "reply_ready", turn_id=result["turn_id"],
+                                     reply_json=json.dumps({"type": result["type"], "body": result["body"]}))
+                except Exception as exc:
+                    self._update(row, "waiting", type(exc).__name__, next_check=now + 10)
+        else:
+            self._update(row, "sending")
+            try:
+                self._send(row, row["activity_id"], json.loads(row["reply_json"]))
+                self._update(row, "sent", row["error"], input_json=None, reply_json=None)
+            except Exception as exc:
+                self._update(row, "uncertain", type(exc).__name__)
+        return True
 
 
 class LinearAPI:
@@ -260,8 +385,16 @@ def main():
     # A second receiver must not mark an active send from the first uncertain.
     server = make_server(None, args.port)
     try:
-        service = Service(db_path, config["webhook_secret"], config["client_id"],
-                          identity["viewer"]["id"], identity["organization"]["id"], api.send)
+        service_args = (db_path, config["webhook_secret"], config["client_id"],
+                        identity["viewer"]["id"], identity["organization"]["id"], api.send)
+        if config.get("mode", "fixed") == "codex":
+            from farmqa_codex import CodexBridge
+            bridge = CodexBridge(json.loads((args.config.parent / "codex.json").read_text()))
+            service = BridgeService(*service_args, bridge=bridge)
+        elif config.get("mode", "fixed") == "fixed":
+            service = Service(*service_args)
+        else:
+            raise ValueError("Unknown FarmQA mode")
     except Exception:
         server.server_close()
         raise
@@ -274,7 +407,7 @@ def main():
     worker = threading.Thread(target=work, daemon=True)
     worker.start()
     print(json.dumps({"event": "ready", "app": identity["viewer"], "workspace": identity["organization"],
-                      "listen": f"http://127.0.0.1:{args.port}", "reply": REPLY}), flush=True)
+                      "listen": f"http://127.0.0.1:{args.port}", "mode": config.get("mode", "fixed")}), flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

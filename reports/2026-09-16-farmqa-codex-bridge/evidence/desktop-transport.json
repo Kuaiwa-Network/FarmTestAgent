@@ -1,0 +1,26 @@
+{
+  "verified_at_utc": "2026-09-16T11:12:29Z",
+  "source": "local adapter probes, not Linear webhooks",
+  "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+  "results": [
+    {
+      "turn_id": "01a0a9e4-3587-7de0-887f-3409cc3d64c6",
+      "type": "response",
+      "body": "FarmQA desktop bridge received test one."
+    },
+    {
+      "turn_id": "01a0a9e5-9700-7223-b124-b4d259208918",
+      "type": "response",
+      "body": "Read-only discovery via `sky.list_apps()` succeeded: 40 app entries and 3 open windows—ChatGPT, GitHub Desktop, and File Explorer. No apps were opened or controlled.\n\nMy exact previous transport-test reply was:\n“FarmQA desktop bridge received test one.”"
+    }
+  ],
+  "computer_use_tool_evidence": [
+    {
+      "turn_id": "01a0a9e5-9700-7223-b124-b4d259208918",
+      "server": "node_repl",
+      "tool": "js",
+      "status": "completed"
+    }
+  ],
+  "live_linear_bridge_test": "pending"
+}

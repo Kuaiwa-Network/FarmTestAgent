@@ -1,9 +1,12 @@
-# FarmQA v0
+# FarmQA Linear receiver
 
-One fixed response to a Linear agent mention or follow-up. Python 3.11+ standard
-library only. No AI provider key, Codex invocation, game control, or suite queue.
+Python 3.11+ standard-library receiver with two modes. The default `fixed` mode
+sends one connection-test response. The optional `codex` mode forwards messages
+to a dedicated task in the running Codex desktop app and returns its final answer.
+That mode also needs the app's installed Node runtime and app-tools MCP plugin.
+No separate OpenAI API key, game control, or suite queue is configured.
 
-Reply:
+Default-mode reply:
 
 > FarmQA is connected 🌱 I received your message. This is a connection test;
 > gameplay testing is not enabled yet.
@@ -45,7 +48,7 @@ Reply:
    ```
 
    Update Linear's webhook URL if the quick-tunnel hostname changes. Keep both
-   processes running and the Mac awake during the smoke test. This temporary
+   processes running and the computer awake during the smoke test. This temporary
    endpoint is not an unattended hosting solution.
 6. Mention **FarmQA** by selecting it from Linear's `@` menu in a comment. Text
    that merely looks like `@FarmQA` without selecting the app may not invoke it.
@@ -71,7 +74,9 @@ Linear activity and matching `sent` record for a real delivery.
 Webhook validation checks raw-byte HMAC-SHA256, timestamp within 60 seconds,
 client/app/workspace identity, event type and action. HTTP 200 means durable
 acceptance; it is not the final delivery result. IDs, status, times and exception
-class are stored in `.local/farmqa/events.sqlite3`; prompt/issue content is not.
+class are stored in `.local/farmqa/events.sqlite3`. Fixed mode stores no prompt
+content. Codex mode temporarily stores the minimal forwarded context and response
+in the private ledger; it clears those fields after confirmed delivery.
 
 Pending events survive restart. Duplicate created events and duplicate prompted
 activity IDs do not send twice. An API timeout, rejected mutation, or interrupted
@@ -141,6 +146,66 @@ child PIDs (check executable path against this deployment before `Stop-Process`)
 Stopping the task alone may leave a child running. Never delete the SQLite ledger
 to resolve an uncertain send; inspect Linear first. Do not start another receiver
 using the same database on a different port.
+
+## Codex desktop forwarding
+
+See [the bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md) for this
+machine's destination and verification. This uses the installed app-tools MCP
+plugin to call `send_message_to_thread` and `read_thread`. It does not launch
+`codex exec`, expose app-server to the network, or automate the Codex UI.
+The integration depends on the installed plugin version and an app-provided local
+pipe; treat it as a supervised prototype, not a stable public Codex desktop API.
+
+1. Create a dedicated **local Codex app task**, inspect its tools, and record its
+   real task ID. Keep one inbox for this prototype. Do not use a pending client ID.
+2. From a Codex app command tool (which provides the app-tools environment), run:
+
+   ```powershell
+   python3 tools/farmqa_codex.py configure --thread-id <task-id> --server-path <installed-codex-app-tools-server.mjs>
+   python3 tools/farmqa_codex.py check
+   ```
+
+   This saves `.local/farmqa/codex.json` privately. Do not paste its contents into
+   chat or Git. Keep the existing restrictive Windows directory ACL. The app must
+   stay running. After an app restart, use `python3 tools/farmqa_codex.py rebind`
+   from an app command tool; pass a new `--server-path` if the plugin was updated.
+   Restart the receiver afterward so it reloads the binding.
+3. With no events in flight, make a private SQLite backup, then add
+   `"mode": "codex"` to `.local/farmqa/config.json` without replacing credentials.
+   Stop the receiver supervisor, wait until it has stopped and released its lock,
+   stop only its verified child PID, then restart the receiver task. An immediate
+   stop/start can race the old file lock; verify both task state and the listener.
+   Leave the tunnel running so its hostname remains unchanged.
+4. Verify startup identity, one listener on loopback, HTTPS, and rejected unsigned
+   webhooks. Send a real @FarmQA mention and follow-up. Match each Codex turn's
+   final text and Linear activity ID against the ledger; health alone is insufficient.
+
+The receiver acknowledges new events, queues them, dispatches one request at a
+time, reads the matching completed Codex turn, and returns the final answer through
+`agentActivityCreate`. The task uses its configured model and permissions. A
+forwarded message does not independently grant app-control permissions.
+No tools' intermediate output or reasoning is posted to Linear.
+
+`python3 tools/linear_farmqa.py status` omits prompt/response content. For pending
+bridge records, inspect `bridge_jobs` using an explicit metadata-only projection
+(`event_key, thread_id, turn_id, next_check, deadline`). Never dump the table into
+logs because it contains temporary message content. Run all relevant tests with:
+
+```powershell
+python3 -m unittest discover -s tests -p 'test_*farmqa*.py' -v
+```
+
+An ambiguous dispatch or final-send timeout is `uncertain` and will not resend.
+Read-only availability/result polling can retry. The result deadline is 15 minutes;
+timing out does not cancel an already-running Codex task. Inputs are limited to
+32,000 characters and final answers to 12,000 characters. One inbox shares context
+across issues; avoid manually starting concurrent work there. Attachments, progress
+streaming, per-issue task isolation, and Linear stop-signal cancellation are not
+implemented. App clicking and gameplay require their own authorized verification.
+
+Rollback: stop accepting new work, inspect/resolve pending or uncertain bridge
+records, change `mode` back to `fixed`, and restart only the receiver. Keep both
+ledgers and the original backup; do not erase them to force retries.
 
 ## Authoritative API references
 

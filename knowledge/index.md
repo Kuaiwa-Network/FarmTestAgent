@@ -13,8 +13,11 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [Latest: FarmQA mention implementation](../reports/2026-09-16-farmqa-hello/report.md)
 - [Windows FarmQA deployment](../reports/2026-09-16-farmqa-windows/report.md) — fresh
   tunnel and Windows fixes; consult this report for current activation evidence
+- [FarmQA Codex desktop bridge](../reports/2026-09-16-farmqa-codex-bridge/report.md)
+  — current forwarding mode and verification limits
 
-Current request: activate and smoke-test **@FarmQA**'s fixed Linear reply. Gameplay
+Current request: forward **@FarmQA** messages into a Codex desktop task and return
+the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform
 supervised Editor learning, repeat, and Android replay. Infrastructure-first user
 correction is recorded; do not start by repeating the account question.

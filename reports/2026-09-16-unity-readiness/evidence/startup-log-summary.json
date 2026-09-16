@@ -1,0 +1,20 @@
+{
+  "compile_error_count": 0,
+  "compiler_failure_count": 0,
+  "enter_playmode_count": 0,
+  "startup_refresh_seconds": [
+    "42.852",
+    "0.037"
+  ],
+  "reload_lines": [
+    "Begin MonoManager ReloadAssembly",
+    "Domain Reload Profiling: 3996ms",
+    "\tBeginReloadAssembly (2419ms)",
+    "Begin MonoManager ReloadAssembly",
+    "Domain Reload Profiling: 11591ms",
+    "\tBeginReloadAssembly (77ms)"
+  ],
+  "captured_at": "2026-09-16T12:50:20.123984+00:00",
+  "note": "Allowlisted startup-log observations only; lack of a matching log line is not proof of runtime state.",
+  "mcp_server_start": "blocked by automatic approval review; no detailed reason returned"
+}

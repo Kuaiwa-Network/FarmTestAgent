@@ -1,10 +1,18 @@
 # Infrastructure knowledge
 
 The entries below describe the earlier Mac run. For the current Windows machine,
-see the [2026-09-16 readiness inspection](../reports/2026-09-16-farmqa-followup-preflight/report.md):
-matching Unity Editor installed but not running, no ADB devices, an existing local
-device broker with ownership unestablished, and no loaded game/session verified.
-Do not transfer the Mac's loaded-build identity to this checkout.
+see the [2026-09-16 live Editor inspection](../reports/2026-09-16-unity-readiness/report.md).
+Observed: Unity 2022.3.62f3 is running on Farm-Client revision `7dbf23bef80c660ceb5d384c2e99cff029e5b79a`,
+instance `Farm-Client@6d4c4b2750085821`, target StandaloneWindows64. StartScene is clean,
+Play Mode is off, and live error/warning reads are empty. The loaded HotUpdate module
+ID is `58847d20-a524-43d9-b9da-3e2c9a1bc5ec`; it contains GameTestDriver. Loaded/disk
+module IDs match, but a reproducible source-to-build relationship was not verified.
+Native screenshots and read-only MCP inspection succeeded; gameplay remains disabled.
+The [earlier Windows preflight](../reports/2026-09-16-farmqa-followup-preflight/report.md)
+found no ADB devices and an existing broker with ownership unestablished. Opening
+Unity later replaced a competing ADB server; device availability was not rechecked.
+No game login/session has been verified. Do not transfer the Mac's loaded-build
+identity or driver observations to this checkout.
 
 All entries last verified/reviewed 2026-09-16. Client source scope is revision
 `688da4652c9c2c3b5702c8e99d81e1480df419f7` unless otherwise specified.

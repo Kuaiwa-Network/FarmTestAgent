@@ -1,0 +1,68 @@
+{
+  "captured_at": "2026-09-16T20:52:02.4169422+08:00",
+  "revision": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "status": [
+    " M tools/device-mcp/README.md",
+    " M tools/device-mcp/compile_cs.py",
+    " M tools/device-mcp/requirements.txt",
+    "?? tools/device-mcp/test_compile_cs.py"
+  ],
+  "status_matches_before": true,
+  "files": [
+    {
+      "path": "tools/device-mcp/test_compile_cs.py",
+      "sha256": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/README.md",
+      "sha256": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/compile_cs.py",
+      "sha256": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2",
+      "matches_before": true
+    },
+    {
+      "path": "tools/device-mcp/requirements.txt",
+      "sha256": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb",
+      "matches_before": true
+    }
+  ],
+  "editor": [
+    {
+      "Id": 588,
+      "Responding": true,
+      "MainWindowTitle": "Farm-Client - StartScene - Windows, Mac, Linux - Unity 2022.3.62f3 <DX11>"
+    }
+  ],
+  "mcp_listener": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 9090,
+      "OwningProcess": 23112
+    }
+  ],
+  "hot_update_on_disk": {
+    "path": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\HotUpdate.dll",
+    "bytes": 6368768,
+    "last_write_time": "2026-09-15T20:51:35.4239785+08:00",
+    "sha256": "2d14c0a776e192e7a6c4f96b5cd3781a35a4a21af99b32a436e6653cb31dd256",
+    "loaded_identity_verified": false
+  },
+  "farmqa_listener": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 8765,
+      "OwningProcess": 8848
+    }
+  ],
+  "device_broker_listener": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 8973,
+      "OwningProcess": 21904
+    }
+  ]
+}

@@ -23,6 +23,11 @@ and reply suppression do not establish that active tools have stopped. Preserve
 that distinction and keep gameplay disabled until interruption and exclusive
 game-controller ownership have been verified.
 
+Subsequent user-approved readiness inspection, 2026-09-16: open the existing
+Windows Farm-Client Editor and inspect its connection, loaded assemblies, console,
+and screenshots with Play Mode off. This passed; see
+`reports/2026-09-16-unity-readiness/report.md`. It does not relax the gameplay gates.
+
 ## Every session
 
 1. Read this file and `knowledge/index.md`; load relevant detailed topics.

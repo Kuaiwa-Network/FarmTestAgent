@@ -5,6 +5,9 @@ deployed. **Automatic interruption of active Codex work remains BLOCKED.**
 The installed desktop connector does not expose that operation. No gameplay or
 exclusive game-controller implementation is included in this change.
 
+Review: [draft PR #3](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/3),
+branch `codex/farmqa-stop`. The PR remains unmerged.
+
 ## Evidence and implementation
 
 The real installed `codex-app-tools` 0.1.4 MCP catalog exposes 38 tools and zero

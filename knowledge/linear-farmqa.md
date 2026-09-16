@@ -91,3 +91,5 @@ turn is observed ending; FarmQA tells the operator to stop it manually in Codex.
 Never treat reply suppression or a normal completion as successful interruption.
 46 local tests and live-ledger-copy migration passed; the real Linear Stop test
 remains pending. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
+The continuation is published as [draft PR #3](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/3)
+on `codex/farmqa-stop`; it is unmerged.

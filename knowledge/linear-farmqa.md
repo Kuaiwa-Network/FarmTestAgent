@@ -14,6 +14,11 @@ Use [setup and operations](../tools/README-farmqa.md) and the
 [mention scenario](../tests/scenarios/farmqa-mention.md). Keep app credentials and
 event DB in ignored `.local/farmqa/`; never put them in knowledge or reports.
 
+User requested a PR before activation. [PR #1](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/1)
+contains the prototype on `codex/farmqa-hello` against `main`. The previously empty
+remote was initialized with the existing QA baseline `903efc4`. Publication is
+observed, 2026-09-16; merge and live activation remain pending.
+
 Activation approval is pending. The browser tool requires confirmation for new
 persistent app access. The form uses private distribution, client credentials,
 only Agent session events, and a temporary HTTPS tunnel. The application has not

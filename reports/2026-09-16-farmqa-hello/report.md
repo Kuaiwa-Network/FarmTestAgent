@@ -77,3 +77,16 @@ identity, restrict team access, start the receiver and verify public health.
 Then ask the user to select FarmQA in an issue comment and run
 `tests/scenarios/farmqa-mention.md`. Save actual session/activity evidence and
 update this report. Until then the live connection remains unverified.
+
+## PR publication, 2026-09-16
+
+At the user's request, created [PR #1](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/1):
+`codex/farmqa-hello` → `main`. GitHub's repository was empty, so the existing local
+QA baseline `903efc4` was published as `main` before the feature branch. No merge
+or app activation was performed. A pattern scan of tracked files found no
+credential literals or private-key/token patterns before publication.
+
+Fresh validation: `python3 -m unittest discover -s tests -p 'test_*.py' -v`
+passed all 12 tests in 0.534s, exit 0; `git diff --check 903efc4..HEAD` passed.
+Independent read-only review found no blocking defects within the supervised
+prototype scope. Live permissions and real mention/reply behavior remain untested.

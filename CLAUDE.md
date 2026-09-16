@@ -11,10 +11,11 @@ User correction, 2026-09-16: **inspect infrastructure before asking gameplay/acc
 questions**. The first inspection is recorded in `reports/2026-09-16-initial-learning/`.
 No live farm journey has run. Infrastructure fixture results do not count as one.
 
-Current increment, user-confirmed 2026-09-16: implement **@FarmQA** (no space) in
-Linear with one fixed reply, then test that connection first. Load
-`knowledge/linear-farmqa.md` for its setup/status. This does not authorize treating
-a mention acknowledgment as a gameplay test or silently enabling full-suite work.
+Current increment, user-confirmed 2026-09-16: the **@FarmQA** fixed-reply connection
+test passed. The user then requested forwarding Linear messages into a dedicated
+Codex desktop task, with replies returned to Linear. Load `knowledge/linear-farmqa.md`
+for setup/status. This authorizes the message bridge and its Codex turns, not
+gameplay execution, issue creation, game/client/server changes, or full-suite work.
 
 ## Every session
 

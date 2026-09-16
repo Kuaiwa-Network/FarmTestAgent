@@ -1,0 +1,43 @@
+{"event": "bridge", "session_id": "linear-session", "thread_id": "desktop-task", "status": "uncertain", "error": "TimeoutError"}
+test_ambiguous_dispatch_is_never_retried (test_farmqa_codex.BridgeTests.test_ambiguous_dispatch_is_never_retried) ... ok
+{"event": "bridge", "session_id": "linear-session", "thread_id": "desktop-task", "status": "uncertain", "error": "TimeoutError"}
+test_final_send_timeout_is_not_retried_after_restart (test_farmqa_codex.BridgeTests.test_final_send_timeout_is_not_retried_after_restart) ... ok
+test_followup_uses_same_task_and_nested_prompt_body (test_farmqa_codex.BridgeTests.test_followup_uses_same_task_and_nested_prompt_body) ... ok
+test_missing_prompt_rejected_without_ledger_entry (test_farmqa_codex.BridgeTests.test_missing_prompt_rejected_without_ledger_entry) ... ok
+test_no_execution_for_unsigned_or_wrong_identity_events (test_farmqa_codex.BridgeTests.test_no_execution_for_unsigned_or_wrong_identity_events) ... ok
+test_restart_during_dispatch_fails_closed (test_farmqa_codex.BridgeTests.test_restart_during_dispatch_fails_closed) ... ok
+test_restart_waiting_only_reads_existing_result (test_farmqa_codex.BridgeTests.test_restart_waiting_only_reads_existing_result) ... ok
+test_second_message_waits_for_first_but_is_acknowledged (test_farmqa_codex.BridgeTests.test_second_message_waits_for_first_but_is_acknowledged) ... ok
+{"event": "bridge", "session_id": "linear-session", "thread_id": "desktop-task", "status": "sent", "error": null}
+test_signed_message_roundtrip_duplicates_and_private_content_cleanup (test_farmqa_codex.BridgeTests.test_signed_message_roundtrip_duplicates_and_private_content_cleanup) ... ok
+test_unavailable_app_only_retries_read_checks (test_farmqa_codex.BridgeTests.test_unavailable_app_only_retries_read_checks) ... ok
+test_completed_without_final_does_not_report_success (test_farmqa_codex.ResultCorrelationTests.test_completed_without_final_does_not_report_success) ... ok
+test_desktop_delegation_output_is_correlated (test_farmqa_codex.ResultCorrelationTests.test_desktop_delegation_output_is_correlated) ... ok
+test_in_progress_text_is_not_a_completed_result (test_farmqa_codex.ResultCorrelationTests.test_in_progress_text_is_not_a_completed_result) ... ok
+test_only_matching_event_final_is_returned (test_farmqa_codex.ResultCorrelationTests.test_only_matching_event_final_is_returned) ... ok
+test_bad_signatures_stale_and_wrong_identity_never_send (test_linear_farmqa.FarmQATest.test_bad_signatures_stale_and_wrong_identity_never_send) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "0570bfa6-e876-4c7b-b9a2-e86d56974cbc", "status": "sent", "error": null}
+test_duplicate_delivery_and_restart_do_not_repeat_reply (test_linear_farmqa.FarmQATest.test_duplicate_delivery_and_restart_do_not_repeat_reply) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "3393f454-39eb-4c11-a6c9-33f6d81e6de9", "status": "uncertain", "error": "TimeoutError"}
+test_failed_delivery_is_visible_not_success_or_silent_retry (test_linear_farmqa.FarmQATest.test_failed_delivery_is_visible_not_success_or_silent_retry) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "cfa04cd0-4b9c-4fa1-9717-e83c4451220b", "status": "uncertain", "error": "RuntimeError"}
+test_false_api_success_is_not_sent (test_linear_farmqa.FarmQATest.test_false_api_success_is_not_sent) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "24d82c07-3b89-4368-9d08-b3ab5a0f8d9d", "status": "sent", "error": null}
+{"event": "reply", "session_id": "session", "activity_id": "7ffaef94-a2e1-4e88-9a5b-7b63a289519b", "status": "sent", "error": null}
+test_followup_gets_its_own_reply_but_duplicate_does_not (test_linear_farmqa.FarmQATest.test_followup_gets_its_own_reply_but_duplicate_does_not) ... ok
+test_graphql_errors_are_not_success_even_on_http_200 (test_linear_farmqa.FarmQATest.test_graphql_errors_are_not_success_even_on_http_200) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "6c0b5578-cae0-4d74-8fbe-dc7aa47487a8", "status": "sent", "error": null}
+test_http_route_accepts_signed_event_and_rejects_unsigned (test_linear_farmqa.FarmQATest.test_http_route_accepts_signed_event_and_rejects_unsigned) ... ok
+test_interrupted_send_is_not_retried_after_restart (test_linear_farmqa.FarmQATest.test_interrupted_send_is_not_retried_after_restart) ... ok
+test_linear_api_uses_app_token_and_checks_graphql_success (test_linear_farmqa.FarmQATest.test_linear_api_uses_app_token_and_checks_graphql_success) ... ok
+test_malformed_event_and_non_prompt_are_not_replies (test_linear_farmqa.FarmQATest.test_malformed_event_and_non_prompt_are_not_replies) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "a74dcce1-b00a-446a-a03a-48602eab6c13", "status": "sent", "error": null}
+test_mention_produces_one_final_reply (test_linear_farmqa.FarmQATest.test_mention_produces_one_final_reply) ... ok
+{"event": "reply", "session_id": "session", "activity_id": "6b0476aa-e957-495d-9e59-990a566474eb", "status": "sent", "error": null}
+test_pending_event_survives_restart_without_storing_prompt (test_linear_farmqa.FarmQATest.test_pending_event_survives_restart_without_storing_prompt) ... ok
+test_second_receiver_cannot_bind_the_same_port (test_linear_farmqa.FarmQATest.test_second_receiver_cannot_bind_the_same_port) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.799s
+
+OK

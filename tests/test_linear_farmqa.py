@@ -145,8 +145,16 @@ class FarmQATest(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as caught:
             urllib.request.urlopen(urllib.request.Request(url + "/webhook", data=raw))
         self.assertEqual(caught.exception.code, 401)
+        caught.exception.close()
         self.assertTrue(self.service.process_one())
         self.send.assert_called_once()
+
+    def test_second_receiver_cannot_bind_the_same_port(self):
+        server = farmqa.make_server(self.service, port=0)
+        self.addCleanup(server.server_close)
+        with self.assertRaises(OSError):
+            other = farmqa.make_server(self.service, port=server.server_port)
+            self.addCleanup(other.server_close)
 
     def test_linear_api_uses_app_token_and_checks_graphql_success(self):
         transport = Mock(side_effect=[io.BytesIO(json.dumps({"access_token": "fake-token", "expires_in": 600}).encode()),

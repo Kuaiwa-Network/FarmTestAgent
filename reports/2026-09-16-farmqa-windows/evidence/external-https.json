@@ -1,0 +1,48 @@
+{
+  "request": {
+    "nodes": {
+      "il1.node.check-host.net": [
+        "il",
+        "Israel",
+        "Tel Aviv",
+        "94.154.123.196",
+        "AS206446"
+      ],
+      "tr1.node.check-host.net": [
+        "tr",
+        "Turkey",
+        "Istanbul",
+        "185.23.17.21",
+        "AS211557"
+      ]
+    },
+    "ok": 1,
+    "permanent_link": "https://check-host.net/check-report/4bc25b05kfe2",
+    "request_id": "4bc25b05kfe2"
+  },
+  "result": {
+    "command": "http",
+    "created": 1789547566,
+    "host": "https://stephen-impact-subdivision-scenic.trycloudflare.com/health",
+    "results": {
+      "il1.node.check-host.net": [
+        [
+          1,
+          1.0282130241394,
+          "OK",
+          "200",
+          "104.16.231.132"
+        ]
+      ],
+      "tr1.node.check-host.net": [
+        [
+          1,
+          0.569499969482422,
+          "OK",
+          "200",
+          "104.16.231.132"
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "verified_at_utc": "2026-09-16T08:39:54Z",
+  "records": [
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:created:48c4dcca-6be9-4ca6-8a13-255828bfd2e7",
+      "session_id": "48c4dcca-6be9-4ca6-8a13-255828bfd2e7",
+      "activity_id": "d4f90247-de65-4538-b18c-5a28a6529c9b",
+      "status": "sent",
+      "received_at": 1789547797.4052722,
+      "completed_at": 1789547798.6880138,
+      "error": null,
+      "receipt_to_confirmed_seconds": 1.283,
+      "linear_activity_matches": true
+    },
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:bf7d0faf-fd56-4a94-bf73-0769baa6414c",
+      "session_id": "48c4dcca-6be9-4ca6-8a13-255828bfd2e7",
+      "activity_id": "921e06e1-6ed7-4bd8-9b51-a5e86c1bcb0d",
+      "status": "sent",
+      "received_at": 1789547942.359188,
+      "completed_at": 1789547943.3771684,
+      "error": null,
+      "receipt_to_confirmed_seconds": 1.018,
+      "linear_activity_matches": true
+    }
+  ],
+  "linear_sessions": [
+    {
+      "id": "48c4dcca-6be9-4ca6-8a13-255828bfd2e7",
+      "status": "complete",
+      "appUser": {
+        "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+        "name": "FarmQA"
+      },
+      "issue": {
+        "id": "cec59041-27bb-4905-a6a9-f71419c2d304",
+        "identifier": "FARM-1188",
+        "url": "https://linear.app/kuaiwagames/issue/FARM-1188"
+      },
+      "activities": {
+        "nodes": [
+          {
+            "id": "921e06e1-6ed7-4bd8-9b51-a5e86c1bcb0d",
+            "createdAt": "2026-09-16T08:39:06.938Z",
+            "user": {
+              "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+              "name": "FarmQA"
+            },
+            "content": {
+              "__typename": "AgentActivityResponseContent",
+              "type": "response",
+              "body": "FarmQA is connected 🌱 I received your message. This is a connection test; gameplay testing is not enabled yet."
+            }
+          },
+          {
+            "id": "bf7d0faf-fd56-4a94-bf73-0769baa6414c",
+            "createdAt": "2026-09-16T08:39:05.599Z",
+            "user": {
+              "role": "human"
+            },
+            "content": {
+              "__typename": "AgentActivityPromptContent",
+              "type": "prompt"
+            }
+          },
+          {
+            "id": "d4f90247-de65-4538-b18c-5a28a6529c9b",
+            "createdAt": "2026-09-16T08:36:42.298Z",
+            "user": {
+              "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+              "name": "FarmQA"
+            },
+            "content": {
+              "__typename": "AgentActivityResponseContent",
+              "type": "response",
+              "body": "FarmQA is connected 🌱 I received your message. This is a connection test; gameplay testing is not enabled yet."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "ui_observation": {
+    "surface": "Linear issue agent chat",
+    "issue": "FARM-1188",
+    "session_fragment": "agent-session-48c4dcca",
+    "initial_reply_visible": true,
+    "followup_reply_visible": true,
+    "visible_fixed_response_count": 2,
+    "session_label": "Finished",
+    "recorded_at_utc": "2026-09-16T08:40:41Z"
+  }
+}

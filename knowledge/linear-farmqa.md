@@ -89,7 +89,13 @@ The installed app-tools 0.1.4 catalog has no active-turn interrupt tool. A possi
 running request stays `stop_pending` and blocks subsequent dispatch until its exact
 turn is observed ending; FarmQA tells the operator to stop it manually in Codex.
 Never treat reply suppression or a normal completion as successful interruption.
-46 local tests and live-ledger-copy migration passed; the real Linear Stop test
-remains pending. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
+46 local tests and live-ledger-copy migration passed. Real Stop requests on
+FARM-1186 and FARM-961 were acknowledged in 1.010 and 1.109 seconds. One queued
+request never dispatched; both executed requests completed normally and their
+ordinary final replies were suppressed. No interruption occurred. The FARM-961
+error was visibly verified and accurately states the active-stop limitation.
+Post-stop resume also passed on FARM-961 in 8.779 seconds, matching visible reply,
+actual FarmQA activity, completed Codex turn, and `sent` ledger record. Manual
+interruption remains unverified. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
 The continuation is published as [draft PR #3](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/3)
 on `codex/farmqa-stop`; it is unmerged.

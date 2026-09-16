@@ -31,5 +31,11 @@ or ordinary reply, not just an HTTP response.
 6. Send a fresh short follow-up after terminal confirmation to verify that a
    newer authored event can resume. Never force a replay of an ambiguous write.
 
-Current local result: 46 tests PASS. Live Stop and post-stop resume are pending.
-Automatic interruption remains BLOCKED by the installed connector's capabilities.
+Current local result: 46 tests PASS. Live Stop handling and ordinary-reply
+suppression PASS on FARM-1186 and FARM-961; queued cancellation PASS on FARM-1186.
+Both executed Codex turns completed normally, so interruption was not achieved.
+The FARM-961 stop error was visibly verified against its actual Linear activity.
+Post-stop resume PASS on FARM-961: a newer message returned its contextual reply in
+8.779 seconds, matched across the browser, API, Codex turn, and ledger. Manual
+interruption remains unverified. Automatic interruption remains BLOCKED by the
+installed connector's capabilities. See the dated Stop report.

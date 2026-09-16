@@ -59,21 +59,37 @@ Stopping does not undo any already completed tool or game action.
   are running. The existing tunnel was not restarted.
 - Startup identity is still FarmQA / Kuaiwa AI, desktop adapter is reachable, public
   HTTPS health is 200, and an unsigned webhook is rejected with 401.
-- **Real Linear Stop, manual interruption, and post-stop resume: pending.** The user
-  has been asked to run the harmless 60-second wait scenario on FARM-1186. Neither
-  local test results nor service health are counted as that live test.
+- **Real Linear Stop: observed on FARM-1186 and FARM-961.** Stop replies were
+  confirmed in 1.010 s and 1.109 s respectively. Both actual Linear activities
+  carry the `stop` signal and match the deduplicated local records.
+- **Queued cancellation: PASS.** A second FARM-1186 request was never dispatched.
+- **Ordinary-reply suppression: PASS.** Both dispatched wait requests completed
+  normally in Codex, but neither corresponding final activity was sent to Linear.
+  The three affected rows are `cancelled`, temporary content is cleared, and
+  `stop_outcome` accurately distinguishes the two `completed` turns from the one
+  `never_dispatched` request. The inbox is now idle.
+- **Automatic interruption: NOT ACHIEVED.** Both executed turns completed normally;
+  no `interrupted` outcome was observed. The visible error on FARM-961 correctly
+  explains this limitation; it is not a failure to receive the Stop webhook.
+- **Post-stop resume: PASS.** The user sent `resumed after stop` in the same
+  FARM-961 session. The new authored timestamp was after the stored stop cutoff,
+  and the same inbox returned its contextual reply in 8.779 seconds. Visible
+  browser text, the actual FarmQA activity, the completed Codex turn, and a new
+  `sent` record matched. Temporary content was cleared; the Linear session is
+  now `complete`. Manual interruption remains unverified.
 
 See [local tests](evidence/local-tests.txt), [migration/capabilities](evidence/predeployment.json),
-and [deployment](evidence/deployment.json). Credentials and message bodies remain
+and [deployment](evidence/deployment.json). The subsequent [live Stop evidence](evidence/live-stop.json)
+matches API activities, desktop turns, local metadata, and the visible FARM-961
+agent chat. Credentials and message bodies remain
 outside tracked evidence. Existing client changes and the inbox checkout are unchanged.
 
 ## Next steps and limits
 
-1. Observe the user's Linear stop test and record the actual terminal outcome,
-   suppressed ordinary final, visible stop reply, and a newer follow-up.
-2. Obtain a supported active-turn interrupt capability and verify interruption
+1. Obtain a supported active-turn interrupt capability and verify interruption
    end to end before enabling gameplay. The currently deployed fallback is manual.
-3. Establish one controller per game instance, target/build and safe test-session
+   A manual Codex interruption remains separately untested.
+2. Establish one controller per game instance, target/build and safe test-session
    identity before the existing bounded one-plot scenario.
 
 The temporary HTTPS hostname, logged-in Windows user, and running desktop app

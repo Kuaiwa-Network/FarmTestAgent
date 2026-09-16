@@ -1,5 +1,7 @@
 import json
+from contextlib import closing
 import os
+import sqlite3
 from pathlib import Path
 import subprocess
 import sys
@@ -284,6 +286,34 @@ class ProvisionAdapterTests(unittest.TestCase):
         self.client.tool.return_value = {"thread":{"id":"wrong-task"}}
         with self.assertRaises(AppProtocolError):
             self.bridge.read()
+
+    def test_live_delegation_envelope_matches_first_input_line(self):
+        child = Mock()
+        child.read.return_value = {"turns":[{"status":"completed", "items":[{
+            "type":"functionCallOutput", "namespace":"codex_app", "name":"create_thread",
+            "output":{"text":"<codex_delegation>\n  <source_thread_id>owner</source_thread_id>\n  <input>"
+                +binding_marker("token")+"\nInitialize only.</input>\n</codex_delegation>"}}]}]}
+        self.bridge.for_thread = Mock(return_value=child)
+        self.assertTrue(self.bridge.session_initialized("actual", "token"))
+        self.assertFalse(self.bridge.session_initialized("actual", "different"))
+
+    def test_worktree_missing_from_app_list_uses_readonly_metadata_then_verifies_marker(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/"state.sqlite"
+            with closing(sqlite3.connect(path)) as db, db:
+                db.execute("CREATE TABLE threads(id TEXT,name TEXT,archived INT,created_at INT)")
+                db.execute("INSERT INTO threads VALUES ('actual','FarmQA session token',0,1)")
+            self.bridge.config["state_db_path"] = str(path)
+            self.client.tool.return_value = {"threads":[]}
+            child = Mock()
+            child.read.return_value = {"turns":[]}
+            self.bridge.for_thread = Mock(return_value=child)
+            self.assertIsNone(self.bridge.find_session("token"))
+            child.read.return_value = {"turns":[{"status":"completed", "items":[{
+                "type":"userMessage", "content":[{"type":"text", "text":binding_marker("token")}]}]}]}
+            self.assertEqual(self.bridge.find_session("token"), "actual")
+            with closing(sqlite3.connect(path)) as db:
+                self.assertEqual(db.execute("SELECT count(*) FROM threads").fetchone()[0], 1)
 
     def test_rebind_preserves_routing_configuration(self):
         with tempfile.TemporaryDirectory() as directory:

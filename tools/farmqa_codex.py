@@ -4,11 +4,13 @@ No Codex CLI execution, standalone model process, or public app-control port.
 Runtime paths and the app pipe are private, machine-specific configuration.
 """
 import argparse
+from contextlib import closing
 import hashlib
 import json
 import os
 from pathlib import Path
 import queue
+import sqlite3
 import subprocess
 import threading
 import time
@@ -122,12 +124,18 @@ def input_texts(turn):
     texts = [part.get("text", "") for item in turn.get("items", [])
              if item.get("type") == "userMessage" for part in item.get("content", [])
              if part.get("type") == "text"]
-    texts.extend(item.get("output", {}).get("text", "")
-                 for item in turn.get("items", [])
-                 if item.get("type") == "functionCallOutput"
-                 and item.get("namespace") == "codex_app"
-                 and item.get("name") in ("send_message_to_thread", "create_thread")
-                 and isinstance(item.get("output"), dict))
+    for item in turn.get("items", []):
+        if (item.get("type") != "functionCallOutput" or item.get("namespace") != "codex_app"
+                or item.get("name") not in ("send_message_to_thread", "create_thread")
+                or not isinstance(item.get("output"), dict)):
+            continue
+        text = item["output"].get("text", "")
+        # The installed desktop wraps delegated input in this envelope. The
+        # first input line shares the <input> line; XML parsing is inappropriate
+        # because the message itself may contain unescaped arbitrary text.
+        if text.startswith("<codex_delegation>") and "<input>" in text and "</input>" in text:
+            text = text.split("<input>", 1)[1].rsplit("</input>", 1)[0]
+        texts.append(text)
     return texts
 
 
@@ -180,6 +188,15 @@ class CodexBridge:
                       if t.get("kind") == "codex" and t.get("hostId") == "local"
                       and t.get("projectId") == self.config.get("project_id")
                       and token[:8] in t.get("title", "")}
+        if not candidates and self.config.get("state_db_path"):
+            # This installed app omits worktree tasks (project_id NULL) from
+            # list_threads. Read metadata only; read_thread and the full input
+            # marker below remain the authority for binding, never this index.
+            path = Path(self.config["state_db_path"]).resolve()
+            with closing(sqlite3.connect(path.as_uri()+"?mode=ro", uri=True, timeout=1)) as db:
+                candidates = {r[0] for r in db.execute("""SELECT id FROM threads
+                    WHERE archived=0 AND name=? ORDER BY created_at DESC LIMIT 4""",
+                    ("FarmQA session " + token[:8],))}
         if len(candidates) > 3:
             raise AppProtocolError("Too many possible session tasks to reconcile")
         matches = []
@@ -293,6 +310,10 @@ def configure_sessions(path, project_id):
             or Path(project["path"]).resolve() != Path(__file__).resolve().parents[1]):
         raise ValueError("Select the saved FarmTestAgent project for this receiver")
     config.update(session_routing=True, project_id=project_id, project_path=project["path"])
+    state_db = Path(os.environ.get("CODEX_HOME", str(Path.home()/".codex"))) / "state_5.sqlite"
+    if not state_db.is_file():
+        raise ValueError("Installed Codex metadata index is unavailable")
+    config["state_db_path"] = str(state_db)
     with path.open("w", encoding="utf-8") as file:
         json.dump(config, file, indent=2)
     print(json.dumps({"session_routing": True, "project_id": project_id,

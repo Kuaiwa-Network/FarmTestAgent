@@ -200,8 +200,45 @@ Read-only availability/result polling can retry. The result deadline is 15 minut
 timing out does not cancel an already-running Codex task. Inputs are limited to
 32,000 characters and final answers to 12,000 characters. One inbox shares context
 across issues; avoid manually starting concurrent work there. Attachments, progress
-streaming, per-issue task isolation, and Linear stop-signal cancellation are not
-implemented. App clicking and gameplay require their own authorized verification.
+streaming and per-issue task isolation are not implemented. Stop handling is
+described below; active desktop interruption remains unavailable. App clicking
+and gameplay require their own authorized verification.
+
+### Linear Stop handling
+
+In `codex` mode, an authenticated `AgentSessionEvent` / `prompted` event with
+`agentActivity.signal: "stop"` is a control request, never an ordinary Codex
+prompt. It may have no message body. Stops are deduplicated in `stop_requests`.
+They mark matching pending jobs, clear temporary content, cancel undispatched
+work, and suppress ordinary replies that have not already been handed to Linear.
+The ordinary signature, timestamp, app/workspace, and activity/session checks apply.
+
+The installed app-tools 0.1.4 connector has **no interrupt operation**. For a
+possibly running task, FarmQA sends an explicit error explaining that execution
+is not confirmed stopped and asks the operator to click **Stop** in **FarmQA
+Linear inbox** in Codex. The job stays `stop_pending` and holds the dispatch queue
+until the exact event-marked turn is observed completed, failed, or interrupted.
+The stopped turn's ordinary final answer is discarded. An idle task or a missing
+turn is insufficient proof; missing/ambiguous execution remains held across restarts.
+
+`cancelled` in the event ledger describes bridge handling. Consult
+`bridge_jobs.stop_outcome`: `never_dispatched`, `completed`, `failed`, or
+`interrupted` distinguishes what actually happened. Completion after Stop is
+not successful interruption. `reply_already_in_flight` or an outcome ending in
+`_with_uncertain_reply_delivery` means a previously started Linear write could
+not be recalled or its delivery could not be determined. Inspect Linear before
+retrying; no ambiguous write is automatically repeated.
+
+Stops retain the activity's authored time as a cutoff. Delayed older events stay
+cancelled; a later authored prompt can resume the session once no earlier work
+is held. A prompt without a valid timezone-bearing `createdAt` after a stop
+fails closed. Stop retries cannot cancel newer messages. Do not erase the stop
+ledger to bypass a hold. Use only metadata projections when inspecting jobs.
+
+Fixed-reply mode also ignores Stop as a prompt and cancels already queued fixed
+replies, but does not provide the desktop cancellation workflow or its cutoff.
+See [the Stop verification report](../reports/2026-09-16-farmqa-stop/report.md).
+No game-controller cancellation or cross-process game ownership lock is implemented.
 
 Rollback: stop accepting new work, inspect/resolve pending or uncertain bridge
 records, change `mode` back to `fixed`, and restart only the receiver. Keep both
@@ -211,6 +248,7 @@ ledgers and the original backup; do not erase them to force retries.
 
 - [Linear agents](https://linear.app/developers/agents)
 - [Agent session events and activities](https://linear.app/developers/agent-interaction)
+- [Linear stop signals](https://linear.app/developers/agent-signals)
 - [Webhook authentication](https://linear.app/developers/webhooks)
 - [Client credentials](https://linear.app/developers/oauth-2-0-authentication#client-credentials-tokens)
 - [Application manifests](https://linear.app/developers/oauth-app-manifests)

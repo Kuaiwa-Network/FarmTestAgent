@@ -1,0 +1,154 @@
+{
+  "verified_at_utc": "2026-09-16T12:37:03.524890+00:00",
+  "source": "real authenticated Linear stop webhooks; Linear API; completed Codex turns; FARM-961 visible browser",
+  "stops": [
+    {
+      "stop_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:stop:963e23e7-4717-44fc-b555-cb063413dd6e",
+      "session_id": "0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "cutoff_ms": 1789562003722.0,
+      "activity_id": "9115ce92-2865-4d57-8e0c-7060d6571d4d",
+      "status": "sent",
+      "received_at": 1789562004.184757,
+      "completed_at": 1789562005.1945038,
+      "error": null,
+      "issue_identifier": "FARM-1186",
+      "signal_verified": true,
+      "reply_author_verified": true,
+      "reply_sha256": "de415a7316b118a88310cf157d69e1deb9426f61bf0929220c94484c7992b2ae",
+      "receipt_to_confirmed_seconds": 1.01,
+      "visible_browser_reply_matches": false
+    },
+    {
+      "stop_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:stop:8199a55f-6bb3-4413-8380-8145f0955e41",
+      "session_id": "7d84a721-55a4-4c4a-bd85-e6818d319fe9",
+      "cutoff_ms": 1789562057045.0,
+      "activity_id": "1023c70f-3ac5-4bdf-8aae-66e673bcf8f9",
+      "status": "sent",
+      "received_at": 1789562057.387013,
+      "completed_at": 1789562058.4964893,
+      "error": null,
+      "issue_identifier": "FARM-961",
+      "signal_verified": true,
+      "reply_author_verified": true,
+      "reply_sha256": "de415a7316b118a88310cf157d69e1deb9426f61bf0929220c94484c7992b2ae",
+      "receipt_to_confirmed_seconds": 1.109,
+      "visible_browser_reply_matches": true
+    }
+  ],
+  "jobs": [
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:a0acb14a-714d-4f50-a980-6a73d7e3b528",
+      "session_id": "0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "activity_id": "43f9701c-3e9d-4619-a928-2b6e0e5184a3",
+      "status": "cancelled",
+      "received_at": 1789561937.1768174,
+      "completed_at": 1789562008.450833,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": "01a0aa34-2492-7522-9264-abc0c3e78da0",
+      "source_ms": 1789561935966.0,
+      "stop_requested": 1,
+      "dispatch_started": 1,
+      "stop_outcome": "completed",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "issue_identifier": "FARM-1186",
+      "ordinary_response_absent_from_linear": true,
+      "matching_codex_execution": {
+        "turn_id": "01a0aa34-2492-7522-9264-abc0c3e78da0",
+        "status": "completed"
+      }
+    },
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:a083e523-d9f7-4455-8f20-58a2bbb54228",
+      "session_id": "0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "activity_id": "219b12df-5b33-4864-a481-60d3f430f95f",
+      "status": "cancelled",
+      "received_at": 1789561987.9609547,
+      "completed_at": 1789562005.3022642,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": null,
+      "source_ms": 1789561949063.0,
+      "stop_requested": 1,
+      "dispatch_started": 0,
+      "stop_outcome": "never_dispatched",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "issue_identifier": "FARM-1186",
+      "ordinary_response_absent_from_linear": true,
+      "matching_codex_execution": null
+    },
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:created:7d84a721-55a4-4c4a-bd85-e6818d319fe9",
+      "session_id": "7d84a721-55a4-4c4a-bd85-e6818d319fe9",
+      "activity_id": "2b563f60-6f77-41bb-9c10-5eeab30743cc",
+      "status": "cancelled",
+      "received_at": 1789562047.6000857,
+      "completed_at": 1789562121.5078988,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": "01a0aa35-d142-73a2-9f4a-8a7ffb8d36b7",
+      "source_ms": 1789562046916.0,
+      "stop_requested": 1,
+      "dispatch_started": 1,
+      "stop_outcome": "completed",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "issue_identifier": "FARM-961",
+      "ordinary_response_absent_from_linear": true,
+      "matching_codex_execution": {
+        "turn_id": "01a0aa35-d142-73a2-9f4a-8a7ffb8d36b7",
+        "status": "completed"
+      }
+    }
+  ],
+  "turns": [
+    {
+      "id": "01a0aa34-2492-7522-9264-abc0c3e78da0",
+      "status": "completed",
+      "startedAt": 1789561939,
+      "completedAt": 1789562008
+    },
+    {
+      "id": "01a0aa35-d142-73a2-9f4a-8a7ffb8d36b7",
+      "status": "completed",
+      "startedAt": 1789562048,
+      "completedAt": 1789562121
+    }
+  ],
+  "queued_cancellation": "PASS: one FARM-1186 request never dispatched",
+  "ordinary_reply_suppression": "PASS: both executed requests completed but their final activity IDs are absent in Linear",
+  "active_turn_interruption": "NOT ACHIEVED: both turns completed normally",
+  "manual_interruption": "not observed",
+  "post_stop_resume": "PASS: visible reply, Linear API, completed Codex turn, and sent ledger record match",
+  "desktop_status_at_verification": {
+    "type": "idle"
+  },
+  "resume": {
+    "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:7b6e4d45-b8b6-4991-a838-0a57e6be95d3",
+    "session_id": "7d84a721-55a4-4c4a-bd85-e6818d319fe9",
+    "activity_id": "e4891689-63d5-4e82-8435-1857a89eea62",
+    "status": "sent",
+    "received_at": 1789562226.145802,
+    "completed_at": 1789562234.924901,
+    "error": null,
+    "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+    "turn_id": "01a0aa38-8ab4-7a32-ad67-2840aa9fc6ba",
+    "source_ms": 1789562225522.0,
+    "stop_requested": 0,
+    "stop_outcome": null,
+    "prompt_cleared": 1,
+    "reply_cleared": 1,
+    "issue_identifier": "FARM-961",
+    "reply_matches_codex": true,
+    "linear_author_verified": true,
+    "reply_sha256": "ea8ba4b21a3a5e80e6fc8f4b4a6b5ff17d4b7d67e98eb154cb3fa4ad16e03774",
+    "receipt_to_confirmed_seconds": 8.779,
+    "linear_session_status": "complete",
+    "visible_browser_reply_matches": true,
+    "authored_after_stop_cutoff": true
+  },
+  "resume_verified_at_utc": "2026-09-16T12:39:18.810815+00:00",
+  "resume_verification_note": "The first probe assumed an exact echo request. Browser inspection showed the user sent only resumed after stop; the actual contextual reply was then matched across all evidence sources."
+}

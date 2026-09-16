@@ -32,8 +32,10 @@ run's endpoint; do not reuse historical Mac endpoints.
 PR #1 was already merged by `dunadain` at 08:03:01 UTC on 2026-09-16 (`fc1e202`)
 before this Windows session; no merge was performed by the deployment agent.
 The deleted branch's fetched PR head `77cbcbc` has the same tree as that main
-commit. Windows work is in [draft PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2)
-on `codex/farmqa-windows-deploy`. Keep it unmerged unless requested.
+commit. Windows/bridge work was merged in [PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2)
+by `dunadain` at 11:33:58 UTC on 2026-09-16, producing `e35cd54`. The deployment
+agent performed no merge. Follow-up inspection is on `codex/farmqa-verification-followup`.
+Do not merge future PRs unless requested.
 
 The original fixed-reply live mention and follow-up both pass. Never infer delivery success from
 HTTP 200 or `/health`. Uncertain send outcomes are
@@ -57,8 +59,10 @@ context, and read-only Computer Use discovery through `@oai/sky`. This is not
 proof of successful app clicking or gameplay. The live ordinary-comment mention
 on FARM-1188 also passed: Linear reused the existing session (`prompted` event),
 and the exact Codex final reply was visibly delivered in 8.056 seconds, matching
-the API activity and `sent` ledger record. A new `created` session and an additional
-post-bridge follow-up remain untested. Redacted verification is recorded in the
+the API activity and `sent` ledger record. A new `created` session and follow-up
+subsequently passed on FARM-1186, in 11.460 and 8.137 seconds respectively; see the
+[follow-up report](../reports/2026-09-16-farmqa-followup-preflight/report.md).
+The initial round trip's redacted verification is recorded in the
 [bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md).
 
 All sessions currently share one dedicated Codex task and are processed serially.
@@ -67,3 +71,31 @@ rebind after an app restart/update if the connection changes. Keep `.local/farmq
 private. Bridge prompts/final text are temporarily stored in the private SQLite
 ledger, omitted from logs/status/reports, and cleared from active rows after
 confirmed Linear delivery. Ambiguous dispatch or reply sends are not retried.
+
+The [follow-up preflight](../reports/2026-09-16-farmqa-followup-preflight/report.md)
+rechecked the live app identity, desktop adapter, single receiver, HTTPS, rejection
+of unsigned requests, and 27 passing local tests. No new event had arrived at that
+snapshot. The subsequent user test on FARM-1186 verified both visible replies
+against their completed Codex turns, actual FarmQA-authored Linear activities,
+and separate `sent` records. Temporary prompt/final fields were cleared; the
+session completed. This is transport/continuity coverage, not game interaction.
+
+## Stop handling increment
+
+User authorized the next cancellation increment on 2026-09-16. The deployed bridge
+now handles authenticated Linear `agentActivity.signal: stop` events, durably
+cancels queued work, suppresses pending ordinary replies, and records stop outcomes.
+The installed app-tools 0.1.4 catalog has no active-turn interrupt tool. A possibly
+running request stays `stop_pending` and blocks subsequent dispatch until its exact
+turn is observed ending; FarmQA tells the operator to stop it manually in Codex.
+Never treat reply suppression or a normal completion as successful interruption.
+46 local tests and live-ledger-copy migration passed. Real Stop requests on
+FARM-1186 and FARM-961 were acknowledged in 1.010 and 1.109 seconds. One queued
+request never dispatched; both executed requests completed normally and their
+ordinary final replies were suppressed. No interruption occurred. The FARM-961
+error was visibly verified and accurately states the active-stop limitation.
+Post-stop resume also passed on FARM-961 in 8.779 seconds, matching visible reply,
+actual FarmQA activity, completed Codex turn, and `sent` ledger record. Manual
+interruption remains unverified. See [evidence and limits](../reports/2026-09-16-farmqa-stop/report.md).
+The continuation is published as [draft PR #3](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/3)
+on `codex/farmqa-stop`; it is unmerged.

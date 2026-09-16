@@ -1,0 +1,50 @@
+{
+  "observed_at_utc": "2026-09-16T11:46:36.055700+00:00",
+  "platform": "Windows 11 x64",
+  "client_path": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+  "source_revision": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "client_status": [
+    "## main...origin/main [behind 14]",
+    " M tools/device-mcp/README.md",
+    " M tools/device-mcp/compile_cs.py",
+    " M tools/device-mcp/requirements.txt",
+    "?? tools/device-mcp/test_compile_cs.py"
+  ],
+  "existing_local_file_sha256": {
+    "tools/device-mcp/README.md": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00",
+    "tools/device-mcp/compile_cs.py": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2",
+    "tools/device-mcp/requirements.txt": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb",
+    "tools/device-mcp/test_compile_cs.py": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2"
+  },
+  "project_version": [
+    "m_EditorVersion: 2022.3.62f3",
+    "m_EditorVersionWithRevision: 2022.3.62f3 (96770f904ca7)"
+  ],
+  "editor_executable": "D:/Program/UnityEditor/2022.3.62f3/Editor/Unity.exe",
+  "editor_product_version": "2022.3.62f3_96770f904ca7",
+  "running_editor_count": 0,
+  "adb_devices": [],
+  "existing_broker": {
+    "pid": 21904,
+    "address": "127.0.0.1:8973",
+    "script_matches_client_broker": true,
+    "registry_not_queried": true,
+    "controller_ownership": "unknown; left unchanged"
+  },
+  "unity_package_declared": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
+  "unity_mcp_tools_exposed_in_this_task": false,
+  "inbox_worktree": {
+    "path": "C:\\Users\\Mayn\\.codex\\worktrees\\fde4\\FarmTestAgent",
+    "revision": "fc1e202334118b3c47605b3e30eb7c57c281d336",
+    "status": ""
+  },
+  "loaded_game_identity": null,
+  "test_account_and_environment": "not established; no running game inspected",
+  "gameplay_actions": 0,
+  "limitations": [
+    "No Editor launched",
+    "No device installation or game build",
+    "On-disk assembly is not a loaded assembly identity",
+    "Old observation defects were not revalidated on this Windows checkout"
+  ]
+}

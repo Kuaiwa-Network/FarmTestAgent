@@ -1,5 +1,11 @@
 # Infrastructure knowledge
 
+The entries below describe the earlier Mac run. For the current Windows machine,
+see the [2026-09-16 readiness inspection](../reports/2026-09-16-farmqa-followup-preflight/report.md):
+matching Unity Editor installed but not running, no ADB devices, an existing local
+device broker with ownership unestablished, and no loaded game/session verified.
+Do not transfer the Mac's loaded-build identity to this checkout.
+
 All entries last verified/reviewed 2026-09-16. Client source scope is revision
 `688da4652c9c2c3b5702c8e99d81e1480df419f7` unless otherwise specified.
 Evidence root: `../reports/2026-09-16-initial-learning/evidence/`.

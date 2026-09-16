@@ -71,6 +71,17 @@ class FarmQATest(unittest.TestCase):
         self.service.process_one()
         self.assertEqual(self.send.call_count, 2)
 
+    def test_fixed_mode_stop_cancels_queued_reply_and_duplicate_does_not_stop_new_work(self):
+        self.receive()
+        event = self.event(action="prompted", agentActivity={"id":"stop-1", "signal":"stop", "content":{"type":"prompt"}})
+        self.assertEqual(self.receive(event), (200, "stop received"))
+        self.assertFalse(self.service.process_one())
+        self.send.assert_not_called()
+        self.receive(self.event(action="prompted", agentActivity={"id":"new-prompt", "content":{"type":"prompt","body":"again"}}))
+        self.assertEqual(self.receive(event), (200, "duplicate"))
+        self.assertTrue(self.service.process_one())
+        self.send.assert_called_once()
+
     def test_bad_signatures_stale_and_wrong_identity_never_send(self):
         for signature in ["", "abc", "0" * 64]:
             self.assertEqual(self.receive(signature=signature)[0], 401)

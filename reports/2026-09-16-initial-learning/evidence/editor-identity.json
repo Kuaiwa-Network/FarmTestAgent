@@ -1,0 +1,28 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"isPlaying\":false,\"applicationVersion\":\"1.0\",\"unityVersion\":\"2022.3.62f3\",\"platform\":\"OSXEditor\",\"buildGuid\":\"00000000000000000000000000000000\",\"dataPath\":\"/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets\",\"driverAssembly\":\"HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\",\"driverModuleMvid\":\"8e0f3b3d-e2b9-4030-93c8-aa4173206538\",\"activeViews\":\"{\\\"isPlaying\\\":false,\\\"note\\\":\\\"view state is valid only in Play mode\\\"}\",\"uiTree\":\"{\\\"isPlaying\\\":false,\\\"note\\\":\\\"UI tree is valid only in Play mode\\\"}\"},\"compiler\":\"codedom\"}}"
+    }
+  ],
+  "structuredContent": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "isPlaying": false,
+        "applicationVersion": "1.0",
+        "unityVersion": "2022.3.62f3",
+        "platform": "OSXEditor",
+        "buildGuid": "00000000000000000000000000000000",
+        "dataPath": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets",
+        "driverAssembly": "HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "driverModuleMvid": "8e0f3b3d-e2b9-4030-93c8-aa4173206538",
+        "activeViews": "{\"isPlaying\":false,\"note\":\"view state is valid only in Play mode\"}",
+        "uiTree": "{\"isPlaying\":false,\"note\":\"UI tree is valid only in Play mode\"}"
+      },
+      "compiler": "codedom"
+    }
+  },
+  "isError": false
+}

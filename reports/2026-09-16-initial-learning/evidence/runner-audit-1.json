@@ -1,0 +1,100 @@
+{
+  "kind": "OFFLINE_SYNTHETIC_RUNNER_AUDIT",
+  "client": "/Users/elendil/WorkSpaces/Farm/Farm-Client",
+  "checks": [
+    {
+      "id": "RUNNER-IDENTITY",
+      "status": "FAIL",
+      "expected": "Require observed matching account AND server before accepting MainView",
+      "actual": "MainView (requested-synthetic-server/requested-synthetic-account)",
+      "calls": [
+        {
+          "tool": "get_active_views",
+          "arguments": {}
+        },
+        {
+          "tool": "get_active_views",
+          "arguments": {}
+        },
+        {
+          "tool": "mark_console",
+          "arguments": {}
+        }
+      ]
+    },
+    {
+      "id": "RUNNER-EMPTY-WATER",
+      "status": "FAIL",
+      "expected": "Reject an empty plot as proof of successful watering",
+      "actual": "slot 7 watered",
+      "fixture": {
+        "7": {
+          "cropId": 0,
+          "watered": false,
+          "harvestTime": 0
+        }
+      },
+      "calls": [
+        {
+          "tool": "water",
+          "arguments": {
+            "slot_id": 7
+          }
+        }
+      ]
+    },
+    {
+      "id": "RUNNER-MISSING-OBSERVATION",
+      "status": "FAIL",
+      "expected": "Unreadable crop records must not become a valid zero baseline",
+      "actual": 0,
+      "fixture": [
+        {}
+      ],
+      "calls": [
+        {
+          "tool": "dump_model",
+          "arguments": {
+            "name": "crop"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RUNNER-POINTER",
+      "status": "BLOCKED",
+      "actual": "unknown step: click btnWater",
+      "expected": "Pointer-capable replay required for interaction coverage"
+    }
+  ],
+  "scenario_compatibility": [
+    {
+      "path": "tests/scenarios/e2e/guild-competition.md",
+      "parseable": false,
+      "reason": "scenario has no ```steps block"
+    },
+    {
+      "path": "tests/scenarios/e2e/plant-and-harvest.md",
+      "parseable": false,
+      "reason": "scenario has no ```steps block"
+    },
+    {
+      "path": "tests/scenarios/smoke/plant-crop.md",
+      "parseable": false,
+      "reason": "scenario has no ```steps block"
+    },
+    {
+      "path": "tests/scenarios/smoke/rose-lifecycle.md",
+      "parseable": true,
+      "steps": [
+        "login",
+        "plant auto 20001",
+        "water last",
+        "accelerate last",
+        "harvest last",
+        "assert_crop_up 20001",
+        "assert_no_console_errors"
+      ]
+    }
+  ]
+}

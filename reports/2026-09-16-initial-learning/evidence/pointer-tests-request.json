@@ -1,0 +1,11 @@
+{
+  "mode": "PlayMode",
+  "test_names": [
+    "Farm.Tests.PlayMode.PointerSimulationTests.Click_RoutesPressReleaseAndClick",
+    "Farm.Tests.PlayMode.PointerSimulationTests.CoveredTarget_FailsWithoutClickingEitherElement",
+    "Farm.Tests.PlayMode.PointerSimulationTests.UntouchableTarget_FailsWithoutDirectFallback"
+  ],
+  "include_details": true,
+  "include_failed_tests": true,
+  "init_timeout": 120000
+}

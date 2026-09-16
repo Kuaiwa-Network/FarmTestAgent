@@ -1,0 +1,95 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved 11 log entries.\",\"data\":[{\"type\":\"Warning\",\"message\":\"Assets/Scripts/AOTScripts/ScriptableObjects/AppSettings.cs(23,20): warning CS0414: The field 'AppSettings._lang' is assigned but its value is never used\\n\",\"file\":\"Assets/Scripts/AOTScripts/ScriptableObjects/AppSettings.cs\",\"line\":23,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/UIManagerGateOrderingTests.cs(312,13): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/UIManagerGateOrderingTests.cs\",\"line\":312,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(552,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":552,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(603,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":603,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(674,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":674,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs(20,37): warning CS0067: The event 'FakeNetClient.OnTextMessage' is never used\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs\",\"line\":20,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Library/PackageCache/com.qq.weixin.minigame@9de9b8d773/Editor/Playable/WXPlayableEditorSettingHelper.cs(19,29): warning CS0414: The field 'WXPlayableSettingsHelper.m_EnablePerfTool' is assigned but its value is never used\\n\",\"file\":\"Library/PackageCache/com.qq.weixin.minigame@9de9b8d773/Editor/Playable/WXPlayableEditorSettingHelper.cs\",\"line\":19,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(552,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":552,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(603,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":603,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(674,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs\",\"line\":674,\"stackTrace\":null},{\"type\":\"Warning\",\"message\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs(20,37): warning CS0067: The event 'FakeNetClient.OnTextMessage' is never used\\n\",\"file\":\"Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs\",\"line\":20,\"stackTrace\":null}]}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved 11 log entries.",
+      "data": [
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/AOTScripts/ScriptableObjects/AppSettings.cs(23,20): warning CS0414: The field 'AppSettings._lang' is assigned but its value is never used\n",
+          "file": "Assets/Scripts/AOTScripts/ScriptableObjects/AppSettings.cs",
+          "line": 23,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/UIManagerGateOrderingTests.cs(312,13): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/UIManagerGateOrderingTests.cs",
+          "line": 312,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(552,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 552,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(603,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 603,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(674,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 674,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs(20,37): warning CS0067: The event 'FakeNetClient.OnTextMessage' is never used\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs",
+          "line": 20,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Library/PackageCache/com.qq.weixin.minigame@9de9b8d773/Editor/Playable/WXPlayableEditorSettingHelper.cs(19,29): warning CS0414: The field 'WXPlayableSettingsHelper.m_EnablePerfTool' is assigned but its value is never used\n",
+          "file": "Library/PackageCache/com.qq.weixin.minigame@9de9b8d773/Editor/Playable/WXPlayableEditorSettingHelper.cs",
+          "line": 19,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(552,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 552,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(603,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 603,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs(674,45): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/SignActivityServiceTests.cs",
+          "line": 674,
+          "stackTrace": null
+        },
+        {
+          "type": "Warning",
+          "message": "Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs(20,37): warning CS0067: The event 'FakeNetClient.OnTextMessage' is never used\n",
+          "file": "Assets/Scripts/HotUpdate/Tests/PlayMode/FakeNetClient.cs",
+          "line": 20,
+          "stackTrace": null
+        }
+      ]
+    },
+    "isError": false
+  }
+}

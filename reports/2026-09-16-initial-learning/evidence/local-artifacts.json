@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Build/Android/honeyfields.apk",
+    "size": 352917212,
+    "mtime_ns": 1785497200523920787,
+    "sha256": "d9df96a6e3ce22e3f8c0a6f1485042412e609c5c07eb794a75b14d9db898e699"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Build/Android/honeyfields-test20260702.apk",
+    "size": 237543054,
+    "mtime_ns": 1782995776181420136,
+    "sha256": "480fc652ea33e6698ca72ea99906fc1e779bc641234d71cbe2c674deadcc873d"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Build/Android/honeyfields-gradle/launcher/build/intermediates/apk/debug/launcher-debug.apk",
+    "size": 235425910,
+    "mtime_ns": 1782996413539554581,
+    "sha256": "e0fbe4551eb8afbc8ad8d93d6e2f5ce33115278ccea70be6a98ef153abd6e56e"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Build/MacOS/honeyfields_BackUpThisFolder_ButDontShipItWithYourGame/Managed/AOTScripts.dll",
+    "size": 18944,
+    "mtime_ns": 1782964884194583000,
+    "sha256": "2aacdfe39662fa832187ba3ed2fdf16ba49d6fcb2abe23efb0ef3bd0b81fa84b"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/HybridCLRData/HotUpdateDlls/StandaloneOSX/AOTScripts.dll",
+    "size": 18944,
+    "mtime_ns": 1782964698294234000,
+    "sha256": "737072dbf60d8792fa3a18b94f9e733aa6284ed69b2f74350ade093ddebeb377"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/HybridCLRData/HotUpdateDlls/StandaloneOSX/HotUpdate.dll",
+    "size": 1807872,
+    "mtime_ns": 1782964698335825000,
+    "sha256": "3d160e328d108ce0dd02e1772f3ffaf8691d065fa1b4479da91266d4443334e9"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/HybridCLRData/HotUpdateDlls/Android/AOTScripts.dll",
+    "size": 32768,
+    "mtime_ns": 1785496915241185000,
+    "sha256": "610e5c8150dc52debaebb0028cdd3b8514a17c2685607961f3ca6255bd047ddb"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/HybridCLRData/HotUpdateDlls/Android/HotUpdate.dll",
+    "size": 2459136,
+    "mtime_ns": 1785496916304195000,
+    "sha256": "b6a57dbe287a8aaaedcc6e466ca5f07bacff6878e465bd2c1f04fbb3cb78c1d3"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Library/ScriptAssemblies/AOTScripts.dll",
+    "size": 36352,
+    "mtime_ns": 1789540651913422000,
+    "sha256": "d69c627b93aee4c50eabf96fb09536dd775816786610b6cfa0d69172fb3677b4"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Library/ScriptAssemblies/HotUpdate.dll",
+    "size": 7158784,
+    "mtime_ns": 1789540655497074000,
+    "sha256": "b9457d05a34726fa1a174cfc84aa9f60dbe28add4971ef867c295beed2baa28c"
+  }
+]

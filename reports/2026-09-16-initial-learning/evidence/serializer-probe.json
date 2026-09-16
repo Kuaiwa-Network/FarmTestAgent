@@ -1,0 +1,32 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"probeKind\":\"synthetic objects; no live models or game state changed\",\"slotTyped\":[7,20001,true,1234567890],\"slotDump\":\"{}\",\"slotsDump\":\"[{\\\"k\\\":7,\\\"v\\\":{}}]\",\"cropTyped\":[20001,4],\"cropsDump\":\"[{}]\"},\"compiler\":\"codedom\"}}"
+    }
+  ],
+  "structuredContent": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "probeKind": "synthetic objects; no live models or game state changed",
+        "slotTyped": [
+          7,
+          20001,
+          true,
+          1234567890
+        ],
+        "slotDump": "{}",
+        "slotsDump": "[{\"k\":7,\"v\":{}}]",
+        "cropTyped": [
+          20001,
+          4
+        ],
+        "cropsDump": "[{}]"
+      },
+      "compiler": "codedom"
+    }
+  },
+  "isError": false
+}

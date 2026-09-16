@@ -1,0 +1,137 @@
+{
+  "observed_at": "2026-09-16T06:38:57.082284+00:00",
+  "reference": "/Users/elendil/.codex/worktrees/9ab9/Farm-Client",
+  "active": "/Users/elendil/WorkSpaces/Farm/Farm-Client",
+  "heads": {
+    "/Users/elendil/.codex/worktrees/9ab9/Farm-Client": "688da4652c9c2c3b5702c8e99d81e1480df419f7",
+    "/Users/elendil/WorkSpaces/Farm/Farm-Client": "688da4652c9c2c3b5702c8e99d81e1480df419f7"
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "reference": "9b8a6154b82218045e8aec126ba9a24d9319457ed06b0cab245cb3f732644b32",
+      "active": "9b8a6154b82218045e8aec126ba9a24d9319457ed06b0cab245cb3f732644b32",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/AGENTS.md",
+      "reference": "108ba1b2ad0aee51f5dabbcd2f56bde7d30b9f3f56e780cce43e796bbfa96588",
+      "active": "108ba1b2ad0aee51f5dabbcd2f56bde7d30b9f3f56e780cce43e796bbfa96588",
+      "equal": true
+    },
+    {
+      "path": "docs/pointer-simulation.md",
+      "reference": "b3fd68ea399a03e7221e8a551e55391657e0568ddeb0f7f2babb1e3f5ae6d4ed",
+      "active": "b3fd68ea399a03e7221e8a551e55391657e0568ddeb0f7f2babb1e3f5ae6d4ed",
+      "equal": true
+    },
+    {
+      "path": "docs/device-mcp.md",
+      "reference": "08252f83cf392e898817a196e38d7af152e8b2f60da6b9487895522340418f11",
+      "active": "08252f83cf392e898817a196e38d7af152e8b2f60da6b9487895522340418f11",
+      "equal": true
+    },
+    {
+      "path": ".agents/skills/drive-farm-game/SKILL.md",
+      "reference": "6e9b3646e504c9f16d1079740562fa7e961a488c6ef41b33c8f98a5ffe4639e2",
+      "active": "6e9b3646e504c9f16d1079740562fa7e961a488c6ef41b33c8f98a5ffe4639e2",
+      "equal": true
+    },
+    {
+      "path": ".agents/skills/drive-farm-game/references/driver-api.md",
+      "reference": "660116499e1e95087884c0249ff80c0dddd7da2ec55c44f73b9e3ac90252656f",
+      "active": "660116499e1e95087884c0249ff80c0dddd7da2ec55c44f73b9e3ac90252656f",
+      "equal": true
+    },
+    {
+      "path": "tools/device-mcp/README.md",
+      "reference": "56c40805a806a41b80c94416db7b8e7ed76d93903c46ad1e221b360c29557c10",
+      "active": "56c40805a806a41b80c94416db7b8e7ed76d93903c46ad1e221b360c29557c10",
+      "equal": true
+    },
+    {
+      "path": "tools/device-mcp/server.py",
+      "reference": "4f3c56068a8a4d794569ac3260bca1676b08fc3e5d853e19f6f19ece5de3a0fd",
+      "active": "4f3c56068a8a4d794569ac3260bca1676b08fc3e5d853e19f6f19ece5de3a0fd",
+      "equal": true
+    },
+    {
+      "path": "tools/device-mcp/qa_run.py",
+      "reference": "276617760198a728365a3ca1dd575f73576c5dd709e996aa206f6fdca3b5fe33",
+      "active": "276617760198a728365a3ca1dd575f73576c5dd709e996aa206f6fdca3b5fe33",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/PointerSimulation.cs",
+      "reference": "7807cfeff79d2f65edab73e5f01ec3a58e0ddebcf6c4a630e9929efccf39f0ba",
+      "active": "7807cfeff79d2f65edab73e5f01ec3a58e0ddebcf6c4a630e9929efccf39f0ba",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/GameTestDriver.Pointer.cs",
+      "reference": "ad2d7359b974ef18af388781dd8922985451e77cea5a735721f34dc27ed10082",
+      "active": "ad2d7359b974ef18af388781dd8922985451e77cea5a735721f34dc27ed10082",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/GameTestDriver.Commands.cs",
+      "reference": "d8f6c32eb3b2627f06fc31409b694e13686b4e8e00c7d8924dc3e96572815a00",
+      "active": "d8f6c32eb3b2627f06fc31409b694e13686b4e8e00c7d8924dc3e96572815a00",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/TestLogCapture.cs",
+      "reference": "a5fbda9ed79d6b50c497cafe6f41dea7b293467d1e81bcde6f8f957c1a62a782",
+      "active": "a5fbda9ed79d6b50c497cafe6f41dea7b293467d1e81bcde6f8f957c1a62a782",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/UiTreeDump.cs",
+      "reference": "8460f7bac6b21fa31a61b1a340efa038afe919aa854d32cfb00b52ee45782212",
+      "active": "8460f7bac6b21fa31a61b1a340efa038afe919aa854d32cfb00b52ee45782212",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/GameTestDriver.cs",
+      "reference": "2f2b72443f03c2ce5ed6aa9b8c19f1a86b2e32319948af6a90c89c91fdc044aa",
+      "active": "2f2b72443f03c2ce5ed6aa9b8c19f1a86b2e32319948af6a90c89c91fdc044aa",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/DeviceAgent.cs",
+      "reference": "26f5c06b8dd7aa88a2bcaf8e07cbd3f36c2c6ca9072f65d692db03decc827f99",
+      "active": "26f5c06b8dd7aa88a2bcaf8e07cbd3f36c2c6ca9072f65d692db03decc827f99",
+      "equal": true
+    },
+    {
+      "path": "Assets/Scripts/HotUpdate/Core/TestDriver/PointerSimulationHost.cs",
+      "reference": "82c5d63c2a7176e09745e81a417f8f66a3ff09fbbd76ecfd54b2565997e60c67",
+      "active": "82c5d63c2a7176e09745e81a417f8f66a3ff09fbbd76ecfd54b2565997e60c67",
+      "equal": true
+    },
+    {
+      "path": "tests/scenarios/smoke/plant-crop.md",
+      "reference": "49f5c2efff820e0652716e6b5a93bec69b1cf9b5fc25a745f20de8dcd92ec7a2",
+      "active": "49f5c2efff820e0652716e6b5a93bec69b1cf9b5fc25a745f20de8dcd92ec7a2",
+      "equal": true
+    },
+    {
+      "path": "tests/scenarios/smoke/rose-lifecycle.md",
+      "reference": "8051bfc0370ec8c46d2648ce8f363f145a36569a2e2176664931ccf74ab5aa77",
+      "active": "8051bfc0370ec8c46d2648ce8f363f145a36569a2e2176664931ccf74ab5aa77",
+      "equal": true
+    },
+    {
+      "path": "tests/scenarios/e2e/plant-and-harvest.md",
+      "reference": "7c34a510acf96856a02c3c740044a66024cde505990dcea8829de4426ecd3d87",
+      "active": "7c34a510acf96856a02c3c740044a66024cde505990dcea8829de4426ecd3d87",
+      "equal": true
+    },
+    {
+      "path": "tests/scenarios/e2e/guild-competition.md",
+      "reference": "b2e3747ced7e5494a2066e4b83b06c6b94c2dde9e8fba4ee7aec98854de6e728",
+      "active": "b2e3747ced7e5494a2066e4b83b06c6b94c2dde9e8fba4ee7aec98854de6e728",
+      "equal": true
+    }
+  ]
+}

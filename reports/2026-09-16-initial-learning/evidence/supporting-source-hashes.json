@@ -1,0 +1,102 @@
+[
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/ShovelingGesture.cs",
+    "sha256": "17705d679b1ad79336a2f19f3d7f0e68d6ccda466182714443f5cd09375e95d5"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/CropOperationPanelLayout.cs",
+    "sha256": "3ca20b3846431a138d30070557ae6873386d13fd4f586c3d9abd1db5ce954f77"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantService.cs",
+    "sha256": "1fedb4e76030b22b2b3bcabccc7974134079e5ee9257fb782d52432008d99d49"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantPageMath.cs",
+    "sha256": "c11981fee36a78c34f123f42f4d6867760ebf0260c7188340164d3512cd6af22"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/WateringGesture.cs",
+    "sha256": "2cc7fbf521e9937ea2861715e3d8820d047b04f0b9f69c64e0f3bebd4fbef2a7"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/HarvestingGesture.cs",
+    "sha256": "0808637298acfc8bdc91a2ad1fe7bb94218f37debce3e9fb41636dd0f95aadaf"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/AcceleratingGesture.cs",
+    "sha256": "cc367e6588abc7da6930fad5866ba968aeb762717168a443eed26afb571d0599"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/WaterPanel.cs",
+    "sha256": "4cf62c49d960361a3592f33e02cb20a369aafa22040944da8f2e82dde73494d0"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantingGesture.cs",
+    "sha256": "e91f4785ac8478fd7aedd74b65eb4892560daec3d34c8941d23ef90a8852ecf1"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantStateHelper.Batch.cs",
+    "sha256": "d1a32fc51dbca8d01f94735237856c52c51bbe4ac7af0c1ae8e4339d9d4f82b0"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantPopup.cs",
+    "sha256": "36f62bb410016c29465eba5ba5da998497bb239583e65194fc6cfb05d931266b"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/HarvestPanel.cs",
+    "sha256": "a84e51946095bef6e2df6135aa9ff811307dfad1335d33c45098ea1529273227"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/AcceleratePanel.cs",
+    "sha256": "64752822880056834fe6fbee735db6727b76aa0a323aa0d2dd01303691d537f8"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/DragGhost.cs",
+    "sha256": "b51dd1ebe4db2ecc0b6103dd9139415e249c82b12e24d198fbf1f9a76105dd58"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Features/Plant/PlantStateHelper.cs",
+    "sha256": "b8f701ada9f997d7867f26e7d10505c70ef74d0acabbdf6576542d31633dba4f"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Gameplay/SceneObjects/Crops/Plot.cs",
+    "sha256": "aacc494a1177c91c489c7436cd005198968c74b31c213b17f31a6978a4e00985"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Gameplay/Scene/PlotController.cs",
+    "sha256": "c0fa1aa199df17042ac4ca98480ef05da6ac2a7384eacd1c0d546c3320724f38"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Gameplay/Scene/SceneController.cs",
+    "sha256": "97adef26a7a418fb7da1e5c5fa3bf58e79ae25fda98bc20a11c07cdccd9075fd"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Core/Models/PlayerModel.cs",
+    "sha256": "76913b39b4e27a51e412779e56b3300d4ce213f438f23a731f94f2ba6dc1a08b"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Core/Models/PlantModel.cs",
+    "sha256": "a41828aa969e3d5a734c6336d1761207f9d5abbd635363601b74bdf3cf959332"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Core/Models/CropModel.cs",
+    "sha256": "7feced9cda3c45455a67e172153313e816015379b2a9c0de3afaa863d9277584"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Packages/com.kuaiwa.nova/Runtime/Utils/DumpUtil.cs",
+    "sha256": "e79b3e081211aecb4f8ab50cf49b7a5912f6877b28fd5518944b089ec5d93667"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/tools/device-mcp/compile_cs.py",
+    "sha256": "f44be5efa267930c0f98e84b48b6610391dc60bd75d676e14f17d235df03ed64"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets/Scripts/HotUpdate/Tests/PlayMode/Driver/PointerSimulationTests.cs",
+    "sha256": "aa4f1a56f2be97ea3f2cfcad3433fe92f163e9ee099b09850f18981495ac55d2"
+  },
+  {
+    "path": "/Users/elendil/WorkSpaces/Farm/Farm-Contract/proto/plant.proto",
+    "sha256": "4457d9fd555138dcdc0f3628028a60e51203f1b535b3dee5401efc7a6f56f2e4"
+  }
+]

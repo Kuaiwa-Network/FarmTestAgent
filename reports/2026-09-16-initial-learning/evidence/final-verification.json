@@ -1,0 +1,7 @@
+{
+  "checked_source_files": 21,
+  "changed_since_preflight": [],
+  "artifact_validation": "19 JSON/JSONL/Python artifacts parsed and Markdown links checked; no missing evidence paths",
+  "gameplay_claim": "No farm playthrough; no Android gameplay",
+  "git_scope": "Only FarmTestAgent QA artifacts are to be committed"
+}

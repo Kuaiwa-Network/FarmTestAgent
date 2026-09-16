@@ -1,0 +1,6 @@
+server listening on 127.0.0.1:8973
+[device-mcp] agent endpoint: ws://127.0.0.1:8973/agent
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+server closing
+server closed

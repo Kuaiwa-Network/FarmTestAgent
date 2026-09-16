@@ -1,0 +1,9 @@
+test_cancel_is_sent_to_selected_device (test_pointer_tools.PointerToolTests.test_cancel_is_sent_to_selected_device) ... ok
+test_click_preserves_device_path_and_default_hold (test_pointer_tools.PointerToolTests.test_click_preserves_device_path_and_default_hold) ... ok
+test_coordinate_click_preserves_zero_coordinates (test_pointer_tools.PointerToolTests.test_coordinate_click_preserves_zero_coordinates) ... ok
+test_drag_forwards_polyline_and_timing (test_pointer_tools.PointerToolTests.test_drag_forwards_polyline_and_timing) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.006s
+
+OK

@@ -1,0 +1,4 @@
+{
+  "status": "fulfilled",
+  "value": "{\"server\":\"unityMCP\",\"uri\":\"mcpforunity://project/info\",\"contents\":[{\"uri\":\"mcpforunity://project/info\",\"mimeType\":\"text/plain\",\"text\":\"{\\\"success\\\":true,\\\"message\\\":\\\"Retrieved project info.\\\",\\\"error\\\":null,\\\"data\\\":{\\\"projectRoot\\\":\\\"/Users/elendil/WorkSpaces/Farm/Farm-Client\\\",\\\"projectName\\\":\\\"Farm-Client\\\",\\\"unityVersion\\\":\\\"2022.3.62f3\\\",\\\"platform\\\":\\\"Android\\\",\\\"assetsPath\\\":\\\"/Users/elendil/WorkSpaces/Farm/Farm-Client/Assets\\\"},\\\"hint\\\":null}\"}]}"
+}

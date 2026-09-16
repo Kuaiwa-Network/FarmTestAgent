@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-09-16T06:52:04.127114+00:00",
+  "evidence_kind": "summary of tool outputs; see trace for commands",
+  "adb": {
+    "path": "/Users/elendil/Library/Android/sdk/platform-tools/adb",
+    "version": "1.0.41 / 37.0.0-14910828",
+    "enumeration_stdout": "List of devices attached\n\n",
+    "exit_code": 0,
+    "device_count": 0
+  },
+  "compiler_selected_game_dll_dir": "/Users/elendil/WorkSpaces/Farm/Farm-Client/HybridCLRData/HotUpdateDlls/StandaloneOSX",
+  "unity_root": "/Applications/Unity/Hub/Editor/2022.3.62f3/Unity.app/Contents",
+  "dotnet": "/usr/local/share/dotnet/dotnet",
+  "csc": "/usr/local/share/dotnet/sdk/10.0.203/Roslyn/bincore/csc.dll",
+  "runner_probe_exit_codes": [
+    1,
+    1
+  ],
+  "runner_outputs_identical": true,
+  "contract_head": "1543bb2581a4e82874ede830bb37bbe1658f15a0",
+  "client_scoped_diff": "empty for inspected tracked guidance, driver, broker and scenarios; full working tree cleanliness not established"
+}

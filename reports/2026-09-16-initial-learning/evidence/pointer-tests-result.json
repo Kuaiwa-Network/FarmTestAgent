@@ -1,0 +1,79 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"eb4d1c3d27f5488fa67aef04e2526d88\",\"status\":\"succeeded\",\"mode\":\"PlayMode\",\"started_unix_ms\":1789540892703,\"finished_unix_ms\":1789540894414,\"last_update_unix_ms\":1789540894414,\"progress\":{\"completed\":3,\"total\":956,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1789540894337,\"last_finished_test_full_name\":\"Farm.Tests.PlayMode.PointerSimulationTests.UntouchableTarget_FailsWithoutDirectFallback\",\"last_finished_unix_ms\":1789540894345,\"stuck_suspected\":false,\"editor_is_focused\":false,\"blocked_reason\":null,\"failures_so_far\":[],\"failures_capped\":false},\"error\":null,\"result\":{\"mode\":\"PlayMode\",\"summary\":{\"total\":3,\"passed\":3,\"failed\":0,\"skipped\":0,\"durationSeconds\":0.1434863,\"resultState\":\"Passed\"},\"results\":[{\"name\":\"Click_RoutesPressReleaseAndClick\",\"fullName\":\"Farm.Tests.PlayMode.PointerSimulationTests.Click_RoutesPressReleaseAndClick\",\"state\":\"Passed\",\"durationSeconds\":0.0932626,\"message\":null,\"stackTrace\":null,\"output\":\"There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene\\n\"},{\"name\":\"CoveredTarget_FailsWithoutClickingEitherElement\",\"fullName\":\"Farm.Tests.PlayMode.PointerSimulationTests.CoveredTarget_FailsWithoutClickingEitherElement\",\"state\":\"Passed\",\"durationSeconds\":0.0135582,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"UntouchableTarget_FailsWithoutDirectFallback\",\"fullName\":\"Farm.Tests.PlayMode.PointerSimulationTests.UntouchableTarget_FailsWithoutDirectFallback\",\"state\":\"Passed\",\"durationSeconds\":0.0082047,\"message\":null,\"stackTrace\":null,\"output\":\"\"}]}},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "eb4d1c3d27f5488fa67aef04e2526d88",
+        "status": "succeeded",
+        "mode": "PlayMode",
+        "started_unix_ms": 1789540892703,
+        "finished_unix_ms": 1789540894414,
+        "last_update_unix_ms": 1789540894414,
+        "progress": {
+          "completed": 3,
+          "total": 956,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1789540894337,
+          "last_finished_test_full_name": "Farm.Tests.PlayMode.PointerSimulationTests.UntouchableTarget_FailsWithoutDirectFallback",
+          "last_finished_unix_ms": 1789540894345,
+          "stuck_suspected": false,
+          "editor_is_focused": false,
+          "blocked_reason": null,
+          "failures_so_far": [],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": {
+          "mode": "PlayMode",
+          "summary": {
+            "total": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 0.1434863,
+            "resultState": "Passed"
+          },
+          "results": [
+            {
+              "name": "Click_RoutesPressReleaseAndClick",
+              "fullName": "Farm.Tests.PlayMode.PointerSimulationTests.Click_RoutesPressReleaseAndClick",
+              "state": "Passed",
+              "durationSeconds": 0.0932626,
+              "message": null,
+              "stackTrace": null,
+              "output": "There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene\n"
+            },
+            {
+              "name": "CoveredTarget_FailsWithoutClickingEitherElement",
+              "fullName": "Farm.Tests.PlayMode.PointerSimulationTests.CoveredTarget_FailsWithoutClickingEitherElement",
+              "state": "Passed",
+              "durationSeconds": 0.0135582,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "UntouchableTarget_FailsWithoutDirectFallback",
+              "fullName": "Farm.Tests.PlayMode.PointerSimulationTests.UntouchableTarget_FailsWithoutDirectFallback",
+              "state": "Passed",
+              "durationSeconds": 0.0082047,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            }
+          ]
+        }
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

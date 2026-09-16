@@ -1,0 +1,48 @@
+{
+  "server": {
+    "name": "farm-device",
+    "title": null,
+    "version": "1.28.1",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "tools": [
+    "device_status",
+    "ping",
+    "get_active_views",
+    "dump_ui_tree",
+    "tap",
+    "click",
+    "click_at",
+    "drag",
+    "cancel_pointer",
+    "input_text",
+    "select_combo",
+    "back",
+    "close_popup",
+    "mark_console",
+    "get_console_errors",
+    "dump_model",
+    "plant_crop",
+    "water",
+    "accelerate",
+    "harvest",
+    "run_csharp",
+    "screenshot"
+  ],
+  "status": {
+    "meta": null,
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"connected\": false, \"devices\": [], \"listen\": \"ws://127.0.0.1:8973/agent\"}",
+        "annotations": null,
+        "meta": null
+      }
+    ],
+    "structuredContent": {
+      "result": "{\"connected\": false, \"devices\": [], \"listen\": \"ws://127.0.0.1:8973/agent\"}"
+    },
+    "isError": false
+  }
+}

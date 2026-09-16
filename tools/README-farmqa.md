@@ -231,8 +231,13 @@ marker is stored before the external call; a crash or timeout never repeats
 creation. Pending worktree IDs are never used as actual task IDs. Recovery
 examines at most three matching-title candidates among the latest 50 tasks,
 checks the full marker in input items in their latest 10 turns, and binds only
-one match after the initialization turn completes. A renamed task, missing
-history, unavailable app, or ambiguous match
+one match after the initialization turn completes. This installed app omits
+worktree tasks from `list_threads`. If that API returns no candidates, the
+adapter reads only matching task IDs from the configured `state_5.sqlite`
+metadata index in read-only mode, then verifies the full marker and completed
+turn through `read_thread`. The index schema is a machine-specific dependency,
+not a public Codex API; an incompatible/missing index fails closed. No Codex
+state is written. A renamed task, missing history, unavailable app, or ambiguous match
 leaves the request waiting rather than guessing. Inspect unresolved setup;
 do not reset its state to `new` to force another creation.
 

@@ -65,7 +65,8 @@ subsequently passed on FARM-1186, in 11.460 and 8.137 seconds respectively; see 
 The initial round trip's redacted verification is recorded in the
 [bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md).
 
-All sessions currently share one dedicated Codex task and are processed serially.
+The original deployment shared one dedicated Codex task across sessions. The
+session-routing increment below supersedes that default on this machine for new sessions.
 The app must remain running. Its local pipe/runtime paths are installation-specific;
 rebind after an app restart/update if the connection changes. Keep `.local/farmqa/codex.json`
 private. Bridge prompts/final text are temporarily stored in the private SQLite
@@ -112,3 +113,36 @@ connection to the desktop-owned App Server or interrupt operation in the
 installed app-tools connector. The exact inbox task is identifiable; a newly
 started CLI App Server is not its running backend. Automatic interruption was
 not deployed or live-tested. Retain the manual Stop gate and reply suppression.
+
+## Session routing and pinned target increment
+
+User approved separate conversations, one shared QA Unity/computer controller,
+and durable target identity on 2026-09-16. The first implementation provides
+one persistent Codex task mapping per new Linear session, FIFO dispatch within
+a session, and an immutable selected-target snapshot per accepted message.
+Existing sessions retain the legacy inbox. Separate tasks may process chat
+concurrently; this grants no game/computer control.
+
+Session routing is enabled on the Windows receiver using the saved FarmTestAgent
+project. Task creation and initialization completion are tracked separately from
+message dispatch. Uncertain creation is reconciled by a persisted input marker
+without repeating creation. The shared inbox's three existing session mappings
+and all 13 event states survived the migration check. 68 local tests pass. Fresh
+sessions on FARM-1127 and FARM-1123 returned APPLE READY and PEAR READY through
+distinct Codex tasks, matched against the Linear API, visible replies, and
+delivery records. Both mappings survived a receiver restart; live follow-up
+memory isolation is awaiting the user's next messages.
+
+Live testing exposed two installed-app details: worktree tasks are omitted from
+`list_threads`, and the creation prompt's first line is wrapped by `<input>`.
+Regression fixes normalize the known delegation envelope and use a read-only
+metadata-index fallback to discover candidate IDs. Binding still requires the
+full random marker and completed initialization through the app's `read_thread`.
+
+Target selection is currently a local operator command using an existing client
+ref/commit and a test-environment identifier. It neither changes checkouts nor
+verifies the loaded Editor. No default client branch was invented. Automatic
+branch/PR extraction, controller ownership/state, and game-action cancellation
+remain future increments. See [setup](../tools/README-farmqa.md),
+[test procedure](../tests/scenarios/farmqa-sessions.md), and the
+[deployment report](../reports/2026-09-16-farmqa-sessions/report.md).

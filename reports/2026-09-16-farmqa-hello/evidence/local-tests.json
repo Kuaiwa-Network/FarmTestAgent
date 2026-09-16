@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-16",
+  "command": "python3 -m unittest discover -s tests -p 'test_linear_farmqa.py' -v",
+  "runtime": "Python 3.13.14, macOS arm64",
+  "mode": "local loopback HTTP; mocked external Linear API; no real messages",
+  "exit_code": 0,
+  "tests": 12,
+  "duration_seconds": 0.540,
+  "results": {
+    "bad_signatures_stale_and_wrong_identity_never_send": "PASS",
+    "duplicate_delivery_and_restart_do_not_repeat_reply": "PASS",
+    "failed_delivery_is_visible_not_success_or_silent_retry": "PASS",
+    "false_api_success_is_not_sent": "PASS",
+    "followup_gets_its_own_reply_but_duplicate_does_not": "PASS",
+    "graphql_errors_are_not_success_even_on_http_200": "PASS",
+    "http_route_accepts_signed_event_and_rejects_unsigned": "PASS",
+    "interrupted_send_is_not_retried_after_restart": "PASS",
+    "linear_api_uses_app_token_and_checks_graphql_success": "PASS",
+    "malformed_event_and_non_prompt_are_not_replies": "PASS",
+    "mention_produces_one_final_reply": "PASS",
+    "pending_event_survives_restart_without_storing_prompt": "PASS"
+  },
+  "live_linear_mention_reply": "NOT TESTED"
+}

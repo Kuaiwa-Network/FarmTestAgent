@@ -10,3 +10,4 @@ Android gameplay is claimed.
 - [Blocked pointer regression — Editor fixture verified](tests/scenarios/blocked-pointer.md)
 - [Observation and runner repros](tests/scenarios/observation-runner-regressions.md)
 - [Client and tooling improvement recommendations](reports/2026-09-16-initial-learning/improvements.md)
+- [FarmQA Linear mention service](tools/README-farmqa.md) — first connection-test implementation

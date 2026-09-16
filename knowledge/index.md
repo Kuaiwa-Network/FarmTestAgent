@@ -14,7 +14,7 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [Windows FarmQA deployment](../reports/2026-09-16-farmqa-windows/report.md) — fresh
   tunnel and Windows fixes; consult this report for current activation evidence
 - [FarmQA Codex desktop bridge](../reports/2026-09-16-farmqa-codex-bridge/report.md)
-  — current forwarding mode and verification limits
+  — live Linear → Codex app → Linear delivery verified; remaining limits recorded
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

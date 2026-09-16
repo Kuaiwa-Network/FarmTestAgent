@@ -54,8 +54,11 @@ That plugin delivers messages to the running desktop app over its local pipe.
 The CLI's separate default daemon socket was unavailable and is not used.
 Two real adapter-to-app tests verified message delivery, preserved conversation
 context, and read-only Computer Use discovery through `@oai/sky`. This is not
-proof of successful app clicking or gameplay. New live Linear round-trip
-verification is recorded separately in the
+proof of successful app clicking or gameplay. The live ordinary-comment mention
+on FARM-1188 also passed: Linear reused the existing session (`prompted` event),
+and the exact Codex final reply was visibly delivered in 8.056 seconds, matching
+the API activity and `sent` ledger record. A new `created` session and an additional
+post-bridge follow-up remain untested. Redacted verification is recorded in the
 [bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md).
 
 All sessions currently share one dedicated Codex task and are processed serially.

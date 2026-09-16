@@ -45,8 +45,19 @@ this one task and are handled serially. Task workspace:
   Kuaiwa AI workspace identity. Public HTTPS health returned 200 and an unsigned
   webhook returned 401. These do not prove a new live Linear round trip.
 
-Live Linear mention/follow-up through the bridge: **pending user test** at this
-report revision. The earlier fixed-reply test is not counted as bridge delivery.
+Live Linear bridge delivery: **PASS**. The user submitted an ordinary-comment
+@FarmQA message on FARM-1188 and confirmed it worked. Linear reused the existing
+agent session and delivered an `AgentSessionEvent` with action `prompted`.
+The browser visibly showed the dynamic Codex answer; it exactly matched both
+the completed desktop turn and the actual FarmQA-authored Linear response.
+The SQLite record is `sent` with no error, 8.056 seconds from receipt to confirmed
+reply. Its temporary prompt and response fields were cleared.
+
+See [redacted live evidence](evidence/live-delivery.json). Codex turn:
+`01a0a9f3-fca6-7ee0-b759-335d1cf4128c`; Linear activity:
+`136d17fd-82f2-483f-91a0-d1436fc06362`. A brand-new `created` session and an
+additional post-bridge follow-up have not been exercised live. The earlier
+fixed-reply results and local desktop probes are not counted as those tests.
 
 ## Implementation and delivery behavior
 
@@ -88,8 +99,9 @@ included in reports. The original ledger was backed up before switching modes.
 See `tools/README-farmqa.md` for activation and rollback. Inspect the Codex task,
 Linear activity, and matching ledger record before retrying an uncertain request.
 
-## Next verification
+## Remaining verification
 
-Send a fresh ordinary-comment @FarmQA mention on FARM-1188 and a follow-up.
-Check the visible app-task messages, exact final replies in Linear, and matching
-turn/activity IDs in the ledger. Do not declare this test passed from health alone.
+The ordinary-comment mention passed through an existing session. To extend
+coverage, exercise a genuinely new Linear agent session (`created`), then another
+follow-up. Match the visible replies and turn/activity IDs as in the passed run.
+Actual Computer Use interaction remains a separate, authorized test.

@@ -21,5 +21,7 @@ availability checks, serialized requests, exact response correlation, and conten
 cleanup. A synthetic local test is not proof of real Linear webhook delivery.
 
 Current result: desktop transport, conversation continuity, and read-only Computer
-Use discovery PASS. Live Linear bridge mention/follow-up pending; consult the
-dated bridge report for subsequent evidence.
+Use discovery PASS. Live ordinary-comment mention PASS: Linear reused the existing
+session and emitted `prompted`; visible reply, Codex turn, API activity, and `sent`
+ledger record matched in 8.056 seconds. A new `created` session and an additional
+post-bridge follow-up remain untested. See the dated report and live-delivery evidence.

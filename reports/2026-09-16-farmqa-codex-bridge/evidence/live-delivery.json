@@ -1,0 +1,29 @@
+{
+  "verified_at_utc": "2026-09-16T11:25:34Z",
+  "source": "real Linear webhook; API + desktop task + visible browser + user confirmation",
+  "records": [
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:e94ad3f5-5d23-483b-84b0-786eea750850",
+      "session_id": "48c4dcca-6be9-4ca6-8a13-255828bfd2e7",
+      "activity_id": "136d17fd-82f2-483f-91a0-d1436fc06362",
+      "status": "sent",
+      "received_at": 1789557733.4151828,
+      "completed_at": 1789557741.4708114,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": "01a0a9f3-fca6-7ee0-b759-335d1cf4128c",
+      "ack_id": "bcda358e-83a4-44d2-965b-1ed0ecdea1b5",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "event_action": "prompted",
+      "issue_identifier": "FARM-1188",
+      "receipt_to_confirmed_seconds": 8.056,
+      "reply_sha256": "d55067b942434ff32f09ac37da0b69bb89bbf199720953fd13f4fde8dd9ec45a",
+      "reply_matches_codex": true,
+      "linear_author_verified": true,
+      "visible_browser_reply_matches": true
+    }
+  ],
+  "new_session_created_path": "not exercised; Linear reused existing session",
+  "additional_post_bridge_followup": "not exercised"
+}

@@ -71,11 +71,47 @@ for start, inspect, stop, and retirement instructions.
 
 ## Activation and live evidence
 
-**Pending.** The private FarmQA form is prepared with client credentials,
-webhooks, and only Agent session events enabled. The initial unsaved form was
-discarded; use only the fresh form's signing secret. No production reply has been
-verified. The required browser action-time confirmation for persistent OAuth
-access has been requested. Record subsequent activation and live evidence here.
+**Activated; user mention/follow-up verification pending.** The user confirmed
+"Create and activate FarmQA" in chat. Created one private OAuth application
+named exactly FarmQA, developer Kuaiwa, with client credentials and only Agent
+session events enabled. App settings URL:
+`https://linear.app/kuaiwagames/settings/api/applications/c432ff97-a52e-42ed-b56e-a3ced4c9469b`.
+Its webhook URL is the current Windows tunnel hostname plus `/webhook`.
+
+The create form remained visually pending after submission, but a separate API
+settings page showed exactly one FarmQA app. Opened that app instead of repeating
+creation. Copied credential values directly between browser controls and a
+temporary loopback-only configurator without displaying them. The configurator
+invoked the existing `linear_farmqa.py configure` command path with opaque prompt
+answers and saved `.local/farmqa/config.json`; it then shut down. The file's ACL
+was verified as current user/SYSTEM only. The temporary credential pages were
+closed. No credential value is in the report or tracked artifacts.
+
+The supervised receiver authenticated as FarmQA, app user
+`e5a8c16d-9f85-4123-acf5-94e41c3304d5`, in the intended Kuaiwa AI workspace. It
+listens only on `127.0.0.1:8765`; both `FarmQA-Receiver` and `FarmQA-Tunnel` tasks
+are running. Set installed-app access to **Only select teams: 农场**, confirmed
+the change, then queried using a fresh app token and verified the only accessible
+team is Farm. See [identity evidence](evidence/linear-identity.json).
+
+HTTPS verification before inviting the user to test:
+
+- Default certificate and hostname verification succeeded with TLS 1.3. The
+  `*.trycloudflare.com` certificate is issued by Google Trust Services WE1 and
+  valid through 2026-11-05. See [TLS evidence](evidence/tls.json).
+- The public HTTPS `/health` returned 200. Posting `{}` with an all-zero invalid
+  signature to public `/webhook` returned 401 `invalid signature`; the event
+  ledger remained empty. This probe originated on the deployment host through
+  the public edge. See [public endpoint evidence](evidence/public-endpoint.json).
+- Independent Check-Host nodes in Tel Aviv and Istanbul each reached HTTPS
+  `/health` and returned 200. See [external evidence](evidence/external-https.json)
+  and [external report](https://check-host.net/check-report/4bc25b05kfe2). The web
+  reader tool refused the temporary hostname, so it supplied no reachability
+  evidence. The independent probes establish external reachability; the separate
+  Python TLS check establishes trust and hostname validation.
+
+The user selected FARM-1188 for the real mention and follow-up test. No live
+reply is claimed until its visible activity and delivery ledger match.
 
 Live acceptance requires both a visible exact fixed reply and a matching `sent`
 record with the actual session/activity IDs, for a user-selected mention and a
@@ -83,14 +119,10 @@ follow-up. HTTP 200 or `/health` alone does not pass this scenario.
 
 ## Remaining work and limits
 
-1. Complete the prepared app creation after the pending browser confirmation;
-   use the `configure` command to store its credentials privately.
-2. Authenticate as FarmQA, confirm the expected workspace, restrict installed-app
-   team access to Farm where supported, and start the supervised receiver.
-3. Verify trusted HTTPS from outside this host, and reject invalid signatures
-   through the public endpoint without creating a ledger entry.
-4. Ask the user to select FarmQA in Linear's mention menu on a test issue; observe
-   the visible reply and a follow-up, matching both to the local delivery ledger.
+1. Observe the user's selected FarmQA mention on FARM-1188 and its follow-up.
+2. Match both visible replies to successful local delivery records; record actual
+   session/activity IDs and any integration failure without retrying uncertain
+   deliveries automatically.
 
 This is a supervised connection test. Interactive tasks require the Windows user
 to be logged in and the machine awake. The temporary hostname requires manual

@@ -48,3 +48,11 @@ on loopback. The app settings page, after user login, showed no OAuth apps.
 See [the Windows report](../reports/2026-09-16-farmqa-windows/report.md) for current
 activation state, process supervision, endpoint, evidence, and next steps.
 Windows private storage requires NTFS ACLs; POSIX mode bits alone are insufficient.
+
+Activation status above is now superseded: the user explicitly confirmed creation
+and activation, and the private FarmQA app was created and authenticated. Its
+installed-app access is restricted to 农场. The Windows receiver and temporary
+tunnel are supervised, public TLS trust and external HTTPS reachability passed,
+and an invalid signature was rejected without a ledger entry. Evidence is in the
+Windows report. The user selected FARM-1188 for the real mention/follow-up test;
+visible reply verification remains pending. This establishes no gameplay coverage.

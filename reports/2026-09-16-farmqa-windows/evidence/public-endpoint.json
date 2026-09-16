@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-09-16T08:31:56Z",
+  "endpoint": "https://stephen-impact-subdivision-scenic.trycloudflare.com",
+  "vantage": "Windows deployment host through public HTTPS URL",
+  "tls_validation": "default trusted certificate verification enabled",
+  "health": {
+    "status": 200,
+    "body": {
+      "status": "FarmQA ready"
+    }
+  },
+  "invalid_signature": {
+    "status": 401,
+    "body": {
+      "status": "invalid signature"
+    }
+  },
+  "ledger_rows_after_invalid_request": 0
+}

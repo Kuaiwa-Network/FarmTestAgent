@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-09-16T08:34:26Z",
+  "hostname": "stephen-impact-subdivision-scenic.trycloudflare.com",
+  "certificate_verification": "CERT_REQUIRED and hostname check passed",
+  "tls_version": "TLSv1.3",
+  "subject": [
+    [
+      [
+        "commonName",
+        "trycloudflare.com"
+      ]
+    ]
+  ],
+  "issuer": [
+    [
+      [
+        "countryName",
+        "US"
+      ]
+    ],
+    [
+      [
+        "organizationName",
+        "Google Trust Services"
+      ]
+    ],
+    [
+      [
+        "commonName",
+        "WE1"
+      ]
+    ]
+  ],
+  "valid_from": "Aug  7 20:25:50 2026 GMT",
+  "valid_to": "Nov  5 21:25:21 2026 GMT",
+  "subject_alt_names": [
+    [
+      "DNS",
+      "trycloudflare.com"
+    ],
+    [
+      "DNS",
+      "*.trycloudflare.com"
+    ]
+  ]
+}

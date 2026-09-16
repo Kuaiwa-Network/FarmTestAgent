@@ -1,0 +1,19 @@
+{
+  "identity": {
+    "viewer": {
+      "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+      "name": "FarmQA"
+    },
+    "organization": {
+      "id": "ff27325f-34a2-4e64-be44-5746fd1b3ea3",
+      "name": "Kuaiwa AI"
+    }
+  },
+  "accessible_teams": [
+    {
+      "id": "9676b5f9-eff3-485b-80ed-900ed137e21a",
+      "name": "农场"
+    }
+  ],
+  "scope_requested": "read,write,app:mentionable"
+}

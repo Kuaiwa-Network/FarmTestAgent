@@ -59,8 +59,10 @@ context, and read-only Computer Use discovery through `@oai/sky`. This is not
 proof of successful app clicking or gameplay. The live ordinary-comment mention
 on FARM-1188 also passed: Linear reused the existing session (`prompted` event),
 and the exact Codex final reply was visibly delivered in 8.056 seconds, matching
-the API activity and `sent` ledger record. A new `created` session and an additional
-post-bridge follow-up remain untested. Redacted verification is recorded in the
+the API activity and `sent` ledger record. A new `created` session and follow-up
+subsequently passed on FARM-1186, in 11.460 and 8.137 seconds respectively; see the
+[follow-up report](../reports/2026-09-16-farmqa-followup-preflight/report.md).
+The initial round trip's redacted verification is recorded in the
 [bridge report](../reports/2026-09-16-farmqa-codex-bridge/report.md).
 
 All sessions currently share one dedicated Codex task and are processed serially.
@@ -73,4 +75,7 @@ confirmed Linear delivery. Ambiguous dispatch or reply sends are not retried.
 The [follow-up preflight](../reports/2026-09-16-farmqa-followup-preflight/report.md)
 rechecked the live app identity, desktop adapter, single receiver, HTTPS, rejection
 of unsigned requests, and 27 passing local tests. No new event had arrived at that
-snapshot. New-session and follow-up tests remain pending the user's Linear input.
+snapshot. The subsequent user test on FARM-1186 verified both visible replies
+against their completed Codex turns, actual FarmQA-authored Linear activities,
+and separate `sent` records. Temporary prompt/final fields were cleared; the
+session completed. This is transport/continuity coverage, not game interaction.

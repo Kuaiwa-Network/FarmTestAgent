@@ -1,0 +1,61 @@
+{
+  "verified_at_utc": "2026-09-16T12:07:12.304415+00:00",
+  "source": "real Linear webhook; API + completed desktop turns + visible Linear agent chat",
+  "session_status": "complete",
+  "records": [
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:created:0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "session_id": "0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "activity_id": "0857835e-74d0-43ca-9f29-12540cdc05f0",
+      "status": "sent",
+      "received_at": 1789560328.3327694,
+      "completed_at": 1789560339.7931147,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": "01a0aa1b-95a6-7792-9c01-1ec370202dc3",
+      "ack_id": "86ca3593-c8fc-42f4-9b4f-2506f7446bd5",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "event_action": "created",
+      "issue_identifier": "FARM-1186",
+      "receipt_to_confirmed_seconds": 11.46,
+      "reply_sha256": "0d7953c6cde234b50212b67e8e36bf2eb14efdde48fe8163131fbb4c21c48a67",
+      "reply_matches_codex": true,
+      "linear_author_verified": true,
+      "visible_browser_reply_matches": true
+    },
+    {
+      "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:8ef2bc19-72aa-45e4-8ae2-017760fff408",
+      "session_id": "0b81363f-bb0c-4238-8f9a-b1f85cef99c3",
+      "activity_id": "3285e1a1-6e00-495b-a6eb-912bc6b7ee5a",
+      "status": "sent",
+      "received_at": 1789560348.7147915,
+      "completed_at": 1789560356.8522015,
+      "error": null,
+      "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+      "turn_id": "01a0aa1b-e4bd-7bc0-a5e2-1fa9a0664d85",
+      "ack_id": "837721f3-39ec-42cd-a5dc-4f3342540c94",
+      "prompt_cleared": 1,
+      "reply_cleared": 1,
+      "event_action": "prompted",
+      "issue_identifier": "FARM-1186",
+      "receipt_to_confirmed_seconds": 8.137,
+      "reply_sha256": "0d7953c6cde234b50212b67e8e36bf2eb14efdde48fe8163131fbb4c21c48a67",
+      "reply_matches_codex": true,
+      "linear_author_verified": true,
+      "visible_browser_reply_matches": true
+    }
+  ],
+  "new_session_created_path": "PASS",
+  "followup_in_same_session_and_task": "PASS",
+  "visible_browser_verification": {
+    "status": "PASS",
+    "verified_at_utc": "2026-09-16T12:08:35.945959+00:00",
+    "issue_url": "https://linear.app/kuaiwagames/issue/FARM-1186",
+    "session_url_fragment": "agent-session-0b81363f",
+    "observed_initial_request": "@farmqa Reply exactly: fresh bridge test passed",
+    "observed_followup": "What exact phrase did you just reply with?",
+    "observed_reply_count": 2,
+    "both_visible_replies": "fresh bridge test passed"
+  }
+}

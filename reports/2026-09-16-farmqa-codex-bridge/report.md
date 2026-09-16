@@ -101,7 +101,10 @@ Linear activity, and matching ledger record before retrying an uncertain request
 
 ## Remaining verification
 
-The ordinary-comment mention passed through an existing session. To extend
-coverage, exercise a genuinely new Linear agent session (`created`), then another
-follow-up. Match the visible replies and turn/activity IDs as in the passed run.
-Actual Computer Use interaction remains a separate, authorized test.
+The original ordinary-comment mention passed through an existing session.
+Subsequent verification on FARM-1186 passed a genuinely new Linear agent session
+(`created`) and its follow-up (`prompted`), with both visible replies matched to
+completed Codex turns, actual FarmQA activities, and `sent` records. See the
+[later report](../2026-09-16-farmqa-followup-preflight/report.md), which supersedes
+the new-session/follow-up gaps noted above. Actual Computer Use interaction
+remains a separate, authorized test.

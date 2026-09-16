@@ -23,5 +23,8 @@ cleanup. A synthetic local test is not proof of real Linear webhook delivery.
 Current result: desktop transport, conversation continuity, and read-only Computer
 Use discovery PASS. Live ordinary-comment mention PASS: Linear reused the existing
 session and emitted `prompted`; visible reply, Codex turn, API activity, and `sent`
-ledger record matched in 8.056 seconds. A new `created` session and an additional
-post-bridge follow-up remain untested. See the dated report and live-delivery evidence.
+ledger record matched in 8.056 seconds. A new `created` session and `prompted`
+follow-up also PASS on FARM-1186 (11.460 s and 8.137 s). Both visible replies
+matched actual Linear activities, completed turns in the same Codex task, and
+separate `sent` ledger rows with cleared temporary content. See the
+[follow-up report and evidence](../../reports/2026-09-16-farmqa-followup-preflight/report.md).

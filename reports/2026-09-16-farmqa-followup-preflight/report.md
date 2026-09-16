@@ -1,7 +1,27 @@
 # FarmQA follow-up verification and Windows readiness
 
-Date: 2026-09-16. Scope: recheck the deployed bridge, prepare a genuinely new
-Linear session test, and inspect gameplay prerequisites. No gameplay ran.
+Date: 2026-09-16. Scope: recheck the deployed bridge, verify a genuinely new
+Linear session and follow-up, and inspect gameplay prerequisites. No gameplay ran.
+
+## Live result: PASS
+
+The user completed both messages on [FARM-1186](https://linear.app/kuaiwagames/issue/FARM-1186).
+Linear created a new agent session, `0b81363f-bb0c-4238-8f9a-b1f85cef99c3`.
+The initial `created` event and subsequent `prompted` event each produced the
+visible reply `fresh bridge test passed`. The follow-up asked for the exact
+previous phrase, confirming continuity through the same dedicated Codex task.
+
+| Event | Receipt to confirmed delivery | Codex turn | Linear response activity |
+|---|---|---|---|
+| `created` | 11.460 s | `01a0aa1b-95a6-7792-9c01-1ec370202dc3` | `0857835e-74d0-43ca-9f29-12540cdc05f0` |
+| `prompted` | 8.137 s | `01a0aa1b-e4bd-7bc0-a5e2-1fa9a0664d85` | `3285e1a1-6e00-495b-a6eb-912bc6b7ee5a` |
+
+Both visible browser replies exactly matched the actual FarmQA-authored Linear
+activities and completed Codex final answers. Both ledger rows are `sent`, with
+no error and cleared temporary input/response fields. The Linear session is
+`complete`. See [redacted live evidence](evidence/live-delivery.json).
+This verifies message transport and conversation continuity, not gameplay or
+unattended reliability. No integration code change was necessary.
 
 ## Bridge preflight
 
@@ -19,10 +39,9 @@ Linear session test, and inspect gameplay prerequisites. No gameplay ran.
 The user was asked to select @FarmQA on an existing Farm test issue that has never
 used it, request `Reply exactly: fresh bridge test passed`, then ask in that agent
 chat `What exact phrase did you just reply with?` and provide the issue link.
-**New `created` session and follow-up verification remain pending.** Match both
-visible replies to actual Linear activities, completed Codex turns, and the ledger
-before changing this verdict. A repeated mention on FARM-1188 previously reused
-its existing session and is insufficient evidence for the `created` path.
+That test was pending at the preflight snapshot and is now **PASS**, as recorded
+above. The earlier repeated mention on FARM-1188 reused its existing session;
+FARM-1186 supplies the separate real `created`-path evidence.
 
 See [bridge evidence](evidence/bridge.json). Prompt bodies, response bodies, and
 credentials are excluded from this snapshot.
@@ -62,14 +81,12 @@ The agent performed no merge. Fetching confirmed that its tree matches the
 previous deployed bridge commit. This inspection continues on
 `codex/farmqa-verification-followup`, based on the fetched `main`.
 
-1. Finish the real new-session and follow-up test when the user provides the
-   mention/issue; inspect failures before changing bridge code.
-2. Before game control, establish Linear Stop cancellation and exclusive
+1. Before game control, establish Linear Stop cancellation and exclusive
    controller ownership. Neither is implemented by this inspection.
-3. For the first supervised game run, establish a connected Editor or identified
+2. For the first supervised game run, establish a connected Editor or identified
    TestHooks device, intended QA revision, designated test environment/account,
    actual loaded build/session identity, and trustworthy state observations.
-4. Then run the existing bounded one-plot scenario, preserve its trace, and repeat
+3. Then run the existing bounded one-plot scenario, preserve its trace, and repeat
    only after the first journey has a supported verdict.
 
 The temporary HTTPS tunnel, logged-in Windows session, and running Codex app are

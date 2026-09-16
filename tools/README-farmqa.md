@@ -235,6 +235,13 @@ is held. A prompt without a valid timezone-bearing `createdAt` after a stop
 fails closed. Stop retries cannot cancel newer messages. Do not erase the stop
 ledger to bypass a hold. Use only metadata projections when inspecting jobs.
 
+The [automatic Stop capability check](../reports/2026-09-16-farmqa-automatic-stop-capability/report.md)
+also inspected the documented Codex App Server `turn/interrupt` method. The
+desktop-owned server on this machine has no supported attachable connection,
+so that method cannot stop the current inbox through this bridge. Do not point
+an interrupt request at a newly started server and treat its response as the
+desktop turn's result.
+
 Fixed-reply mode also ignores Stop as a prompt and cancels already queued fixed
 replies, but does not provide the desktop cancellation workflow or its cutoff.
 See [the Stop verification report](../reports/2026-09-16-farmqa-stop/report.md).

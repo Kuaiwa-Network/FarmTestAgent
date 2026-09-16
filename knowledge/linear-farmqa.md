@@ -105,3 +105,10 @@ clicked Stop. The ordinary Linear response was absent, and a newer follow-up
 visibly returned `READY` in 12.914 seconds. This verifies the manual fallback,
 not automatic interruption. PR #3 was subsequently merged by the user; this
 later manual test did not change the deployed bridge code.
+
+The [automatic Stop capability check](../reports/2026-09-16-farmqa-automatic-stop-capability/report.md)
+found a documented `turn/interrupt` App Server method, but no supported
+connection to the desktop-owned App Server or interrupt operation in the
+installed app-tools connector. The exact inbox task is identifiable; a newly
+started CLI App Server is not its running backend. Automatic interruption was
+not deployed or live-tested. Retain the manual Stop gate and reply suppression.

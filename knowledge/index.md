@@ -25,6 +25,8 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [FarmQA manual Stop verification](../reports/2026-09-16-farmqa-manual-stop/report.md)
   — exact Codex turn interrupted by the user; ordinary reply suppressed and
   follow-up visibly delivered; automatic interruption still unavailable
+- [FarmQA automatic Stop capability check](../reports/2026-09-16-farmqa-automatic-stop-capability/report.md)
+  — documented interrupt protocol cannot reach the existing desktop inbox
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

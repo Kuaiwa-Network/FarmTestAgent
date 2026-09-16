@@ -181,7 +181,7 @@ pipe; treat it as a supervised prototype, not a stable public Codex desktop API.
    final text and Linear activity ID against the ledger; health alone is insufficient.
 
 The receiver acknowledges new events, queues them, dispatches one request at a
-time, reads the matching completed Codex turn, and returns the final answer through
+time by default, reads the matching completed Codex turn, and returns the final answer through
 `agentActivityCreate`. The task uses its configured model and permissions. A
 forwarded message does not independently grant app-control permissions.
 No tools' intermediate output or reasoning is posted to Linear.
@@ -200,9 +200,76 @@ Read-only availability/result polling can retry. The result deadline is 15 minut
 timing out does not cancel an already-running Codex task. Inputs are limited to
 32,000 characters and final answers to 12,000 characters. One inbox shares context
 across issues; avoid manually starting concurrent work there. Attachments, progress
-streaming and per-issue task isolation are not implemented. Stop handling is
+streaming are not implemented. Optional per-session isolation is described below. Stop handling is
 described below; active desktop interruption remains unavailable. App clicking
 and gameplay require their own authorized verification.
+
+### Optional routing by Linear session
+
+The session-routing increment is opt-in. It adds `bridge_sessions` and a
+`target_json` snapshot on each bridge job in the same private SQLite database.
+Existing sessions retain their original inbox, including pending/uncertain jobs.
+New sessions get separate Codex tasks only after session routing is enabled.
+Two sessions on the same issue are still separate conversations. Messages are
+ordered by receiver acceptance within a session; independent tasks can run
+concurrently. A busy or stopped legacy inbox still serializes its legacy sessions.
+
+After making a private configuration/database backup and checking that no work
+is in flight, use the saved **FarmTestAgent** project ID from `list_projects`:
+
+```powershell
+python3 tools/farmqa_codex.py configure-sessions --project-id <saved-QA-project-id>
+```
+
+Restart only the receiver using the existing supervised procedure. The app
+project is checked by ID and local path before creation; Git projects use a
+Codex worktree of the project's default branch. That QA worktree is separate
+from the requested **game client** revision.
+
+Task creation first sends a harmless initialization prompt. Its random binding
+marker is stored before the external call; a crash or timeout never repeats
+creation. Pending worktree IDs are never used as actual task IDs. Recovery
+examines at most three matching-title candidates among the latest 50 tasks,
+checks the full marker in input items in their latest 10 turns, and binds only
+one match after the initialization turn completes. A renamed task, missing
+history, unavailable app, or ambiguous match
+leaves the request waiting rather than guessing. Inspect unresolved setup;
+do not reset its state to `new` to force another creation.
+
+Stop targets only its Linear session. A manual Stop message identifies the
+actual Codex task ID. Other isolated conversations can continue; no gameplay
+or computer control is enabled by this concurrency. Physical controller locking
+and action cancellation are separate, still-unimplemented requirements.
+
+Inspect session metadata without dumping transient prompts/replies:
+
+```powershell
+python3 tools/farmqa_state.py sessions --organization <workspace-id>
+```
+
+To pin a target for **future** messages in an existing session:
+
+```powershell
+python3 tools/farmqa_state.py set-target --organization <workspace-id> --session <linear-session-id> --repository <local-Farm-Client-path> --ref refs/remotes/origin/<branch> --server-environment <test-environment-id>
+```
+
+This reads a locally available full ref or commit SHA without fetching,
+checking out files, opening Unity, or changing a server. The stored snapshot
+contains the resolved commit, repository path, requested ref, and environment
+identifier. Each newly accepted message copies the snapshot; later edits or
+branch movement cannot change a queued request. `clear-target` with the same
+organization/session removes the default for future messages. Use an environment
+identifier, never a password, token, or credential-bearing URL.
+
+An unspecified target stays null. Automatic extraction of branches/PRs from
+Linear messages, a workspace default branch, actual loaded-build verification,
+account selection, and controller state are not implemented in this increment.
+The selected commit is never reported as proof of the running Unity build.
+
+Rollback: set `session_routing` to `false` in the private Codex config and restart
+the receiver. This sends only **new, unseen** sessions to the legacy inbox;
+existing mappings stay intact. Keep this version of the receiver until isolated
+jobs are resolved. Do not roll back the database or old code over active routes.
 
 ### Linear Stop handling
 

@@ -34,6 +34,14 @@ Linear reply was suppressed, and a newer follow-up succeeded. See
 `reports/2026-09-16-farmqa-manual-stop/report.md`. The bridge still cannot issue
 automatic active-turn interruption, so gameplay remains disabled.
 
+User-approved design, 2026-09-16: separate Codex tasks for Linear sessions, an
+ordered queue per session, and one shared QA Unity/computer controller. Test
+requests pin the client commit and server environment; controller state must
+persist locally and be revalidated against the actual Editor before each run.
+Implement session routing and pinned target records first. Game-action
+cancellation and exclusive controller ownership must be verified before a live
+gameplay increment; this does not claim automatic interruption of Codex itself.
+
 ## Every session
 
 1. Read this file and `knowledge/index.md`; load relevant detailed topics.

@@ -1,0 +1,44 @@
+{
+  "observed_at_utc": "2026-09-16T11:46:36.055700+00:00",
+  "identity": {
+    "viewer": {
+      "id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+      "name": "FarmQA"
+    },
+    "organization": {
+      "id": "ff27325f-34a2-4e64-be44-5746fd1b3ea3",
+      "name": "Kuaiwa AI"
+    }
+  },
+  "mode": "codex",
+  "thread_id": "01a0a9da-3777-7640-b19c-1aa1646ba210",
+  "thread_status": {
+    "type": "idle"
+  },
+  "https_checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/webhook",
+      "status": 401
+    }
+  ],
+  "ledger_status_counts": [
+    {
+      "status": "sent",
+      "count": 5
+    }
+  ],
+  "events_after_previous_verified_delivery": [],
+  "fresh_created_test": "pending user mention",
+  "followup_test": "pending",
+  "local_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_*farmqa*.py' -v",
+    "passed": 27,
+    "scope": "mocked external calls"
+  }
+}

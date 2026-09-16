@@ -15,6 +15,8 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
   tunnel and Windows fixes; consult this report for current activation evidence
 - [FarmQA Codex desktop bridge](../reports/2026-09-16-farmqa-codex-bridge/report.md)
   — live Linear → Codex app → Linear delivery verified; remaining limits recorded
+- [Latest: bridge follow-up preflight and Windows gameplay readiness](../reports/2026-09-16-farmqa-followup-preflight/report.md)
+  — deployed bridge ready; fresh-session test pending; Editor installed but stopped
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

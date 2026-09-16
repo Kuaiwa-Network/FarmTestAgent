@@ -32,8 +32,10 @@ run's endpoint; do not reuse historical Mac endpoints.
 PR #1 was already merged by `dunadain` at 08:03:01 UTC on 2026-09-16 (`fc1e202`)
 before this Windows session; no merge was performed by the deployment agent.
 The deleted branch's fetched PR head `77cbcbc` has the same tree as that main
-commit. Windows work is in [draft PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2)
-on `codex/farmqa-windows-deploy`. Keep it unmerged unless requested.
+commit. Windows/bridge work was merged in [PR #2](https://github.com/Kuaiwa-Network/FarmTestAgent/pull/2)
+by `dunadain` at 11:33:58 UTC on 2026-09-16, producing `e35cd54`. The deployment
+agent performed no merge. Follow-up inspection is on `codex/farmqa-verification-followup`.
+Do not merge future PRs unless requested.
 
 The original fixed-reply live mention and follow-up both pass. Never infer delivery success from
 HTTP 200 or `/health`. Uncertain send outcomes are
@@ -67,3 +69,8 @@ rebind after an app restart/update if the connection changes. Keep `.local/farmq
 private. Bridge prompts/final text are temporarily stored in the private SQLite
 ledger, omitted from logs/status/reports, and cleared from active rows after
 confirmed Linear delivery. Ambiguous dispatch or reply sends are not retried.
+
+The [follow-up preflight](../reports/2026-09-16-farmqa-followup-preflight/report.md)
+rechecked the live app identity, desktop adapter, single receiver, HTTPS, rejection
+of unsigned requests, and 27 passing local tests. No new event had arrived at that
+snapshot. New-session and follow-up tests remain pending the user's Linear input.

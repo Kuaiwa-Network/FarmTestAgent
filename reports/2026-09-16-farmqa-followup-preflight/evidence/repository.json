@@ -1,0 +1,12 @@
+{
+  "observed_at_utc": "2026-09-16T11:46:36.055700+00:00",
+  "base_commit": "e35cd54171161f32259793c15fb940002f2c3b4a",
+  "branch": "codex/farmqa-verification-followup",
+  "pr2": {
+    "state": "MERGED",
+    "merged_at_utc": "2026-09-16T11:33:58Z",
+    "merged_by": "dunadain",
+    "merge_commit": "e35cd54171161f32259793c15fb940002f2c3b4a"
+  },
+  "agent_performed_merge": false
+}

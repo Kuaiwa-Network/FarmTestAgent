@@ -22,6 +22,9 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [Windows Unity read-only readiness](../reports/2026-09-16-unity-readiness/report.md)
   — Editor connection, loaded assembly identity, Console, and screenshots verified;
   Play Mode off and gameplay still disabled
+- [FarmQA manual Stop verification](../reports/2026-09-16-farmqa-manual-stop/report.md)
+  — exact Codex turn interrupted by the user; ordinary reply suppressed and
+  follow-up visibly delivered; automatic interruption still unavailable
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

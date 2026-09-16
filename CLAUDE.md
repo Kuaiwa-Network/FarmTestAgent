@@ -28,6 +28,12 @@ Windows Farm-Client Editor and inspect its connection, loaded assemblies, consol
 and screenshots with Play Mode off. This passed; see
 `reports/2026-09-16-unity-readiness/report.md`. It does not relax the gameplay gates.
 
+Manual Stop check, 2026-09-16: the user clicked Stop during a harmless waiting
+FarmQA inbox turn on FARM-961. That exact turn ended `interrupted`; its ordinary
+Linear reply was suppressed, and a newer follow-up succeeded. See
+`reports/2026-09-16-farmqa-manual-stop/report.md`. The bridge still cannot issue
+automatic active-turn interruption, so gameplay remains disabled.
+
 ## Every session
 
 1. Read this file and `knowledge/index.md`; load relevant detailed topics.

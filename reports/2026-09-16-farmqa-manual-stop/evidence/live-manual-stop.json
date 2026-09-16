@@ -1,0 +1,40 @@
+{
+  "verified_at_utc": "2026-09-16T13:33:48.986202+00:00",
+  "issue_identifier": "FARM-961",
+  "session_id": "7d84a721-55a4-4c4a-bd85-e6818d319fe9",
+  "app_user_id": "e5a8c16d-9f85-4123-acf5-94e41c3304d5",
+  "stop": {
+    "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:430cc6f9-77dc-43cc-bc7c-e17d85943a93",
+    "incoming_signal_activity_id": "afdb5db7-9da5-45ae-9ebd-460cc465cc4c",
+    "linear_stop_reply_id": "12afd7d7-dc6e-42ba-9994-a3c082880498",
+    "linear_stop_reply_type": "error",
+    "linear_stop_reply_sha256": "de415a7316b118a88310cf157d69e1deb9426f61bf0929220c94484c7992b2ae",
+    "stop_received_at": 1789565445.5244284,
+    "stop_reply_confirmed_at": 1789565447.4271746,
+    "stop_reply_latency_seconds": 1.903,
+    "bridge_status": "cancelled",
+    "bridge_stop_outcome": "interrupted",
+    "codex_turn_id": "01a0aa68-e62a-7f11-986e-009a0f4566ac",
+    "codex_turn_status": "interrupted",
+    "ordinary_response_activity_id": "4fd77630-ae3c-44f4-a8d9-e0b8d1624409",
+    "ordinary_response_absent_from_linear": true,
+    "temporary_content_cleared": true,
+    "visible_browser_stop_reply_matches": true
+  },
+  "follow_up": {
+    "event_key": "ff27325f-34a2-4e64-be44-5746fd1b3ea3:prompted:fa5f1c68-4989-47bf-87f2-a3c1b441077f",
+    "linear_response_activity_id": "c6154fb7-e707-4f02-a0f3-74e151ad1d44",
+    "linear_response_sha256": "c2e3ac47f4a325469c1a2d5f117e463ec943c721986d5d9f09ac4540b7d80526",
+    "codex_turn_id": "01a0aa6a-a840-7122-b083-b8cb2b83843d",
+    "codex_turn_status": "completed",
+    "bridge_status": "sent",
+    "after_stop_cutoff": true,
+    "receipt_to_confirmed_seconds": 12.914,
+    "temporary_content_cleared": true,
+    "visible_browser_reply_matches": true
+  },
+  "limitations": [
+    "Manual click in Codex interrupted the active turn; Linear Stop did not automatically interrupt it.",
+    "No gameplay or game state was exercised."
+  ]
+}

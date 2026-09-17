@@ -288,14 +288,22 @@ binds independent private account/route/module expectations to an active request
 rechecks ownership/target/binding after external reads and persists allowlisted
 evidence. Live matching, wrong-player/route/module and Stop-during-sample checks
 passed on client `b8170a5`. A match remains BLOCKED for execution: it is not a
-session lease, complete provenance or an action-admission check. Next, validate
-account/route/session generation inside the same Unity operation that admits one
-allowlisted action, first on an authenticated counter-only panel using the existing
-fencing/cancellation protocol. No diagnostic result should enable a general worker.
+session lease, complete provenance or an action-admission check. The subsequent
+[authenticated fixture](../tools/README-farmqa-authenticated-fixture.md) now checks
+account/route/session generation in the same Unity operation admitting its fixed
+counter-only action, using the existing fencing/cancellation protocol. Its live
+replay verified wrong-identity rejection, synthetic Stop, lost responses, and old
+action/run packets; a forced fixture predicate failure verified cancellation, not
+real reconnect. A bounded AppDomain registry rejects run reuse after cleanup; it
+is not persistent restart/domain-reload recovery. No diagnostic result enables a
+general worker, and no actual game target is admitted. Next: one separately
+allowlisted supervised navigation action after checking the dedicated account's
+current state, expected transition and game-specific Stop limitations, then the
+first planting journey. See the
+[dated evidence](../reports/2026-09-17-farmqa-authenticated-fixture/report.md).
 
 Stable hosting, natural-language target selection, suite scheduling, autonomous
-issue creation, and Android/device execution are not part of the next read-only
-identity increment.
+issue creation, and Android/device execution are outside this bounded action-admission increment.
 
 Detailed references: [controller specification](superpowers/specs/2026-09-17-controller-queue.md),
 [controller plan](superpowers/plans/2026-09-17-controller-queue.md),

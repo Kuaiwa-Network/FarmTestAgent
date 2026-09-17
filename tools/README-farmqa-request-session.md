@@ -76,10 +76,11 @@ afterward. MVID/source checks do not prove full build provenance. The module doe
 not fence direct MCP/OS callers or prove physical input ownership; reconnect,
 domain reload and actual process/network failure are not covered by this replay.
 
-Next: put account/route/session-generation checks inside the same Unity operation
+The subsequent [authenticated counter fixture](README-farmqa-authenticated-fixture.md)
+implements the next step: account/route/session-generation checks inside the same Unity operation
 that admits a single allowlisted action, with the fixture adapter's action-ID
-fencing, cancellation and uncertain-delivery handling. Prove that first on a
-counter-only panel in an authenticated session before enabling a game button.
-The existing offline fixture adapter and standalone diagnostic remain unchanged.
+fencing, cancellation and uncertain-delivery handling. Its bounded live replay passed on a
+counter-only panel in an authenticated session; no game button is enabled.
+The offline fixture scope and standalone diagnostic remain unchanged.
 
 [Live verification](../reports/2026-09-17-farmqa-request-session/report.md).

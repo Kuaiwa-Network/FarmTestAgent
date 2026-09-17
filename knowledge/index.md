@@ -78,6 +78,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — immutable account/server expectations and active-owner recheck; live matching,
   mismatch and Stop-during-observation cases verified; no action permit
 
+- [Authenticated counter fixture](../reports/2026-09-17-farmqa-authenticated-fixture/report.md)
+  — same-operation account/route/generation admission, synthetic Stop and stale
+  packet replay verified; no game control or deployment
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

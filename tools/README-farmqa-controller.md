@@ -64,6 +64,10 @@ ledger and preserve the hold; there is no force-release/recovery command yet.
 
 ## Worker contract
 
+For current Editor/source observations use the separate
+[read-only identity command](README-farmqa-identity.md). It appends diagnostics
+without acquiring or releasing a reservation; it cannot authorize gameplay.
+
 `ControllerStore(db)` uses `sqlite3.Row` and caller-managed transactions. Acquire
 and release must commit before relying on their result. Autocommit connections
 must explicitly `BEGIN IMMEDIATE`; a mutation without a transaction is rejected.

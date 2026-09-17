@@ -1,0 +1,8 @@
+{
+  "synthetic_request": true,
+  "production_ledger_used": false,
+  "cli_exit": 2,
+  "reservation_state": "queued",
+  "observation_count": 1,
+  "client_unchanged": true
+}

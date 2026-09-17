@@ -1,7 +1,7 @@
 # FarmQA architecture and durable memory
 
-Status date: 2026-09-17. Source baseline: `main` at `7217880`, after PRs #6
-and #7 merged. This is the consolidated reference for the user-approved design;
+Status date: 2026-09-17. Source baseline: `main` at `665018d`, plus the read-only
+identity increment described below. This is the reference for the user-approved design;
 it does not authorize new gameplay or broaden the boundaries in [CLAUDE.md](../CLAUDE.md).
 
 ## Purpose and current scope
@@ -15,8 +15,9 @@ chat; there is no separate ordinary-comment posting implementation.
 The approved end state supports multiple conversations sharing one QA
 Unity/computer controller. Each game request pins a client commit and server
 environment, waits its turn, validates the actual loaded target, executes bounded
-actions, and records evidence. Only chat routing, target records, reservations,
-and an inert waiting worker are implemented. No gameplay, suite scheduling,
+actions, and records evidence. Chat routing, target records, reservations,
+an inert waiting worker, and read-only identity diagnostics are implemented.
+No gameplay, suite scheduling,
 issue creation, Editor/device worker, or arbitrary action adapter is enabled.
 
 ## Components and flow
@@ -33,7 +34,7 @@ flowchart TD
     D --> Q
     Q --> W[One-shot inert worker]
     R -->|Authenticated Stop| Q
-    Q -. planned .-> V[Actual target identity validation]
+    Q -->|Explicit operator inspection| V[Read-only identity diagnostics]
     V -. planned .-> G[Exclusive physical action controller]
 ```
 
@@ -49,6 +50,7 @@ the game directly. The inert worker performs only a bounded synchronous wait.
 | Session store | Persist session routes and selected target; resolve local Git refs read-only | [farmqa_state.py](../tools/farmqa_state.py) |
 | Reservation store | FIFO queue, one active slot, owner token and scoped cancellation | [farmqa_controller.py](../tools/farmqa_controller.py) |
 | Inert worker | Claim one request, wait with Stop polling, release or retain on failure | [farmqa_worker.py](../tools/farmqa_worker.py) |
+| Identity diagnostics | Read current Editor/Git identity for one request; append BLOCKED diagnostics | [farmqa_identity.py](../tools/farmqa_identity.py), [Unity reader](../tools/farmqa_unity_identity.py) |
 
 The transport is Linear → HTTPS tunnel → loopback receiver, with outbound Linear
 API calls for replies. The machine's public IP alone is not the HTTPS endpoint.
@@ -126,6 +128,22 @@ uses a 1-second SQLite timeout. It runs one request and exits. A crash, Ctrl+C o
 database failure retains uncertain ownership. These are polling/timeout settings,
 not a real-time cancellation SLA. No persistent worker service is installed.
 
+The standalone identity command reads an existing queued/active request without
+acquiring or releasing it. It selects one exact Editor instance on the existing
+loopback MCP server, requires fresh idle Edit Mode, runs the fixed metadata probe,
+and compares the project, build target and local Git snapshot before/after.
+Git status, dirty-file hashes and index metadata detect observed source changes.
+It records loaded assembly module IDs separately from source revision.
+
+Every invocation appends allowlisted diagnostics to
+`controller_identity_observations` in the private ledger and rechecks request
+state/target after the reads. Instance and build target are explicit operator
+expectations saved with the result; the older request snapshot does not pin them.
+There is no imported-evidence or cached-pass input. Every result is **BLOCKED**:
+the current probe cannot establish loaded-commit provenance or connected-server
+identity. This is a diagnostic foundation, not completion of the identity gate.
+An observation is a historical sample, not a physical lock or execution permit.
+
 ## Stop has three distinct meanings
 
 1. **Chat forwarding:** authenticated Linear Stop suppresses pending replies,
@@ -156,6 +174,7 @@ operator CLI/ledger outcomes, not automatically returned as gameplay reports.
 | Run evidence | Dated [reports](../reports) | Records target, observation, result and coverage limits |
 | Conversation history | Codex task state outside this repository | Continued context within the mapped task |
 | Event routes, targets, Stop and ownership | Private `.local/farmqa/events.sqlite3` | Receiver/worker runtime state, excluded from Git |
+| Per-request identity observations | Same private ledger, `controller_identity_observations` | Append-only diagnostics; never a cached game permit |
 | Credentials/runtime configuration | Private `.local/farmqa/` files | Used locally; never copied into reports or Git |
 
 Project memory is written and reviewed explicitly; there is no automatic knowledge
@@ -185,13 +204,14 @@ the topic memory when the implementation or an approved decision changes.
 | Manual Codex Stop | Exact FARM-961 turn interrupted by user; later follow-up delivered | Automatic active-turn interruption unavailable |
 | Reservation ownership | Real competing processes and private-copy migration; 93-test checkpoint | Not a physical Unity lock |
 | Inert worker | 104-test checkpoint, signed synthetic Stop, killed process, DB-error holds | No live Linear worker run or physical actions |
-| Editor readiness | Prior read-only Editor/assembly inspection | No per-request loaded-target validator |
+| Editor identity diagnostics | Live request-bound read with matching Editor/project/commit/platform and unchanged source | BLOCKED: dirty checkout, unknown loaded-commit provenance and server identity |
 
 Evidence: [session routing](../reports/2026-09-16-farmqa-sessions/report.md),
 [manual Stop](../reports/2026-09-16-farmqa-manual-stop/report.md),
 [reservation deployment](../reports/2026-09-17-farmqa-controller/report.md),
 [inert worker](../reports/2026-09-17-farmqa-inert-worker/report.md), and
-[Editor readiness](../reports/2026-09-16-unity-readiness/report.md).
+[Editor readiness](../reports/2026-09-16-unity-readiness/report.md), and
+[identity diagnostics](../reports/2026-09-17-farmqa-identity/report.md).
 
 The receiver/reservation layer is deployed on this Windows machine. The inert
 worker is merged as a standalone utility, with no scheduled worker or production
@@ -200,13 +220,12 @@ service health must be rechecked operationally; a Git merge is not proof of eith
 
 ## Next gates before gameplay
 
-1. **Read-only actual-target validation:** compare the selected request with
-   the live Editor instance/project, platform, source revision/dirty changes,
-   loaded assemblies and observed server/session identity. Persist allowlisted
-   observations tied to the request and revalidate before each run. Missing or
-   contradictory evidence must block; a checkout SHA alone does not prove loaded
-   code. Exact observation schema and supported Editor interfaces are the next
-   implementation design, not already available APIs.
+1. **Complete actual-target validation:** read-only per-request diagnostics now
+   exist. Establish trustworthy loaded-build provenance and observed server/session
+   identity, then compare both with the pinned request. The present collector
+   deliberately leaves these unknown and never passes gameplay. Decide the
+   build-provenance source and authorized server observation before implementing
+   a positive gate; revalidate under physical ownership immediately before actions.
 2. **Physical action ownership and cancellation:** route permitted actions through
    one controller, fence stale owners, bound work, observe cancellation and
    quiescence. Define recovery after a lost owner without assuming that process

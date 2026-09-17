@@ -296,11 +296,17 @@ replay verified wrong-identity rejection, synthetic Stop, lost responses, and ol
 action/run packets; a forced fixture predicate failure verified cancellation, not
 real reconnect. A bounded AppDomain registry rejects run reuse after cleanup; it
 is not persistent restart/domain-reload recovery. No diagnostic result enables a
-general worker, and no actual game target is admitted. Next: one separately
-allowlisted supervised navigation action after checking the dedicated account's
-current state, expected transition and game-specific Stop limitations, then the
+general worker. The subsequent [story adapter](../tools/README-farmqa-story-navigation.md)
+now admits exactly one supervised game transition: Scripted story 10 step 10 -> 20.
+Live evidence confirms the new dialogue and state; synthetic Stop-before-dispatch,
+event-capture predicate rejection, lost-response reconciliation and step-20 rejection
+also passed. Captures check session/UI eligibility and the actual background hit
+before bubbling to the story handler. This does not verify real reconnect or Stop
+rollback after a handler. No production worker is enabled. Next: a bounded story
+continuation after inspecting final-step effects, then farm inspection and the
 first planting journey. See the
-[dated evidence](../reports/2026-09-17-farmqa-authenticated-fixture/report.md).
+[story navigation evidence](../reports/2026-09-17-farmqa-story-navigation/report.md)
+and the earlier [fixture evidence](../reports/2026-09-17-farmqa-authenticated-fixture/report.md).
 
 Stable hosting, natural-language target selection, suite scheduling, autonomous
 issue creation, and Android/device execution are outside this bounded action-admission increment.

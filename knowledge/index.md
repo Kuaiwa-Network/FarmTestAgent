@@ -82,6 +82,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — same-operation account/route/generation admission, synthetic Stop and stale
   packet replay verified; no game control or deployment
 
+- [First supervised story navigation](../reports/2026-09-17-farmqa-story-navigation/report.md)
+  — one real story step 10 → 20, event-boundary guard rejection and delayed-request
+  checks verified; no tutorial completion or planting journey
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

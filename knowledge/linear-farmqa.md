@@ -392,3 +392,28 @@ unchanged client source verified. Production queue empty; receiver/tunnel untouc
 No game control or autonomous worker is enabled. Next is one separately allowlisted
 supervised navigation action after observing its actual target and Stop limitations,
 then the first planting journey. The diagnostic remains evidence, not a permit.
+
+
+## First supervised game navigation — 2026-09-17
+
+Observed on Windows client `b8170a5`, Unity 2022.3.62f3: the dedicated public-test
+account advanced Scripted story 10 from step 10 to step 20 via one pointer click.
+The [story adapter](../tools/README-farmqa-story-navigation.md) admits only this
+nonfinal transition, with immutable request/session binding, live identity checks,
+and Stage capture checks before normal event bubbling. New dialogue was verified
+visually and through story/config state. The first path-based hint attempt failed
+before pressing because its centre hits the background; one evidence-based
+ClickAt correction used that freshly resolved point and exact background guard.
+
+Synthetic Stop before dispatch, old packets, and a false QA readiness predicate
+at capture were verified without advancing. The normal click's lost response was
+reconciled without retry. A new attempt at step 20 was rejected. Full suite:
+177 tests PASS. This is not real reconnect, live Linear Stop during the gesture,
+tutorial completion or a planting journey. Receiver/worker remain unchanged.
+
+[Evidence](../reports/2026-09-17-farmqa-story-navigation/report.md). All actions
+closed, input released, source unchanged and clean Edit Mode verified. The existing
+shop-startup error recurred, with zero new errors on the successful action. Step 20
+is observed runtime state; do not assume persistence or reset account progress.
+Next: a bounded introductory-story sequence with final-step effects inspected,
+then farm inspection and the first planting journey.

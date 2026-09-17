@@ -32,7 +32,37 @@ the same reservation ID. Enqueue does not start a worker or a game action.
 `--db` selects an existing ledger explicitly; the command never creates one.
 Status opens SQLite read-only and omits tokens, prompt bodies and worker names.
 
-## Future worker contract
+## Inert worker
+
+The standalone worker consumes at most one existing reservation, waits, then
+exits. Select the database explicitly:
+
+```powershell
+python tools/farmqa_worker.py --db .local/farmqa/events.sqlite3 --seconds 5
+```
+
+Only use this on reservations intentionally queued for the inert test. A released
+request cannot be replayed as gameplay. The worker opens an existing database;
+it neither initializes schema nor queues requests. Wait duration must be finite
+and between 0 and 60 seconds. Default: 5 seconds. Stop is checked every 100 ms;
+SQLite operations time out after 1 second. These settings are not a real-time
+cancellation guarantee under database contention or OS scheduling delays.
+
+Output is newline-delimited JSON with `mode: inert`, `game_actions: 0`, request
+ID and an outcome. `idle` means no queue; `blocked` means a reservation is held;
+`released` means the inert wait ended; `cancelled` means Stop was observed during
+ownership. These outcomes exit zero because the one-shot operation was handled;
+automation must inspect the outcome, not equate exit zero with a QA pass.
+Errors exit nonzero and report `unconfirmed` with the exception class only.
+
+There is no Unity/computer/model/network operation, command execution adapter,
+background worker, or scheduled service. Acquisition commits before waiting;
+the wait ends before release. A killed process, Ctrl+C, database error or lost
+owner token leaves a reservation held. A fresh worker refuses takeover. This
+verifies safe crash persistence, not automatic crash recovery. Inspect the
+ledger and preserve the hold; there is no force-release/recovery command yet.
+
+## Worker contract
 
 `ControllerStore(db)` uses `sqlite3.Row` and caller-managed transactions. Acquire
 and release must commit before relying on their result. Autocommit connections
@@ -45,7 +75,7 @@ with db:
 
 Only one request can be active globally. An active/cancel-requested slot survives
 restart indefinitely. The returned token must remain private to its owner; the
-database stores a hash. No worker is installed in this increment. There is no
+database stores a hash. Only the inert worker above exists. There is no
 expiry, automatic takeover, token recovery, or force-unlock command.
 
 Authenticated Linear Stop cancels queued requests at/before its source timestamp

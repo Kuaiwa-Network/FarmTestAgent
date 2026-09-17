@@ -171,3 +171,15 @@ Loaded Editor identity verification, physical worker enforcement, and bounded
 action cancellation remain unimplemented. See the
 [controller report](../reports/2026-09-17-farmqa-controller/report.md) and
 [operator guide](../tools/README-farmqa-controller.md).
+
+## Inert worker increment — 2026-09-17
+
+The standalone inert worker now acquires one reservation, commits ownership,
+waits for a bounded duration while polling cancellation, then releases after
+the wait ends. Real subprocess fixtures verified signed Stop, other-session
+Stop isolation, competing workers, actual wait duration, abrupt process death,
+receiver restart, and database errors. Crashed/failed ownership stays held;
+there is no automatic recovery or forced takeover. 104 local tests pass.
+These are synthetic signed-event fixtures, not live Linear or Unity execution.
+The existing receiver and live queue were left unchanged. See
+[evidence and remaining gates](../reports/2026-09-17-farmqa-inert-worker/report.md).

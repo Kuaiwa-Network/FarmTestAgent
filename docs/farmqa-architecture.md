@@ -265,7 +265,13 @@ build provenance, request-bound integration or physical action ownership.
 2. **Physical action ownership and cancellation:** route permitted actions through
    one controller, fence stale owners, bound work, observe cancellation and
    quiescence. Define recovery after a lost owner without assuming that process
-   death ended remote/asynchronous actions. Verify this before enabling gameplay.
+   death ended remote/asynchronous actions. The supervised
+   [pointer fixture](../reports/2026-09-17-farmqa-pointer-cancellation/report.md)
+   verified driver busy rejection, synthetic Stop -> real CancelPointer ->
+   original-task completion/quiescence -> next queued fixture click. It does not
+   fence direct MCP/OS callers or bind CancelPointer to a token. Next integrate
+   these primitives in a narrow request-bound adapter and verify stale-owner and
+   lost-response handling on that harmless surface before enabling gameplay.
 3. **Supervised gameplay increment:** establish authorized test account/environment
    and actual state, then run the small planting journey under the existing
    evidence procedure. Promote only observed behavior to QA knowledge.

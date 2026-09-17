@@ -326,3 +326,18 @@ unavailable. Source stayed unchanged. One ShopService QueryShop(13) error code 2
 was recorded; no complete gameplay/clean-console pass. Editor remains open in Edit
 Mode. No automatic worker or receiver integration was enabled. See
 [live verification](../reports/2026-09-17-farmqa-live-session/report.md).
+
+## Supervised pointer cancellation — 2026-09-17
+
+On the same client/module identities, an unauthenticated LoginView fixture verified a
+private synthetic queue's Stop-to-cancel sequence using the real pointer driver.
+Competing process acquisition and a concurrent gesture were rejected; the held
+gesture ended cancelled with down/up and zero clicks. Only after observing its
+task completion and released input did the harness release A and let B click.
+The panel was disposed, Console capture had zero new errors, and Unity returned
+to clean Edit Mode with unchanged client/source and an empty production queue.
+No login, gameplay, live Linear Stop or worker deployment occurred. See
+[report and replay](../reports/2026-09-17-farmqa-pointer-cancellation/report.md).
+Next: integrate a narrow controller adapter with actual-target checks and test
+stale-owner/lost-response handling on this fixture; cancellation is not token-bound
+and direct MCP/OS callers are still outside the reservation boundary.

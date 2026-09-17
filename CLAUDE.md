@@ -55,8 +55,12 @@ session diagnostic now verifies one live authenticated session, rejects wrong
 player/route expectations, and rejects Edit Mode after Stop. The user authorized
 a dedicated account on 公共测试服; its registry is in the main QA checkout at
 `.local/farmqa/test-accounts.json`. Reuse alias `farmqa-windows-public`, revalidate
-identity each run and do not reset its progress implicitly. Physical action
-ownership/cancellation and reconnect remain unverified. See
+identity each run and do not reset its progress implicitly. A supervised temporary
+pointer fixture subsequently verified synthetic Stop -> cancellation -> observed
+quiescence -> next request, with no login or gameplay. See
+`reports/2026-09-17-farmqa-pointer-cancellation/report.md`. Exclusive action-adapter
+ownership, stale-owner fencing, crash/lost-response handling and reconnect remain
+unverified. See
 `tools/README-farmqa-session-identity.md` and the corresponding dated report.
 
 ## Every session

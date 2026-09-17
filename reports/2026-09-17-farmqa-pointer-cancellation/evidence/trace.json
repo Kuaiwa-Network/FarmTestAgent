@@ -1,0 +1,724 @@
+[
+  {
+    "label": "source_before",
+    "recorded_at_ms": 1789633263455,
+    "value": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+      "dirty": [],
+      "index_sha256": "3c2b5d10e7a5a804d92d6c83a049c99de6d0ff9d6bc8887c4ff149c9a1a40448"
+    }
+  },
+  {
+    "label": "editor",
+    "recorded_at_ms": 1789633263463,
+    "value": {
+      "isPlaying": true,
+      "isPlayingOrWillChangePlaymode": true,
+      "isCompiling": false,
+      "isUpdating": false,
+      "unityVersion": "2022.3.62f3",
+      "platform": "WindowsEditor",
+      "buildTarget": "StandaloneWindows64",
+      "dataPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets",
+      "scene": {
+        "name": "LoginScene",
+        "path": "Assets/GameRes/Features/Login/LoginScene.unity",
+        "isDirty": false
+      },
+      "assemblies": [
+        {
+          "name": "HotUpdate",
+          "fullName": "HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "c21a2cb3-b894-4cbc-9dbb-6024685fc399",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\HotUpdate.dll",
+          "hasGameTestDriver": true
+        },
+        {
+          "name": "MCPForUnity.Editor",
+          "fullName": "MCPForUnity.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "17223216-6d8e-4cad-a969-b5292024a415",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\MCPForUnity.Editor.dll",
+          "hasGameTestDriver": false
+        },
+        {
+          "name": "AOTScripts",
+          "fullName": "AOTScripts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\AOTScripts.dll",
+          "hasGameTestDriver": false
+        },
+        {
+          "name": "Nova.Runtime",
+          "fullName": "Nova.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\Nova.Runtime.dll",
+          "hasGameTestDriver": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "session",
+    "recorded_at_ms": 1789633263474,
+    "value": {
+      "schema_version": 1,
+      "observed_at_ms": 1789633263472,
+      "is_playing": true,
+      "status": "observed",
+      "generation_before": 4,
+      "generation_after": 4,
+      "authenticated": false,
+      "transport_connected": false,
+      "objects_stable": true,
+      "player_id": null,
+      "route_sha256": null
+    }
+  },
+  {
+    "label": "status",
+    "recorded_at_ms": 1789633263508,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "status",
+      "observed_at_ms": 1789633263506,
+      "frame": 222622,
+      "busy": false,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": true,
+      "new_console_errors": null,
+      "events": [],
+      "original": null,
+      "competitor": null,
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "queue_acquired",
+    "recorded_at_ms": 1789633263542,
+    "value": [
+      {
+        "request_id": "387e7919-5c58-40b3-a985-429343a59c34",
+        "event_key": "fixture-org:prompted:pointer-A",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-A",
+        "state": "active",
+        "created_at": 1789633263.5311692,
+        "acquired_at": 1789633263.540202,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c2cf78ae-b670-4a64-aac7-941df3ff0e5a",
+        "event_key": "fixture-org:prompted:pointer-B",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-B",
+        "state": "queued",
+        "created_at": 1789633263.5378668,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "competing_process",
+    "recorded_at_ms": 1789633263628,
+    "value": {
+      "mode": "inert",
+      "game_actions": 0,
+      "event": "finished",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "label": "start",
+    "recorded_at_ms": 1789633264368,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "start",
+      "observed_at_ms": 1789633264361,
+      "frame": 222677,
+      "busy": true,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [],
+      "original": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "competitor": null,
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "status",
+    "recorded_at_ms": 1789633264391,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "status",
+      "observed_at_ms": 1789633264388,
+      "frame": 222691,
+      "busy": true,
+      "simulation_active": true,
+      "held": true,
+      "stage_touches": 1,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [
+        "down"
+      ],
+      "original": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "competitor": null,
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "compete",
+    "recorded_at_ms": 1789633265139,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "compete",
+      "observed_at_ms": 1789633265132,
+      "frame": 222713,
+      "busy": true,
+      "simulation_active": true,
+      "held": true,
+      "stage_touches": 1,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [
+        "down"
+      ],
+      "original": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "synthetic_signed_stop",
+    "recorded_at_ms": 1789633265142,
+    "value": [
+      200,
+      "stop received"
+    ]
+  },
+  {
+    "label": "queue_stopping",
+    "recorded_at_ms": 1789633265142,
+    "value": [
+      {
+        "request_id": "387e7919-5c58-40b3-a985-429343a59c34",
+        "event_key": "fixture-org:prompted:pointer-A",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-A",
+        "state": "cancel_requested",
+        "created_at": 1789633263.5311692,
+        "acquired_at": 1789633263.540202,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c2cf78ae-b670-4a64-aac7-941df3ff0e5a",
+        "event_key": "fixture-org:prompted:pointer-B",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-B",
+        "state": "queued",
+        "created_at": 1789633263.5378668,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "competing_process",
+    "recorded_at_ms": 1789633265224,
+    "value": {
+      "mode": "inert",
+      "game_actions": 0,
+      "event": "finished",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "label": "cancel",
+    "recorded_at_ms": 1789633265971,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "cancel",
+      "observed_at_ms": 1789633265963,
+      "frame": 222791,
+      "busy": true,
+      "simulation_active": true,
+      "held": true,
+      "stage_touches": 1,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [
+        "down"
+      ],
+      "original": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "status",
+    "recorded_at_ms": 1789633265993,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "status",
+      "observed_at_ms": 1789633265991,
+      "frame": 222808,
+      "busy": false,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": true,
+      "new_console_errors": 0,
+      "events": [
+        "down",
+        "up"
+      ],
+      "original": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": null,
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "queue_cancelled",
+    "recorded_at_ms": 1789633265996,
+    "value": [
+      {
+        "request_id": "387e7919-5c58-40b3-a985-429343a59c34",
+        "event_key": "fixture-org:prompted:pointer-A",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-A",
+        "state": "cancelled",
+        "created_at": 1789633263.5311692,
+        "acquired_at": 1789633263.540202,
+        "released_at": 1789633265.99425,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c2cf78ae-b670-4a64-aac7-941df3ff0e5a",
+        "event_key": "fixture-org:prompted:pointer-B",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-B",
+        "state": "queued",
+        "created_at": 1789633263.5378668,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "recovery",
+    "recorded_at_ms": 1789633266733,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "recovery",
+      "observed_at_ms": 1789633266726,
+      "frame": 222816,
+      "busy": true,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [
+        "down",
+        "up"
+      ],
+      "original": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "status",
+    "recorded_at_ms": 1789633266739,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "status",
+      "observed_at_ms": 1789633266737,
+      "frame": 222819,
+      "busy": true,
+      "simulation_active": true,
+      "held": true,
+      "stage_touches": 1,
+      "quiescent": false,
+      "new_console_errors": 0,
+      "events": [
+        "down",
+        "up",
+        "down"
+      ],
+      "original": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": {
+        "status": "WaitingForActivation",
+        "complete": false,
+        "result": null
+      },
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "status",
+    "recorded_at_ms": 1789633266847,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "status",
+      "observed_at_ms": 1789633266845,
+      "frame": 222905,
+      "busy": false,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": true,
+      "new_console_errors": 0,
+      "events": [
+        "down",
+        "up",
+        "down",
+        "up",
+        "click"
+      ],
+      "original": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "fixture_present": true,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "queue_released",
+    "recorded_at_ms": 1789633266850,
+    "value": [
+      {
+        "request_id": "387e7919-5c58-40b3-a985-429343a59c34",
+        "event_key": "fixture-org:prompted:pointer-A",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-A",
+        "state": "cancelled",
+        "created_at": 1789633263.5311692,
+        "acquired_at": 1789633263.540202,
+        "released_at": 1789633265.99425,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c2cf78ae-b670-4a64-aac7-941df3ff0e5a",
+        "event_key": "fixture-org:prompted:pointer-B",
+        "organization_id": "fixture-org",
+        "session_id": "pointer-B",
+        "state": "released",
+        "created_at": 1789633263.5378668,
+        "acquired_at": 1789633265.9968112,
+        "released_at": 1789633266.8480012,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789633263526,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "cleanup",
+    "recorded_at_ms": 1789633267600,
+    "value": {
+      "schema_version": 1,
+      "run_id": "f048c47b8af24ca893dc351fab7a4954",
+      "operation": "cleanup",
+      "observed_at_ms": 1789633267594,
+      "frame": 222926,
+      "busy": false,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": true,
+      "new_console_errors": 0,
+      "events": [
+        "down",
+        "up",
+        "down",
+        "up",
+        "click"
+      ],
+      "original": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "competitor": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": false,
+          "reason": "pointer busy: await the current gesture or cancel it",
+          "hitTarget": null,
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "recovery": {
+        "status": "RanToCompletion",
+        "complete": true,
+        "result": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot.FarmQACancelFixture.target",
+          "x": 484.843781,
+          "y": 225.499985
+        }
+      },
+      "fixture_present": false,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "source_after",
+    "recorded_at_ms": 1789633267719,
+    "value": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+      "dirty": [],
+      "index_sha256": "3c2b5d10e7a5a804d92d6c83a049c99de6d0ff9d6bc8887c4ff149c9a1a40448"
+    }
+  },
+  {
+    "label": "result",
+    "recorded_at_ms": 1789633267719,
+    "value": {
+      "status": "PASS",
+      "scope": "supervised synthetic Stop and real fixture pointer",
+      "gameplay_actions": 0,
+      "production_worker_enabled": false
+    }
+  }
+]

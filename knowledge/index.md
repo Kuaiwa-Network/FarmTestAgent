@@ -66,6 +66,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — authenticated match, wrong-player/route rejection and post-Stop rejection
   PASS; one shop-startup error recorded, no gameplay journey
 
+- [Supervised pointer cancellation](../reports/2026-09-17-farmqa-pointer-cancellation/report.md)
+  — synthetic Stop and real fixture gesture, pending-click suppression, quiescence
+  and next-request recovery PASS; no autonomous action adapter deployed
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

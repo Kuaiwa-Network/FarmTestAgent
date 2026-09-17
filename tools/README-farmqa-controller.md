@@ -95,7 +95,12 @@ Do not edit the ledger to force availability. Operator recovery and a physical
 action adapter must be designed and tested before gameplay is enabled. These
 reservation APIs do not prevent a separate task from directly calling Unity or
 computer tools. No claim of physical exclusivity or successful action cancellation
-is made yet.
+is made for a production adapter yet. A later supervised
+[fixture check](../reports/2026-09-17-farmqa-pointer-cancellation/report.md) verified
+the real driver's busy rejection, cancellation and quiescence using a separate
+synthetic queue. Its opt-in replay harness lives under `tests/probes/`, not as a
+deployed worker. Direct MCP/OS bypass, stale-owner fencing and crash/lost-response
+recovery remain unresolved; do not automatically enable game actions from it.
 
 ## Verification and rollback
 

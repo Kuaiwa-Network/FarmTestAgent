@@ -311,6 +311,18 @@ and the earlier [fixture evidence](../reports/2026-09-17-farmqa-authenticated-fi
 Stable hosting, natural-language target selection, suite scheduling, autonomous
 issue creation, and Android/device execution are outside this bounded action-admission increment.
 
+The subsequent [story sequence](../tools/README-farmqa-story-sequence.md) now
+admits only six fixed introductory transitions and stops at the expected guide
+dialogue above MainView. Each action has an immutable step/session binding and
+separate reservation/run. Closure checks the exact resulting UI in Python and
+Unity; pointer completion alone cannot hand off the controller. A late Stop after
+a dispatched click can require manual recovery. The live navigation passed, while
+the Console check failed on recurring ENV-003. The final remote action was closed
+after inspection without replay; its abandoned synthetic local reservation remains
+unreclaimed. This does not demonstrate crash recovery or enable production gameplay.
+Next: inspect the first guide/breeding interaction. See the
+[sequence report](../reports/2026-09-17-farmqa-story-sequence/report.md).
+
 Detailed references: [controller specification](superpowers/specs/2026-09-17-controller-queue.md),
 [controller plan](superpowers/plans/2026-09-17-controller-queue.md),
 [inert-worker plan](superpowers/plans/2026-09-17-inert-worker.md),

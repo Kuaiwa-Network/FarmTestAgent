@@ -1,6 +1,6 @@
 # First gameplay guide: planting
 
-No gameplay observation yet. Last source review: 2026-09-16. Status of all G entries
+No planting action observed yet. Last source review: 2026-09-16. Status of all G entries
 below: **inferred** (applicability to a running server/build unverified).
 Client source: `688da4652c9c2c3b5702c8e99d81e1480df419f7`, Editor/Android intended.
 Contract source: `Farm-Contract` revision `1543bb2581a4e82874ede830bb37bbe1658f15a0`,
@@ -60,3 +60,21 @@ single-harvest, what are the actual tutorial prerequisites, and what read-only s
 proves each pointer-triggered server acceptance? What feedback should single watering
 show with no water? These are recorded gaps, not assumptions or questions to re-ask
 before the infrastructure findings are reviewed.
+
+## Observed route to the farm — 2026-09-17
+
+On Windows Unity 2022.3.62f3 / StandaloneWindows64, client
+`b8170a559909fccc21b488e47584f20e02a42104`, the authorized dedicated account
+on 公共测试服 reached Scripted story 10 after login. Five guarded background
+clicks and its final button reached MainView with one GuideDialoguePanel saying
+`小姐，我们先培植土豆吧。` (guide group 10/step 2, checkpoint false). Status:
+**observed**; [evidence](../../reports/2026-09-17-farmqa-story-sequence/report.md).
+That popup was left untouched before exiting Play Mode. A new login had returned
+to story step 10, so earlier per-dialogue progress is not known to persist.
+
+This resolves the designated-account question for supervised Windows runs: reuse
+alias `farmqa-windows-public` from the private registry and verify it afresh.
+It does not establish a planting-ready account or a suitable crop. Live config
+showed breeding-related guide steps after this dialogue; their interactions and
+authoritative server acceptance are the next learning scope. Do not bypass them.
+The older G entries retain their source-only status and build qualification.

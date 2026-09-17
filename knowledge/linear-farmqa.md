@@ -1,6 +1,11 @@
 # FarmQA Linear integration
 
-Latest incremental verification, 2026-09-17: the opt-in
+Latest incremental verification: the supervised story sequence reached the first
+guide dialogue; navigation passed and the Console check failed on ENV-003.
+See the [sequence report](../reports/2026-09-17-farmqa-story-sequence/report.md).
+This remains undeployed; the production Linear worker cannot execute gameplay.
+
+Earlier incremental verification, 2026-09-17: the opt-in
 [request/session diagnostic](../tools/README-farmqa-request-session.md) pins private
 account/server expectations to an active controller owner and rechecks that owner
 after reading Unity. Correct identity, wrong player/route/module and synthetic
@@ -417,3 +422,13 @@ shop-startup error recurred, with zero new errors on the successful action. Step
 is observed runtime state; do not assume persistence or reset account progress.
 Next: a bounded introductory-story sequence with final-step effects inspected,
 then farm inspection and the first planting journey.
+# Supervised story sequence update — 2026-09-17
+
+The opt-in [six-step story sequence](../tools/README-farmqa-story-sequence.md)
+reached the first guide dialogue above MainView on the dedicated 公共测试服 account.
+Navigation PASS; Console check FAIL on recurring ENV-003. The final action was
+remotely closed after inspection; its failed private synthetic ledger retains an
+unreclaimed reservation. No receiver/tunnel/production worker change. The agent
+cannot run this sequence from Linear automatically. See the
+[report](../reports/2026-09-17-farmqa-story-sequence/report.md) before the next
+supervised guide/breeding increment.

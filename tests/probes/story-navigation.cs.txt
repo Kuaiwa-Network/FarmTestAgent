@@ -1,4 +1,10 @@
-// One allowlisted story advance; no skip, finish, reward or arbitrary target.
+// Fixed story 10 transitions. The sequence variant admits its final story button,
+// never guide skip, rewards, breeding, planting or an arbitrary target.
+uint expectedStep=__STORY_STEP__u, expectedNext=__STORY_NEXT__u;
+bool sequence=__SEQUENCE__, finishing=expectedStep==60u;
+if ((!sequence && (expectedStep!=10u || expectedNext!=20u)) ||
+    (sequence && (expectedStep<10u || expectedStep>60u || expectedStep%10u!=0u || expectedNext!=(finishing?0u:expectedStep+10u))))
+    throw new System.InvalidOperationException("Unsupported story transition");
 string op = "__OP__", actionId = "__ACTION_ID__", runId = "__RUN_ID__";
 string project = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String("__PROJECT_B64__"));
 if (op != "start" && op != "status" && op != "cancel" && op != "close")
@@ -45,7 +51,7 @@ if (registry == null) {
     registry["owner"] = null; domain.SetData(key,registry);
 }
 var records = (System.Collections.Generic.Dictionary<string,System.Collections.Generic.Dictionary<string,object>>)registry["records"];
-string bindingKey = "__MVID__:__BUILD__:__PLAYER__:__ROUTE__:__GENERATION__:" + project;
+string bindingKey = "__MVID__:__BUILD__:__PLAYER__:__ROUTE__:__GENERATION__:" + project + ":" + expectedStep + ":" + sequence;
 System.Collections.Generic.Dictionary<string,object> record;
 if (!records.TryGetValue(runId,out record)) {
     if ((op != "start" && op != "cancel") || registry["owner"] != null || records.Count >= 128 || !quiet() ||
@@ -78,14 +84,21 @@ if (!closed) {
         var view=Farm.Core.UI.UIManager.CurrentView;
         var pane=Farm.Core.UI.UIManager.CurrentContentPane();
         var state=Farm.Core.UI.UIManager.GetCurrentUISnapshot();
-        var target=pane==null?null:pane.GetChild("bgLoader");
-        var hint=pane==null?null:pane.GetChild("continueHint");
-        var cur=Farm.ConfigReaders.StoryStepInfoReader.getInstance().getStep(10,10);
-        var next=Farm.ConfigReaders.StoryStepInfoReader.getInstance().getStep(10,20);
-        bool eligible=currentStep()==10u && !(bool)view.GetType().GetField("_advancing",privateFields).GetValue(view) &&
+        var target=pane==null?null:pane.GetChild(finishing?"endBtn":"bgLoader");
+        var hint=finishing?target:pane==null?null:pane.GetChild("continueHint");
+        var cur=Farm.ConfigReaders.StoryStepInfoReader.getInstance().getStep(10,expectedStep);
+        var next=Farm.ConfigReaders.StoryStepInfoReader.getInstance().getStep(10,expectedNext);
+        var guide=Farm.Core.Models.GuideModel.Instance;
+        System.Func<bool> guideReady=()=>!sequence || (object.ReferenceEquals(guide,Farm.Core.Models.GuideModel.Instance) &&
+            guide!=null && guide.CurrentGroupId==10u && guide.CurrentStep!=null && guide.CurrentStep.StepId==1 &&
+            guide.CurrentStep.StepType==4 && guide.CurrentStep.StepParam=="10" && guide.CheckpointStepId==3 && !guide.CheckpointReached &&
+            guide.CurrentSteps.Count>1 && guide.CurrentSteps[1].StepId==2 && guide.CurrentSteps[1].StepType==5 &&
+            guide.CurrentSteps[1].StepParam=="1021#小姐，我们先培植土豆吧。");
+        bool eligible=guideReady() && currentStep()==expectedStep && !(bool)view.GetType().GetField("_advancing",privateFields).GetValue(view) &&
             state.ShowingPopupTypeNames.Count==0 && pane!=null && pane.opaque && pane.onStage && pane.visible &&
             hint!=null && hint.visible && hint.onStage && target!=null && target.visible && target.onStage && target.touchable && !target.grayed &&
-            cur!=null && cur.NextStepSeq==20u && cur.StepType==2 && next!=null && next.NextStepSeq==30u && next.StepType==1;
+            cur!=null && cur.NextStepSeq==expectedNext && cur.StepType==((expectedStep==10u || finishing)?2:1) &&
+            (finishing || (next!=null && next.NextStepSeq==(expectedNext==60u?0u:expectedNext+10u) && next.StepType==(expectedNext==60u?2:1)));
         if(!matchesExpected()) {record["admission"]="session_rejected";record["cancelled"]=true;}
         else if(!eligible) {record["admission"]="state_rejected";record["cancelled"]=true;}
         else {
@@ -95,15 +108,16 @@ if (!closed) {
             var clientField=manager.GetType().GetField("_activeClient",privateFields);
             var client=clientField.GetValue(manager);
             var captured=record;
-            System.Func<bool> guard=()=>matchesExpected() && object.ReferenceEquals(manager,managerField.GetValue(null)) &&
-                object.ReferenceEquals(player,playerField.GetValue(null)) && object.ReferenceEquals(client,clientField.GetValue(manager)) &&
-                object.ReferenceEquals(view,Farm.Core.UI.UIManager.CurrentView) &&
+            System.Func<bool> sessionGuard=()=>matchesExpected() && object.ReferenceEquals(manager,managerField.GetValue(null)) &&
+                object.ReferenceEquals(player,playerField.GetValue(null)) && object.ReferenceEquals(client,clientField.GetValue(manager));
+            record["session_guard"]=sessionGuard;
+            System.Func<bool> guard=()=>sessionGuard() && object.ReferenceEquals(view,Farm.Core.UI.UIManager.CurrentView) &&
                 object.ReferenceEquals(pane,Farm.Core.UI.UIManager.CurrentContentPane());
             record["guard"]=guard;
-            System.Func<bool> ready=()=>guard() && currentStep()==10u &&
+            System.Func<bool> ready=()=>guard() && guideReady() && currentStep()==expectedStep &&
                 !(bool)view.GetType().GetField("_advancing",privateFields).GetValue(view) &&
                 Farm.Core.UI.UIManager.GetCurrentUISnapshot().ShowingPopupTypeNames.Count==0 &&
-                object.ReferenceEquals(target,pane.GetChild("bgLoader")) && object.ReferenceEquals(hint,pane.GetChild("continueHint")) && hint.visible && hint.onStage && !target.isDisposed &&
+                object.ReferenceEquals(target,pane.GetChild(finishing?"endBtn":"bgLoader")) && object.ReferenceEquals(hint,(finishing?target:pane.GetChild("continueHint"))) && hint.visible && hint.onStage && !target.isDisposed &&
                 pane.opaque && pane.visible && pane.onStage && target.visible && target.onStage && target.touchable && !target.grayed;
             record["ready"]=ready;
             var stage=FairyGUI.Stage.inst;
@@ -130,7 +144,7 @@ if (!closed) {
             UnityEditor.EditorApplication.CallbackFunction monitor=()=>{
                 var pending=captured.ContainsKey("task")?captured["task"] as System.Threading.Tasks.Task:null;
                 if(pending==null || pending.IsCompleted)return;
-                bool match=false;try{match=events.Contains("click")?guard():ready();}catch(System.Exception){}
+                bool match=false;try{match=events.Contains("click")?sessionGuard():ready();}catch(System.Exception){}
                 if(!match){captured["guard_lost"]=true;captured["cancelled"]=true;Farm.Core.TestDriver.GameTestDriver.CancelPointer();}
             };
             record["monitor"]=monitor;UnityEditor.EditorApplication.update+=monitor;
@@ -139,7 +153,9 @@ if (!closed) {
             else {
                 record["started"]=true;record["admission"]="accepted";
                 var point=hint.LocalToGlobal(new UnityEngine.Vector2(hint.width*0.5f,hint.height*0.5f));
-                task=Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(Farm.Core.TestDriver.GameTestDriver.ClickAt(point.x,FairyGUI.Stage.inst.height-point.y,50));
+                task=Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(finishing?
+                    Farm.Core.TestDriver.GameTestDriver.Click("endBtn",50):
+                    Farm.Core.TestDriver.GameTestDriver.ClickAt(point.x,FairyGUI.Stage.inst.height-point.y,50));
                 record["task"]=task;
             }
         }
@@ -151,26 +167,48 @@ if (!closed) {
 bool complete=task!=null?task.IsCompleted:!(bool)record["started"]&&(bool)record["cancelled"];
 bool? success=task!=null && task.Status==System.Threading.Tasks.TaskStatus.RanToCompletion?(bool?)task.Result.success:null;
 uint? step=currentStep();
-string outcome=step==null?"unavailable":step==10u?"unchanged":"unexpected";
-if(step==20u && complete && success==true && !(bool)record["guard_lost"] &&
+string outcome=step==null?"unavailable":step==expectedStep?"unchanged":"unexpected";
+if(!finishing && step==expectedNext && complete && success==true && !(bool)record["guard_lost"] &&
    record.ContainsKey("guard") && ((System.Func<bool>)record["guard"])() &&
    events.Count==3 && events[0]=="down" && events[1]=="up" && events[2]=="click") outcome="advanced";
+var ui=Farm.Core.UI.UIManager.GetCurrentUISnapshot();
+var guideNow=Farm.Core.Models.GuideModel.Instance;
+uint guideGroup=guideNow==null?0u:guideNow.CurrentGroupId;
+int guideStep=guideNow==null||guideNow.CurrentStep==null?0:guideNow.CurrentStep.StepId;
+bool checkpoint=guideNow!=null&&guideNow.CheckpointReached;
+bool dialogueVisible=ui.ShowingPopupTypeNames.Count==1 && ui.ShowingPopupTypeNames[0]=="GuideDialoguePanel";
+if(dialogueVisible) {
+    var popup=Farm.Core.UI.UIManager.AnyShowingPopupContentPane();
+    var content=popup==null?null:popup.GetChild("content");
+    dialogueVisible=content!=null && content.text=="小姐，我们先培植土豆吧。";
+}
+string viewName=ui.CurrentViewTypeName;
+if(finishing && step==null && complete && success==true && !(bool)record["guard_lost"] &&
+    record.ContainsKey("session_guard") && ((System.Func<bool>)record["session_guard"])() &&
+    events.Count==3 && events[0]=="down" && events[1]=="up" && events[2]=="click" &&
+    viewName=="MainView" && guideGroup==10u && guideStep==2 && !checkpoint && dialogueVisible)outcome="finished";
 if(!closed && op=="close") {
     if(!complete || !quiet())throw new System.InvalidOperationException("Story action not quiescent");
+    if(sequence && (success==true || events.Contains("click")) && outcome!="advanced" && outcome!="finished")
+        throw new System.InvalidOperationException("Story transition not established; retain owner");
     if(record.ContainsKey("monitor"))UnityEditor.EditorApplication.update-=(UnityEditor.EditorApplication.CallbackFunction)record["monitor"];
     if(record.ContainsKey("capture")) {
         var stage=(FairyGUI.Stage)record["stage"];
         foreach(var kind in new[]{"onTouchBegin","onTouchEnd","onClick"})stage.RemoveCapture(kind,(FairyGUI.EventCallback1)record["capture"]);
     }
     record["closed"]=true;record["step"]=step;record["outcome"]=outcome;
+    record["view"]=viewName;record["guide_group"]=guideGroup;record["guide_step"]=guideStep;
+    record["checkpoint"]=checkpoint;record["dialogue_visible"]=dialogueVisible;
     record["errors"]=Farm.Core.TestDriver.TestLogCapture.ErrorsSince((int)record["console_mark"]).Count;
     registry["owner"]=null;closed=true;
 }
-if(closed){step=(uint?)record["step"];outcome=(string)record["outcome"];}
+if(closed){step=(uint?)record["step"];outcome=(string)record["outcome"];
+    viewName=(string)record["view"];guideGroup=(uint)record["guide_group"];guideStep=(int)record["guide_step"];
+    checkpoint=(bool)record["checkpoint"];dialogueVisible=(bool)record["dialogue_visible"];}
 return new {
     schema_version=1,action_id=actionId,run_id=runId,observed_at_ms=System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
     started=(bool)record["started"],completed=complete,quiescent=quiet(),closed=closed,cancel_requested=(bool)record["cancelled"],
     admission=(string)record["admission"],guard_lost=(bool)record["guard_lost"],events=events.ToArray(),success=success,
-    story_step=step,outcome=outcome,
+    story_step=step,outcome=outcome,view=viewName,guide_group=guideGroup,guide_step=guideStep,checkpoint_reached=checkpoint,dialogue_visible=dialogueVisible,
     new_console_errors=closed?(int)record["errors"]:Farm.Core.TestDriver.TestLogCapture.ErrorsSince((int)record["console_mark"]).Count
 };

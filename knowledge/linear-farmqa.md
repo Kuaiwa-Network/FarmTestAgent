@@ -221,7 +221,24 @@ stable auth generation and expected player. `LoginService` sets ZoneID to litera
 1, so it cannot identify the environment. The loaded Net type exposes the named
 state properties, but no authenticated live values were read in Edit Mode.
 
-Next concrete proposal: [separate QA client copy and controlled build](../docs/farmqa-controlled-build.md).
-It awaits approval for a writable QA client copy under the current read-only
-client boundary. No checkout/build/login or runtime behavior change was made.
+The subsequent user approval and execution supersede this investigation's
+pending-build status; see the controlled-build entry below. No login or runtime
+behavior change was made in the investigation.
 Evidence and limits: [investigation report](../reports/2026-09-17-farmqa-provenance/report.md).
+
+## Isolated controlled build — 2026-09-17
+
+User-approved and observed: independently cloned client `7dbf23b` into the main
+QA checkout's `.local/clients/farmqa-7dbf23b` and imported/compiled with Unity
+2022.3.62f3 / StandaloneWindows64, Play Mode off. Original client dirty-file and
+index hashes are unchanged. Fresh Console read: 0 errors, 550 warnings. Four
+selected loaded module IDs match the new DLLs, and their DLL/PDB identities match.
+
+BLOCKED for clean provenance: import changed `.vscode/settings.json` and
+`Assets/Editor/SpineSettings.asset`; generated sources and full-project build
+input coverage remain incomplete. Changes are preserved for investigation.
+This does not enable gameplay, select an account/environment or change the
+identity collector. Current Editor points to the isolated copy; rediscover it
+before acting. Next: investigate the import drift and complete the evidence.
+See [plan](../docs/farmqa-controlled-build.md) and
+[execution evidence](../reports/2026-09-17-farmqa-controlled-build/report.md).

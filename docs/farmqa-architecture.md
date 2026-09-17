@@ -223,10 +223,16 @@ service health must be rechecked operationally; a Git merge is not proof of eith
 The [provenance investigation](../reports/2026-09-17-farmqa-provenance/report.md)
 found that HotUpdate's DLL/PDB identities correspond and all 1,293 checked-in
 source checksums match after Git line-ending conversion. Generated inputs,
-references and the complete build remain unverified. The next concrete operation
-is the [isolated controlled-build proposal](farmqa-controlled-build.md), which
-awaits authorization for a writable QA client copy. No positive identity gate or
-session reader was enabled by this investigation.
+references and the complete build remained unverified. The user subsequently
+approved the [isolated controlled build](farmqa-controlled-build.md). Its
+[execution](../reports/2026-09-17-farmqa-controlled-build/report.md) completed
+Editor compilation with zero Console errors, Play Mode off, and four matching
+loaded/output module identities. The original checkout is unchanged. Import
+changed two tracked QA-copy settings, including Spine shader/import preferences;
+clean provenance remains BLOCKED. Generated sources and full-project build
+inputs also remain incomplete. No positive identity gate or session reader was
+enabled. Next, investigate import drift and complete the scoped evidence before
+implementing a positive gate.
 
 1. **Complete actual-target validation:** read-only per-request diagnostics now
    exist. Establish trustworthy loaded-build provenance and observed server/session

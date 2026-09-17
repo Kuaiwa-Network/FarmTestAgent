@@ -1,9 +1,13 @@
-# Proposed controlled Editor build and session observation
+# Controlled Editor build and proposed session observation
 
-Status: proposal following the 2026-09-17 read-only investigation. **No client
-build, checkout creation, login, or game execution has been performed.**
-The existing client checkout remains read-only. This is the concrete next action
-to approve before making a separate writable QA client copy.
+Status: user approved the separate writable QA copy and controlled compilation
+on 2026-09-17. The original client checkout remains read-only. This approval
+covers imports, caches and compilation in the isolated copy with Play Mode off;
+it does not authorize game source fixes, login or gameplay. Execution evidence
+is recorded in the [execution report](../reports/2026-09-17-farmqa-controlled-build/report.md).
+The import/compilation completed with Play Mode off and four loaded modules
+matched the new outputs. Import changed two tracked files, so clean provenance
+remains BLOCKED; this plan has not established a positive gameplay gate.
 
 ## Why a controlled build
 

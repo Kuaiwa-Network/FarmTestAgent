@@ -42,6 +42,9 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
 - [FarmQA provenance and session-source investigation](../reports/2026-09-17-farmqa-provenance/report.md)
   — compiled source checksums correspond; complete build provenance still needs
   a controlled build, and no server session has been observed
+- [FarmQA isolated controlled build](../reports/2026-09-17-farmqa-controlled-build/report.md)
+  — Editor compilation and four loaded module matches verified; tracked import
+  drift blocks clean provenance, Play Mode off and original checkout preserved
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

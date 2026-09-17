@@ -12,8 +12,10 @@ remains BLOCKED; this plan has not established a positive gameplay gate.
 Later [import investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
 restored the pinned Spine settings in the isolated copy and verified two warm
 reimports. That does not repair the historical manifest or verify assets imported
-before recovery. A future controlled baseline must preserve settings during the
-fresh import and record actual asset/build inputs after that validation.
+before recovery. A future claim of a clean baseline must account for actual asset/build inputs.
+Later, the user accepted leaving Spine defaults unchanged and deferring the fix
+for existing-content testing after the bounded asset comparison. The overwrite
+is not by itself a blocker for subsequent read-only readiness work.
 
 ## Why a controlled build
 
@@ -45,9 +47,11 @@ before executing if a different build is requested.
    embedded packages, project/package settings, compiler version/options,
    generated sources where recoverable, and all referenced DLL hashes. Missing
    provenance is an explicit blocker, never a guessed value.
-4. Switch the QA Editor to the isolated project with Play Mode off, respecting
-   any new unsaved state discovered in the currently open Editor. Keep one
-   selected QA Editor/controller; do not run competing gameplay sessions.
+4. Close the current QA Editor normally, preserving any newly discovered unsaved
+   state, and verify it has exited before directly launching the isolated project
+   visibly with Play Mode off. Do not reuse EditorApplication.OpenProject: the
+   observed switch crashed during shutdown. If MCP blocks normal exit, ask the
+   user to close the window; do not disable its safeguards. Keep one QA Editor.
 5. Let Unity import/compile inside that copy, with logs stored under private QA
    `.local/`. Do not fix compilation failures by editing game source. Record
    errors and any importer changes. No scene save, server login or gameplay.
@@ -103,3 +107,14 @@ bounded cancellation/quiescence; neither this proposal nor a matching manifest
 completes those gates.
 
 Evidence: [provenance investigation](../reports/2026-09-17-farmqa-provenance/report.md).
+
+
+## Session diagnostic implementation — 2026-09-17
+
+The proposed reader now exists as a standalone QA probe/comparator; see
+[usage and limits](../tools/README-farmqa-session-identity.md). It compares a
+numeric player ID, avoiding account-name output, and a SHA-256 of the exact
+credential-free connected route against private operator expectations. There is
+no preconfigured environment or account. Live Edit Mode behavior is verified;
+authenticated observation remains unverified. Neither matching fixture data nor
+the new utility grants gameplay permission or modifies the reservation checker.

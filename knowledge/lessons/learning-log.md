@@ -34,6 +34,17 @@ probe was executed before/after recovery; two warm reimports retained restored
 settings. This does not verify fresh-import prevention or gameplay. Evidence:
 [import drift report](../../reports/2026-09-17-farmqa-import-drift/report.md).
 
+L05 — **observed**, 2026-09-17; prerequisite: switching the running Windows QA
+Editor; platform/build: Unity 2022.3.62f3, client `7dbf23b`. A scheduled
+OpenProject transition followed by foreground activation crashed during shutdown;
+the stack reaches a missing scripting manager through a focus-change callback.
+The exact causal defect remains unresolved. Do not automatically repeat that
+transition or activate a shutting-down Editor. The subsequent direct recovery
+also exposed an operator mistake: hidden launch is inappropriate when the user
+requests a visible interactive Editor. Use a normal visible launch for that
+request and verify the returned window. Background helper defaults remain hidden.
+Evidence: [crash and recovery report](../../reports/2026-09-17-farmqa-editor-recovery/report.md).
+
 ## Candidate lessons (not verified gameplay knowledge)
 
 C01 — **inferred**, reviewed 2026-09-16; prerequisite: designated single-plot crop;
@@ -50,3 +61,13 @@ C03 — **inferred**, reviewed 2026-09-16; prerequisite: future cross-platform i
 observation; build: local artifact inventory. Hypothesis: explicit target/build reference
 selection is required before using run_csharp safely across platforms. The selection
 problem is observed; its effect on a real Android probe remains untested.
+
+
+## L06 — Scope an import finding to observed testing impact (2026-09-17)
+
+User correction: normal Unity opening and existing gameplay can work despite a
+changed default. The fresh import changed Spine defaults, while the existing
+169 atlas/170 material-texture comparison matched. Do not describe that as broken
+Spine rendering or require a package fix for every later QA step. Record the
+narrow failure, untested effects and the user's accepted deferral separately.
+This does not erase the overwrite or establish authenticated/action readiness.

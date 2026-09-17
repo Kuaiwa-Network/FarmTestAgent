@@ -47,6 +47,14 @@ Implement session routing and pinned target records first. Game-action
 cancellation and exclusive controller ownership must be verified before a live
 gameplay increment; this does not claim automatic interruption of Codex itself.
 
+User decision, 2026-09-17: defer the fresh-import Spine defaults issue for
+existing-content testing; leave settings unchanged. The existing material/texture
+comparison found no impact, while rendering/new-import effects remain untested.
+Continue readiness work without requiring a Spine fix. The standalone read-only
+session diagnostic now rejects Edit Mode correctly; authenticated live matching
+and physical action ownership/cancellation remain unverified. See
+`tools/README-farmqa-session-identity.md` and the corresponding dated report.
+
 ## Every session
 
 User-approved controlled build, 2026-09-17: create a separate writable QA client

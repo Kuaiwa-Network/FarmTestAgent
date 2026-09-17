@@ -1,0 +1,43 @@
+// Read-only structural snapshot of existing Spine atlas assets in Assets/.
+// Does not call Spine getters, import, save, render, or enter Play Mode.
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode ||
+    UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating)
+    throw new System.InvalidOperationException("Idle Edit Mode required");
+var rows = new System.Collections.Generic.List<object>();
+var guids = UnityEditor.AssetDatabase.FindAssets("t:SpineAtlasAsset", new string[] { "Assets" });
+System.Array.Sort(guids, System.StringComparer.Ordinal);
+foreach (var guid in guids) {
+    var path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+    var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+    var materials = new System.Collections.Generic.List<object>();
+    bool readable = false;
+    if (asset != null) {
+        var serialized = new UnityEditor.SerializedObject(asset);
+        var array = serialized.FindProperty("materials");
+        readable = array != null && array.isArray;
+        if (readable) {
+            for (int i = 0; i < array.arraySize; i++) {
+                var material = array.GetArrayElementAtIndex(i).objectReferenceValue as UnityEngine.Material;
+                var texture = material == null ? null : material.mainTexture as UnityEngine.Texture2D;
+                var texturePath = texture == null ? "" : UnityEditor.AssetDatabase.GetAssetPath(texture);
+                var importer = string.IsNullOrEmpty(texturePath) ? null : UnityEditor.AssetImporter.GetAtPath(texturePath) as UnityEditor.TextureImporter;
+                materials.Add(new {
+                    materialPath = material == null ? "" : UnityEditor.AssetDatabase.GetAssetPath(material),
+                    shader = material == null || material.shader == null ? "" : material.shader.name,
+                    shaderSupported = material != null && material.shader != null && material.shader.isSupported,
+                    texturePath = texturePath,
+                    width = texture == null ? 0 : texture.width,
+                    height = texture == null ? 0 : texture.height,
+                    format = texture == null ? "" : texture.format.ToString(),
+                    imageContentsHash = texture == null ? "" : texture.imageContentsHash.ToString(),
+                    importerFound = importer != null,
+                    srgb = importer != null && importer.sRGBTexture,
+                    alphaIsTransparency = importer != null && importer.alphaIsTransparency,
+                    mipmapEnabled = importer != null && importer.mipmapEnabled
+                });
+            }
+        }
+    }
+    rows.Add(new { guid = guid, path = path, readable = readable, materials = materials });
+}
+return new { project = UnityEngine.Application.dataPath, count = guids.Length, atlases = rows };

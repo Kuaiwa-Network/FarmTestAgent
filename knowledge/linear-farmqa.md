@@ -263,3 +263,50 @@ gameplay and the positive identity gate stay disabled. Next: preserve the pinned
 settings through a fresh import, validate affected assets and regenerate evidence.
 See [report](../reports/2026-09-17-farmqa-import-drift/report.md) and
 [regression scenario](../tests/scenarios/spine-import-drift.md).
+
+Earlier operational state, 2026-09-17: the subsequent fresh-import attempt crashed
+during the recovered Editor's project-switch shutdown. No fresh import ran;
+Unity was closed at the last observation. Both original/recovered tracked states
+were preserved. Fresh-import work is paused; do not automatically retry the
+switch. See [failure report](../reports/2026-09-17-farmqa-fresh-import/report.md).
+Subsequent user-authorized recovery reopened the recovered project visibly;
+the original/recovered tracked states and pinned Spine settings remain unchanged.
+MCP restart was initially pending. The user then enabled the existing Auto-Start
+Server on Editor Load option. A direct launch automatically started and connected
+MCP; fresh live verification passed with correct settings, four matching module
+IDs, zero Console errors and Play Mode off. See
+[recovery report](../reports/2026-09-17-farmqa-editor-recovery/report.md) and
+[startup verification](../reports/2026-09-17-farmqa-mcp-autostart/report.md).
+No new startup implementation was necessary; this option had been unset on
+Windows. The user subsequently resumed the fresh-import test (below).
+
+
+## Resumed fresh import — 2026-09-17
+
+The user closed the recovered Editor normally; shutdown was clean. Direct visible
+launch of the independent empty-Library `farmqa-fresh-7dbf23b` copy completed
+import and automatically connected MCP. Spine settings preservation FAIL:
+the same fallback shader/empty preset overwrite reproduced and is left intact.
+The 169 atlas/170 material-texture structural rows match the recovered baseline,
+with zero Console errors and four live/disk module matches. This is not rendering
+or gameplay verification. Original and recovered checkouts are unchanged; the
+fresh Editor remains open in Edit Mode. Complete provenance remains BLOCKED by
+settings drift and missing generated-source evidence. See the updated
+[fresh-import report](../reports/2026-09-17-farmqa-fresh-import/report.md).
+
+
+## User decision and next diagnostic — 2026-09-17
+
+User accepted deferring Spine default preservation for existing content. Leave
+settings unchanged; do not spend the next increment on a package fix. Existing
+material/texture observations found no impact; this is not proof of rendering.
+Continue readiness checks, retaining historical evidence and separate gates.
+
+Implemented a standalone read-only session probe/comparator. Live Edit Mode
+returned no authenticated identity; no player/server data was read, Play Mode was
+not entered, and the original source snapshot remained unchanged. Unity was now
+open on original Farm-Client at `a6dce07592d32b9760d60321118abd496c5bb291`, not
+the pinned fresh QA copy; no project switch was performed by this increment.
+The authenticated branch is not live-verified. No production worker/receiver
+changes, login or execution permit. See
+[session diagnostic report](../reports/2026-09-17-farmqa-session-identity/report.md).

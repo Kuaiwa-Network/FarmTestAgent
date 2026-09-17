@@ -23,4 +23,12 @@ validated replay, repeat it, and run Android. Do not close blockers by weakening
 
 | ID | Classification / knowledge status | Finding and evidence | Resolution needed |
 |---|---|---|---|
-| ENV-002 | Import/build environment defect; observed overwrite, source-inferred initialization timing | Spine creates preferences during the first import and overwrites pinned settings with fallback values. [Report](../reports/2026-09-17-farmqa-import-drift/report.md). | Current QA settings recovered; fresh-import prevention and affected imported assets remain unverified. Preserve source settings, validate imports and regenerate evidence before a positive identity gate. |
+| ENV-002 | Import/build environment defect; observed overwrite, source-inferred initialization timing | Spine creates preferences during the first import and overwrites pinned settings with fallback values. [Report](../reports/2026-09-17-farmqa-import-drift/report.md). | Recovered QA settings remain intact; a separate fresh import reproduced the overwrite. Its 169 atlases/170 material-texture references match the recovered copy structurally; rendering and new-asset behavior remain untested. [Fresh evidence](../reports/2026-09-17-farmqa-fresh-import/report.md). Preserve source settings, validate imports and regenerate evidence before a positive identity gate. |
+
+
+ENV-002 disposition, user-confirmed 2026-09-17: defer the Spine defaults fix and
+leave the current copies unchanged. No impact was found in the existing-asset
+structural comparison; rendering and new-import behavior are not verified. The
+finding alone does not block continued readiness or existing-content testing.
+Revisit on new Spine imports or observed visual differences. Separate session,
+physical ownership/cancellation and build-evidence limits remain explicit.

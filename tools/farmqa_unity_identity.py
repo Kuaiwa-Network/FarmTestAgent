@@ -94,3 +94,12 @@ class UnityIdentityClient:
         result = self._payload(self._rpc('tools/call', {'name':'execute_code',
             'arguments':{'action':'execute','code':code,'safety_checks':True}}), 'content')
         return result['result']
+
+
+    def session_probe(self):
+        """Read the existing game session; never enters Play Mode or logs in."""
+        self._start()
+        code = (Path(__file__).resolve().parents[1]/'tests/probes/session-identity.cs.txt').read_text(encoding='utf-8-sig')
+        result = self._payload(self._rpc('tools/call', {'name':'execute_code',
+            'arguments':{'action':'execute','code':code,'safety_checks':True}}), 'content')
+        return result['result']

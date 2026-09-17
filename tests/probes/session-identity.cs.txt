@@ -1,0 +1,104 @@
+// Read-only session sample. No singleton creation, login, game commands or raw route output.
+var result = new System.Collections.Generic.Dictionary<string, object>();
+result["schema_version"] = 1;
+result["observed_at_ms"] = System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+result["is_playing"] = UnityEngine.Application.isPlaying;
+result["status"] = "unavailable";
+if (UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating ||
+    UnityEditor.EditorApplication.isPaused ||
+    UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode != UnityEngine.Application.isPlaying)
+{
+    result["status"] = "busy";
+    return result;
+}
+// Do not touch game static fields in Edit Mode: accessing them can initialize types.
+if (!UnityEngine.Application.isPlaying)
+{
+    result["status"] = "edit_mode";
+    return result;
+}
+try
+{
+    var assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
+    var hot = System.Linq.Enumerable.Where(assemblies, a => a.GetName().Name == "HotUpdate").ToArray();
+    var nova = System.Linq.Enumerable.Where(assemblies, a => a.GetName().Name == "Nova.Runtime").ToArray();
+    if (hot.Length != 1 || nova.Length != 1) return result;
+    var netType = hot[0].GetType("Farm.Core.NetWork.Net", true);
+    var playerType = hot[0].GetType("Farm.Core.Models.PlayerModel", true);
+    var managerType = nova[0].GetType("Nova.NetManager", true);
+    var nets = UnityEngine.Object.FindObjectsOfType(netType);
+    var players = UnityEngine.Object.FindObjectsOfType(playerType);
+    var managers = UnityEngine.Object.FindObjectsOfType(managerType);
+    if (nets.Length != 1 || players.Length != 1 || managers.Length != 1)
+    {
+        result["status"] = "missing_objects";
+        return result;
+    }
+    var stat = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
+    var inst = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+    var generation = netType.GetField("_authSessionGeneration", stat);
+    var authenticated = netType.GetField("_authenticatedGeneration", stat);
+    var currentManager = netType.GetField("_netManager", stat);
+    var currentPlayer = playerType.GetField("<Instance>k__BackingField", stat);
+    var playerID = playerType.GetField("PlayerID");
+    var state = managerType.GetField("<State>k__BackingField", inst);
+    var route = managerType.GetField("_address", inst);
+    var transportGeneration = managerType.GetField("_transportGeneration", inst);
+    var activeClient = managerType.GetField("_activeClient", inst);
+    if (generation == null || authenticated == null || currentManager == null || currentPlayer == null ||
+        playerID == null || state == null || route == null || transportGeneration == null || activeClient == null)
+    {
+        result["status"] = "unsupported_schema";
+        return result;
+    }
+    var manager = currentManager.GetValue(null);
+    var player = currentPlayer.GetValue(null);
+    if (!object.ReferenceEquals(manager, managers[0]) || !object.ReferenceEquals(player, players[0])) return result;
+    uint first = (uint)generation.GetValue(null);
+    uint auth = (uint)authenticated.GetValue(null);
+    uint id = (uint)playerID.GetValue(player);
+    long transport = (long)transportGeneration.GetValue(manager);
+    object client = activeClient.GetValue(manager);
+    var connectionState = state.GetValue(manager);
+    string address = route.GetValue(manager) as string;
+    // Reject credential-bearing or ambiguous routes; never return the URI itself.
+    System.Uri uri;
+    bool validRoute = !string.IsNullOrEmpty(address) && address.Length <= 2048 &&
+        System.Uri.TryCreate(address, System.UriKind.Absolute, out uri) &&
+        (uri.Scheme == "ws" || uri.Scheme == "wss") && uri.Host.Length > 0 &&
+        uri.UserInfo.Length == 0 && uri.Query.Length == 0 && uri.Fragment.Length == 0 &&
+        !System.Linq.Enumerable.Any(address, c => char.IsControl(c) || char.IsWhiteSpace(c));
+    string routeHash = null;
+    if (validRoute)
+    {
+        using (var hash = System.Security.Cryptography.SHA256.Create())
+            routeHash = System.BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(address))).Replace("-", "").ToLowerInvariant();
+    }
+    uint last = (uint)generation.GetValue(null);
+    bool stable = first == last && auth == (uint)authenticated.GetValue(null) &&
+        object.ReferenceEquals(manager, currentManager.GetValue(null)) &&
+        object.ReferenceEquals(player, currentPlayer.GetValue(null)) &&
+        id == (uint)playerID.GetValue(player) &&
+        transport == (long)transportGeneration.GetValue(manager) &&
+        object.ReferenceEquals(client, activeClient.GetValue(manager)) &&
+        object.Equals(connectionState, state.GetValue(manager)) &&
+        address == route.GetValue(manager) as string;
+    result["status"] = "observed";
+    result["generation_before"] = first;
+    result["generation_after"] = last;
+    result["authenticated"] = auth != 0 && auth == first;
+    result["transport_connected"] = client != null && connectionState.ToString() == "Connected";
+    result["objects_stable"] = stable;
+    // Stale player/route fields do not become session identity when disconnected.
+    bool connected = stable && auth != 0 && auth == first && client != null && connectionState.ToString() == "Connected";
+    result["player_id"] = connected ? (object)id : null;
+    result["route_sha256"] = connected ? routeHash : null;
+    result["observed_at_ms"] = System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+}
+catch (System.Exception)
+{
+    result.Clear();
+    result["schema_version"] = 1;
+    result["status"] = "unavailable";
+}
+return result;

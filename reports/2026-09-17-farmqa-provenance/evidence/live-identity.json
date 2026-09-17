@@ -1,0 +1,39 @@
+{
+  "observed_at": 1789616487.21599,
+  "instance": "Farm-Client@6d4c4b2750085821",
+  "unity_version": "2022.3.62f3",
+  "play_mode_off": true,
+  "loaded_hotupdate_mvid": "58847d20-a524-43d9-b9da-3e2c9a1bc5ec",
+  "source_unchanged": true,
+  "source_snapshot": {
+    "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+    "commit_sha": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+    "dirty": [
+      {
+        "path": "tools/device-mcp/README.md",
+        "status": " M",
+        "sha256": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00"
+      },
+      {
+        "path": "tools/device-mcp/compile_cs.py",
+        "status": " M",
+        "sha256": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2"
+      },
+      {
+        "path": "tools/device-mcp/requirements.txt",
+        "status": " M",
+        "sha256": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb"
+      },
+      {
+        "path": "tools/device-mcp/test_compile_cs.py",
+        "status": "??",
+        "sha256": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2"
+      }
+    ],
+    "index_sha256": "6d46703c2713659d086d3bdf2a8c93d3c5b29ff756d84d64e8d8ac1b0ad8c45e"
+  },
+  "dll_sha256": "2d14c0a776e192e7a6c4f96b5cd3781a35a4a21af99b32a436e6653cb31dd256",
+  "pdb_sha256": "919f3ef99a7dc718c2688a53be776fa546a6641d3ad96ba78a3d1ae86670216e",
+  "build_provenance": "partial_source_checksum_evidence",
+  "server_session": "not_observed_edit_mode"
+}

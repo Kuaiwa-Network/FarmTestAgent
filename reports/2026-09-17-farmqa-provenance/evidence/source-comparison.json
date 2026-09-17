@@ -1,0 +1,21 @@
+{
+  "commit": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "dll_mvid": "58847d20-a524-43d9-b9da-3e2c9a1bc5ec",
+  "dll_pdb_identity_match": true,
+  "counts": {
+    "documents": 1294,
+    "working_match": 1293,
+    "working_mismatch": 0,
+    "working_missing": 1,
+    "commit_exact": 0,
+    "commit_eol_only": 1293,
+    "commit_mismatch": 0,
+    "not_in_commit": 1
+  },
+  "exceptions": [
+    {
+      "path": "Unity.SourceGenerators/Unity.MonoScriptGenerator.MonoScriptInfoGenerator/AssemblyMonoScriptTypes.generated.cs",
+      "reason": "not_in_commit"
+    }
+  ]
+}

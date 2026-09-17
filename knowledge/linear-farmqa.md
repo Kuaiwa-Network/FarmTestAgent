@@ -206,3 +206,22 @@ called by the bridge. Next: establish the trusted provenance and safe session
 observation inputs, then physical action ownership/cancellation. See the
 [report](../reports/2026-09-17-farmqa-identity/report.md) and
 [operator guide](../tools/README-farmqa-identity.md).
+
+## Provenance investigation — 2026-09-17
+
+Observed at client `7dbf23bef80c660ceb5d384c2e99cff029e5b79a`, Windows Unity
+2022.3.62f3: HotUpdate's loaded/disk module IDs and DLL/PDB debug identities
+correspond. All 1,293 checked-in source documents match their compiled checksums
+on disk and match Git after line-ending conversion. One generated source,
+referenced binaries and full build inputs remain unverified. This narrows the
+evidence gap but does not complete provenance or change the checker verdict.
+
+Source-inferred session rules: require current authentication **and** transport,
+stable auth generation and expected player. `LoginService` sets ZoneID to literal
+1, so it cannot identify the environment. The loaded Net type exposes the named
+state properties, but no authenticated live values were read in Edit Mode.
+
+Next concrete proposal: [separate QA client copy and controlled build](../docs/farmqa-controlled-build.md).
+It awaits approval for a writable QA client copy under the current read-only
+client boundary. No checkout/build/login or runtime behavior change was made.
+Evidence and limits: [investigation report](../reports/2026-09-17-farmqa-provenance/report.md).

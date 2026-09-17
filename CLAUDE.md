@@ -73,8 +73,13 @@ route and generation checks in the same Unity operation admitting its fixed clic
 Wrong identity, synthetic Stop, lost replies and delayed packets passed live; see
 `tools/README-farmqa-authenticated-fixture.md`. A forced QA predicate failure
 verified cancellation, not real reconnect. No game control or worker is enabled.
-Next: one separately allowlisted supervised navigation action, based on the actual
-account state and action-specific Stop limits, before the first planting journey.
+The next opt-in story adapter has now verified one real navigation transition:
+Scripted story 10, step 10 -> 20, with same-call and event-boundary session/UI
+checks. See `tools/README-farmqa-story-navigation.md`. Its synthetic Stop and
+predicate-fault cases passed; no general worker or production gameplay is enabled.
+The dedicated account's dialogue progress is observed runtime state, not proven
+persistent progress. Next: bounded introductory-story continuation, inspect final
+step effects before completion, then inspect the farm for the planting journey.
 
 ## Every session
 

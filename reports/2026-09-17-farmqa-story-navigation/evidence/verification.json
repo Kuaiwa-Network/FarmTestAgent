@@ -1,0 +1,938 @@
+{
+  "date": "2026-09-17",
+  "scope": "One supervised Scripted story 10 step10 -> step20; synthetic transport and predicate faults",
+  "preflight": {
+    "captured_at": 1789643333.7643964,
+    "instance": "Farm-Client@6d4c4b2750085821",
+    "project": {
+      "projectRoot": "D:/AgentWorkSpace/Farm/Farm-Client",
+      "projectName": "Farm-Client",
+      "unityVersion": "2022.3.62f3",
+      "platform": "StandaloneWindows64",
+      "assetsPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets"
+    },
+    "source": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "b8170a559909fccc21b488e47584f20e02a42104",
+      "dirty": [],
+      "index_sha256": "7d8dc0243139b63b0a3e510736312804b642fff4ef64c27a31f5581a36fb4673"
+    },
+    "is_playing": false,
+    "scene_dirty": false,
+    "modules": [
+      {
+        "name": "HotUpdate",
+        "mvid": "74aa1b33-262f-4ebd-ace7-dd394e7eca20",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 1297,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 302,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "AOTScripts",
+        "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 19,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "Nova.Runtime",
+        "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 15,
+        "missing": 1,
+        "mismatch": 0
+      }
+    ],
+    "account_selected": false,
+    "server_selected": false
+  },
+  "before": {
+    "story": {
+      "_storyId": 10,
+      "_currentStepId": 10,
+      "_mode": "Scripted",
+      "_advancing": false
+    },
+    "views": {
+      "CurrentViewTypeName": "StoryPlayView",
+      "StackedViewTypeNames": [
+        "MainView"
+      ],
+      "ShowingPopupTypeNames": []
+    },
+    "story_tree": {
+      "name": "",
+      "type": "GComponent",
+      "visible": true,
+      "grayed": false,
+      "touchable": true,
+      "onStage": true,
+      "screenRect": {
+        "x": 358,
+        "y": -3.05175781e-05,
+        "width": 253.687561,
+        "height": 451.000031
+      },
+      "children": [
+        {
+          "name": "safeArea",
+          "type": "GComponent",
+          "visible": true,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 358,
+            "y": -3.05175781e-05,
+            "width": 253.687561,
+            "height": 451.000031
+          }
+        },
+        {
+          "name": "bgLoader",
+          "type": "GLoader",
+          "visible": true,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 358,
+            "y": -3.05175781e-05,
+            "width": 253.687561,
+            "height": 451.000031
+          }
+        },
+        {
+          "name": "dialogueList",
+          "type": "GList",
+          "visible": true,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 358,
+            "y": 81.50885,
+            "width": 253.687561,
+            "height": 366.6724
+          },
+          "children": [
+            {
+              "name": "",
+              "type": "GComponent",
+              "visible": true,
+              "grayed": false,
+              "touchable": true,
+              "onStage": true,
+              "screenRect": {
+                "x": 369.744781,
+                "y": 365.9677,
+                "width": 230.197968,
+                "height": 82.2135544
+              },
+              "controllers": [
+                {
+                  "name": "type",
+                  "page": "narrative"
+                }
+              ],
+              "children": [
+                {
+                  "name": "avatar",
+                  "type": "GComponent",
+                  "visible": true,
+                  "grayed": false,
+                  "touchable": true,
+                  "onStage": false,
+                  "children": [
+                    {
+                      "name": "bgLoader",
+                      "type": "GLoader",
+                      "visible": true,
+                      "grayed": false,
+                      "touchable": true,
+                      "onStage": false
+                    },
+                    {
+                      "name": "avatarLoader",
+                      "type": "GLoader",
+                      "visible": true,
+                      "grayed": false,
+                      "touchable": true,
+                      "onStage": false
+                    },
+                    {
+                      "name": "nameBgLoader",
+                      "type": "GLoader",
+                      "visible": true,
+                      "grayed": false,
+                      "touchable": true,
+                      "onStage": false
+                    },
+                    {
+                      "name": "name",
+                      "type": "GTextField",
+                      "visible": true,
+                      "grayed": false,
+                      "touchable": true,
+                      "onStage": false,
+                      "text": "张凌赫"
+                    }
+                  ]
+                },
+                {
+                  "name": "leftBubbleBg",
+                  "type": "GImage",
+                  "visible": true,
+                  "grayed": false,
+                  "touchable": true,
+                  "onStage": false
+                },
+                {
+                  "name": "rightBubbleBg",
+                  "type": "GImage",
+                  "visible": true,
+                  "grayed": false,
+                  "touchable": true,
+                  "onStage": false
+                },
+                {
+                  "name": "narrativeBg",
+                  "type": "GImage",
+                  "visible": true,
+                  "grayed": false,
+                  "touchable": true,
+                  "onStage": true,
+                  "screenRect": {
+                    "x": 363.167725,
+                    "y": 372.309875,
+                    "width": 243.352051,
+                    "height": 67.1802139
+                  }
+                },
+                {
+                  "name": "content",
+                  "type": "GTextField",
+                  "visible": true,
+                  "grayed": false,
+                  "touchable": true,
+                  "onStage": true,
+                  "screenRect": {
+                    "x": 384.778137,
+                    "y": 382.8802,
+                    "width": 205.533875,
+                    "height": 43.4557343
+                  },
+                  "text": "庄园的田地早已荒芜，唯有墙角几株土豆顽强地活着。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "skipBtn",
+          "type": "GButton",
+          "visible": true,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 572.929749,
+            "y": 12.6843567,
+            "width": 22.5499268,
+            "height": 22.5499878
+          },
+          "controllers": [
+            {
+              "name": "button",
+              "page": "up"
+            }
+          ],
+          "children": [
+            {
+              "name": "icon",
+              "type": "GImage",
+              "visible": true,
+              "grayed": false,
+              "touchable": true,
+              "onStage": true,
+              "screenRect": {
+                "x": 572.929749,
+                "y": 14.7984009,
+                "width": 20.4358521,
+                "height": 20.4359436
+              }
+            }
+          ]
+        },
+        {
+          "name": "endBtn",
+          "type": "GButton",
+          "visible": false,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 448.904724,
+            "y": 25.13385,
+            "width": 70.2338257,
+            "height": 23.9593811
+          },
+          "controllers": [
+            {
+              "name": "button",
+              "page": "up"
+            }
+          ],
+          "childCount": 2
+        },
+        {
+          "name": "eventImageLayer",
+          "type": "GComponent",
+          "visible": false,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 358,
+            "y": -3.05175781e-05,
+            "width": 253.687561,
+            "height": 451.000031
+          },
+          "childCount": 3
+        },
+        {
+          "name": "blackoutLayer",
+          "type": "GComponent",
+          "visible": false,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 358,
+            "y": -3.05175781e-05,
+            "width": 253.687561,
+            "height": 451.000031
+          },
+          "childCount": 3
+        },
+        {
+          "name": "continueHint",
+          "type": "GTextField",
+          "visible": true,
+          "grayed": false,
+          "touchable": true,
+          "onStage": true,
+          "screenRect": {
+            "x": 423.301025,
+            "y": 25.8385315,
+            "width": 126.84375,
+            "height": 14.09375
+          },
+          "text": "点击空白处继续"
+        }
+      ]
+    }
+  },
+  "initial_targeting_attempt": [
+    {
+      "label": "reject_player_id",
+      "observed_at_ms": 1789644012107,
+      "value": {
+        "schema_version": 1,
+        "action_id": "d61f0b3ebe264b4592fdf6966d4ebf1a",
+        "run_id": "52bb7b8bd0c44097a8e8e9874ccba359",
+        "observed_at_ms": 1789644012100,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_route_sha256",
+      "observed_at_ms": 1789644013681,
+      "value": {
+        "schema_version": 1,
+        "action_id": "83cf87fef4c147a4ab5e115c8612de0d",
+        "run_id": "5ff88792ebd24e9097e4551f808b7ba1",
+        "observed_at_ms": 1789644013674,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_generation",
+      "observed_at_ms": 1789644015291,
+      "value": {
+        "schema_version": 1,
+        "action_id": "aa9e2beffbcd443e8c7a5e8144ef13f0",
+        "run_id": "ad48139b9f1148a481ba023f3ebb0a39",
+        "observed_at_ms": 1789644015286,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "start_not_dispatched",
+      "observed_at_ms": 1789644016427,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "cancel_before_start",
+      "observed_at_ms": 1789644018801,
+      "value": {
+        "schema_version": 1,
+        "action_id": "16f3b3c5dc29475e8f108aca391ddde7",
+        "run_id": "59eb08a6d79f4403a0f6a7819d0d8d29",
+        "observed_at_ms": 1789644018791,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "reservation_state": "cancelled"
+      }
+    },
+    {
+      "label": "late_cancelled_start",
+      "observed_at_ms": 1789644019588,
+      "value": {
+        "schema_version": 1,
+        "action_id": "16f3b3c5dc29475e8f108aca391ddde7",
+        "run_id": "59eb08a6d79f4403a0f6a7819d0d8d29",
+        "observed_at_ms": 1789644019582,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "capture_guard_rejection",
+      "observed_at_ms": 1789644022329,
+      "value": {
+        "schema_version": 1,
+        "action_id": "bdae054692c044d19888d5165a17e16f",
+        "run_id": "e4394dd902a140ef95af3a5621483e54",
+        "observed_at_ms": 1789644022318,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": false,
+        "events": [],
+        "success": false,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "reservation_state": "released"
+      }
+    }
+  ],
+  "corrected_replay": [
+    {
+      "label": "reject_player_id",
+      "observed_at_ms": 1789644088918,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3e406867bdce4859afc733a3814a444b",
+        "run_id": "339e93c5228d41b389351d9be3f13c34",
+        "observed_at_ms": 1789644088911,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_route_sha256",
+      "observed_at_ms": 1789644090520,
+      "value": {
+        "schema_version": 1,
+        "action_id": "77a2897fb35c44c1bbf82bcf12c7206f",
+        "run_id": "089faebbfbf84d159bb14f525ab193ae",
+        "observed_at_ms": 1789644090513,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_generation",
+      "observed_at_ms": 1789644092127,
+      "value": {
+        "schema_version": 1,
+        "action_id": "368cdf4587394e2391c7205789519bab",
+        "run_id": "b929741c665348d496b23c91289d10b6",
+        "observed_at_ms": 1789644092121,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "start_not_dispatched",
+      "observed_at_ms": 1789644093293,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "cancel_before_start",
+      "observed_at_ms": 1789644095698,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3659702cbac942b6ae16aaea6614333c",
+        "run_id": "f082160a109545268c087f7c20029c85",
+        "observed_at_ms": 1789644095686,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "reservation_state": "cancelled"
+      }
+    },
+    {
+      "label": "late_cancelled_start",
+      "observed_at_ms": 1789644096517,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3659702cbac942b6ae16aaea6614333c",
+        "run_id": "f082160a109545268c087f7c20029c85",
+        "observed_at_ms": 1789644096510,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "capture_guard_rejection",
+      "observed_at_ms": 1789644099280,
+      "value": {
+        "schema_version": 1,
+        "action_id": "17f3d32e602448cfa05adeff17da9bcb",
+        "run_id": "6c5268844ad5499f9291b0e771c8cb30",
+        "observed_at_ms": 1789644099268,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [],
+        "success": false,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": true,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "reservation_state": "released"
+      }
+    },
+    {
+      "label": "lost_start_response",
+      "observed_at_ms": 1789644100426,
+      "value": {
+        "schema_version": 1,
+        "action_id": "02705d59282f4fb4830d8b31780cd3af",
+        "run_id": "2e1d111cf73e49e8808dbc49453ceb10",
+        "observed_at_ms": 1789644100420,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "admission": "accepted",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "lost_reply_held",
+      "observed_at_ms": 1789644100429,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "start_never_retried",
+      "observed_at_ms": 1789644100429,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "story_advanced",
+      "observed_at_ms": 1789644102241,
+      "value": {
+        "schema_version": 1,
+        "action_id": "02705d59282f4fb4830d8b31780cd3af",
+        "run_id": "2e1d111cf73e49e8808dbc49453ceb10",
+        "observed_at_ms": 1789644102230,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": false,
+        "events": [
+          "down",
+          "up",
+          "click"
+        ],
+        "success": true,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 20,
+        "outcome": "advanced",
+        "reservation_state": "released"
+      }
+    },
+    {
+      "label": "old_A_start",
+      "observed_at_ms": 1789644102270,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3659702cbac942b6ae16aaea6614333c",
+        "run_id": "f082160a109545268c087f7c20029c85",
+        "observed_at_ms": 1789644102269,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "old_A_cancel",
+      "observed_at_ms": 1789644102296,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3659702cbac942b6ae16aaea6614333c",
+        "run_id": "f082160a109545268c087f7c20029c85",
+        "observed_at_ms": 1789644102294,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "guard_lost": false,
+        "events": [],
+        "success": null,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "advanced_state_rejected",
+      "observed_at_ms": 1789644103449,
+      "value": {
+        "schema_version": 1,
+        "action_id": "ccfa2a4da7e1402e970f8a0b1ae69398",
+        "run_id": "d397179473b145e8a3abc634891ac9e5",
+        "observed_at_ms": 1789644103441,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "state_rejected",
+        "guard_lost": false,
+        "story_step": 20,
+        "outcome": "unexpected"
+      }
+    },
+    {
+      "label": "C_closed",
+      "observed_at_ms": 1789644105099,
+      "value": {
+        "schema_version": 1,
+        "action_id": "ccfa2a4da7e1402e970f8a0b1ae69398",
+        "run_id": "d397179473b145e8a3abc634891ac9e5",
+        "observed_at_ms": 1789644105087,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "state_rejected",
+        "guard_lost": false,
+        "story_step": 20,
+        "outcome": "unexpected",
+        "reservation_state": "released"
+      }
+    },
+    {
+      "label": "final",
+      "observed_at_ms": 1789644105205,
+      "value": {
+        "source_unchanged": true,
+        "session_still_matches": true,
+        "states": [
+          "cancelled",
+          "released",
+          "released",
+          "released"
+        ]
+      }
+    }
+  ],
+  "final_play": {
+    "story_id": 10,
+    "story_step": 20,
+    "mode": "Scripted",
+    "advancing": false,
+    "views": {
+      "CurrentViewTypeName": "StoryPlayView",
+      "StackedViewTypeNames": [
+        "MainView"
+      ],
+      "ShowingPopupTypeNames": []
+    },
+    "texts": [
+      "庄园的田地早已荒芜，唯有墙角几株土豆顽强地活着。",
+      "小姐，这土豆本就是外邦稀罕物，镇上人瞧都不瞧一眼，留着作甚？"
+    ],
+    "actions": [
+      {
+        "run_id": "52bb7b8bd0c44097a8e8e9874ccba359",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "5ff88792ebd24e9097e4551f808b7ba1",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "ad48139b9f1148a481ba023f3ebb0a39",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "59eb08a6d79f4403a0f6a7819d0d8d29",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "e4394dd902a140ef95af3a5621483e54",
+        "closed": true,
+        "pointer": {
+          "success": false,
+          "reason": "target is blocked or its center is outside its hit area: continueHint",
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "run_id": "339e93c5228d41b389351d9be3f13c34",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "089faebbfbf84d159bb14f525ab193ae",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "b929741c665348d496b23c91289d10b6",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "f082160a109545268c087f7c20029c85",
+        "closed": true,
+        "pointer": null
+      },
+      {
+        "run_id": "6c5268844ad5499f9291b0e771c8cb30",
+        "closed": true,
+        "pointer": {
+          "success": false,
+          "reason": "cancelled by caller",
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "run_id": "2e1d111cf73e49e8808dbc49453ceb10",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "run_id": "d397179473b145e8a3abc634891ac9e5",
+        "closed": true,
+        "pointer": null
+      }
+    ],
+    "owner_present": false,
+    "held": false,
+    "stage_touches": 0,
+    "errors": [
+      "[ShopService] QueryShop(13) failed: 2"
+    ],
+    "session_matches": true,
+    "source_unchanged": true
+  },
+  "cleanup": {
+    "source_unchanged": true,
+    "is_playing": false,
+    "scene_dirty": false,
+    "scene": "StartScene",
+    "production_pending_requests": 0,
+    "temporary_login_state_cleared": true,
+    "action_tombstones_retained": true
+  },
+  "unit_tests": {
+    "count": 177,
+    "result": "PASS"
+  },
+  "private_evidence_sha256": {
+    "preflight.json": "2c13625da95b1bc7ff3fc4d5fccdffd7f9c287be06cae1e2236e2b0647e5c01c",
+    "before.json": "c3a5ae0acc63242232e0acfa707aa80db403ca83b8df2978b958a6f867c95174",
+    "live-1/trace.json": "91de1a8d6af3e1385de24692abb2ebe2ef2e5753e04b64c03e8bd3c3555c71d9",
+    "live-2/trace.json": "a5aa453832a1b17b4f493cc515314f1ff95ea436a341ca1123f04fd9034035c7",
+    "final-play.json": "2fe4e7f934ea3da104ab1e715c448895670ad42b206a82f37f09f06941559946",
+    "after.json": "b234cc38f7269d948705f096ea97599e63394a43021056c1be602f6aecdb31cb",
+    "unit-tests.txt": "1773fbe4486135ce0e304093909b5c27788c67550e8e2026dd465694a33ebb7c",
+    "before.jpg": "b064cda82111443f39069ec3e98dd125cb4c452fde03441bc2e067a2c58feb94",
+    "after.jpg": "a09fe1de8e4bc293d7b725a312f9b1619d864cbe4953561ecfeee4768f3f9b56"
+  },
+  "limitations": [
+    "No full tutorial or planting journey",
+    "Predicate injection is not an actual popup race or reconnect",
+    "Synthetic Stop before dispatch; no live Linear Stop during this gesture",
+    "No domain reload/process death/network recovery or full build attestation",
+    "Individual dialogue step persistence after logout not verified"
+  ]
+}

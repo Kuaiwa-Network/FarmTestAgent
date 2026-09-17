@@ -1,0 +1,773 @@
+{
+  "scope": "six supervised story navigation transitions; not tutorial completion",
+  "navigation": "PASS",
+  "zero_new_console_errors": "FAIL",
+  "harness_exit": "failed final Console assertion; not replayed after cleanup-order fix",
+  "target": {
+    "captured_at": 1789645810.9444768,
+    "instance": "Farm-Client@6d4c4b2750085821",
+    "project": {
+      "projectRoot": "D:/AgentWorkSpace/Farm/Farm-Client",
+      "projectName": "Farm-Client",
+      "unityVersion": "2022.3.62f3",
+      "platform": "StandaloneWindows64",
+      "assetsPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets"
+    },
+    "source": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "b8170a559909fccc21b488e47584f20e02a42104",
+      "dirty": [],
+      "index_sha256": "7d8dc0243139b63b0a3e510736312804b642fff4ef64c27a31f5581a36fb4673"
+    },
+    "modules": [
+      {
+        "name": "HotUpdate",
+        "mvid": "74aa1b33-262f-4ebd-ace7-dd394e7eca20",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 1297,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 302,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "AOTScripts",
+        "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 19,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "Nova.Runtime",
+        "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 15,
+        "missing": 1,
+        "mismatch": 0
+      }
+    ]
+  },
+  "login": {
+    "account_alias": "farmqa-windows-public",
+    "server": "公共测试服",
+    "gesture_count": 1,
+    "story_step_observed": 10
+  },
+  "trace": [
+    {
+      "label": "start_10",
+      "observed_at_ms": 1789646553691,
+      "value": {
+        "schema_version": 1,
+        "action_id": "bdd9272f3e1c433c98fc0aef2d95ef1f",
+        "run_id": "ae7949fc61624ff1a66752f078e3d2f6",
+        "observed_at_ms": 1789646553679,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 10,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    },
+    {
+      "label": "transition_10",
+      "observed_at_ms": 1789646555565,
+      "value": {
+        "starting_story_step": 10,
+        "target": "bgLoader at fresh continueHint centre",
+        "command": "GameTestDriver.ClickAt(fresh_x,fresh_y,50)",
+        "expected_story_step": 20,
+        "expected_outcome": "advanced",
+        "elapsed_seconds": 2.896,
+        "result": {
+          "schema_version": 1,
+          "action_id": "bdd9272f3e1c433c98fc0aef2d95ef1f",
+          "run_id": "ae7949fc61624ff1a66752f078e3d2f6",
+          "observed_at_ms": 1789646555553,
+          "started": true,
+          "completed": true,
+          "quiescent": true,
+          "closed": true,
+          "cancel_requested": false,
+          "events": [
+            "down",
+            "up",
+            "click"
+          ],
+          "success": true,
+          "new_console_errors": 0,
+          "admission": "accepted",
+          "guard_lost": false,
+          "story_step": 20,
+          "outcome": "advanced",
+          "view": "StoryPlayView",
+          "guide_group": 10,
+          "guide_step": 1,
+          "checkpoint_reached": false,
+          "dialogue_visible": false,
+          "reservation_state": "released"
+        }
+      }
+    },
+    {
+      "label": "start_20",
+      "observed_at_ms": 1789646556759,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b7cd2ddc878b48ca8e60f7a6ac56e88d",
+        "run_id": "436e5600a805498cba2e07581d3d594c",
+        "observed_at_ms": 1789646556749,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 20,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    },
+    {
+      "label": "transition_20",
+      "observed_at_ms": 1789646558645,
+      "value": {
+        "starting_story_step": 20,
+        "target": "bgLoader at fresh continueHint centre",
+        "command": "GameTestDriver.ClickAt(fresh_x,fresh_y,50)",
+        "expected_story_step": 30,
+        "expected_outcome": "advanced",
+        "elapsed_seconds": 3.06,
+        "result": {
+          "schema_version": 1,
+          "action_id": "b7cd2ddc878b48ca8e60f7a6ac56e88d",
+          "run_id": "436e5600a805498cba2e07581d3d594c",
+          "observed_at_ms": 1789646558632,
+          "started": true,
+          "completed": true,
+          "quiescent": true,
+          "closed": true,
+          "cancel_requested": false,
+          "events": [
+            "down",
+            "up",
+            "click"
+          ],
+          "success": true,
+          "new_console_errors": 0,
+          "admission": "accepted",
+          "guard_lost": false,
+          "story_step": 30,
+          "outcome": "advanced",
+          "view": "StoryPlayView",
+          "guide_group": 10,
+          "guide_step": 1,
+          "checkpoint_reached": false,
+          "dialogue_visible": false,
+          "reservation_state": "released"
+        }
+      }
+    },
+    {
+      "label": "start_30",
+      "observed_at_ms": 1789646559842,
+      "value": {
+        "schema_version": 1,
+        "action_id": "24cbb2943bf7455d9ea486863eaf1603",
+        "run_id": "995959d6df684037834acb1deffc6a0e",
+        "observed_at_ms": 1789646559830,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 30,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    },
+    {
+      "label": "transition_30",
+      "observed_at_ms": 1789646561794,
+      "value": {
+        "starting_story_step": 30,
+        "target": "bgLoader at fresh continueHint centre",
+        "command": "GameTestDriver.ClickAt(fresh_x,fresh_y,50)",
+        "expected_story_step": 40,
+        "expected_outcome": "advanced",
+        "elapsed_seconds": 3.129,
+        "result": {
+          "schema_version": 1,
+          "action_id": "24cbb2943bf7455d9ea486863eaf1603",
+          "run_id": "995959d6df684037834acb1deffc6a0e",
+          "observed_at_ms": 1789646561779,
+          "started": true,
+          "completed": true,
+          "quiescent": true,
+          "closed": true,
+          "cancel_requested": false,
+          "events": [
+            "down",
+            "up",
+            "click"
+          ],
+          "success": true,
+          "new_console_errors": 0,
+          "admission": "accepted",
+          "guard_lost": false,
+          "story_step": 40,
+          "outcome": "advanced",
+          "view": "StoryPlayView",
+          "guide_group": 10,
+          "guide_step": 1,
+          "checkpoint_reached": false,
+          "dialogue_visible": false,
+          "reservation_state": "released"
+        }
+      }
+    },
+    {
+      "label": "start_40",
+      "observed_at_ms": 1789646562987,
+      "value": {
+        "schema_version": 1,
+        "action_id": "7ad777e1738a4418ba86340c0449dc68",
+        "run_id": "7221ad619d9243df9f6951ea3f0c057b",
+        "observed_at_ms": 1789646562977,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 40,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    },
+    {
+      "label": "transition_40",
+      "observed_at_ms": 1789646564902,
+      "value": {
+        "starting_story_step": 40,
+        "target": "bgLoader at fresh continueHint centre",
+        "command": "GameTestDriver.ClickAt(fresh_x,fresh_y,50)",
+        "expected_story_step": 50,
+        "expected_outcome": "advanced",
+        "elapsed_seconds": 3.088,
+        "result": {
+          "schema_version": 1,
+          "action_id": "7ad777e1738a4418ba86340c0449dc68",
+          "run_id": "7221ad619d9243df9f6951ea3f0c057b",
+          "observed_at_ms": 1789646564889,
+          "started": true,
+          "completed": true,
+          "quiescent": true,
+          "closed": true,
+          "cancel_requested": false,
+          "events": [
+            "down",
+            "up",
+            "click"
+          ],
+          "success": true,
+          "new_console_errors": 0,
+          "admission": "accepted",
+          "guard_lost": false,
+          "story_step": 50,
+          "outcome": "advanced",
+          "view": "StoryPlayView",
+          "guide_group": 10,
+          "guide_step": 1,
+          "checkpoint_reached": false,
+          "dialogue_visible": false,
+          "reservation_state": "released"
+        }
+      }
+    },
+    {
+      "label": "start_50",
+      "observed_at_ms": 1789646566454,
+      "value": {
+        "schema_version": 1,
+        "action_id": "9d749f9088884805a633241988052451",
+        "run_id": "d72205252c364fa9afde7141f9c9f568",
+        "observed_at_ms": 1789646566444,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 50,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    },
+    {
+      "label": "transition_50",
+      "observed_at_ms": 1789646568396,
+      "value": {
+        "starting_story_step": 50,
+        "target": "bgLoader at fresh continueHint centre",
+        "command": "GameTestDriver.ClickAt(fresh_x,fresh_y,50)",
+        "expected_story_step": 60,
+        "expected_outcome": "advanced",
+        "elapsed_seconds": 3.465,
+        "result": {
+          "schema_version": 1,
+          "action_id": "9d749f9088884805a633241988052451",
+          "run_id": "d72205252c364fa9afde7141f9c9f568",
+          "observed_at_ms": 1789646568381,
+          "started": true,
+          "completed": true,
+          "quiescent": true,
+          "closed": true,
+          "cancel_requested": false,
+          "events": [
+            "down",
+            "up",
+            "click"
+          ],
+          "success": true,
+          "new_console_errors": 0,
+          "admission": "accepted",
+          "guard_lost": false,
+          "story_step": 60,
+          "outcome": "advanced",
+          "view": "StoryPlayView",
+          "guide_group": 10,
+          "guide_step": 1,
+          "checkpoint_reached": false,
+          "dialogue_visible": false,
+          "reservation_state": "released"
+        }
+      }
+    },
+    {
+      "label": "start_60",
+      "observed_at_ms": 1789646570151,
+      "value": {
+        "schema_version": 1,
+        "action_id": "ae9cbe2fb5d74cd88c3a2b745b9e36f6",
+        "run_id": "b81b7d12b99b4ff893abafc73fdf55a2",
+        "observed_at_ms": 1789646570140,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "guard_lost": false,
+        "story_step": 60,
+        "outcome": "unchanged",
+        "view": "StoryPlayView",
+        "guide_group": 10,
+        "guide_step": 1,
+        "checkpoint_reached": false,
+        "dialogue_visible": false
+      }
+    }
+  ],
+  "last_persisted_action_observations": [
+    {
+      "schema_version": 1,
+      "action_id": "bdd9272f3e1c433c98fc0aef2d95ef1f",
+      "run_id": "ae7949fc61624ff1a66752f078e3d2f6",
+      "observed_at_ms": 1789646555553,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": 20,
+      "outcome": "advanced",
+      "view": "StoryPlayView",
+      "guide_group": 10,
+      "guide_step": 1,
+      "checkpoint_reached": false,
+      "dialogue_visible": false
+    },
+    {
+      "schema_version": 1,
+      "action_id": "b7cd2ddc878b48ca8e60f7a6ac56e88d",
+      "run_id": "436e5600a805498cba2e07581d3d594c",
+      "observed_at_ms": 1789646558632,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": 30,
+      "outcome": "advanced",
+      "view": "StoryPlayView",
+      "guide_group": 10,
+      "guide_step": 1,
+      "checkpoint_reached": false,
+      "dialogue_visible": false
+    },
+    {
+      "schema_version": 1,
+      "action_id": "24cbb2943bf7455d9ea486863eaf1603",
+      "run_id": "995959d6df684037834acb1deffc6a0e",
+      "observed_at_ms": 1789646561779,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": 40,
+      "outcome": "advanced",
+      "view": "StoryPlayView",
+      "guide_group": 10,
+      "guide_step": 1,
+      "checkpoint_reached": false,
+      "dialogue_visible": false
+    },
+    {
+      "schema_version": 1,
+      "action_id": "7ad777e1738a4418ba86340c0449dc68",
+      "run_id": "7221ad619d9243df9f6951ea3f0c057b",
+      "observed_at_ms": 1789646564889,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": 50,
+      "outcome": "advanced",
+      "view": "StoryPlayView",
+      "guide_group": 10,
+      "guide_step": 1,
+      "checkpoint_reached": false,
+      "dialogue_visible": false
+    },
+    {
+      "schema_version": 1,
+      "action_id": "9d749f9088884805a633241988052451",
+      "run_id": "d72205252c364fa9afde7141f9c9f568",
+      "observed_at_ms": 1789646568381,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": 60,
+      "outcome": "advanced",
+      "view": "StoryPlayView",
+      "guide_group": 10,
+      "guide_step": 1,
+      "checkpoint_reached": false,
+      "dialogue_visible": false
+    },
+    {
+      "schema_version": 1,
+      "action_id": "ae9cbe2fb5d74cd88c3a2b745b9e36f6",
+      "run_id": "b81b7d12b99b4ff893abafc73fdf55a2",
+      "observed_at_ms": 1789646571197,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 1,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": null,
+      "outcome": "finished",
+      "view": "MainView",
+      "guide_group": 10,
+      "guide_step": 2,
+      "checkpoint_reached": false,
+      "dialogue_visible": true
+    }
+  ],
+  "final_live": {
+    "owner": null,
+    "records": [
+      {
+        "action_id": "bdd9272f3e1c433c98fc0aef2d95ef1f",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "action_id": "b7cd2ddc878b48ca8e60f7a6ac56e88d",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "action_id": "24cbb2943bf7455d9ea486863eaf1603",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "action_id": "7ad777e1738a4418ba86340c0449dc68",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "action_id": "9d749f9088884805a633241988052451",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..bgLoader",
+          "x": 486.7229,
+          "y": 32.8854065
+        }
+      },
+      {
+        "action_id": "ae9cbe2fb5d74cd88c3a2b745b9e36f6",
+        "closed": true,
+        "pointer": {
+          "success": true,
+          "reason": null,
+          "hitTarget": "GRoot..endBtn.icon",
+          "x": 484.021637,
+          "y": 37.1134033
+        }
+      }
+    ],
+    "view": "MainView",
+    "popups": [
+      "GuideDialoguePanel"
+    ],
+    "guideGroup": 10,
+    "guideStep": 2,
+    "checkpoint": false,
+    "held": false,
+    "touches": 0
+  },
+  "supervised_reconciliation": {
+    "final_observation": {
+      "schema_version": 1,
+      "action_id": "ae9cbe2fb5d74cd88c3a2b745b9e36f6",
+      "run_id": "b81b7d12b99b4ff893abafc73fdf55a2",
+      "observed_at_ms": 1789646703690,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 1,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": null,
+      "outcome": "finished",
+      "view": "MainView",
+      "guide_group": 10,
+      "guide_step": 2,
+      "checkpoint_reached": false,
+      "dialogue_visible": true
+    },
+    "remote_close": {
+      "schema_version": 1,
+      "action_id": "ae9cbe2fb5d74cd88c3a2b745b9e36f6",
+      "run_id": "b81b7d12b99b4ff893abafc73fdf55a2",
+      "observed_at_ms": 1789646704509,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 1,
+      "admission": "accepted",
+      "guard_lost": false,
+      "story_step": null,
+      "outcome": "finished",
+      "view": "MainView",
+      "guide_group": 10,
+      "guide_step": 2,
+      "checkpoint_reached": false,
+      "dialogue_visible": true
+    },
+    "source_clean_and_pinned": true,
+    "session_still_matches": true,
+    "local_reservation": "active; original token lost on harness exit; retained, not reclaimed",
+    "console_error": "[ShopService] QueryShop(13) failed: 2"
+  },
+  "private_synthetic_states": [
+    "released",
+    "released",
+    "released",
+    "released",
+    "released",
+    "active"
+  ],
+  "cleanup": {
+    "playing": false,
+    "paused": false,
+    "compiling": false,
+    "updating": false,
+    "scene": "StartScene",
+    "scene_dirty": false,
+    "login_marker_cleared": true,
+    "login_task_cleared": true
+  },
+  "validation": {
+    "unit_tests": 187,
+    "unit_tests_passed": true,
+    "live_console_error": "[ShopService] QueryShop(13) failed: 2",
+    "no_retry_click": true,
+    "revised_console_failure_cleanup": "mocked regression only",
+    "unit_tests_duration_seconds": 17.45,
+    "unit_test_exit_code": 0,
+    "prior_full_suite_failure": "New harness test reused a fixed Temp output directory; corrected to per-test TemporaryDirectory, then all 187 passed.",
+    "production_controller_active_or_queued": 0
+  },
+  "private_evidence_sha256": {
+    "preflight.json": "6a40ce7c7603cb2886fa7d6592ab91897a33f2dbbd26453a1b5495e16d1aa5fc",
+    "binding.json": "2342fa0b30291444dd853494cd15fa676e2d4855bd904795138b289a0adc6598",
+    "expected.json": "6e5652f4cb21059f430f9fc0a1cdca0b6ab7d5fd8eb45085dd9776dee2bdf44d",
+    "replay/trace.json": "2fdc2d143320dfb7ff3ae5023d1875dda8ee85c556925baaaa7c96532da8b731",
+    "reconciliation.json": "f424ca74cef48defe5e0fb1460025cea5e90c691b27cad727804241c75014745",
+    "final-live.json": "f81879b9092fa86a6a9d31c9c29e1f026b79059aeef9707fdd83a70756bebd07",
+    "cleanup.json": "1dbe81c60f053ef71e9e38ddf708fc4c5bae0d1c5de3814b373f1760228c8f93"
+  }
+}

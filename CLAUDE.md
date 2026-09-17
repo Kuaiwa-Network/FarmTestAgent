@@ -78,8 +78,14 @@ Scripted story 10, step 10 -> 20, with same-call and event-boundary session/UI
 checks. See `tools/README-farmqa-story-navigation.md`. Its synthetic Stop and
 predicate-fault cases passed; no general worker or production gameplay is enabled.
 The dedicated account's dialogue progress is observed runtime state, not proven
-persistent progress. Next: bounded introductory-story continuation, inspect final
-step effects before completion, then inspect the farm for the planting journey.
+persistent progress. The subsequent bounded introductory story sequence reached
+MainView and the first guide dialogue with six guarded pointer clicks. Navigation
+passed; the final Console check failed on recurring ENV-003. Its exact remote
+action was closed after inspection; the abandoned synthetic ledger retains its
+unreclaimed local reservation. Unity returned to clean Edit Mode. See
+`tools/README-farmqa-story-sequence.md` and its report before continuing. Next:
+inspect the first guide dialogue and breeding tutorial, then a bounded interaction
+toward planting. Re-observe progress on login; never reset it implicitly.
 
 ## Every session
 

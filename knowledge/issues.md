@@ -41,3 +41,9 @@ succeeded, but client logged `[ShopService] QueryShop(13) failed: 2`. The source
 logs this for a nonzero shop-query response; cause/expected unlock behavior was
 not established. Keep separate from the session identity PASS. No shop or server
 fix was attempted. [Evidence](../reports/2026-09-17-farmqa-live-session/report.md).
+
+ENV-003 update, observed 2026-09-17: the final introductory story button reached
+MainView and the first guide dialogue, while another identical shop error arrived
+inside its action interval. Navigation passed; the zero-new-error assertion failed.
+The root cause remains unclassified. No game/server fix or error suppression.
+[Sequence evidence](../reports/2026-09-17-farmqa-story-sequence/report.md).

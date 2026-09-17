@@ -86,6 +86,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — one real story step 10 → 20, event-boundary guard rejection and delayed-request
   checks verified; no tutorial completion or planting journey
 
+- [Introductory story sequence](../reports/2026-09-17-farmqa-story-sequence/report.md)
+  — six guarded clicks reached the first farm guide dialogue; navigation PASS,
+  Console check FAIL on ENV-003, exact remote closure and clean Edit Mode verified
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

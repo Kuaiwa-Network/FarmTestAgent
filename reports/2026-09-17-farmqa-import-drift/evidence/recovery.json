@@ -1,0 +1,8 @@
+{
+  "time": 1789620604.8330698,
+  "action": "restore exactly pinned SpineSettings bytes in isolated QA copy",
+  "file": "Assets/Editor/SpineSettings.asset",
+  "before_sha256": "986225300efcc51b9b6b16e0cd07e0dfcc466dd69bfc36fac10c8e949d88aed1",
+  "after_sha256": "4d05acd845fa79d5b0c2fc1e4a0db97b70d9072797b29747af13b439e9d5af90",
+  "original_client_modified": false
+}

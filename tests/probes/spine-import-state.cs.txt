@@ -1,0 +1,34 @@
+// Read-only import diagnosis. Do not call Spine's GetOrCreateSettings getter:
+// that getter can create/overwrite a project asset during import.
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode ||
+    UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating)
+    throw new System.InvalidOperationException("Idle Edit Mode required");
+var result = new System.Collections.Generic.Dictionary<string, object>();
+result["dataPath"] = UnityEngine.Application.dataPath;
+result["unityVersion"] = UnityEngine.Application.unityVersion;
+result["buildTarget"] = UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString();
+result["isPlaying"] = UnityEngine.Application.isPlaying;
+const string assetPath = "Assets/Editor/SpineSettings.asset";
+const string presetPath = "Packages/com.esotericsoftware.spine.spine-unity/Editor/spine-unity/Editor/ImporterPresets/StraightAlphaPreset.preset";
+const string desiredShader = "Universal Render Pipeline/2D/Spine/Skeleton";
+var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath);
+result["assetLoaded"] = asset != null;
+result["assetGuid"] = UnityEditor.AssetDatabase.AssetPathToGUID(assetPath);
+result["presetLoaded"] = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.Presets.Preset>(presetPath) != null;
+result["desiredShaderFound"] = UnityEngine.Shader.Find(desiredShader) != null;
+result["legacyShaderKeyExists"] = UnityEditor.EditorPrefs.HasKey("SPINE_DEFAULT_SHADER");
+result["legacyShader"] = UnityEditor.EditorPrefs.GetString("SPINE_DEFAULT_SHADER", "Spine/Skeleton");
+result["legacyPresetKeyExists"] = UnityEditor.EditorPrefs.HasKey("SPINE_TEXTURE_SETTINGS_REFERENCE");
+result["legacyPreset"] = UnityEditor.EditorPrefs.GetString("SPINE_TEXTURE_SETTINGS_REFERENCE", "");
+if (asset != null) {
+    var serialized = new UnityEditor.SerializedObject(asset);
+    result["assetType"] = asset.GetType().FullName;
+    result["defaultShader"] = serialized.FindProperty("defaultShader").stringValue;
+    result["textureSettingsReference"] = serialized.FindProperty("textureSettingsReference").stringValue;
+    var cacheField = asset.GetType().GetField("settings", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+    var cached = cacheField == null ? null : cacheField.GetValue(null) as UnityEngine.Object;
+    result["cachedAssetMatches"] = cached == asset;
+    result["moduleMvid"] = asset.GetType().Assembly.ManifestModule.ModuleVersionId.ToString();
+    result["moduleLocation"] = asset.GetType().Assembly.Location;
+}
+return result;

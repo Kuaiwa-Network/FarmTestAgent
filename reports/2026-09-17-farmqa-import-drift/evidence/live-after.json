@@ -1,0 +1,18 @@
+{
+  "unityVersion": "2022.3.62f3",
+  "buildTarget": "StandaloneWindows64",
+  "isPlaying": false,
+  "assetLoaded": true,
+  "assetGuid": "5775d81af7c25d246a4dee634dd9ca9a",
+  "presetLoaded": true,
+  "desiredShaderFound": true,
+  "legacyShaderKeyExists": false,
+  "legacyShader": "Spine/Skeleton",
+  "legacyPresetKeyExists": false,
+  "legacyPreset": "",
+  "assetType": "Spine.Unity.Editor.SpinePreferences",
+  "defaultShader": "Universal Render Pipeline/2D/Spine/Skeleton",
+  "textureSettingsReference": "Packages/com.esotericsoftware.spine.spine-unity/Editor/spine-unity/Editor/ImporterPresets/StraightAlphaPreset.preset",
+  "cachedAssetMatches": true,
+  "moduleMvid": "9556c586-7e59-4f7a-9081-272271911fde"
+}

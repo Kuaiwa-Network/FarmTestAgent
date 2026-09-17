@@ -58,6 +58,12 @@ class ControllerStore:
         # This constant-expression index enforces one slot across every session.
         db.execute("""CREATE UNIQUE INDEX IF NOT EXISTS controller_single_slot
             ON controller_requests((1)) WHERE state IN ('active','cancel_requested')""")
+        db.execute("""CREATE TABLE IF NOT EXISTS controller_actions (
+            request_id TEXT PRIMARY KEY, action_id TEXT NOT NULL UNIQUE,
+            binding_json TEXT NOT NULL,
+            state TEXT NOT NULL CHECK(state IN ('pending','uncertain','closed')),
+            cancel_attempted INTEGER NOT NULL DEFAULT 0,
+            observation_json TEXT)""")
 
     def _write_lock(self):
         self.db.execute("UPDATE controller_requests SET state=state WHERE 0")
@@ -124,6 +130,12 @@ class ControllerStore:
         row = self._owned(request_id, token)
         if row["state"] in ('released', 'cancelled'):
             return row["state"]
+        # An adapter's dispatched/uncertain action cannot be released by the
+        # inert worker or another cooperating caller before remote closure.
+        if self.db.execute("SELECT 1 FROM sqlite_master WHERE name='controller_actions'").fetchone():
+            action = self.db.execute("SELECT state FROM controller_actions WHERE request_id=?", (request_id,)).fetchone()
+            if action and action['state'] != 'closed':
+                raise ValueError('Controller action has not been confirmed closed')
         state = 'cancelled' if row["state"] == 'cancel_requested' else 'released'
         self.db.execute("UPDATE controller_requests SET state=?,released_at=? WHERE request_id=?",
                         (state,time.time(),request_id))

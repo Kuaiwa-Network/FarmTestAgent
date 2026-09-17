@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "fixture adapter; locally injected transport failures and replayed packets",
+  "production_deployed": false,
+  "gameplay_actions": 0,
+  "source": {
+    "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+    "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+    "dirty": [],
+    "index_sha256": "3c2b5d10e7a5a804d92d6c83a049c99de6d0ff9d6bc8887c4ff149c9a1a40448"
+  },
+  "editor_after": {
+    "isPlaying": false,
+    "isPlayingOrWillChangePlaymode": false,
+    "isCompiling": false,
+    "isUpdating": false,
+    "unityVersion": "2022.3.62f3",
+    "platform": "WindowsEditor",
+    "buildTarget": "StandaloneWindows64",
+    "dataPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets",
+    "scene": {
+      "name": "StartScene",
+      "path": "Assets/StartScene.unity",
+      "isDirty": false
+    },
+    "assemblies": [
+      {
+        "name": "HotUpdate",
+        "fullName": "HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "moduleMvid": "c21a2cb3-b894-4cbc-9dbb-6024685fc399",
+        "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\HotUpdate.dll",
+        "hasGameTestDriver": true
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "fullName": "MCPForUnity.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "moduleMvid": "17223216-6d8e-4cad-a969-b5292024a415",
+        "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\MCPForUnity.Editor.dll",
+        "hasGameTestDriver": false
+      },
+      {
+        "name": "AOTScripts",
+        "fullName": "AOTScripts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "moduleMvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+        "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\AOTScripts.dll",
+        "hasGameTestDriver": false
+      },
+      {
+        "name": "Nova.Runtime",
+        "fullName": "Nova.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "moduleMvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+        "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\Nova.Runtime.dll",
+        "hasGameTestDriver": false
+      }
+    ]
+  },
+  "source_unchanged": true,
+  "production_queue_states": [],
+  "production_adapter_schema_present": false,
+  "results": {
+    "finished_A": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634531771,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0,
+      "reservation_state": "cancelled"
+    },
+    "finished_B": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634541688,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "reservation_state": "released"
+    },
+    "finished_C": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634544269,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0,
+      "reservation_state": "cancelled"
+    },
+    "result": {
+      "status": "PASS",
+      "scope": "fixture adapter with locally injected transport faults",
+      "gameplay_actions": 0,
+      "production_deployed": false
+    }
+  },
+  "tests": {
+    "count": 145,
+    "adapter_tests": 13,
+    "seconds": 14.91,
+    "status": "PASS"
+  },
+  "trace_samples": {
+    "private_full": 82,
+    "published": 48
+  },
+  "private_file_sha256": {
+    "before.json": "c2ccd6dd4f002d88439a56407c54797a220564ee90eef9cea2fdd6627f04faa5",
+    "after.json": "784038630719a2c94db29b738e4f3998cafb5ea4c8065b006b5033ed5d188253",
+    "live-1/trace.json": "75b627962192994ba9f23129524699742497644bc0c7afe6ec0a988830b6cd0d",
+    "edit-mode-probe.json": "72039e140d9c04779ecb463b615383cd96c5348024081b72e2fd53c0e77c38fe",
+    "unit-tests.txt": "75af0b41b29ecabe9d9fa944526395db8fb578d1254e916601c2c037b088d683"
+  }
+}

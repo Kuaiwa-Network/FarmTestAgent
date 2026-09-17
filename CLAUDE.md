@@ -58,9 +58,11 @@ a dedicated account on 公共测试服; its registry is in the main QA checkout 
 identity each run and do not reset its progress implicitly. A supervised temporary
 pointer fixture subsequently verified synthetic Stop -> cancellation -> observed
 quiescence -> next request, with no login or gameplay. See
-`reports/2026-09-17-farmqa-pointer-cancellation/report.md`. Exclusive action-adapter
-ownership, stale-owner fencing, crash/lost-response handling and reconnect remain
-unverified. See
+`reports/2026-09-17-farmqa-pointer-cancellation/report.md`. The subsequent opt-in
+fixture adapter verified retired-ID rejection and reconciliation with injected
+lost responses; see `tools/README-farmqa-fixture-adapter.md`. It is not deployed
+and only admits the harmless LoginView panel. Authenticated game-action binding,
+actual worker crash/network-outage recovery and reconnect remain unverified. See
 `tools/README-farmqa-session-identity.md` and the corresponding dated report.
 
 ## Every session

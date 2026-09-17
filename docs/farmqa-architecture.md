@@ -269,9 +269,15 @@ build provenance, request-bound integration or physical action ownership.
    [pointer fixture](../reports/2026-09-17-farmqa-pointer-cancellation/report.md)
    verified driver busy rejection, synthetic Stop -> real CancelPointer ->
    original-task completion/quiescence -> next queued fixture click. It does not
-   fence direct MCP/OS callers or bind CancelPointer to a token. Next integrate
-   these primitives in a narrow request-bound adapter and verify stale-owner and
-   lost-response handling on that harmless surface before enabling gameplay.
+   fence direct MCP/OS callers or bind CancelPointer to a token. The subsequent
+   [fixture adapter](../tools/README-farmqa-fixture-adapter.md) now implements one
+   request-bound fixture action with durable intent, release interlock and closed
+   action-ID records. A live fixture run verified rejected retired owners and
+   locally injected lost-response reconciliation. It remains opt-in and undeployed;
+   authentication/actual-game targeting is not admitted. Bind actual account/server
+   observations before permitting game actions, and keep worker-crash, real network
+   outage and lost-owner recovery limits explicit. Arbitrary direct tools and OS
+   input are outside this cooperative adapter boundary.
 3. **Supervised gameplay increment:** establish authorized test account/environment
    and actual state, then run the small planting journey under the existing
    evidence procedure. Promote only observed behavior to QA knowledge.

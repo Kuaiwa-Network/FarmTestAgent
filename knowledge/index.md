@@ -70,6 +70,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — synthetic Stop and real fixture gesture, pending-click suppression, quiescence
   and next-request recovery PASS; no autonomous action adapter deployed
 
+- [Fixture controller adapter](../reports/2026-09-17-farmqa-fixture-adapter/report.md)
+  — durable action intent, retired-ID rejection, injected lost-response handling
+  and safe fixture handoff verified; no deployment or authenticated gameplay
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

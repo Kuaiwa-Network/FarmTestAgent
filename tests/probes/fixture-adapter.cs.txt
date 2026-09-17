@@ -1,0 +1,98 @@
+// Fixed QA panel protocol. IDs are correlation/fencing values, NOT credentials.
+string op = "__OP__", actionId = "__ACTION_ID__", runId = "__RUN_ID__";
+string project = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String("__PROJECT_B64__"));
+if (op != "start" && op != "status" && op != "cancel" && op != "close")
+    throw new System.InvalidOperationException("Unsupported operation");
+if (!System.Text.RegularExpressions.Regex.IsMatch(actionId, "^[a-f0-9]{32}$") ||
+    !System.Text.RegularExpressions.Regex.IsMatch(runId, "^[a-f0-9]{32}$"))
+    throw new System.InvalidOperationException("Invalid action identity");
+if (!UnityEngine.Application.isPlaying || UnityEditor.EditorApplication.isPaused ||
+    UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating ||
+    UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode != UnityEngine.Application.isPlaying)
+    throw new System.InvalidOperationException("Stable Play Mode required");
+var hot = typeof(Farm.Core.TestDriver.GameTestDriver).Assembly;
+if (System.Linq.Enumerable.Count(System.AppDomain.CurrentDomain.GetAssemblies(), a => a.GetName().Name == "HotUpdate") != 1 ||
+    hot.ManifestModule.ModuleVersionId.ToString() != "__MVID__" ||
+    UnityEditor.EditorUserBuildSettings.activeBuildTarget.ToString() != "__BUILD__" ||
+    !string.Equals(System.IO.Path.GetFullPath(project).TrimEnd('/', '\\'),
+                   System.IO.Path.GetFullPath(System.IO.Path.Combine(UnityEngine.Application.dataPath, "..")).TrimEnd('/', '\\'), System.StringComparison.OrdinalIgnoreCase))
+    throw new System.InvalidOperationException("Actual fixture target mismatch");
+if (Farm.Core.UI.UIManager.GetCurrentUISnapshot().CurrentViewTypeName != "LoginView" ||
+    Farm.Core.NetWork.Net.IsSessionAuthenticated || Farm.Core.NetWork.Net.IsTransportConnected)
+    throw new System.InvalidOperationException("Unauthenticated LoginView required");
+var fixture = System.AppDomain.CurrentDomain.GetData("FarmQA.PointerCancellationFixture") as System.Collections.Generic.Dictionary<string, object>;
+if (fixture == null || (string)fixture["run_id"] != runId)
+    throw new System.InvalidOperationException("Fixture identity lost or mismatched");
+var root = (FairyGUI.GComponent)fixture["root"];
+if (root.isDisposed || root.parent != FairyGUI.GRoot.inst || !root.onStage ||
+    root.GetChild("target") == null || FairyGUI.GRoot.inst.GetChild("FarmQACancelFixture") != root)
+    throw new System.InvalidOperationException("Fixture surface unavailable");
+var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+var busyField = hot.GetType("Farm.Core.TestDriver.PointerSimulation", true).GetField("_busy", flags);
+var simulation = typeof(Farm.Core.Utils.GamePointer).GetField("Simulation", flags).GetValue(null);
+System.Func<bool> quiet = () => !(bool)busyField.GetValue(null) &&
+    !(bool)simulation.GetType().GetProperty("Active").GetValue(simulation, null) &&
+    !Farm.Core.Utils.GamePointer.Held && FairyGUI.Stage.inst.touchCount == 0 &&
+    UnityEngine.Input.touchCount == 0 && !UnityEngine.Input.GetMouseButton(1) && !UnityEngine.Input.GetMouseButton(2);
+var events = (System.Collections.Generic.List<string>)fixture["events"];
+if (!fixture.ContainsKey("adapter_records"))
+    fixture["adapter_records"] = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, object>>();
+var records = (System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, object>>)fixture["adapter_records"];
+string owner = fixture.ContainsKey("adapter_owner") ? fixture["adapter_owner"] as string : null;
+System.Collections.Generic.Dictionary<string, object> record;
+if (!records.TryGetValue(actionId, out record))
+{
+    if ((op != "start" && op != "cancel") || owner != null || records.Count >= 128 || !quiet())
+        throw new System.InvalidOperationException("Unknown action or fixture owned/busy/full");
+    record = new System.Collections.Generic.Dictionary<string, object>();
+    record["started"] = false; record["cancelled"] = op == "cancel"; record["closed"] = false;
+    record["event_start"] = events.Count;
+    record["console_mark"] = Farm.Core.TestDriver.GameTestDriver.MarkConsole();
+    records.Add(actionId, record);
+    fixture["adapter_owner"] = actionId;
+    owner = actionId;
+}
+bool closed = (bool)record["closed"];
+var task = record.ContainsKey("task") ? record["task"] as System.Threading.Tasks.Task<Farm.Core.TestDriver.PointerResult> : null;
+if (!closed)
+{
+    if (owner != actionId) throw new System.InvalidOperationException("Fixture action owner mismatch");
+    if (op == "start" && !(bool)record["started"] && !(bool)record["cancelled"])
+    {
+        // Synchronous admission + task retention on Unity's main thread. Record
+        // the attempt first; an exception here may never authorize another start.
+        record["started"] = true;
+        task = Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(Farm.Core.TestDriver.GameTestDriver.Click("root:FarmQACancelFixture.target", 8000));
+        record["task"] = task;
+    }
+    else if (op == "cancel")
+    {
+        record["cancelled"] = true;
+        if (task != null && !task.IsCompleted)
+            Farm.Core.TestDriver.GameTestDriver.CancelPointer();
+    }
+    if (op == "close")
+    {
+        bool complete = task != null ? task.IsCompleted : !(bool)record["started"] && (bool)record["cancelled"];
+        if (!complete || !quiet()) throw new System.InvalidOperationException("Action not quiescent");
+        record["closed"] = true;
+        record["event_end"] = events.Count;
+        record["console_errors"] = Farm.Core.TestDriver.TestLogCapture.ErrorsSince((int)record["console_mark"]).Count;
+        fixture["adapter_owner"] = null;
+        closed = true;
+    }
+}
+// Closed records are tombstones. A late start/cancel returns this old record
+// without touching the current owner or global CancelPointer.
+int end = closed ? (int)record["event_end"] : events.Count;
+var actionEvents = events.GetRange((int)record["event_start"], end - (int)record["event_start"]).ToArray();
+return new {
+    schema_version = 1, action_id = actionId, run_id = runId,
+    observed_at_ms = System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+    started = (bool)record["started"],
+    completed = task != null ? task.IsCompleted : !(bool)record["started"] && (bool)record["cancelled"],
+    quiescent = quiet(), closed = closed, cancel_requested = (bool)record["cancelled"],
+    events = actionEvents,
+    success = task != null && task.Status == System.Threading.Tasks.TaskStatus.RanToCompletion ? (bool?)task.Result.success : null,
+    new_console_errors = closed ? (int)record["console_errors"] : Farm.Core.TestDriver.TestLogCapture.ErrorsSince((int)record["console_mark"]).Count
+};

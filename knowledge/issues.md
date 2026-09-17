@@ -18,3 +18,9 @@ Next steps: review the infrastructure report; arrange trustworthy state/session 
 build identification (client recommendations supplied); then identify a designated
 test session, run the prepared journey in Editor, convert the observed trace into a
 validated replay, repeat it, and run Android. Do not close blockers by weakening assertions.
+
+## Additional finding — 2026-09-17
+
+| ID | Classification / knowledge status | Finding and evidence | Resolution needed |
+|---|---|---|---|
+| ENV-002 | Import/build environment defect; observed overwrite, source-inferred initialization timing | Spine creates preferences during the first import and overwrites pinned settings with fallback values. [Report](../reports/2026-09-17-farmqa-import-drift/report.md). | Current QA settings recovered; fresh-import prevention and affected imported assets remain unverified. Preserve source settings, validate imports and regenerate evidence before a positive identity gate. |

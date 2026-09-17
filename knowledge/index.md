@@ -45,6 +45,9 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
 - [FarmQA isolated controlled build](../reports/2026-09-17-farmqa-controlled-build/report.md)
   — Editor compilation and four loaded module matches verified; tracked import
   drift blocks clean provenance, Play Mode off and original checkout preserved
+- [Spine import drift investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
+  — during-import preferences creation traced; pinned settings restored and stable
+  on two warm reimports, fresh-import prevention and asset effects still unverified
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

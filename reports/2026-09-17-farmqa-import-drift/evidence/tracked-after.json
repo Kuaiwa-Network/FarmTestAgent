@@ -1,0 +1,12 @@
+{
+  "time": 1789620628.108501,
+  "tracked_count": 15884,
+  "changes": [
+    {
+      "path": ".vscode/settings.json",
+      "before": "c7585d2cd087648c2aa7f8d233d41507d9865ab35301c352f5b91f97fddcb2a4",
+      "after": "da4000b79e1240e41eca07300bac96714408807274b441542954b5a258cf0882"
+    }
+  ],
+  "original_unchanged": true
+}

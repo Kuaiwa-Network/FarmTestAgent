@@ -9,6 +9,12 @@ The import/compilation completed with Play Mode off and four loaded modules
 matched the new outputs. Import changed two tracked files, so clean provenance
 remains BLOCKED; this plan has not established a positive gameplay gate.
 
+Later [import investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
+restored the pinned Spine settings in the isolated copy and verified two warm
+reimports. That does not repair the historical manifest or verify assets imported
+before recovery. A future controlled baseline must preserve settings during the
+fresh import and record actual asset/build inputs after that validation.
+
 ## Why a controlled build
 
 The current loaded HotUpdate MVID matches the on-disk DLL, whose debug-directory

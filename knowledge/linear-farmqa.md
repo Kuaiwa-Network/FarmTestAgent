@@ -242,3 +242,24 @@ identity collector. Current Editor points to the isolated copy; rediscover it
 before acting. Next: investigate the import drift and complete the evidence.
 See [plan](../docs/farmqa-controlled-build.md) and
 [execution evidence](../reports/2026-09-17-farmqa-controlled-build/report.md).
+
+## Import drift investigation and recovery — 2026-09-17
+
+Observed on the same isolated client/Unity target: the first-import stack enters
+Spine's `GetOrCreateSettings` from an asset-save callback and calls CreateAsset
+during import. The existing file was replaced with fallback shader/preset values.
+Source-inferred cause: AssetDatabase could not yet load/find the checked-in
+settings, and the package did not distinguish that from a missing file. Both
+legacy EditorPrefs keys are currently absent. No machine preference was changed.
+
+The exact pinned Spine settings were restored in the writable QA copy. Loaded
+and cached settings match; two warm targeted reimports preserve them with zero
+Console errors, Play Mode off and the original checkout unchanged. Only the
+VS Code solution-name setting differs across 15,884 tracked inputs.
+
+This supersedes the current-state Spine drift, not the historical build evidence.
+Fresh-import prevention and previously imported asset correctness remain unknown;
+gameplay and the positive identity gate stay disabled. Next: preserve the pinned
+settings through a fresh import, validate affected assets and regenerate evidence.
+See [report](../reports/2026-09-17-farmqa-import-drift/report.md) and
+[regression scenario](../tests/scenarios/spine-import-drift.md).

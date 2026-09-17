@@ -24,6 +24,16 @@ with `ignored` instead of `accepted`; handler fix and full 12-test replay passed
 Procedure: compare integration fixtures with authoritative schema before judging
 mocked tests. Live Linear routing remains unverified. (Infrastructure lesson only.)
 
+L04 — **observed**, 2026-09-17; prerequisite: Spine preferences during Editor
+import; platform/build: Unity 2022.3.62f3, client `7dbf23b`, Spine package
+`eb588ecd57`. The `Preferences` getter can create a settings asset; it is not a
+read-only inspection API. The first-import stack and changed input hashes confirm
+this write path. Procedure: inspect an already-loaded asset's serialized fields
+and cached-reference identity without calling `GetOrCreateSettings`. The new
+probe was executed before/after recovery; two warm reimports retained restored
+settings. This does not verify fresh-import prevention or gameplay. Evidence:
+[import drift report](../../reports/2026-09-17-farmqa-import-drift/report.md).
+
 ## Candidate lessons (not verified gameplay knowledge)
 
 C01 — **inferred**, reviewed 2026-09-16; prerequisite: designated single-plot crop;

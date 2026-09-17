@@ -1,0 +1,29 @@
+{
+  "client_commit": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "files": [
+    {
+      "path": "Library/PackageCache/com.esotericsoftware.spine.spine-unity@eb588ecd57/Editor/spine-unity/Editor/Windows/SpinePreferences.cs",
+      "sha256": "c78faa50227422cb2a1543f6de1179a8065c6c00b0fab7fd12e4f7c0bdcddbbd"
+    },
+    {
+      "path": "Library/PackageCache/com.esotericsoftware.spine.spine-unity@eb588ecd57/Editor/spine-unity/Editor/Utility/Preferences.cs",
+      "sha256": "7ab4ac0e75d5f6de742112e83118d8d61e0603d60941b1fb34a8f91965618b97"
+    },
+    {
+      "path": "Library/PackageCache/com.esotericsoftware.spine.spine-unity@eb588ecd57/Editor/spine-unity/Editor/Utility/SpineEditorUtilities.cs",
+      "sha256": "00d673a73963a32b776b79b54530ee125636861e118778a5a05ce40aceb9908c"
+    },
+    {
+      "path": "Library/PackageCache/com.unity.ide.visualstudio@2.0.27/Editor/VisualStudioCodeInstallation.cs",
+      "sha256": "35565d990ec7cf06408b8df5f8a1aedc283af4482643af317555ba3bf6cae093"
+    },
+    {
+      "path": "Library/PackageCache/com.unity.ide.visualstudio@2.0.27/Editor/ProjectGeneration/ProjectGeneration.cs",
+      "sha256": "3ec75650b52c537ac66c0db46756afcd95dc3630bcec59051cf75c6f3ea9ea5d"
+    }
+  ],
+  "spine_mvid": "9556c586-7e59-4f7a-9081-272271911fde",
+  "spine_loaded_disk_mvid_match": true,
+  "spine_dll_pdb_match": true,
+  "three_spine_source_checksums_match_pdb": true
+}

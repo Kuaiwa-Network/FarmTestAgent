@@ -231,8 +231,12 @@ loaded/output module identities. The original checkout is unchanged. Import
 changed two tracked QA-copy settings, including Spine shader/import preferences;
 clean provenance remains BLOCKED. Generated sources and full-project build
 inputs also remain incomplete. No positive identity gate or session reader was
-enabled. Next, investigate import drift and complete the scoped evidence before
-implementing a positive gate.
+enabled. The subsequent [import investigation](../reports/2026-09-17-farmqa-import-drift/report.md)
+traced Spine's during-import asset creation and restored the pinned settings in
+the isolated QA copy. Two warm reimports preserved loaded settings; only the IDE
+solution-name change remains among tracked inputs. Fresh-import prevention and
+the effects on previously imported assets are still unverified. Complete those
+checks and regenerate the scoped evidence before implementing a positive gate.
 
 1. **Complete actual-target validation:** read-only per-request diagnostics now
    exist. Establish trustworthy loaded-build provenance and observed server/session

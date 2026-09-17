@@ -49,6 +49,15 @@ gameplay increment; this does not claim automatic interruption of Codex itself.
 
 ## Every session
 
+User-approved controlled build, 2026-09-17: create a separate writable QA client
+copy at `.local/clients/farmqa-7dbf23b` in the main QA checkout, pinned to
+`7dbf23bef80c660ceb5d384c2e99cff029e5b79a`, and import/compile with Unity
+2022.3.62f3 / StandaloneWindows64, Play Mode off. This is a narrow exception for
+generated/import/build state in that isolated copy; the original client checkout
+stays read-only and game source fixes, login and gameplay are not authorized.
+See [controlled-build plan](docs/farmqa-controlled-build.md) and its execution
+report before acting on historical paths or build claims.
+
 1. Read this file and `knowledge/index.md`; load relevant detailed topics.
 2. Read unresolved issues and the previous report's next steps.
 3. Establish actual target: Unity instance, project path, source revision and relevant

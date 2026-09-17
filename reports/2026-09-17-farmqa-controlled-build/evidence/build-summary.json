@@ -1,0 +1,83 @@
+{
+  "captured_at": 1789617721.75742,
+  "client_commit": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "tracked_inputs": 15884,
+  "tracked_changes": [
+    {
+      "path": ".vscode/settings.json",
+      "before": "c7585d2cd087648c2aa7f8d233d41507d9865ab35301c352f5b91f97fddcb2a4",
+      "after": "da4000b79e1240e41eca07300bac96714408807274b441542954b5a258cf0882"
+    },
+    {
+      "path": "Assets/Editor/SpineSettings.asset",
+      "before": "4d05acd845fa79d5b0c2fc1e4a0db97b70d9072797b29747af13b439e9d5af90",
+      "after": "986225300efcc51b9b6b16e0cd07e0dfcc466dd69bfc36fac10c8e949d88aed1"
+    }
+  ],
+  "inputs_before_sha256": "3c9a88701c8d6439d2f8552cf477660363f287cf71f9ebcd73c304ebaca3bb6b",
+  "inputs_after_sha256": "65da04098e8ca089fd7b9319f2762c1dc9fbcf7d751cadbced05758d7238f74e",
+  "compiler_manifest_sha256": "6e6206a2ffd275cfdd1a88b0cb809ea3310d8219122e9f715591515d5c6e2cb7",
+  "compiler_inputs": 258,
+  "missing_compiler_inputs": 0,
+  "outputs_manifest_sha256": "6d0cf06a58fdd49774bcd45ac0c8ef4f8fe7a608b5b1251ab961ccdc7f75494c",
+  "output_dlls": 113,
+  "modules": {
+    "HotUpdate": {
+      "mvid": "2498c6b2-a4c0-42c3-8a09-c4a14dd9d9c5",
+      "pdb_matches_dll": true,
+      "source_documents": 1294,
+      "disk_source_matches": 1293,
+      "disk_source_mismatches": 0,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "loaded_mvid_matches": true
+    },
+    "AOTScripts": {
+      "mvid": "c0b3cc86-f9e8-4cdb-abe7-4b37ade3df87",
+      "pdb_matches_dll": true,
+      "source_documents": 20,
+      "disk_source_matches": 19,
+      "disk_source_mismatches": 0,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "loaded_mvid_matches": true
+    },
+    "Nova.Runtime": {
+      "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "pdb_matches_dll": true,
+      "source_documents": 16,
+      "disk_source_matches": 15,
+      "disk_source_mismatches": 0,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "loaded_mvid_matches": true
+    },
+    "MCPForUnity.Editor": {
+      "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "pdb_matches_dll": true,
+      "source_documents": 303,
+      "disk_source_matches": 302,
+      "disk_source_mismatches": 0,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "loaded_mvid_matches": true
+    }
+  },
+  "original_source_unchanged": true,
+  "csharp_error_lines": 0,
+  "shader_error_lines": 0,
+  "clean_provenance": "BLOCKED",
+  "loaded_assembly_verification": "PASS (four selected modules)",
+  "console_errors": 0,
+  "console_warnings": 550,
+  "unity_version": "2022.3.62f3",
+  "build_target": "StandaloneWindows64",
+  "play_mode": false,
+  "scene_dirty": false,
+  "compiler_scope": "HotUpdate response file, references, analyzers, additional file, csc.dll and Microsoft.CodeAnalysis.CSharp.dll; not all assembly compiler invocations",
+  "output_manifest_scope": "Stable DLL/PDB snapshot before live probe; transient execute_code assemblies are excluded from this claim"
+}

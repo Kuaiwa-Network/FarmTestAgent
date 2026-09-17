@@ -206,3 +206,39 @@ called by the bridge. Next: establish the trusted provenance and safe session
 observation inputs, then physical action ownership/cancellation. See the
 [report](../reports/2026-09-17-farmqa-identity/report.md) and
 [operator guide](../tools/README-farmqa-identity.md).
+
+## Provenance investigation — 2026-09-17
+
+Observed at client `7dbf23bef80c660ceb5d384c2e99cff029e5b79a`, Windows Unity
+2022.3.62f3: HotUpdate's loaded/disk module IDs and DLL/PDB debug identities
+correspond. All 1,293 checked-in source documents match their compiled checksums
+on disk and match Git after line-ending conversion. One generated source,
+referenced binaries and full build inputs remain unverified. This narrows the
+evidence gap but does not complete provenance or change the checker verdict.
+
+Source-inferred session rules: require current authentication **and** transport,
+stable auth generation and expected player. `LoginService` sets ZoneID to literal
+1, so it cannot identify the environment. The loaded Net type exposes the named
+state properties, but no authenticated live values were read in Edit Mode.
+
+The subsequent user approval and execution supersede this investigation's
+pending-build status; see the controlled-build entry below. No login or runtime
+behavior change was made in the investigation.
+Evidence and limits: [investigation report](../reports/2026-09-17-farmqa-provenance/report.md).
+
+## Isolated controlled build — 2026-09-17
+
+User-approved and observed: independently cloned client `7dbf23b` into the main
+QA checkout's `.local/clients/farmqa-7dbf23b` and imported/compiled with Unity
+2022.3.62f3 / StandaloneWindows64, Play Mode off. Original client dirty-file and
+index hashes are unchanged. Fresh Console read: 0 errors, 550 warnings. Four
+selected loaded module IDs match the new DLLs, and their DLL/PDB identities match.
+
+BLOCKED for clean provenance: import changed `.vscode/settings.json` and
+`Assets/Editor/SpineSettings.asset`; generated sources and full-project build
+input coverage remain incomplete. Changes are preserved for investigation.
+This does not enable gameplay, select an account/environment or change the
+identity collector. Current Editor points to the isolated copy; rediscover it
+before acting. Next: investigate the import drift and complete the evidence.
+See [plan](../docs/farmqa-controlled-build.md) and
+[execution evidence](../reports/2026-09-17-farmqa-controlled-build/report.md).

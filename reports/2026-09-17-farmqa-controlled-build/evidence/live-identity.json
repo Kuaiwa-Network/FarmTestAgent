@@ -1,0 +1,33 @@
+{
+  "captured_at": 1789617739324,
+  "instance": "farmqa-7dbf23b@66bddd43c432dae8",
+  "unity_version": "2022.3.62f3",
+  "platform": "WindowsEditor",
+  "build_target": "StandaloneWindows64",
+  "playing": false,
+  "compiling": false,
+  "updating": false,
+  "scene_dirty": false,
+  "loaded_modules": [
+    {
+      "name": "HotUpdate",
+      "mvid": "2498c6b2-a4c0-42c3-8a09-c4a14dd9d9c5",
+      "has_game_test_driver": true
+    },
+    {
+      "name": "MCPForUnity.Editor",
+      "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "has_game_test_driver": false
+    },
+    {
+      "name": "AOTScripts",
+      "mvid": "c0b3cc86-f9e8-4cdb-abe7-4b37ade3df87",
+      "has_game_test_driver": false
+    },
+    {
+      "name": "Nova.Runtime",
+      "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "has_game_test_driver": false
+    }
+  ]
+}

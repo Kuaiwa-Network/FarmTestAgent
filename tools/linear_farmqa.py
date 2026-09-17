@@ -19,6 +19,9 @@ import urllib.parse
 import urllib.request
 import uuid
 
+from farmqa_state import SessionStore
+from farmqa_controller import ControllerStore
+
 REPLY = ("FarmQA is connected 🌱 I received your message. "
          "This is a connection test; gameplay testing is not enabled yet.")
 ROOT = Path(__file__).resolve().parents[1]
@@ -148,7 +151,7 @@ class Service:
 
 
 class BridgeService(Service):
-    """One desktop task, serialized prompts, durable stages, no ambiguous resends."""
+    """Durable session routing, ordered prompts, and no ambiguous resends."""
     def __init__(self, *args, bridge, **kwargs):
         super().__init__(*args, **kwargs)
         self.bridge = bridge
@@ -158,7 +161,8 @@ class BridgeService(Service):
             next_check REAL NOT NULL DEFAULT 0, deadline REAL NOT NULL)""")
         columns = {r[1] for r in self.db.execute("PRAGMA table_info(bridge_jobs)")}
         for name, definition in (("source_ms", "REAL"), ("stop_requested", "INTEGER NOT NULL DEFAULT 0"),
-                                 ("dispatch_started", "INTEGER NOT NULL DEFAULT 0"), ("stop_outcome", "TEXT")):
+                                 ("dispatch_started", "INTEGER NOT NULL DEFAULT 0"), ("stop_outcome", "TEXT"),
+                                 ("target_json", "TEXT")):
             if name not in columns:
                 self.db.execute(f"ALTER TABLE bridge_jobs ADD COLUMN {name} {definition}")
         # Migration preserves possible execution even if an old dispatch was ambiguous.
@@ -174,6 +178,19 @@ class BridgeService(Service):
             WHERE status='sending'""")
         self.db.execute("""UPDATE events SET status='uncertain', error='InterruptedBridgeSend'
                            WHERE status IN ('acknowledging', 'dispatching')""")
+        self.sessions = SessionStore(self.db, self.identity["organizationId"])
+        self.controller = ControllerStore(self.db)
+        # Existing sessions retain their original shared inbox, including in-flight jobs.
+        old_sessions = self.db.execute("""SELECT e.session_id,b.thread_id FROM events e
+            JOIN bridge_jobs b USING(event_key) WHERE b.thread_id!=''
+            AND substr(e.event_key,1,?)=? GROUP BY e.session_id,b.thread_id""",
+            (len(self.sessions.org)+1, self.sessions.org+":"))
+        for old in old_sessions:
+            session = self.sessions.ensure(old["session_id"], old["thread_id"])
+            if session["thread_id"] != old["thread_id"]:
+                raise ValueError("Existing session has conflicting destinations")
+        self.db.execute("""UPDATE bridge_sessions SET state='uncertain',error='InterruptedTaskCreation'
+            WHERE organization_id=? AND state='creating'""", (self.sessions.org,))
         self.db.commit()
 
     @staticmethod
@@ -197,6 +214,7 @@ class BridgeService(Service):
             inserted = self.db.execute("INSERT OR IGNORE INTO stop_requests VALUES (?,?,?,?, 'pending',?,NULL,NULL)",
                 (stop_key, session_id, cutoff, str(uuid.uuid4()), time.time())).rowcount
             if inserted:
+                self.controller.stop(self.identity['organizationId'], session_id, cutoff)
                 self.db.execute("""UPDATE bridge_jobs SET stop_outcome='reply_delivery_uncertain'
                     WHERE reply_json IS NOT NULL AND event_key IN
                     (SELECT event_key FROM events WHERE session_id=? AND status IN ('sending','uncertain'))
@@ -226,13 +244,72 @@ class BridgeService(Service):
 
     def enqueue(self, key, prepared):
         source_ms = prepared.pop("source_ms")
+        session = self.sessions.ensure(prepared["session_id"],
+            None if getattr(self.bridge, "session_routing", False) is True else self.bridge.thread_id)
+        prepared["target"] = json.loads(session["target_json"]) if session["target_json"] else None
         cutoff = self.db.execute("SELECT max(cutoff_ms) FROM stop_requests WHERE session_id=?",
                                  (prepared["session_id"],)).fetchone()[0]
         stopped = cutoff is not None and (source_ms is None or source_ms <= cutoff)
         self.db.execute("""INSERT INTO bridge_jobs
-            (event_key,input_json,ack_id,thread_id,deadline,source_ms,stop_requested) VALUES (?,?,?,?,?,?,?)""",
-            (key, None if stopped else json.dumps(prepared), str(uuid.uuid4()), self.bridge.thread_id,
-             time.time() + 900, source_ms, int(stopped)))
+            (event_key,input_json,ack_id,thread_id,deadline,source_ms,stop_requested,target_json)
+            VALUES (?,?,?,?,?,?,?,?)""",
+            (key, None if stopped else json.dumps(prepared), str(uuid.uuid4()), session["thread_id"] or "",
+             time.time() + 900, source_ms, int(stopped), session["target_json"]))
+
+    def _bridge_for(self, row):
+        if row["thread_id"] == self.bridge.thread_id:
+            return self.bridge
+        return self.bridge.for_thread(row["thread_id"])
+
+    def _provision(self, row):
+        """Create once, then only reconcile by a persisted random binding marker."""
+        with self.lock:
+            session = self.sessions.get(row["session_id"])
+        now = time.time()
+        if session["next_check"] > now:
+            self._update(row, "queued", next_check=session["next_check"])
+            return
+        try:
+            if session["state"] == "new":
+                target = self.bridge.session_target()  # Read-only discovery is retryable.
+                with self.lock, self.db:
+                    stopped = self.db.execute("SELECT stop_requested FROM bridge_jobs WHERE event_key=?",
+                                              (row["event_key"],)).fetchone()[0]
+                    if stopped:
+                        return
+                    self.db.execute("""UPDATE bridge_sessions SET state='creating'
+                        WHERE organization_id=? AND session_id=?""", (self.sessions.org, row["session_id"]))
+                try:
+                    result = self.bridge.create_session(session["binding_token"], target)
+                except Exception as exc:
+                    with self.lock, self.db:
+                        self.db.execute("""UPDATE bridge_sessions SET state='uncertain',error=?,next_check=?
+                            WHERE organization_id=? AND session_id=?""",
+                            (type(exc).__name__, now+10, self.sessions.org, row["session_id"]))
+                    self._update(row, "queued", "TaskCreationUncertain", next_check=now+10)
+                    return
+                thread_id = result.get("thread_id")
+                with self.lock, self.db:
+                    self.db.execute("""UPDATE bridge_sessions SET state='pending',client_thread_id=?,
+                        candidate_thread_id=?,next_check=?
+                        WHERE organization_id=? AND session_id=?""",
+                        (result.get("client_thread_id"), thread_id, now+3, self.sessions.org, row["session_id"]))
+                if thread_id and not self.bridge.session_initialized(thread_id, session["binding_token"]):
+                    thread_id = None
+            elif session["candidate_thread_id"]:
+                thread_id = session["candidate_thread_id"]
+                if not self.bridge.session_initialized(thread_id, session["binding_token"]):
+                    thread_id = None
+            else:
+                thread_id = self.bridge.find_session(session["binding_token"])
+            if thread_id:
+                with self.lock, self.db:
+                    self.sessions.bind(row["session_id"], thread_id)
+                self._update(row, "queued", next_check=0)
+            else:
+                self._update(row, "queued", "TaskSetupPending", next_check=now+10)
+        except Exception as exc:
+            self._update(row, "queued", type(exc).__name__, next_check=now+10)
 
     def _update(self, row, status, error=None, claim=False, **fields):
         with self.lock, self.db:
@@ -265,14 +342,15 @@ class BridgeService(Service):
             row = self.db.execute("SELECT * FROM stop_requests WHERE status='pending' ORDER BY received_at LIMIT 1").fetchone()
             if row is None:
                 return False
-            active = self.db.execute("""SELECT 1 FROM events e JOIN bridge_jobs b USING(event_key)
+            active = self.db.execute("""SELECT b.thread_id FROM events e JOIN bridge_jobs b USING(event_key)
                 WHERE e.session_id=? AND b.stop_requested=1 AND b.dispatch_started=1
                 AND e.status NOT IN ('sent','cancelled') LIMIT 1""", (row["session_id"],)).fetchone()
             self.db.execute("UPDATE stop_requests SET status='sending' WHERE stop_key=?", (row["stop_key"],))
         if active:
             content = {"type": "error", "body": "Stop received. Pending replies are suppressed. "
                 "Active Codex work is not confirmed stopped: this desktop connector cannot interrupt it. "
-                "Click Stop in FarmQA Linear inbox in Codex. No new work will be dispatched until the matching turn ends."}
+                "Click Stop in Codex task " + active["thread_id"] + ". "
+                "No new work will be dispatched to that task until the matching turn ends."}
         else:
             content = {"type": "response", "body": "FarmQA stopped forwarding pending work for this session. "
                 "No pending Codex execution remains for the stopped requests."}
@@ -291,7 +369,7 @@ class BridgeService(Service):
             self._update(row, "cancelled", stop_outcome="never_dispatched", input_json=None, reply_json=None)
             return
         try:
-            state = self.bridge.execution_state(row["event_key"])
+            state = self._bridge_for(row).execution_state(row["event_key"])
             if state and state["status"] in ("completed", "interrupted", "failed"):
                 outcome = state["status"]
                 if row["stop_outcome"] == "reply_delivery_uncertain":
@@ -315,15 +393,24 @@ class BridgeService(Service):
             row = self.db.execute("""SELECT e.*,b.* FROM events e JOIN bridge_jobs b USING(event_key)
                 WHERE (e.status IN ('pending','queued','waiting','reply_ready') OR
                     (b.stop_requested=1 AND e.status IN ('stop_pending','uncertain'))) AND b.next_check<=?
+                AND substr(e.event_key,1,?)=?
+                AND (e.status!='queued' OR b.stop_requested=1 OR NOT EXISTS (
+                    SELECT 1 FROM events earlier WHERE earlier.session_id=e.session_id
+                    AND earlier.rowid<e.rowid AND earlier.status NOT IN ('sent','cancelled')))
                 ORDER BY b.stop_requested DESC, CASE e.status WHEN 'pending' THEN 0 WHEN 'reply_ready' THEN 1
-                    WHEN 'waiting' THEN 2 ELSE 3 END, e.received_at LIMIT 1""", (now,)).fetchone()
+                    WHEN 'waiting' THEN 2 ELSE 3 END, e.rowid LIMIT 1""",
+                (now, len(self.sessions.org)+1, self.sessions.org+":" )).fetchone()
             busy = self.db.execute("""SELECT 1 FROM events e JOIN bridge_jobs b USING(event_key)
-                WHERE b.dispatch_started=1 AND e.status NOT IN ('sent','cancelled') LIMIT 1""").fetchone()
+                WHERE b.dispatch_started=1 AND e.status NOT IN ('sent','cancelled')
+                AND ((b.thread_id!='' AND b.thread_id=?) OR e.session_id=?) LIMIT 1""",
+                (row["thread_id"], row["session_id"])).fetchone() if row else None
         if self._process_stop_reply():
             return True
         if row is None:
             return False
-        if row["thread_id"] != self.bridge.thread_id:
+        with self.lock:
+            session = self.sessions.get(row["session_id"])
+        if row["thread_id"] != (session["thread_id"] or ""):
             self._update(row, "uncertain", "DestinationChanged", next_check=now+10)
             return True
         if row["stop_requested"]:
@@ -345,8 +432,12 @@ class BridgeService(Service):
                     "body": "A Codex result was not confirmed in time. Inspect FarmQA Linear inbox in Codex before retrying."}))
                 return True
             if status == "queued":
+                if not row["thread_id"]:
+                    self._provision(row)
+                    return True
+                bridge = self._bridge_for(row)
                 try:
-                    if busy or not self.bridge.is_idle():
+                    if busy or not bridge.is_idle():
                         self._update(row, "queued", next_check=now + 5)
                         return False
                 except Exception as exc:
@@ -355,13 +446,13 @@ class BridgeService(Service):
                 if not self._update(row, "dispatching", claim=True, dispatch_started=1):
                     return True
                 try:
-                    self.bridge.dispatch(row["event_key"], json.loads(row["input_json"]))
+                    bridge.dispatch(row["event_key"], json.loads(row["input_json"]))
                     self._update(row, "waiting", next_check=now + 3)
                 except Exception as exc:
                     self._update(row, "uncertain", type(exc).__name__)
             else:
                 try:
-                    result = self.bridge.result(row["event_key"])
+                    result = self._bridge_for(row).result(row["event_key"])
                     if result is None:
                         self._update(row, "waiting", next_check=now + 3)
                     else:

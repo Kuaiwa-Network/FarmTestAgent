@@ -241,6 +241,17 @@ state is written. A renamed task, missing history, unavailable app, or ambiguous
 leaves the request waiting rather than guessing. Inspect unresolved setup;
 do not reset its state to `new` to force another creation.
 
+On this installation, `read_thread` can return a completed turn with empty
+items. The adapter then reads the exact task's local rollout via the configured
+metadata index, only for turns already identified by the app. It validates the
+session/task/turn IDs, event input marker and local completion, while retaining
+the app's status. This compatibility path is read-only and installation-specific;
+it reads at most 32 MiB from a rollout beneath the configured Codex sessions
+directory. Missing/unknown/ambiguous records hold work rather than redispatch it.
+Never edit the rollout or ledger to supply an expected answer. Inspect app
+compatibility if messages remain waiting after Codex completes. See the
+[follow-up fix and evidence](../reports/2026-09-16-farmqa-sessions/report.md).
+
 Stop targets only its Linear session. A manual Stop message identifies the
 actual Codex task ID. Other isolated conversations can continue; no gameplay
 or computer control is enabled by this concurrency. Physical controller locking

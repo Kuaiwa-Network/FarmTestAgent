@@ -1,7 +1,7 @@
 # FarmQA session routing and target snapshots — 2026-09-16
 
-Outcome: **PASS for local tests, deployment, and two independent live initial
-replies; follow-up isolation PENDING.** Gameplay remains disabled. This is the first increment of
+Outcome: **PASS for local tests, deployment, two independent live initial
+replies, and follow-up continuity after restart (2026-09-17).** Gameplay remains disabled. This is the first increment of
 the user's approved conversation/queue/controller design.
 
 ## Implemented behavior
@@ -100,7 +100,7 @@ memory question in both chats to verify live follow-up continuity and isolation.
 
 ## Remaining verification and limitations
 
-Initial replies are verified. Next verify a follow-up and per-session Stop using the
+Initial replies and follow-ups are verified. Per-session Stop remains a live check in the
 [session scenario](../../tests/scenarios/farmqa-sessions.md).
 
 Task creation recovery can remain held if the task is renamed, the installed
@@ -119,3 +119,52 @@ must stay disabled until the controller increment is implemented and verified.
 Operational commands, target selection, and rollback are documented in
 [tools/README-farmqa.md](../../tools/README-farmqa.md). Changes are committed
 locally; no PR was pushed or merged during this increment.
+
+## Live follow-ups and empty-item reader fix — 2026-09-17
+
+The user sent the same memory question in both original chats after the receiver
+restart. Both messages reached their original tasks. Codex completed with APPLE
+on FARM-1127 and PEAR on FARM-1123, but the app's `read_thread` returned empty
+`items` arrays for both new turns. The bridge correctly held delivery because
+it could not verify the event marker or final text. Linear activity lookups
+returned not-found while these records were still waiting; this was not success.
+
+Read-only inspection found the completed input and final in local rollout
+`event_msg.item_completed` records. These new records used `FunctionCallOutput`
+and `AgentMessage` with `Text` content. The omission is observed; its internal
+app cause is not established. The compatibility helper in
+`tools/farmqa_rollout.py` fills only empty turns already identified by the app.
+It reads the exact mapped task's rollout from the configured read-only metadata
+index, verifies the session and item task IDs, turn IDs, turn start, input marker,
+and completion record. App status remains authoritative. It rejects duplicate
+items, unknown final formats, files outside the sessions directory, and files
+over 32 MiB. Partial trailing JSON is ignored. It never writes Codex state,
+creates tasks, dispatches a message, or infers a final from a summary.
+
+Windows extended-length paths initially failed a lexical containment check;
+the final check compares resolved directory identities. A regression covers
+that actual metadata format. All **78 local tests passed** (68 prior tests plus
+10 fallback tests), including wrong task/turn, incomplete writes, duplicate
+final, running/interrupted status, and preserving populated app results.
+The official [App Server documentation](https://learn.chatgpt.com/docs/app-server)
+was consulted; this rollout compatibility reader is an installation-specific
+fallback, not a documented public API or a new App Server connection.
+
+Only the verified receiver child was stopped. The existing scheduled supervisor
+restarted it, keeping the tunnel and private ledger. The new receiver PID was
+28808, supervised by PID 31668, with one listener at `127.0.0.1:8765`; startup
+verified FarmQA in Kuaiwa AI. Both original waiting records then became `sent`
+without another Codex dispatch or user resend. Their final texts and turn IDs
+matched the local item records, actual FarmQA-authored Linear activities in the
+correct issues/sessions, and the delivery ledger. Transient input/final fields
+were cleared. Both final words were also visibly verified in their original
+Linear agent chats after the user's new question. See
+[redacted follow-up evidence](evidence/live-followups.json).
+
+Receipt-to-delivery was 491.495 seconds for APPLE and 477.652 seconds for PEAR,
+including this investigation and deployment; these are not normal latency
+measurements. This two-conversation test establishes observed continuity and
+correct routing, not a security isolation boundary. Local metadata/rollout
+format changes or large histories can still hold work for operator inspection.
+No gameplay, exclusive controller, or automatic active-turn interruption was
+enabled by this fix.

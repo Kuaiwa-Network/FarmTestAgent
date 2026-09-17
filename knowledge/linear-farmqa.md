@@ -130,14 +130,24 @@ without repeating creation. The shared inbox's three existing session mappings
 and all 13 event states survived the migration check. 68 local tests pass. Fresh
 sessions on FARM-1127 and FARM-1123 returned APPLE READY and PEAR READY through
 distinct Codex tasks, matched against the Linear API, visible replies, and
-delivery records. Both mappings survived a receiver restart; live follow-up
-memory isolation is awaiting the user's next messages.
+delivery records. Both mappings survived a receiver restart. On 2026-09-17,
+the same memory question returned APPLE on FARM-1127 and PEAR on FARM-1123
+through their original tasks, matching the final records and Linear activities.
 
 Live testing exposed two installed-app details: worktree tasks are omitted from
 `list_threads`, and the creation prompt's first line is wrapped by `<input>`.
 Regression fixes normalize the known delegation envelope and use a read-only
 metadata-index fallback to discover candidate IDs. Binding still requires the
 full random marker and completed initialization through the app's `read_thread`.
+
+The 2026-09-17 follow-ups exposed empty `read_thread` item arrays despite
+completed turns. A read-only rollout fallback now recovers only the exact
+app-identified turns, verifies local task/turn/input/completion identities, and
+keeps app status authoritative. It recovered the original waiting replies
+without redispatch. 78 local tests pass. This depends on the installed local
+record format and bounds each rollout read to 32 MiB; unavailable or ambiguous
+records hold delivery for inspection. It does not establish a security boundary
+between tasks or enable gameplay/automatic interruption.
 
 Target selection is currently a local operator command using an existing client
 ref/commit and a test-environment identifier. It neither changes checkouts nor

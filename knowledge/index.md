@@ -1,6 +1,6 @@
 # Knowledge index
 
-Read `../CLAUDE.md` first. Last updated: 2026-09-16.
+Read `../CLAUDE.md` first. Last updated: 2026-09-17.
 
 - [Infrastructure and verified limits](infrastructure.md)
 - [Planting gameplay guide](gameplay/planting.md) — source-grounded; no live journey yet
@@ -28,7 +28,7 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-16.
 - [FarmQA automatic Stop capability check](../reports/2026-09-16-farmqa-automatic-stop-capability/report.md)
   — documented interrupt protocol cannot reach the existing desktop inbox
 - [FarmQA session routing and target snapshots](../reports/2026-09-16-farmqa-sessions/report.md)
-  — two distinct live conversations verified; restart preserved routes; follow-up test pending
+  — distinct conversations and follow-up context after restart verified; empty-item reader fallback deployed
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

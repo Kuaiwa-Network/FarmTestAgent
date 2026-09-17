@@ -15,6 +15,8 @@ import subprocess
 import threading
 import time
 
+from farmqa_rollout import hydrate_empty_turns
+
 
 class AppUnavailable(RuntimeError):
     pass
@@ -223,6 +225,10 @@ class CodexBridge:
                                "maxOutputCharsPerItem": 20000})
         if data.get("thread", {}).get("id") != self.thread_id:
             raise AppProtocolError("Codex returned a different task")
+        try:
+            hydrate_empty_turns(data, self.config.get("state_db_path"))
+        except (ValueError, OSError, sqlite3.Error) as exc:
+            raise AppProtocolError("Codex local turn verification unavailable") from exc
         return data
 
     def is_idle(self):

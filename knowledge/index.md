@@ -74,6 +74,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — durable action intent, retired-ID rejection, injected lost-response handling
   and safe fixture handoff verified; no deployment or authenticated gameplay
 
+- [Request-bound session observation](../reports/2026-09-17-farmqa-request-session/report.md)
+  — immutable account/server expectations and active-owner recheck; live matching,
+  mismatch and Stop-during-observation cases verified; no action permit
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

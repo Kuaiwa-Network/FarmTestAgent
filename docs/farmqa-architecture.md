@@ -283,6 +283,16 @@ build provenance, request-bound integration or physical action ownership.
    evidence procedure. Promote only observed behavior to QA knowledge.
 
 Concurrent live-chat Stop isolation remains a separate supervised transport test.
+The subsequent [request/session diagnostic](../tools/README-farmqa-request-session.md)
+binds independent private account/route/module expectations to an active request,
+rechecks ownership/target/binding after external reads and persists allowlisted
+evidence. Live matching, wrong-player/route/module and Stop-during-sample checks
+passed on client `b8170a5`. A match remains BLOCKED for execution: it is not a
+session lease, complete provenance or an action-admission check. Next, validate
+account/route/session generation inside the same Unity operation that admits one
+allowlisted action, first on an authenticated counter-only panel using the existing
+fencing/cancellation protocol. No diagnostic result should enable a general worker.
+
 Stable hosting, natural-language target selection, suite scheduling, autonomous
 issue creation, and Android/device execution are not part of the next read-only
 identity increment.

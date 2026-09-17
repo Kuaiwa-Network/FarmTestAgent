@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-17",
+  "source_commit": "a238b2c",
+  "app": "FarmQA",
+  "workspace": "Kuaiwa AI",
+  "preexisting_event_states_and_session_routes_preserved": true,
+  "event_count": 17,
+  "session_count": 5,
+  "controller_queue_count": 0,
+  "execution_enabled": false,
+  "http_checks_from_this_machine": {
+    "loopback_health": 200,
+    "loopback_unsigned_webhook": 401,
+    "public_https_health": 200,
+    "public_https_unsigned_webhook": 401
+  },
+  "live_controller_actions_tested": false
+}

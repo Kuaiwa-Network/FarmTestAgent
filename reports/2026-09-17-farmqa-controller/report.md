@@ -36,6 +36,22 @@ The CLI supports enqueue and redacted read-only status only.
 - Independent code review found no blocking issue in this scope. Its suggestions
   prompted added organization-scope, CLI, malformed-target and autocommit tests.
 
+## Deployment
+
+Source commit `a238b2c` was fast-forwarded into the existing deployment branch
+`codex/farmqa-session-routing`; no PR was pushed or merged. A private database
+backup was retained before restarting only the verified receiver child through
+its existing supervisor. The tunnel was not restarted. Final receiver PID 41756
+had one listener at `127.0.0.1:8765` and verified FarmQA in Kuaiwa AI at startup.
+All 17 event states and 5 session routes matched the predeployment snapshot.
+The controller queue was initialized and empty; its CLI reports execution
+disabled. The deployment checkout also passed all 93 tests.
+
+Loopback and public HTTPS health returned 200, and unsigned webhooks returned
+401. These diagnostic requests originated on this machine; no independent
+external probe or new live mention is claimed. No controller reservation was
+created in the live database. See [deployment evidence](evidence/deployment.json).
+
 ## Limitations and next increment
 
 This is a scheduling reservation, not a machine-enforced lock on Unity/computer

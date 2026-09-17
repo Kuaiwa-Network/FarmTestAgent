@@ -1,0 +1,914 @@
+[
+  {
+    "label": "source_before",
+    "observed_at_ms": 1789634527509,
+    "value": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+      "dirty": [],
+      "index_sha256": "3c2b5d10e7a5a804d92d6c83a049c99de6d0ff9d6bc8887c4ff149c9a1a40448"
+    }
+  },
+  {
+    "label": "editor",
+    "observed_at_ms": 1789634527516,
+    "value": {
+      "isPlaying": true,
+      "isPlayingOrWillChangePlaymode": true,
+      "isCompiling": false,
+      "isUpdating": false,
+      "unityVersion": "2022.3.62f3",
+      "platform": "WindowsEditor",
+      "buildTarget": "StandaloneWindows64",
+      "dataPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets",
+      "scene": {
+        "name": "LoginScene",
+        "path": "Assets/GameRes/Features/Login/LoginScene.unity",
+        "isDirty": false
+      },
+      "assemblies": [
+        {
+          "name": "HotUpdate",
+          "fullName": "HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "c21a2cb3-b894-4cbc-9dbb-6024685fc399",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\HotUpdate.dll",
+          "hasGameTestDriver": true
+        },
+        {
+          "name": "MCPForUnity.Editor",
+          "fullName": "MCPForUnity.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "17223216-6d8e-4cad-a969-b5292024a415",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\MCPForUnity.Editor.dll",
+          "hasGameTestDriver": false
+        },
+        {
+          "name": "AOTScripts",
+          "fullName": "AOTScripts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\AOTScripts.dll",
+          "hasGameTestDriver": false
+        },
+        {
+          "name": "Nova.Runtime",
+          "fullName": "Nova.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "moduleMvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+          "location": "D:\\AgentWorkSpace\\Farm\\Farm-Client\\Library\\ScriptAssemblies\\Nova.Runtime.dll",
+          "hasGameTestDriver": false
+        }
+      ]
+    }
+  },
+  {
+    "label": "session",
+    "observed_at_ms": 1789634527523,
+    "value": {
+      "schema_version": 1,
+      "observed_at_ms": 1789634527521,
+      "is_playing": true,
+      "status": "observed",
+      "generation_before": 6,
+      "generation_after": 6,
+      "authenticated": false,
+      "transport_connected": false,
+      "objects_stable": true,
+      "player_id": null,
+      "route_sha256": null
+    }
+  },
+  {
+    "label": "wrong_module_rejected",
+    "observed_at_ms": 1789634528267,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "synthetic_prompt",
+    "observed_at_ms": 1789634528291,
+    "value": {
+      "session": "A",
+      "status": 200
+    }
+  },
+  {
+    "label": "synthetic_prompt",
+    "observed_at_ms": 1789634528298,
+    "value": {
+      "session": "B",
+      "status": 200
+    }
+  },
+  {
+    "label": "synthetic_prompt",
+    "observed_at_ms": 1789634528305,
+    "value": {
+      "session": "C",
+      "status": 200
+    }
+  },
+  {
+    "label": "queue_acquired_A",
+    "observed_at_ms": 1789634528309,
+    "value": [
+      {
+        "request_id": "8ebe159d-53f5-43a7-bda8-ad801149470c",
+        "event_key": "fixture-org:prompted:A",
+        "organization_id": "fixture-org",
+        "session_id": "A",
+        "state": "active",
+        "created_at": 1789634528.2914414,
+        "acquired_at": 1789634528.307324,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c7746907-a7de-4aa4-9b09-70659d5c32c2",
+        "event_key": "fixture-org:prompted:B",
+        "organization_id": "fixture-org",
+        "session_id": "B",
+        "state": "queued",
+        "created_at": 1789634528.2983837,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "1cccf693-64ad-484e-bc7e-703035452db8",
+        "event_key": "fixture-org:prompted:C",
+        "organization_id": "fixture-org",
+        "session_id": "C",
+        "state": "queued",
+        "created_at": 1789634528.3053095,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "remote_start",
+    "observed_at_ms": 1789634529203,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634529198,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "injected_after_start",
+    "observed_at_ms": 1789634529204,
+    "value": {
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1"
+    }
+  },
+  {
+    "label": "start_reply_lost",
+    "observed_at_ms": 1789634529206,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "start_retry_rejected",
+    "observed_at_ms": 1789634529207,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "early_release_rejected",
+    "observed_at_ms": 1789634529208,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "competing_process",
+    "observed_at_ms": 1789634529299,
+    "value": {
+      "mode": "inert",
+      "game_actions": 0,
+      "event": "finished",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634530029,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634530023,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down"
+      ],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "signed_stop",
+    "observed_at_ms": 1789634530034,
+    "value": {
+      "session": "A",
+      "status": 200
+    }
+  },
+  {
+    "label": "injected_before_cancel",
+    "observed_at_ms": 1789634530036,
+    "value": {
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1"
+    }
+  },
+  {
+    "label": "cancel_not_delivered",
+    "observed_at_ms": 1789634530038,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "remote_cancel",
+    "observed_at_ms": 1789634530777,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634530771,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": true,
+      "events": [
+        "down"
+      ],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634531003,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634531002,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_close",
+    "observed_at_ms": 1789634531747,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634531742,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "injected_after_close",
+    "observed_at_ms": 1789634531747,
+    "value": {
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1"
+    }
+  },
+  {
+    "label": "close_reply_lost",
+    "observed_at_ms": 1789634531749,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634531773,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634531771,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "finished_A",
+    "observed_at_ms": 1789634531777,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634531771,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0,
+      "reservation_state": "cancelled"
+    }
+  },
+  {
+    "label": "queue_acquired_B",
+    "observed_at_ms": 1789634531780,
+    "value": [
+      {
+        "request_id": "8ebe159d-53f5-43a7-bda8-ad801149470c",
+        "event_key": "fixture-org:prompted:A",
+        "organization_id": "fixture-org",
+        "session_id": "A",
+        "state": "cancelled",
+        "created_at": 1789634528.2914414,
+        "acquired_at": 1789634528.307324,
+        "released_at": 1789634531.7760332,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c7746907-a7de-4aa4-9b09-70659d5c32c2",
+        "event_key": "fixture-org:prompted:B",
+        "organization_id": "fixture-org",
+        "session_id": "B",
+        "state": "active",
+        "created_at": 1789634528.2983837,
+        "acquired_at": 1789634531.7781508,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "1cccf693-64ad-484e-bc7e-703035452db8",
+        "event_key": "fixture-org:prompted:C",
+        "organization_id": "fixture-org",
+        "session_id": "C",
+        "state": "queued",
+        "created_at": 1789634528.3053095,
+        "acquired_at": null,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "remote_start",
+    "observed_at_ms": 1789634532860,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634532856,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634533590,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634533584,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down"
+      ],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "retired_owner_rejected",
+    "observed_at_ms": 1789634533593,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "remote_start",
+    "observed_at_ms": 1789634533624,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634533622,
+      "started": true,
+      "completed": true,
+      "quiescent": false,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_cancel",
+    "observed_at_ms": 1789634533656,
+    "value": {
+      "schema_version": 1,
+      "action_id": "eed5a51b54514c9eb2a31e1c16c6a9c1",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634533653,
+      "started": true,
+      "completed": true,
+      "quiescent": false,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [
+        "down",
+        "up"
+      ],
+      "success": false,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634533687,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634533685,
+      "started": true,
+      "completed": false,
+      "quiescent": false,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down"
+      ],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634540903,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634540901,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_close",
+    "observed_at_ms": 1789634541693,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634541688,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "finished_B",
+    "observed_at_ms": 1789634541699,
+    "value": {
+      "schema_version": 1,
+      "action_id": "3b001bd6286c4b51990dc5944f19edaf",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634541688,
+      "started": true,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": false,
+      "events": [
+        "down",
+        "up",
+        "click"
+      ],
+      "success": true,
+      "new_console_errors": 0,
+      "reservation_state": "released"
+    }
+  },
+  {
+    "label": "queue_acquired_C",
+    "observed_at_ms": 1789634541701,
+    "value": [
+      {
+        "request_id": "8ebe159d-53f5-43a7-bda8-ad801149470c",
+        "event_key": "fixture-org:prompted:A",
+        "organization_id": "fixture-org",
+        "session_id": "A",
+        "state": "cancelled",
+        "created_at": 1789634528.2914414,
+        "acquired_at": 1789634528.307324,
+        "released_at": 1789634531.7760332,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c7746907-a7de-4aa4-9b09-70659d5c32c2",
+        "event_key": "fixture-org:prompted:B",
+        "organization_id": "fixture-org",
+        "session_id": "B",
+        "state": "released",
+        "created_at": 1789634528.2983837,
+        "acquired_at": 1789634531.7781508,
+        "released_at": 1789634541.69713,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "1cccf693-64ad-484e-bc7e-703035452db8",
+        "event_key": "fixture-org:prompted:C",
+        "organization_id": "fixture-org",
+        "session_id": "C",
+        "state": "active",
+        "created_at": 1789634528.3053095,
+        "acquired_at": 1789634541.699564,
+        "released_at": null,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "injected_before_start",
+    "observed_at_ms": 1789634542065,
+    "value": {
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72"
+    }
+  },
+  {
+    "label": "start_not_delivered",
+    "observed_at_ms": 1789634542067,
+    "value": {
+      "rejected": true
+    }
+  },
+  {
+    "label": "signed_stop",
+    "observed_at_ms": 1789634542070,
+    "value": {
+      "session": "C",
+      "status": 200
+    }
+  },
+  {
+    "label": "remote_cancel",
+    "observed_at_ms": 1789634542782,
+    "value": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634542777,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_status",
+    "observed_at_ms": 1789634543508,
+    "value": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634543502,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": false,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "remote_close",
+    "observed_at_ms": 1789634544274,
+    "value": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634544269,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "finished_C",
+    "observed_at_ms": 1789634544280,
+    "value": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634544269,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0,
+      "reservation_state": "cancelled"
+    }
+  },
+  {
+    "label": "remote_start",
+    "observed_at_ms": 1789634545028,
+    "value": {
+      "schema_version": 1,
+      "action_id": "4edcf59b3d9b4abc9fce210dc1e8eb72",
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "observed_at_ms": 1789634545023,
+      "started": false,
+      "completed": true,
+      "quiescent": true,
+      "closed": true,
+      "cancel_requested": true,
+      "events": [],
+      "success": null,
+      "new_console_errors": 0
+    }
+  },
+  {
+    "label": "queue_final",
+    "observed_at_ms": 1789634545028,
+    "value": [
+      {
+        "request_id": "8ebe159d-53f5-43a7-bda8-ad801149470c",
+        "event_key": "fixture-org:prompted:A",
+        "organization_id": "fixture-org",
+        "session_id": "A",
+        "state": "cancelled",
+        "created_at": 1789634528.2914414,
+        "acquired_at": 1789634528.307324,
+        "released_at": 1789634531.7760332,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "c7746907-a7de-4aa4-9b09-70659d5c32c2",
+        "event_key": "fixture-org:prompted:B",
+        "organization_id": "fixture-org",
+        "session_id": "B",
+        "state": "released",
+        "created_at": 1789634528.2983837,
+        "acquired_at": 1789634531.7781508,
+        "released_at": 1789634541.69713,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      },
+      {
+        "request_id": "1cccf693-64ad-484e-bc7e-703035452db8",
+        "event_key": "fixture-org:prompted:C",
+        "organization_id": "fixture-org",
+        "session_id": "C",
+        "state": "cancelled",
+        "created_at": 1789634528.3053095,
+        "acquired_at": 1789634541.699564,
+        "released_at": 1789634544.2780802,
+        "target": {
+          "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+          "requested_ref": "HEAD",
+          "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+          "server_environment": "offline-login-fixture",
+          "selected_at": 1789634528286,
+          "source": "local_operator",
+          "verification": "not_verified_in_unity"
+        }
+      }
+    ]
+  },
+  {
+    "label": "cleanup",
+    "observed_at_ms": 1789634545767,
+    "value": {
+      "schema_version": 1,
+      "run_id": "c0ce264fb18147f88d822ae1d1ef3189",
+      "operation": "cleanup",
+      "observed_at_ms": 1789634545761,
+      "frame": 35286,
+      "busy": false,
+      "simulation_active": false,
+      "held": false,
+      "stage_touches": 0,
+      "quiescent": true,
+      "new_console_errors": null,
+      "events": [
+        "down",
+        "up",
+        "down",
+        "up",
+        "click"
+      ],
+      "original": null,
+      "competitor": null,
+      "recovery": null,
+      "fixture_present": false,
+      "views": "{\"CurrentViewTypeName\":\"LoginView\",\"StackedViewTypeNames\":[],\"ShowingPopupTypeNames\":[]}"
+    }
+  },
+  {
+    "label": "source_after",
+    "observed_at_ms": 1789634545876,
+    "value": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+      "dirty": [],
+      "index_sha256": "3c2b5d10e7a5a804d92d6c83a049c99de6d0ff9d6bc8887c4ff149c9a1a40448"
+    }
+  },
+  {
+    "label": "result",
+    "observed_at_ms": 1789634545877,
+    "value": {
+      "status": "PASS",
+      "scope": "fixture adapter with locally injected transport faults",
+      "gameplay_actions": 0,
+      "production_deployed": false
+    }
+  }
+]

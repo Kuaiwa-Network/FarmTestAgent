@@ -59,8 +59,20 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   connected automatically, with correct loaded settings and zero Console errors
 
 - [Read-only session diagnostic](../reports/2026-09-17-farmqa-session-identity/report.md)
-  — Edit Mode rejection verified; authenticated matching remains unverified;
+  — initial Edit Mode rejection verified; later live verification below;
   user deferred Spine defaults for existing content
+
+- [Dedicated account and live session verification](../reports/2026-09-17-farmqa-live-session/report.md)
+  — authenticated match, wrong-player/route rejection and post-Stop rejection
+  PASS; one shop-startup error recorded, no gameplay journey
+
+- [Supervised pointer cancellation](../reports/2026-09-17-farmqa-pointer-cancellation/report.md)
+  — synthetic Stop and real fixture gesture, pending-click suppression, quiescence
+  and next-request recovery PASS; no autonomous action adapter deployed
+
+- [Fixture controller adapter](../reports/2026-09-17-farmqa-fixture-adapter/report.md)
+  — durable action intent, retired-ID rejection, injected lost-response handling
+  and safe fixture handoff verified; no deployment or authenticated gameplay
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

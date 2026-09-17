@@ -95,7 +95,21 @@ Do not edit the ledger to force availability. Operator recovery and a physical
 action adapter must be designed and tested before gameplay is enabled. These
 reservation APIs do not prevent a separate task from directly calling Unity or
 computer tools. No claim of physical exclusivity or successful action cancellation
-is made yet.
+is made for a production adapter yet. A later supervised
+[fixture check](../reports/2026-09-17-farmqa-pointer-cancellation/report.md) verified
+the real driver's busy rejection, cancellation and quiescence using a separate
+synthetic queue. Its opt-in replay harness lives under `tests/probes/`, not as a
+deployed worker. Direct MCP/OS bypass, stale-owner fencing and crash/lost-response
+recovery remain unresolved; do not automatically enable game actions from it.
+
+A subsequent [fixture adapter](README-farmqa-fixture-adapter.md) adds a
+`controller_actions` table and release interlock. It has verified retired-ID
+rejection and injected lost-response reconciliation on that panel, with no
+production upgrade. The receiver constructor initializes this schema when the
+updated code is explicitly run; it does not automatically execute actions.
+Pending/uncertain action rows block release even by another cooperating caller.
+Read the adapter's scope/recovery contract before using it. General game-action
+ownership and actual lost-owner recovery are not established by the fixture test.
 
 ## Verification and rollback
 

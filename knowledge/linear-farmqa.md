@@ -310,3 +310,55 @@ the pinned fresh QA copy; no project switch was performed by this increment.
 The authenticated branch is not live-verified. No production worker/receiver
 changes, login or execution permit. See
 [session diagnostic report](../reports/2026-09-17-farmqa-session-identity/report.md).
+
+
+## Dedicated test account and live session — 2026-09-17
+
+User authorized creating a dedicated account on 公共测试服. Account registry:
+main QA checkout `.local/farmqa/test-accounts.json`, alias `farmqa-windows-public`.
+Preserve/reuse it and rediscover progress each run; no implicit reset or GM grants.
+
+Observed on client `65feb61d4b9c6a7f79cee6efefdfea88140219dc`: successful login
+reached StoryPlayView/MainView. Expected player/route from the selected server's
+login response matched the live authenticated/connected/stable sample. Wrong
+expected player and route mismatched; after stopping Play Mode, identity was
+unavailable. Source stayed unchanged. One ShopService QueryShop(13) error code 2
+was recorded; no complete gameplay/clean-console pass. Editor remains open in Edit
+Mode. No automatic worker or receiver integration was enabled. See
+[live verification](../reports/2026-09-17-farmqa-live-session/report.md).
+
+## Supervised pointer cancellation — 2026-09-17
+
+On the same client/module identities, an unauthenticated LoginView fixture verified a
+private synthetic queue's Stop-to-cancel sequence using the real pointer driver.
+Competing process acquisition and a concurrent gesture were rejected; the held
+gesture ended cancelled with down/up and zero clicks. Only after observing its
+task completion and released input did the harness release A and let B click.
+The panel was disposed, Console capture had zero new errors, and Unity returned
+to clean Edit Mode with unchanged client/source and an empty production queue.
+No login, gameplay, live Linear Stop or worker deployment occurred. See
+[report and replay](../reports/2026-09-17-farmqa-pointer-cancellation/report.md).
+Next: integrate a narrow controller adapter with actual-target checks and test
+stale-owner/lost-response handling on this fixture; cancellation is not token-bound
+and direct MCP/OS callers are still outside the reservation boundary.
+
+## Fixture adapter — 2026-09-17
+
+The [opt-in adapter](../tools/README-farmqa-fixture-adapter.md) now records one
+action per reservation before dispatch. Pending/uncertain actions interlock queue
+release. Retired owners are rejected before transport; Unity retains closed IDs
+so old start/cancel packets cannot affect a successor. Exact-ID cancellation is
+retried until acknowledged; pointer start is never retried.
+
+Observed on the same Windows client/module: local fault injection after start and
+close responses, plus before cancellation dispatch, retained ownership and then
+reconciled A without a click. Replayed A packets did not disturb B's one successful
+fixture click. C was cancelled before its delayed start and never pressed. Panel
+cleanup, zero captured action errors, unchanged source and Edit Mode were verified.
+All 145 Python tests passed. [Evidence](../reports/2026-09-17-farmqa-fixture-adapter/report.md).
+
+No production receiver/schema upgrade, worker deployment, live Linear Stop,
+OS input, account operation or gameplay. These are cooperative fixture guarantees;
+actual process death/network outage, domain reload, authenticated action binding
+and lost-owner recovery remain unverified. Never infer that a dead process stopped
+its remote gesture or that this binding authorizes arbitrary game targets.

@@ -32,3 +32,12 @@ structural comparison; rendering and new-import behavior are not verified. The
 finding alone does not block continued readiness or existing-content testing.
 Revisit on new Spine imports or observed visual differences. Separate session,
 physical ownership/cancellation and build-evidence limits remain explicit.
+
+
+## Session-login observation — 2026-09-17
+
+ENV-003 / unclassified startup finding: dedicated public-test account login
+succeeded, but client logged `[ShopService] QueryShop(13) failed: 2`. The source
+logs this for a nonzero shop-query response; cause/expected unlock behavior was
+not established. Keep separate from the session identity PASS. No shop or server
+fix was attempted. [Evidence](../reports/2026-09-17-farmqa-live-session/report.md).

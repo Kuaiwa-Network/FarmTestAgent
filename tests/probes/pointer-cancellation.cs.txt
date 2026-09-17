@@ -1,0 +1,116 @@
+// Supervised fixture only. Replace __OP__ and __RUN_ID__ with allowlisted literals.
+// Never expose this as an arbitrary action API or run against a logged-in session.
+string op = "__OP__";
+string runId = "__RUN_ID__";
+if (!System.Text.RegularExpressions.Regex.IsMatch(runId, "^[a-f0-9]{32}$"))
+    throw new System.InvalidOperationException("Invalid fixture run id");
+if (!UnityEngine.Application.isPlaying || UnityEditor.EditorApplication.isPaused ||
+    UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating)
+    throw new System.InvalidOperationException("Fixture requires stable running Play Mode");
+var pane = Farm.Core.UI.UIManager.CurrentContentPane();
+if (pane == null || Farm.Core.UI.UIManager.GetCurrentUISnapshot().CurrentViewTypeName != "LoginView")
+    throw new System.InvalidOperationException("Fixture requires LoginView");
+var domain = System.AppDomain.CurrentDomain;
+string key = "FarmQA.PointerCancellationFixture";
+var state = domain.GetData(key) as System.Collections.Generic.Dictionary<string, object>;
+var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+var driverAssembly = typeof(Farm.Core.TestDriver.GameTestDriver).Assembly;
+var busyField = driverAssembly.GetType("Farm.Core.TestDriver.PointerSimulation", true).GetField("_busy", flags);
+var simulation = typeof(Farm.Core.Utils.GamePointer).GetField("Simulation", flags).GetValue(null);
+var activeProperty = simulation.GetType().GetProperty("Active");
+System.Func<bool> busy = () => (bool)busyField.GetValue(null);
+System.Func<bool> active = () => (bool)activeProperty.GetValue(simulation, null);
+System.Func<bool> quiet = () => !busy() && !active() && !Farm.Core.Utils.GamePointer.Held &&
+    FairyGUI.Stage.inst.touchCount == 0 && UnityEngine.Input.touchCount == 0 &&
+    !UnityEngine.Input.GetMouseButton(1) && !UnityEngine.Input.GetMouseButton(2);
+if (op == "setup")
+{
+    if (state != null || FairyGUI.GRoot.inst.GetChild("FarmQACancelFixture") != null || !quiet())
+        throw new System.InvalidOperationException("Existing fixture or input owner");
+    var root = new FairyGUI.GComponent { name = "FarmQACancelFixture", sortingOrder = 32000 };
+    root.SetSize(FairyGUI.GRoot.inst.width, FairyGUI.GRoot.inst.height);
+    var background = new FairyGUI.GGraph { name = "background" };
+    background.DrawRect(root.width, root.height, 0, UnityEngine.Color.black, new UnityEngine.Color(0.07f, 0.12f, 0.16f));
+    root.AddChild(background);
+    var target = new FairyGUI.GGraph { name = "target" };
+    target.DrawRect(180, 120, 2, UnityEngine.Color.white, new UnityEngine.Color(0.1f, 0.65f, 0.4f));
+    target.SetXY((root.width - 180) / 2, (root.height - 120) / 2);
+    root.AddChild(target);
+    var label = new FairyGUI.GTextField { name = "label", text = "FarmQA input cancellation test\nNo login or gameplay actions", touchable = false };
+    label.SetSize(root.width - 40, 100);
+    label.SetXY(20, target.y - 120);
+    root.AddChild(label);
+    var events = new System.Collections.Generic.List<string>();
+    target.onTouchBegin.Add(ctx => { events.Add("down"); ctx.CaptureTouch(); });
+    target.onTouchEnd.Add(() => events.Add("up"));
+    target.onClick.Add(() => events.Add("click"));
+    state = new System.Collections.Generic.Dictionary<string, object>();
+    state["run_id"] = runId;
+    state["root"] = root;
+    state["events"] = events;
+    FairyGUI.GRoot.inst.AddChild(root);
+    domain.SetData(key, state);
+}
+if (state == null || (string)state["run_id"] != runId)
+    throw new System.InvalidOperationException("Fixture run mismatch");
+var fixtureRoot = (FairyGUI.GComponent)state["root"];
+if (fixtureRoot.isDisposed || fixtureRoot.parent != FairyGUI.GRoot.inst || !fixtureRoot.onStage)
+    throw new System.InvalidOperationException("Fixture no longer present");
+var eventList = (System.Collections.Generic.List<string>)state["events"];
+var task = state.ContainsKey("task") ? state["task"] as System.Threading.Tasks.Task<Farm.Core.TestDriver.PointerResult> : null;
+var recovery = state.ContainsKey("recovery") ? state["recovery"] as System.Threading.Tasks.Task<Farm.Core.TestDriver.PointerResult> : null;
+if (op == "start")
+{
+    if (task != null || !quiet()) throw new System.InvalidOperationException("Already started or input busy");
+    state["console_mark"] = Farm.Core.TestDriver.GameTestDriver.MarkConsole();
+    task = Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(Farm.Core.TestDriver.GameTestDriver.Click("root:FarmQACancelFixture.target", 8000));
+    state["task"] = task;
+}
+else if (op == "compete")
+{
+    if (task == null || task.IsCompleted || !busy() || !active() || !Farm.Core.Utils.GamePointer.Held)
+        throw new System.InvalidOperationException("Original gesture is not held");
+    var second = Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(Farm.Core.TestDriver.GameTestDriver.Click("root:FarmQACancelFixture.target", 50));
+    // Never block the main thread; record the task even if the rejection was not immediate.
+    state["competitor"] = second;
+}
+else if (op == "cancel")
+{
+    if (task == null || task.IsCompleted || !busy())
+        throw new System.InvalidOperationException("No pending fixture gesture to cancel");
+    Farm.Core.TestDriver.GameTestDriver.CancelPointer();
+    state["cancel_frame"] = UnityEngine.Time.frameCount;
+}
+else if (op == "recovery")
+{
+    if (task == null || task.Status != System.Threading.Tasks.TaskStatus.RanToCompletion ||
+        task.Result.success || task.Result.reason != "cancelled by caller" || recovery != null || !quiet())
+        throw new System.InvalidOperationException("Cancelled gesture is not quiescent");
+    recovery = Cysharp.Threading.Tasks.UniTaskExtensions.AsTask(Farm.Core.TestDriver.GameTestDriver.Click("root:FarmQACancelFixture.target", 50));
+    state["recovery"] = recovery;
+}
+else if (op == "cleanup")
+{
+    if (!quiet() || (task != null && !task.IsCompleted) || (recovery != null && !recovery.IsCompleted) ||
+        (state.ContainsKey("competitor") && !((System.Threading.Tasks.Task)state["competitor"]).IsCompleted))
+        throw new System.InvalidOperationException("Cannot remove fixture while input is pending");
+    fixtureRoot.Dispose();
+    domain.SetData(key, null);
+}
+else if (op != "setup" && op != "status")
+    throw new System.InvalidOperationException("Unsupported fixture operation");
+System.Func<System.Threading.Tasks.Task<Farm.Core.TestDriver.PointerResult>, object> taskResult = t =>
+    t == null ? null : (object)new {
+        status = t.Status.ToString(), complete = t.IsCompleted,
+        result = t.Status == System.Threading.Tasks.TaskStatus.RanToCompletion ? t.Result : null
+    };
+var competitor = state.ContainsKey("competitor") ? state["competitor"] as System.Threading.Tasks.Task<Farm.Core.TestDriver.PointerResult> : null;
+return new {
+    schema_version = 1, run_id = runId, operation = op,
+    observed_at_ms = System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), frame = UnityEngine.Time.frameCount,
+    busy = busy(), simulation_active = active(), held = Farm.Core.Utils.GamePointer.Held,
+    stage_touches = FairyGUI.Stage.inst.touchCount, quiescent = quiet(),
+    new_console_errors = state.ContainsKey("console_mark") ? (int?)Farm.Core.TestDriver.TestLogCapture.ErrorsSince((int)state["console_mark"]).Count : null,
+    events = eventList.ToArray(), original = taskResult(task), competitor = taskResult(competitor), recovery = taskResult(recovery),
+    fixture_present = !fixtureRoot.isDisposed, views = Farm.Core.TestDriver.GameTestDriver.GetActiveViews()
+};

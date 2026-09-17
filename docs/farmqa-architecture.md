@@ -249,6 +249,13 @@ does not turn the historical build evidence into clean provenance or enable an
 action worker. The next implemented diagnostic is the standalone
 [read-only session comparison](../tools/README-farmqa-session-identity.md).
 
+The user subsequently authorized a dedicated account on 公共测试服. The
+[live session check](../reports/2026-09-17-farmqa-live-session/report.md) verified
+an authenticated match, wrong-player/route rejection and Edit Mode rejection
+after Stop. The private account registry is reused across runs. This resolves
+the initial live-session-reader feasibility check, not reconnect coverage, full
+build provenance, request-bound integration or physical action ownership.
+
 1. **Complete actual-target validation:** read-only per-request diagnostics now
    exist. Establish trustworthy loaded-build provenance and observed server/session
    identity, then compare both with the pinned request. The present collector
@@ -258,7 +265,19 @@ action worker. The next implemented diagnostic is the standalone
 2. **Physical action ownership and cancellation:** route permitted actions through
    one controller, fence stale owners, bound work, observe cancellation and
    quiescence. Define recovery after a lost owner without assuming that process
-   death ended remote/asynchronous actions. Verify this before enabling gameplay.
+   death ended remote/asynchronous actions. The supervised
+   [pointer fixture](../reports/2026-09-17-farmqa-pointer-cancellation/report.md)
+   verified driver busy rejection, synthetic Stop -> real CancelPointer ->
+   original-task completion/quiescence -> next queued fixture click. It does not
+   fence direct MCP/OS callers or bind CancelPointer to a token. The subsequent
+   [fixture adapter](../tools/README-farmqa-fixture-adapter.md) now implements one
+   request-bound fixture action with durable intent, release interlock and closed
+   action-ID records. A live fixture run verified rejected retired owners and
+   locally injected lost-response reconciliation. It remains opt-in and undeployed;
+   authentication/actual-game targeting is not admitted. Bind actual account/server
+   observations before permitting game actions, and keep worker-crash, real network
+   outage and lost-owner recovery limits explicit. Arbitrary direct tools and OS
+   input are outside this cooperative adapter boundary.
 3. **Supervised gameplay increment:** establish authorized test account/environment
    and actual state, then run the small planting journey under the existing
    evidence procedure. Promote only observed behavior to QA knowledge.

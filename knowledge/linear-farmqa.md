@@ -1,6 +1,9 @@
 # FarmQA Linear integration
 
-Last reviewed 2026-09-16. Load this for mention-service work, not gameplay rules.
+Last reviewed 2026-09-17. Load this for mention-service work, not gameplay rules.
+Start with the [consolidated architecture](../docs/farmqa-architecture.md) for
+the current component boundaries, memory locations, and implementation gates.
+The dated sections below retain historical verification checkpoints.
 
 | Claim | Prerequisites / evidence | Platform/build | Status / verified |
 |---|---|---|---|
@@ -152,8 +155,9 @@ between tasks or enable gameplay/automatic interruption.
 Target selection is currently a local operator command using an existing client
 ref/commit and a test-environment identifier. It neither changes checkouts nor
 verifies the loaded Editor. No default client branch was invented. Automatic
-branch/PR extraction, controller ownership/state, and game-action cancellation
-remain future increments. See [setup](../tools/README-farmqa.md),
+branch/PR extraction, physical controller enforcement, and game-action cancellation
+remain future increments. Reservation state and the inert worker are covered in
+the later sections below. See [setup](../tools/README-farmqa.md),
 [test procedure](../tests/scenarios/farmqa-sessions.md), and the
 [deployment report](../reports/2026-09-16-farmqa-sessions/report.md).
 

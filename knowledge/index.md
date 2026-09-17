@@ -2,6 +2,9 @@
 
 Read `../CLAUDE.md` first. Last updated: 2026-09-17.
 
+- [FarmQA architecture and durable memory](../docs/farmqa-architecture.md) —
+  consolidated design reference; implemented, verified, and planned behavior
+
 - [Infrastructure and verified limits](infrastructure.md)
 - [Planting gameplay guide](gameplay/planting.md) — source-grounded; no live journey yet
 - [Execution/evidence procedure](procedures/interaction-runs.md)

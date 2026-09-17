@@ -17,6 +17,11 @@ Codex desktop task, with replies returned to Linear. Load `knowledge/linear-farm
 for setup/status. This authorizes the message bridge and its Codex turns, not
 gameplay execution, issue creation, game/client/server changes, or full-suite work.
 
+For FarmQA architecture or implementation work, also read
+[`docs/farmqa-architecture.md`](docs/farmqa-architecture.md). It consolidates the
+approved design, memory locations, verified capabilities, and remaining gates.
+Update it alongside topic knowledge when behavior or an approved decision changes.
+
 Next increment, user-approved 2026-09-16: implement and verify Stop handling.
 The desktop connector has no active-task interrupt operation. Queued cancellation
 and reply suppression do not establish that active tools have stopped. Preserve

@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-17",
+  "scope": "real Python worker processes against synthetic signed-event SQLite fixture",
+  "competing_worker": {
+    "mode": "inert",
+    "game_actions": 0,
+    "event": "finished",
+    "outcome": "blocked"
+  },
+  "signed_stop_http_status": 200,
+  "stopped_worker": {
+    "mode": "inert",
+    "game_actions": 0,
+    "event": "finished",
+    "request_id": "0650d990-c34d-4949-9bd5-9a5e9d14f788",
+    "outcome": "cancelled",
+    "elapsed_seconds": 0.103
+  },
+  "stop_to_process_exit_seconds": 0.022,
+  "next_session_worker": {
+    "mode": "inert",
+    "game_actions": 0,
+    "event": "finished",
+    "request_id": "c5cbc6f9-6772-42b1-8594-d9692d78ace4",
+    "outcome": "released",
+    "elapsed_seconds": 0.002
+  },
+  "production_database_modified": false,
+  "external_requests": 0,
+  "game_actions": 0,
+  "after_forced_process_exit": {
+    "replacement_worker": {
+      "mode": "inert",
+      "game_actions": 0,
+      "event": "finished",
+      "outcome": "blocked"
+    },
+    "states": [
+      "active",
+      "queued"
+    ],
+    "automatic_reclaim": false
+  }
+}

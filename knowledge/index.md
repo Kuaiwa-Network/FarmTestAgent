@@ -31,6 +31,8 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — distinct conversations and follow-up context after restart verified; empty-item reader fallback deployed
 - [FarmQA controller reservation queue](../reports/2026-09-17-farmqa-controller/report.md)
   — persistent FIFO ownership and Stop integration; no game-action worker enabled
+- [FarmQA inert worker](../reports/2026-09-17-farmqa-inert-worker/report.md)
+  — real process tests verify inert cancellation and crash holds; no gameplay
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

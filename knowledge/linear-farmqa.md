@@ -264,7 +264,7 @@ settings through a fresh import, validate affected assets and regenerate evidenc
 See [report](../reports/2026-09-17-farmqa-import-drift/report.md) and
 [regression scenario](../tests/scenarios/spine-import-drift.md).
 
-Latest operational state, 2026-09-17: the subsequent fresh-import attempt crashed
+Earlier operational state, 2026-09-17: the subsequent fresh-import attempt crashed
 during the recovered Editor's project-switch shutdown. No fresh import ran;
 Unity was closed at the last observation. Both original/recovered tracked states
 were preserved. Fresh-import work is paused; do not automatically retry the
@@ -278,4 +278,18 @@ IDs, zero Console errors and Play Mode off. See
 [recovery report](../reports/2026-09-17-farmqa-editor-recovery/report.md) and
 [startup verification](../reports/2026-09-17-farmqa-mcp-autostart/report.md).
 No new startup implementation was necessary; this option had been unset on
-Windows. Fresh-import work and gameplay remain paused/disabled.
+Windows. The user subsequently resumed the fresh-import test (below).
+
+
+## Resumed fresh import — 2026-09-17
+
+The user closed the recovered Editor normally; shutdown was clean. Direct visible
+launch of the independent empty-Library `farmqa-fresh-7dbf23b` copy completed
+import and automatically connected MCP. Spine settings preservation FAIL:
+the same fallback shader/empty preset overwrite reproduced and is left intact.
+The 169 atlas/170 material-texture structural rows match the recovered baseline,
+with zero Console errors and four live/disk module matches. This is not rendering
+or gameplay verification. Original and recovered checkouts are unchanged; the
+fresh Editor remains open in Edit Mode. Complete provenance remains BLOCKED by
+settings drift and missing generated-source evidence. See the updated
+[fresh-import report](../reports/2026-09-17-farmqa-fresh-import/report.md).

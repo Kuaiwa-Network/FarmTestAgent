@@ -1,0 +1,112 @@
+{
+  "settings_preservation": "FAIL",
+  "complete_provenance": "BLOCKED",
+  "client_commit": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+  "unity_version": "2022.3.62f3",
+  "build_target": "StandaloneWindows64",
+  "fresh_library_before_launch_absent": true,
+  "previous_editor_manually_closed": true,
+  "previous_shutdown_crash": false,
+  "auto_start_connected": true,
+  "one_connected_editor": true,
+  "play_mode": false,
+  "console_errors": 0,
+  "tracked_files": 15884,
+  "tracked_changes": [
+    {
+      "path": ".vscode/settings.json",
+      "before": "c7585d2cd087648c2aa7f8d233d41507d9865ab35301c352f5b91f97fddcb2a4",
+      "after": "9ae3e50eb4fd08e5b8f4584e619853ac1af2a377f4a53162a6c36fb55131da29"
+    },
+    {
+      "path": "Assets/Editor/SpineSettings.asset",
+      "before": "4d05acd845fa79d5b0c2fc1e4a0db97b70d9072797b29747af13b439e9d5af90",
+      "after": "986225300efcc51b9b6b16e0cd07e0dfcc466dd69bfc36fac10c8e949d88aed1"
+    }
+  ],
+  "atlas_comparison": {
+    "atlas_count": 169,
+    "material_references": 170,
+    "unique_textures": 170,
+    "all_rows_equal_excluding_project_root": true,
+    "differences": [],
+    "structural_problems": [],
+    "shaders": [
+      "Universal Render Pipeline/2D/Spine/Skeleton"
+    ],
+    "rendering_tested": false
+  },
+  "modules": [
+    {
+      "name": "HotUpdate",
+      "mvid": "a83da176-6cb8-49ef-af1c-950968167184",
+      "live_matches_disk": true,
+      "pdb_matches_dll": true,
+      "dll_sha256": "8b7bf21cc599d4d40a50b678759bff8981dc28b931edb686ba9427a0ffea38d8",
+      "pdb_sha256": "9fea4756a5c14c7d93de31e2495c3984031381c6e07288abe15a1019431ac23f",
+      "source_matches": 1293,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "source_mismatches": []
+    },
+    {
+      "name": "MCPForUnity.Editor",
+      "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "live_matches_disk": true,
+      "pdb_matches_dll": true,
+      "dll_sha256": "2278e28cfe1f77784944e3e7ff1700b8277988e544a319fc44107b3508af36ba",
+      "pdb_sha256": "24069f60420899d71cb5095e6bba7cbfd5e1c6981777a0ae35beb36e27405625",
+      "source_matches": 302,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "source_mismatches": []
+    },
+    {
+      "name": "AOTScripts",
+      "mvid": "02bf9a2c-46bd-4bfd-8d73-2bb35e9e4736",
+      "live_matches_disk": true,
+      "pdb_matches_dll": true,
+      "dll_sha256": "e875b9a8a310c9ddb22628371e6bc5a53449c6c54e55b298fb320548e709a661",
+      "pdb_sha256": "b99344708f2c0ebe7b49dba56c0b3e3e4bbc3f57035e02176b331f4c47a5f7dc",
+      "source_matches": 19,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "source_mismatches": []
+    },
+    {
+      "name": "Nova.Runtime",
+      "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "live_matches_disk": true,
+      "pdb_matches_dll": true,
+      "dll_sha256": "46084323f7401f1ee1710bf35caa8f139d1f2eb2a6162b1ee65ccba889092bbe",
+      "pdb_sha256": "d092970cd13cb0672fe0ff728cdce30678042c4d37c75bbb1af269006b2e4486",
+      "source_matches": 15,
+      "missing_documents": [
+        "AssemblyMonoScriptTypes.generated.cs"
+      ],
+      "source_mismatches": []
+    }
+  ],
+  "preservation": {
+    "original_unchanged": true,
+    "recovered_unchanged": true
+  },
+  "compiler_response_files": 113,
+  "parsed_compiler_input_entries": 37250,
+  "missing_parsed_compiler_inputs": 0,
+  "output_dlls": 113,
+  "captured_at": 1789627346.516225,
+  "private_evidence_sha256": {
+    "inputs-before.json": "e1114dbb7627e2017efb4879cb55eca38688ddd6ce249259de995ac07d24c0de",
+    "inputs-after.json": "8427904cd2e6e0504699da74714517d1e568eb38f497382091eaea66f12f2a36",
+    "compiler-inputs.json": "63ab2cb226987071a5d9a78150ee039e968eb4c2604288973e9f9f84d5a15d10",
+    "outputs.json": "b358c194baebbb861b81996a9341800a02ab31414de9656cf2b16697d3a849fa",
+    "atlas-comparison.json": "57dec051d1e7b5e3e559beb8b12a1138029dd1a9592601e385f71054b6264c47",
+    "module-comparison.json": "d1d1ecf53ad1eee153d02c87a7e7a64ae03bbc551b8185074a5525de5901ee63",
+    "preservation.json": "f895b2e700c1028e6072ed8d9c308016e213864718120825fe85fb7abd0d0dc7",
+    "live-verification.json": "9eb9781ce64b779b666c2c2de91ad3d6d4225f2c3a7c1e8593fda59b9e178a9d"
+  }
+}

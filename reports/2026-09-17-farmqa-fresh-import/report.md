@@ -1,4 +1,73 @@
-# Fresh-import attempt interrupted by Editor crash — 2026-09-17
+# Fresh import: Spine settings regression reproduced — 2026-09-17
+
+**Latest result: FAIL for settings preservation; PASS for automatic MCP connection
+and the bounded structural asset comparison.** The user resumed the work after
+Editor recovery and manually closed the recovered Editor. Shutdown completed
+without a crash. A direct visible launch of the fresh copy then completed import;
+this supersedes the earlier “fresh import did not start” status below.
+
+The target was the independently cloned `farmqa-fresh-7dbf23b` QA copy, pinned to
+`7dbf23bef80c660ceb5d384c2e99cff029e5b79a`, Unity 2022.3.62f3,
+StandaloneWindows64. Immediately before launch, all 15,884 tracked input hashes
+still matched preparation and Library was absent. No Library was copied or
+removed. The fresh Editor launched as PID 2820, with Play Mode off. Its plugin
+started the local MCP server and connected automatically; no Start Server click
+or separate server launch was needed. Fresh MCP discovery found exactly one
+connected Editor at the expected project path.
+
+Import again overwrote `Assets/Editor/SpineSettings.asset`: the shader became
+`Spine/Skeleton` instead of `Universal Render Pipeline/2D/Spine/Skeleton`, and the
+StraightAlphaPreset path became empty. The log again records Spine preferences
+creation during import. Both legacy EditorPrefs keys were absent; the live
+serialized settings and cached asset agreed with the overwritten values. The
+expected shader and preset assets were available. No restoration or package fix
+was applied to this fresh copy. The changed settings are preserved as evidence.
+
+All 15,884 tracked files were compared after import. The only other byte change
+was the VS Code solution-name setting. Original-client and recovered-QA-copy
+commit, status, dirty-file and Git index snapshots remained unchanged throughout
+this resumed run. The original client was already at `a6dce07592d32b9760d60321118abd496c5bb291`
+at this run's start; it is not the pinned QA target.
+
+The read-only atlas probe found 169 Spine atlas assets, 170 material references
+and 170 unique textures. Every returned row matched the recovered-copy baseline,
+excluding the top-level project root: paths, supported URP shader, dimensions,
+format, texture content hash and sampled importer settings. No missing references
+or structural problems were found. This narrows the observed impact to settings
+in this comparison; it does not prove rendering, new-asset imports or gameplay.
+
+A live probe confirmed idle Edit Mode and a clean scene; the Console error read
+returned zero entries. The first editor-state resource was marked stale despite
+idle flags, so it was not treated as a readiness pass; the subsequent guarded
+Editor probe supplied the live compilation/import/Play Mode flags. The four core
+loaded MVIDs match the fresh DLLs and their DLL/PDB identities match. Source
+checksums match 1,293 HotUpdate, 19 AOTScripts, 15 Nova.Runtime and 302
+MCPForUnity.Editor documents, with zero mismatches. Each PDB still names one
+unavailable Unity-generated `AssemblyMonoScriptTypes.generated.cs` document.
+
+The private build capture includes 113 compiler response files and 37,250 parsed
+source/reference/analyzer/additional-file entries with no missing referenced
+files, plus 113 output DLL hashes and PDB hashes. This post-import capture does
+not establish complete compiler/generated-source provenance. Tracked import
+settings drift and unavailable generated documents keep complete provenance
+BLOCKED; no positive manifest or gameplay permission was issued.
+
+Redacted evidence is in [verification.json](evidence/verification.json).
+Private manifests, live responses, console result and module/atlas comparisons
+remain under the main QA checkout's `.local/fresh-import/`. The fresh Editor is
+left open in Edit Mode with the failed settings preserved; the recovered copy is
+closed and unchanged. No game source edits, login, gameplay, bridge deployment
+changes or PR merge occurred.
+
+Next: report the reproduced initialization defect to the client/package owner.
+A candidate fix should distinguish “settings file exists but AssetDatabase is
+not ready” from “settings absent,” avoiding fallback CreateAsset over the pinned
+file. This is a source-grounded suggestion, not an implemented or verified fix.
+After an authorized fix, repeat this empty-Library scenario in another preserved
+QA copy and resolve generated-input provenance before accepting a clean baseline.
+Original client/package source remains read-only here.
+
+# First attempt: project-switch shutdown crash
 
 **BLOCKED: Unity crashed during the requested project switch. The fresh import
 did not start.** This is an operational failure, not a successful import test.

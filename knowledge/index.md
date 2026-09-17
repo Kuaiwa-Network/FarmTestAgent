@@ -47,13 +47,13 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   drift blocks clean provenance, Play Mode off and original checkout preserved
 - [Spine import drift investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
   — during-import preferences creation traced; pinned settings restored and stable
-  on two warm reimports, fresh-import prevention and asset effects still unverified
-- [Fresh-import attempt and Editor crash](../reports/2026-09-17-farmqa-fresh-import/report.md)
-  — prepared copy verified, but project switch crashed during shutdown; fresh
-  import never started, original/recovered tracked state preserved, work paused
+  on two warm reimports; subsequent fresh run reproduces overwrite (see below)
+- [Fresh-import regression and earlier Editor crash](../reports/2026-09-17-farmqa-fresh-import/report.md)
+  — resumed direct launch imported successfully and auto-connected MCP; settings
+  preservation FAIL, 169 atlas/170 material-texture structural comparison PASS
 - [Editor recovery and crash inspection](../reports/2026-09-17-farmqa-editor-recovery/report.md)
   — recovered project visible again; see automatic-startup verification for the
-  completed MCP check; fresh-import work stays paused
+  completed MCP check; fresh-import work subsequently resumed
 - [MCP automatic startup](../reports/2026-09-17-farmqa-mcp-autostart/report.md)
   — user enabled the existing plugin option; direct launch started server and
   connected automatically, with correct loaded settings and zero Console errors

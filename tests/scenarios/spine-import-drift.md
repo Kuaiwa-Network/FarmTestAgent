@@ -19,7 +19,9 @@ Spine package `eb588ecd57`. See the
 
 ## Fresh-import regression (not yet executed after a fix)
 
-1. Import the pinned copy with an empty Library and private logs.
+1. After normal shutdown of the previous QA Editor, directly launch the pinned
+   copy visibly with an empty Library and private logs. Do not use the previously
+   crashing EditorApplication.OpenProject route.
 2. After import is idle, compare `Assets/Editor/SpineSettings.asset` bytes with
    the input hash. Inspect any CreateAsset-during-import warning and its stack.
 3. Run `tests/probes/spine-import-state.cs.txt` through the existing Unity MCP
@@ -42,3 +44,14 @@ and the original-client snapshot. Stop on unexpected drift or new errors.
 
 This recovery must not enable gameplay or relabel an older manifest. It leaves
 fresh-import prevention and effects on already-imported assets unresolved.
+
+
+## Latest replay — 2026-09-17
+
+Fresh independent copy at the same commit: settings preservation **FAIL**, with
+fallback shader/empty preset and CreateAsset-during-import evidence. Settings were
+not restored. The read-only `spine-atlas-imports.cs.txt` probe compared 169 atlas
+rows and 170 material/texture references with the recovered-copy baseline; all
+sampled fields, including texture content hashes, matched. That bounded structural
+comparison passes, while rendering/new-asset effects remain untested. See the
+[fresh-run evidence](../../reports/2026-09-17-farmqa-fresh-import/report.md).

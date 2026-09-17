@@ -68,7 +68,13 @@ The next request-bound session diagnostic now verifies immutable account/route
 expectations under active ownership and rejects Stop/target/binding changes during
 observation; see `tools/README-farmqa-request-session.md`. Its matching result is
 still read-only evidence, never a reusable action permit. Live cases passed on
-client `b8170a5`; same-operation session checks at action admission remain next.
+client `b8170a5`. The next authenticated counter fixture now performs account,
+route and generation checks in the same Unity operation admitting its fixed click.
+Wrong identity, synthetic Stop, lost replies and delayed packets passed live; see
+`tools/README-farmqa-authenticated-fixture.md`. A forced QA predicate failure
+verified cancellation, not real reconnect. No game control or worker is enabled.
+Next: one separately allowlisted supervised navigation action, based on the actual
+account state and action-specific Stop limits, before the first planting journey.
 
 ## Every session
 

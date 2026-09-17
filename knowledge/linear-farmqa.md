@@ -371,3 +371,24 @@ OS input, account operation or gameplay. These are cooperative fixture guarantee
 actual process death/network outage, domain reload, authenticated action binding
 and lost-owner recovery remain unverified. Never infer that a dead process stopped
 its remote gesture or that this binding authorizes arbitrary game targets.
+
+
+## Authenticated fixture admission — 2026-09-17
+
+Observed on clean Windows client `b8170a5`, Unity 2022.3.62f3: the new
+[opt-in adapter](../tools/README-farmqa-authenticated-fixture.md) requires immutable
+request/session expectations and checks actual player, route and generation in
+the Unity operation admitting a fixed counter-panel click. Wrong values prevented
+start. Synthetic Stop and lost-response reconciliation cancelled held input;
+closed action/run packets could not disturb a successor. A live cleanup/run-reuse
+bug was reproduced, fixed with a retained bounded registry, and replayed passing.
+The fixture-only predicate fault cancelled a pending press without a click; real
+session replacement/reconnect is still unverified. Final suite: 169 tests PASS.
+
+[Evidence](../reports/2026-09-17-farmqa-authenticated-fixture/report.md). Dedicated
+account reused on 公共测试服, progress preserved at StoryPlayView/MainView. Known
+shop-startup error recurred. Panel removed, input released, clean Edit Mode and
+unchanged client source verified. Production queue empty; receiver/tunnel untouched.
+No game control or autonomous worker is enabled. Next is one separately allowlisted
+supervised navigation action after observing its actual target and Stop limitations,
+then the first planting journey. The diagnostic remains evidence, not a permit.

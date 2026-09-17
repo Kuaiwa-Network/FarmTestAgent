@@ -99,21 +99,30 @@ class FixtureAdapter:
     def _entry(self):
         if self.db.in_transaction: raise ValueError('Do not hold a transaction across adapter calls')
 
-    def start(self, request_id, token, binding):
-        self._entry()
-        binding = checked_binding(binding)
-        row = self._owner(request_id, token, active_only=True)
+    _binding = staticmethod(checked_binding)
+    _observation = staticmethod(checked_observation)
+
+    def _target(self, row, binding):
         target = json.loads(row['target_json'])
         if (Path(target['repository']).resolve() != Path(binding['project']).resolve() or
             target['commit_sha'] != binding['commit_sha'] or
             target['server_environment'] != 'offline-login-fixture'):
             raise ValueError('Reservation is not pinned to this offline fixture')
+
+    def start(self, request_id, token, binding):
+        self._entry()
+        binding = self._binding(binding)
+        row = self._owner(request_id, token, active_only=True)
+        self._target(row, binding)
         if self.db.execute('SELECT 1 FROM controller_actions WHERE request_id=?',(request_id,)).fetchone():
             raise ValueError('This reservation already attempted an action')
         self.client.validate(binding)
         with self.db:
             self.store._write_lock()
-            self._owner(request_id, token, active_only=True)
+            current = self._owner(request_id, token, active_only=True)
+            if current['target_json'] != row['target_json']:
+                raise ValueError('Pinned target changed during validation')
+            self._target(current, binding)
             self.db.execute('INSERT INTO controller_actions(request_id,action_id,binding_json,state) VALUES(?,?,?,?)',
                             (request_id,uuid.uuid4().hex,json.dumps(binding),'pending'))
         return self._exchange(request_id, token, 'start')
@@ -129,7 +138,7 @@ class FixtureAdapter:
         binding = json.loads(row['binding_json'])
         try:
             raw = self.client.exchange(op, row['action_id'], binding)
-            result = checked_observation(raw, row['action_id'], binding)
+            result = self._observation(raw, row['action_id'], binding)
             with self.db:
                 self.store._write_lock()
                 self._owner(request_id, token)

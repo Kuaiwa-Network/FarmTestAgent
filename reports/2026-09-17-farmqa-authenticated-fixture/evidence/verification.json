@@ -1,0 +1,708 @@
+{
+  "date": "2026-09-17",
+  "scope": "authenticated counter-only fixture; synthetic Stop and transport/predicate faults",
+  "preflight": {
+    "captured_at": 1789639035.1351306,
+    "instance": "Farm-Client@6d4c4b2750085821",
+    "project": {
+      "projectRoot": "D:/AgentWorkSpace/Farm/Farm-Client",
+      "projectName": "Farm-Client",
+      "unityVersion": "2022.3.62f3",
+      "platform": "StandaloneWindows64",
+      "assetsPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets"
+    },
+    "source": {
+      "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+      "commit_sha": "b8170a559909fccc21b488e47584f20e02a42104",
+      "dirty": [],
+      "index_sha256": "7d8dc0243139b63b0a3e510736312804b642fff4ef64c27a31f5581a36fb4673"
+    },
+    "is_playing": false,
+    "scene_dirty": false,
+    "modules": [
+      {
+        "name": "HotUpdate",
+        "mvid": "74aa1b33-262f-4ebd-ace7-dd394e7eca20",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 1297,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 302,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "AOTScripts",
+        "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 19,
+        "missing": 1,
+        "mismatch": 0
+      },
+      {
+        "name": "Nova.Runtime",
+        "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+        "live_disk_match": true,
+        "pdb_match": true,
+        "source_matches": 15,
+        "missing": 1,
+        "mismatch": 0
+      }
+    ],
+    "account_selected": false,
+    "server_selected": false
+  },
+  "pre_fix_reproduction": [
+    {
+      "label": "setup",
+      "value": {
+        "setup": true,
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "fixture_present": true,
+        "session_match": true
+      }
+    },
+    {
+      "label": "cancel_before_start",
+      "value": {
+        "schema_version": 1,
+        "action_id": "511a0c75b4374eeabc6128a09e01065b",
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "observed_at_ms": 1789639204028,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "closed",
+      "value": {
+        "schema_version": 1,
+        "action_id": "511a0c75b4374eeabc6128a09e01065b",
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "observed_at_ms": 1789639204964,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "cleanup",
+      "value": {
+        "cleanup": true,
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "fixture_present": false,
+        "quiescent": true
+      }
+    },
+    {
+      "label": "reused_setup",
+      "value": {
+        "setup": true,
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "fixture_present": true,
+        "session_match": true
+      }
+    },
+    {
+      "label": "old_start_replayed",
+      "value": {
+        "schema_version": 1,
+        "action_id": "511a0c75b4374eeabc6128a09e01065b",
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "observed_at_ms": 1789639207381,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "cancel_replayed_action",
+      "value": {
+        "schema_version": 1,
+        "action_id": "511a0c75b4374eeabc6128a09e01065b",
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "observed_at_ms": 1789639207424,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [
+          "down"
+        ],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "replayed_action_closed",
+      "value": {
+        "schema_version": 1,
+        "action_id": "511a0c75b4374eeabc6128a09e01065b",
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "observed_at_ms": 1789639208275,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [
+          "down",
+          "up"
+        ],
+        "success": false,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "final_cleanup",
+      "value": {
+        "cleanup": true,
+        "run_id": "c6bef54f03234d6f980e6b152656671f",
+        "fixture_present": false,
+        "quiescent": true
+      }
+    }
+  ],
+  "fixed_live_trace": [
+    {
+      "label": "setup",
+      "observed_at_ms": 1789639355680,
+      "value": {
+        "setup": true,
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "fixture_present": true,
+        "session_match": true
+      }
+    },
+    {
+      "label": "reject_player_id",
+      "observed_at_ms": 1789639357098,
+      "value": {
+        "schema_version": 1,
+        "action_id": "2348b1453775462d979c886ed0c3eadb",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639357093,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_route_sha256",
+      "observed_at_ms": 1789639359444,
+      "value": {
+        "schema_version": 1,
+        "action_id": "391c8425fa284f3696c541231c5e2203",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639359439,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "reject_generation",
+      "observed_at_ms": 1789639361783,
+      "value": {
+        "schema_version": 1,
+        "action_id": "824b27f628d94b6f8dd50555242f9408",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639361778,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": false,
+        "cancel_requested": true,
+        "admission": "session_rejected",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "lost_start_response",
+      "observed_at_ms": 1789639364502,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b37ce8ab55654785b29fe35b1154a03a",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639364497,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "lost_reply_held",
+      "observed_at_ms": 1789639364505,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "start_never_retried",
+      "observed_at_ms": 1789639364505,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "A_held",
+      "observed_at_ms": 1789639365280,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b37ce8ab55654785b29fe35b1154a03a",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639365272,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [
+          "down"
+        ],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": false
+      }
+    },
+    {
+      "label": "A_cancelled",
+      "observed_at_ms": 1789639367124,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b37ce8ab55654785b29fe35b1154a03a",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639367114,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [
+          "down",
+          "up"
+        ],
+        "success": false,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": false,
+        "reservation_state": "cancelled"
+      }
+    },
+    {
+      "label": "B_held",
+      "observed_at_ms": 1789639369302,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3ce11d1e611649268d5fdac413b07075",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639369295,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [
+          "down"
+        ],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": false
+      }
+    },
+    {
+      "label": "A_late_start",
+      "observed_at_ms": 1789639369351,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b37ce8ab55654785b29fe35b1154a03a",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639369349,
+        "started": true,
+        "completed": true,
+        "quiescent": false,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [
+          "down",
+          "up"
+        ],
+        "success": false,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "A_late_cancel",
+      "observed_at_ms": 1789639369382,
+      "value": {
+        "schema_version": 1,
+        "action_id": "b37ce8ab55654785b29fe35b1154a03a",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639369380,
+        "started": true,
+        "completed": true,
+        "quiescent": false,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [
+          "down",
+          "up"
+        ],
+        "success": false,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "B_completed",
+      "observed_at_ms": 1789639377511,
+      "value": {
+        "schema_version": 1,
+        "action_id": "3ce11d1e611649268d5fdac413b07075",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639377502,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": false,
+        "events": [
+          "down",
+          "up",
+          "click"
+        ],
+        "success": true,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": false,
+        "reservation_state": "released"
+      }
+    },
+    {
+      "label": "C_held",
+      "observed_at_ms": 1789639379495,
+      "value": {
+        "schema_version": 1,
+        "action_id": "67ee5ddd31db459c8e28e0e7fc8235e9",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639379488,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "events": [
+          "down"
+        ],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": false
+      }
+    },
+    {
+      "label": "injected_fixture_session_loss",
+      "observed_at_ms": 1789639380193,
+      "value": {
+        "fixture_only_fault": true
+      }
+    },
+    {
+      "label": "C_session_cancelled",
+      "observed_at_ms": 1789639381055,
+      "value": {
+        "schema_version": 1,
+        "action_id": "67ee5ddd31db459c8e28e0e7fc8235e9",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639381044,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [
+          "down",
+          "up"
+        ],
+        "success": false,
+        "new_console_errors": 0,
+        "admission": "accepted",
+        "session_lost": true,
+        "reservation_state": "released"
+      }
+    },
+    {
+      "label": "restored_fixture_session_check",
+      "observed_at_ms": 1789639381736,
+      "value": {
+        "fixture_only_fault": true
+      }
+    },
+    {
+      "label": "start_not_dispatched",
+      "observed_at_ms": 1789639382651,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "D_cancel_before_start",
+      "observed_at_ms": 1789639385069,
+      "value": {
+        "schema_version": 1,
+        "action_id": "445e9c96684c494aabf8a8aff5a6bee1",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639385059,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0,
+        "admission": "cancelled_before_start",
+        "session_lost": false,
+        "reservation_state": "cancelled"
+      }
+    },
+    {
+      "label": "D_late_start",
+      "observed_at_ms": 1789639385880,
+      "value": {
+        "schema_version": 1,
+        "action_id": "445e9c96684c494aabf8a8aff5a6bee1",
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "observed_at_ms": 1789639385874,
+        "started": false,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": true,
+        "admission": "cancelled_before_start",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "cleanup_first_run",
+      "observed_at_ms": 1789639386996,
+      "value": {
+        "cleanup": true,
+        "run_id": "a7c672a8f871472aa0204cc89de861fc",
+        "fixture_present": false,
+        "quiescent": true
+      }
+    },
+    {
+      "label": "same_run_setup_rejected",
+      "observed_at_ms": 1789639387135,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "setup_new_run",
+      "observed_at_ms": 1789639388096,
+      "value": {
+        "setup": true,
+        "run_id": "be794a16c6994223a2be00bc350db242",
+        "fixture_present": true,
+        "session_match": true
+      }
+    },
+    {
+      "label": "new_run_start",
+      "observed_at_ms": 1789639388890,
+      "value": {
+        "schema_version": 1,
+        "action_id": "f40e8070294549b69dd772c1ae6a1859",
+        "run_id": "be794a16c6994223a2be00bc350db242",
+        "observed_at_ms": 1789639388885,
+        "started": true,
+        "completed": false,
+        "quiescent": false,
+        "closed": false,
+        "cancel_requested": false,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [],
+        "success": null,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "old_run_start_rejected",
+      "observed_at_ms": 1789639388924,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "old_run_cancel_rejected",
+      "observed_at_ms": 1789639388971,
+      "value": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "new_run_completed",
+      "observed_at_ms": 1789639397843,
+      "value": {
+        "schema_version": 1,
+        "action_id": "f40e8070294549b69dd772c1ae6a1859",
+        "run_id": "be794a16c6994223a2be00bc350db242",
+        "observed_at_ms": 1789639397838,
+        "started": true,
+        "completed": true,
+        "quiescent": true,
+        "closed": true,
+        "cancel_requested": false,
+        "admission": "accepted",
+        "session_lost": false,
+        "events": [
+          "down",
+          "up",
+          "click"
+        ],
+        "success": true,
+        "new_console_errors": 0
+      }
+    },
+    {
+      "label": "cleanup_new_run",
+      "observed_at_ms": 1789639398980,
+      "value": {
+        "cleanup": true,
+        "run_id": "be794a16c6994223a2be00bc350db242",
+        "fixture_present": false,
+        "quiescent": true
+      }
+    },
+    {
+      "label": "final",
+      "observed_at_ms": 1789639399099,
+      "value": {
+        "source_unchanged": true,
+        "session_still_matches": true,
+        "states": [
+          "cancelled",
+          "released",
+          "released",
+          "cancelled"
+        ]
+      }
+    }
+  ],
+  "final_play": {
+    "fixture_present": false,
+    "root_present": false,
+    "pointer_busy": false,
+    "held": false,
+    "stage_touches": 0,
+    "views": {
+      "CurrentViewTypeName": "StoryPlayView",
+      "StackedViewTypeNames": [
+        "MainView"
+      ],
+      "ShowingPopupTypeNames": []
+    },
+    "errors": [
+      "[ShopService] QueryShop(13) failed: 2"
+    ]
+  },
+  "cleanup": {
+    "source_unchanged": true,
+    "is_playing": false,
+    "scene_dirty": false,
+    "session_observation_status": "edit_mode",
+    "production_queue_count": 0,
+    "temporary_login_task_cleared": true
+  },
+  "unit_tests": {
+    "count": 169,
+    "elapsed_seconds": 17.538,
+    "result": "PASS"
+  },
+  "private_evidence_sha256": {
+    "preflight.json": "de3483782e16e40e3995f98f4e457673054fed8869845227e89e5cfceec8df76",
+    "run-reuse-red.json": "1a41039d63f896ab1341f7d4507c2d0078c0048069907639c116739030985717",
+    "live-1/trace.json": "c95ccabd2313fa3a76a25487e9b780bceaea9f01a70148611fdd985c03370700",
+    "final-play.json": "035237e98b370ca96b954d56437914d349139c3dd91adede15cb0184b7a7c9c2",
+    "after.json": "6fec6163fee97d7c1fee1ac7e0bd1f7b9dc78e6858319a3b087844129528d49e",
+    "unit-tests.txt": "9880340f3a6bc8ada97ba3f7aafeaa3e0d0ecb1ac008949ec5b395a543341ae2",
+    "panel-visible.jpg": "ab591de4d198966c9a908914153960f6e03add10145202914a6be92f71d1ab24"
+  },
+  "limits": [
+    "No gameplay action or live Linear transport retest",
+    "Predicate injection is not real session replacement or reconnect",
+    "No actual process death/network outage or domain reload recovery",
+    "No full build attestation or general MCP/OS fencing"
+  ]
+}

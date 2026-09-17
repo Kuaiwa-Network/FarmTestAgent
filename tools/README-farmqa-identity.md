@@ -88,3 +88,8 @@ these under exclusive ownership and verify cancellation before releasing.
 Verification: `python -m unittest discover -s tests -p 'test_*.py' -v`.
 Live diagnostic evidence and coverage limits are in the
 [2026-09-17 report](../reports/2026-09-17-farmqa-identity/report.md).
+
+
+A separate [session diagnostic](README-farmqa-session-identity.md) now exists.
+Its Edit Mode branch is live-verified; authenticated matching is not. It is not
+wired into this request-bound collector, whose server check stays unknown.

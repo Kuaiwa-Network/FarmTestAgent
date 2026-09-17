@@ -293,3 +293,20 @@ or gameplay verification. Original and recovered checkouts are unchanged; the
 fresh Editor remains open in Edit Mode. Complete provenance remains BLOCKED by
 settings drift and missing generated-source evidence. See the updated
 [fresh-import report](../reports/2026-09-17-farmqa-fresh-import/report.md).
+
+
+## User decision and next diagnostic — 2026-09-17
+
+User accepted deferring Spine default preservation for existing content. Leave
+settings unchanged; do not spend the next increment on a package fix. Existing
+material/texture observations found no impact; this is not proof of rendering.
+Continue readiness checks, retaining historical evidence and separate gates.
+
+Implemented a standalone read-only session probe/comparator. Live Edit Mode
+returned no authenticated identity; no player/server data was read, Play Mode was
+not entered, and the original source snapshot remained unchanged. Unity was now
+open on original Farm-Client at `a6dce07592d32b9760d60321118abd496c5bb291`, not
+the pinned fresh QA copy; no project switch was performed by this increment.
+The authenticated branch is not live-verified. No production worker/receiver
+changes, login or execution permit. See
+[session diagnostic report](../reports/2026-09-17-farmqa-session-identity/report.md).

@@ -59,13 +59,23 @@ left open in Edit Mode with the failed settings preserved; the recovered copy is
 closed and unchanged. No game source edits, login, gameplay, bridge deployment
 changes or PR merge occurred.
 
-Next: report the reproduced initialization defect to the client/package owner.
+Original proposed next step (superseded by the user decision below): report the
+reproduced initialization defect to the client/package owner.
 A candidate fix should distinguish “settings file exists but AssetDatabase is
 not ready” from “settings absent,” avoiding fallback CreateAsset over the pinned
 file. This is a source-grounded suggestion, not an implemented or verified fix.
 After an authorized fix, repeat this empty-Library scenario in another preserved
 QA copy and resolve generated-input provenance before accepting a clean baseline.
 Original client/package source remains read-only here.
+
+## Subsequent user decision
+
+The user accepted deferring the defaults issue for existing-content testing and
+requested continuing readiness work. Leave settings unchanged. The structural
+comparison found no impact in its sampled fields; rendering/new-import behavior
+remains untested. Revisit on new Spine imports or observed visual differences.
+No package fix is required before continuing the session diagnostic; historical
+FAIL/BLOCKED evidence remains unchanged.
 
 # First attempt: project-switch shutdown crash
 

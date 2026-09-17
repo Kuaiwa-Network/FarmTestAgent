@@ -240,9 +240,14 @@ reproduced the Spine settings overwrite: preservation FAIL. Its 169 atlas assets
 and 170 material/texture references match the recovered copy in the sampled
 structural fields, including texture content hashes: bounded comparison PASS.
 Rendering and new-asset behavior remain untested. The fresh copy retains the
-failed settings; the recovered copy is unchanged. Fix preservation through the
-client/package owner and repeat the fresh scenario, then resolve generated-source
-and complete-build provenance before implementing a positive gate.
+failed settings; the recovered copy is unchanged. The user subsequently accepted
+deferring these defaults for existing-content testing: the bounded comparison
+found no impact, while rendering and new-import behavior remain untested. Do not
+restore or fix Spine now, or require its fix before continuing readiness work.
+Revisit it for new Spine imports or observed rendering differences. This decision
+does not turn the historical build evidence into clean provenance or enable an
+action worker. The next implemented diagnostic is the standalone
+[read-only session comparison](../tools/README-farmqa-session-identity.md).
 
 1. **Complete actual-target validation:** read-only per-request diagnostics now
    exist. Establish trustworthy loaded-build provenance and observed server/session

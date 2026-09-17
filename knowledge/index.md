@@ -58,6 +58,10 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — user enabled the existing plugin option; direct launch started server and
   connected automatically, with correct loaded settings and zero Console errors
 
+- [Read-only session diagnostic](../reports/2026-09-17-farmqa-session-identity/report.md)
+  — Edit Mode rejection verified; authenticated matching remains unverified;
+  user deferred Spine defaults for existing content
+
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay
 priority remains: resolve trustworthy observation and identity gaps; then perform

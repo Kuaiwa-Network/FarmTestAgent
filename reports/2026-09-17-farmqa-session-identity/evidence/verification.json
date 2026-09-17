@@ -1,0 +1,19 @@
+{
+  "cli_result": {
+    "session_match": "unknown",
+    "verdict": "BLOCKED",
+    "execution_enabled": false,
+    "observation_status": "edit_mode"
+  },
+  "cli_exit_code": 2,
+  "source_unchanged": true,
+  "observed_project": "original Farm-Client",
+  "source_commit": "a6dce07592d32b9760d60321118abd496c5bb291",
+  "unity_version": "2022.3.62f3",
+  "build_target": "StandaloneWindows64",
+  "play_mode": false,
+  "console_errors": 0,
+  "authenticated_live_test": "NOT_RUN",
+  "python_tests": 132,
+  "probe_sha256": "cb011fe1d9c506d61515c5c82931e60f30bc10376d780547e2a57958895c90bd"
+}

@@ -12,8 +12,10 @@ remains BLOCKED; this plan has not established a positive gameplay gate.
 Later [import investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
 restored the pinned Spine settings in the isolated copy and verified two warm
 reimports. That does not repair the historical manifest or verify assets imported
-before recovery. A future controlled baseline must preserve settings during the
-fresh import and record actual asset/build inputs after that validation.
+before recovery. A future claim of a clean baseline must account for actual asset/build inputs.
+Later, the user accepted leaving Spine defaults unchanged and deferring the fix
+for existing-content testing after the bounded asset comparison. The overwrite
+is not by itself a blocker for subsequent read-only readiness work.
 
 ## Why a controlled build
 
@@ -105,3 +107,14 @@ bounded cancellation/quiescence; neither this proposal nor a matching manifest
 completes those gates.
 
 Evidence: [provenance investigation](../reports/2026-09-17-farmqa-provenance/report.md).
+
+
+## Session diagnostic implementation — 2026-09-17
+
+The proposed reader now exists as a standalone QA probe/comparator; see
+[usage and limits](../tools/README-farmqa-session-identity.md). It compares a
+numeric player ID, avoiding account-name output, and a SHA-256 of the exact
+credential-free connected route against private operator expectations. There is
+no preconfigured environment or account. Live Edit Mode behavior is verified;
+authenticated observation remains unverified. Neither matching fixture data nor
+the new utility grants gameplay permission or modifies the reservation checker.

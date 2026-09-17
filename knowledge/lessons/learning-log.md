@@ -61,3 +61,13 @@ C03 — **inferred**, reviewed 2026-09-16; prerequisite: future cross-platform i
 observation; build: local artifact inventory. Hypothesis: explicit target/build reference
 selection is required before using run_csharp safely across platforms. The selection
 problem is observed; its effect on a real Android probe remains untested.
+
+
+## L06 — Scope an import finding to observed testing impact (2026-09-17)
+
+User correction: normal Unity opening and existing gameplay can work despite a
+changed default. The fresh import changed Spine defaults, while the existing
+169 atlas/170 material-texture comparison matched. Do not describe that as broken
+Spine rendering or require a package fix for every later QA step. Record the
+narrow failure, untested effects and the user's accepted deferral separately.
+This does not erase the overwrite or establish authenticated/action readiness.

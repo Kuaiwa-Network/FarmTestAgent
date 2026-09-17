@@ -187,3 +187,22 @@ there is no automatic recovery or forced takeover. 104 local tests pass.
 These are synthetic signed-event fixtures, not live Linear or Unity execution.
 The existing receiver and live queue were left unchanged. See
 [evidence and remaining gates](../reports/2026-09-17-farmqa-inert-worker/report.md).
+
+## Read-only identity increment — 2026-09-17
+
+Observed on Windows Unity 2022.3.62f3: a standalone per-request inspection now
+records fresh Editor/project/platform metadata, Git commit/status/dirty hashes,
+index metadata and loaded module IDs in the private ledger. It neither acquires
+nor releases a reservation. Live verification used a private synthetic request,
+not a production Linear message. Project, commit and build target matched;
+four pre-existing dirty files were preserved; loaded-build provenance and game
+server/session identity remain unknown. Overall result: **BLOCKED for gameplay**.
+
+This supersedes the earlier statement that no identity checker exists, but does
+not complete the actual-target gate. The utility always blocks; it never treats
+Git or module IDs as proof of loaded code, or a requested environment as proof
+of a connected session. It is not deployed as a worker/service or automatically
+called by the bridge. Next: establish the trusted provenance and safe session
+observation inputs, then physical action ownership/cancellation. See the
+[report](../reports/2026-09-17-farmqa-identity/report.md) and
+[operator guide](../tools/README-farmqa-identity.md).

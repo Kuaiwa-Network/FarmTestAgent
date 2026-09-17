@@ -1,0 +1,117 @@
+{
+  "checks": {
+    "editor_ready": "match",
+    "project": "match",
+    "source_commit": "match",
+    "source_clean": "mismatch",
+    "source_stable": "match",
+    "build_target": "match",
+    "loaded_assemblies": "observed",
+    "loaded_source": "unknown",
+    "server_environment": "unknown",
+    "request_current": "match"
+  },
+  "source_before": {
+    "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+    "commit_sha": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+    "dirty": [
+      {
+        "path": "tools/device-mcp/README.md",
+        "status": " M",
+        "sha256": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00"
+      },
+      {
+        "path": "tools/device-mcp/compile_cs.py",
+        "status": " M",
+        "sha256": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2"
+      },
+      {
+        "path": "tools/device-mcp/requirements.txt",
+        "status": " M",
+        "sha256": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb"
+      },
+      {
+        "path": "tools/device-mcp/test_compile_cs.py",
+        "status": "??",
+        "sha256": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2"
+      }
+    ],
+    "index_sha256": "6d46703c2713659d086d3bdf2a8c93d3c5b29ff756d84d64e8d8ac1b0ad8c45e"
+  },
+  "source_after": {
+    "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+    "commit_sha": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+    "dirty": [
+      {
+        "path": "tools/device-mcp/README.md",
+        "status": " M",
+        "sha256": "55167ec3e2ff2c477a59ec601a2e4925964783aae462f49b979e8e7785d13c00"
+      },
+      {
+        "path": "tools/device-mcp/compile_cs.py",
+        "status": " M",
+        "sha256": "d1d967a1988563838209181ff2cbdb6ce4308aa67cd700905f94ef84cea948f2"
+      },
+      {
+        "path": "tools/device-mcp/requirements.txt",
+        "status": " M",
+        "sha256": "7d0d826b20c4b29e38d752d04b0a91092ba342fcc528134efb9980685bc274bb"
+      },
+      {
+        "path": "tools/device-mcp/test_compile_cs.py",
+        "status": "??",
+        "sha256": "4ba032c794382f1d313248cd08395bc2cbb7a36fdba8d3c3839eaa89215777e2"
+      }
+    ],
+    "index_sha256": "6d46703c2713659d086d3bdf2a8c93d3c5b29ff756d84d64e8d8ac1b0ad8c45e"
+  },
+  "editor": {
+    "unityVersion": "2022.3.62f3",
+    "platform": "WindowsEditor",
+    "buildTarget": "StandaloneWindows64",
+    "dataPath": "D:/AgentWorkSpace/Farm/Farm-Client/Assets",
+    "instance": "Farm-Client@6d4c4b2750085821",
+    "observed_before_ms": 1789615569988,
+    "observed_after_ms": 1789615571275,
+    "play_mode_off": true,
+    "assemblies": [
+      {
+        "name": "HotUpdate",
+        "module_mvid": "58847d20-a524-43d9-b9da-3e2c9a1bc5ec"
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "module_mvid": "17223216-6d8e-4cad-a969-b5292024a415"
+      },
+      {
+        "name": "AOTScripts",
+        "module_mvid": "dab78d1a-d8b3-44ab-a9a1-d51afe01059d"
+      },
+      {
+        "name": "Nova.Runtime",
+        "module_mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "observation_id": "0696a558-6a74-48bb-81df-64256c77395c",
+  "request_id": "7e40d0ad-6ed7-49f2-b792-0e2304106c3a",
+  "target": {
+    "repository": "D:\\AgentWorkSpace\\Farm\\Farm-Client",
+    "requested_ref": "refs/heads/qa",
+    "commit_sha": "7dbf23bef80c660ceb5d384c2e99cff029e5b79a",
+    "server_environment": "identity-inspection-no-server-selected",
+    "selected_at": 1,
+    "source": "local_operator",
+    "verification": "not_verified_in_unity"
+  },
+  "expected": {
+    "instance": "Farm-Client@6d4c4b2750085821",
+    "build_target": "StandaloneWindows64"
+  },
+  "started_at": 1789615569.6472719,
+  "finished_at": 1789615571.4695442,
+  "verdict": "BLOCKED",
+  "execution_enabled": false,
+  "mode": "read_only_identity"
+}

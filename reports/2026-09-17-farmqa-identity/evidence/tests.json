@@ -1,0 +1,8 @@
+{
+  "command": "python -m unittest discover -s tests -p test_*.py -v",
+  "exit_code": 0,
+  "test_count": 121,
+  "elapsed_seconds": 14.207,
+  "outcome": "PASS",
+  "live_external_calls": false
+}

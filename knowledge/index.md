@@ -36,6 +36,9 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — persistent FIFO ownership and Stop integration; no game-action worker enabled
 - [FarmQA inert worker](../reports/2026-09-17-farmqa-inert-worker/report.md)
   — real process tests verify inert cancellation and crash holds; no gameplay
+- [FarmQA read-only identity diagnostics](../reports/2026-09-17-farmqa-identity/report.md)
+  — request-bound live Editor/source comparison; loaded provenance and server
+  identity remain unknown, so gameplay stays BLOCKED
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

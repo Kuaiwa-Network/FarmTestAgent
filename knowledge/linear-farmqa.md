@@ -271,5 +271,11 @@ were preserved. Fresh-import work is paused; do not automatically retry the
 switch. See [failure report](../reports/2026-09-17-farmqa-fresh-import/report.md).
 Subsequent user-authorized recovery reopened the recovered project visibly;
 the original/recovered tracked states and pinned Spine settings remain unchanged.
-MCP restart and final live verification are pending the user's Start Server
-action. See [recovery report](../reports/2026-09-17-farmqa-editor-recovery/report.md).
+MCP restart was initially pending. The user then enabled the existing Auto-Start
+Server on Editor Load option. A direct launch automatically started and connected
+MCP; fresh live verification passed with correct settings, four matching module
+IDs, zero Console errors and Play Mode off. See
+[recovery report](../reports/2026-09-17-farmqa-editor-recovery/report.md) and
+[startup verification](../reports/2026-09-17-farmqa-mcp-autostart/report.md).
+No new startup implementation was necessary; this option had been unset on
+Windows. Fresh-import work and gameplay remain paused/disabled.

@@ -52,8 +52,11 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — prepared copy verified, but project switch crashed during shutdown; fresh
   import never started, original/recovered tracked state preserved, work paused
 - [Editor recovery and crash inspection](../reports/2026-09-17-farmqa-editor-recovery/report.md)
-  — recovered project visible again; tracked settings preserved, MCP restart and
-  final live verification pending; fresh-import work stays paused
+  — recovered project visible again; see automatic-startup verification for the
+  completed MCP check; fresh-import work stays paused
+- [MCP automatic startup](../reports/2026-09-17-farmqa-mcp-autostart/report.md)
+  — user enabled the existing plugin option; direct launch started server and
+  connected automatically, with correct loaded settings and zero Console errors
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

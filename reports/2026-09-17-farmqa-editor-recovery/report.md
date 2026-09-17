@@ -53,5 +53,9 @@ pre-switch snapshots after initialization. Spine settings still had pinned hash
 
 ## Final verification
 
-Pending the user's MCP server start. Do not claim live identity/settings verification
-from process startup or the visible window alone.
+Initially pending the user's MCP server start. Subsequently the user enabled
+automatic startup and requested a direct-launch test. That test passed with a
+fresh MCP connection, correct loaded settings, four matching core module IDs,
+zero Console errors and Play Mode off. See the
+[automatic-startup verification](../2026-09-17-farmqa-mcp-autostart/report.md).
+The earlier shutdown defect and fresh-import regression remain unresolved.

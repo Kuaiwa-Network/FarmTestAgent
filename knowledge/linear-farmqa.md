@@ -310,3 +310,19 @@ the pinned fresh QA copy; no project switch was performed by this increment.
 The authenticated branch is not live-verified. No production worker/receiver
 changes, login or execution permit. See
 [session diagnostic report](../reports/2026-09-17-farmqa-session-identity/report.md).
+
+
+## Dedicated test account and live session — 2026-09-17
+
+User authorized creating a dedicated account on 公共测试服. Account registry:
+main QA checkout `.local/farmqa/test-accounts.json`, alias `farmqa-windows-public`.
+Preserve/reuse it and rediscover progress each run; no implicit reset or GM grants.
+
+Observed on client `65feb61d4b9c6a7f79cee6efefdfea88140219dc`: successful login
+reached StoryPlayView/MainView. Expected player/route from the selected server's
+login response matched the live authenticated/connected/stable sample. Wrong
+expected player and route mismatched; after stopping Play Mode, identity was
+unavailable. Source stayed unchanged. One ShopService QueryShop(13) error code 2
+was recorded; no complete gameplay/clean-console pass. Editor remains open in Edit
+Mode. No automatic worker or receiver integration was enabled. See
+[live verification](../reports/2026-09-17-farmqa-live-session/report.md).

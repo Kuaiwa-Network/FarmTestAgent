@@ -51,8 +51,12 @@ User decision, 2026-09-17: defer the fresh-import Spine defaults issue for
 existing-content testing; leave settings unchanged. The existing material/texture
 comparison found no impact, while rendering/new-import effects remain untested.
 Continue readiness work without requiring a Spine fix. The standalone read-only
-session diagnostic now rejects Edit Mode correctly; authenticated live matching
-and physical action ownership/cancellation remain unverified. See
+session diagnostic now verifies one live authenticated session, rejects wrong
+player/route expectations, and rejects Edit Mode after Stop. The user authorized
+a dedicated account on 公共测试服; its registry is in the main QA checkout at
+`.local/farmqa/test-accounts.json`. Reuse alias `farmqa-windows-public`, revalidate
+identity each run and do not reset its progress implicitly. Physical action
+ownership/cancellation and reconnect remain unverified. See
 `tools/README-farmqa-session-identity.md` and the corresponding dated report.
 
 ## Every session

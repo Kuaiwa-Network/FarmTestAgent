@@ -249,6 +249,13 @@ does not turn the historical build evidence into clean provenance or enable an
 action worker. The next implemented diagnostic is the standalone
 [read-only session comparison](../tools/README-farmqa-session-identity.md).
 
+The user subsequently authorized a dedicated account on 公共测试服. The
+[live session check](../reports/2026-09-17-farmqa-live-session/report.md) verified
+an authenticated match, wrong-player/route rejection and Edit Mode rejection
+after Stop. The private account registry is reused across runs. This resolves
+the initial live-session-reader feasibility check, not reconnect coverage, full
+build provenance, request-bound integration or physical action ownership.
+
 1. **Complete actual-target validation:** read-only per-request diagnostics now
    exist. Establish trustworthy loaded-build provenance and observed server/session
    identity, then compare both with the pinned request. The present collector

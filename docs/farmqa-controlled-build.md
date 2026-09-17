@@ -118,3 +118,10 @@ credential-free connected route against private operator expectations. There is
 no preconfigured environment or account. Live Edit Mode behavior is verified;
 authenticated observation remains unverified. Neither matching fixture data nor
 the new utility grants gameplay permission or modifies the reservation checker.
+
+
+Subsequent user-authorized live verification on original client `65feb61d`
+provisioned a dedicated public-test account and verified authenticated matching,
+wrong-expectation rejection and post-Stop Edit Mode rejection. This supersedes
+the initial reader's live-verification limitation, not the older controlled-build
+provenance limits. See [live run](../reports/2026-09-17-farmqa-live-session/report.md).

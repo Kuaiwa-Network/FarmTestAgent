@@ -1,0 +1,114 @@
+{
+  "status": "PASS for bounded session identity checks",
+  "client_commit": "65feb61d4b9c6a7f79cee6efefdfea88140219dc",
+  "unity_version": "2022.3.62f3",
+  "build_target": "StandaloneWindows64",
+  "account_alias": "farmqa-windows-public",
+  "account_details_stored_privately": true,
+  "server_name": "公共测试服",
+  "expected_identity_source": "Selected directory login endpoint response before Unity login; never copied from observed session",
+  "authentication": {
+    "authenticated": true,
+    "transport_connected": true,
+    "objects_stable": true,
+    "generation_before": 2,
+    "generation_after": 2
+  },
+  "cases": {
+    "correct": {
+      "exit_code": 2,
+      "result": {
+        "session_match": "match",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed"
+      }
+    },
+    "wrong-player": {
+      "exit_code": 2,
+      "result": {
+        "session_match": "mismatch",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed"
+      }
+    },
+    "wrong-route": {
+      "exit_code": 2,
+      "result": {
+        "session_match": "mismatch",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed"
+      }
+    }
+  },
+  "after_stop": {
+    "result": {
+      "session_match": "unknown",
+      "verdict": "BLOCKED",
+      "execution_enabled": false,
+      "observation_status": "edit_mode"
+    },
+    "play_mode": false,
+    "scene_dirty": false,
+    "source_unchanged": true
+  },
+  "console_errors_during_login": 1,
+  "console_error": "[ShopService] QueryShop(13) failed: 2",
+  "click_result": {
+    "success": true,
+    "reason": null,
+    "hitTarget": "GRoot..btnStart",
+    "x": 485.548431,
+    "y": 112.280212
+  },
+  "module_comparison": [
+    {
+      "name": "HotUpdate",
+      "mvid": "c21a2cb3-b894-4cbc-9dbb-6024685fc399",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 1297,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "MCPForUnity.Editor",
+      "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 302,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "AOTScripts",
+      "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 19,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "Nova.Runtime",
+      "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 15,
+      "missing": 1,
+      "mismatch": 0
+    }
+  ],
+  "reconnect_tested": false,
+  "gameplay_journey_tested": false,
+  "private_evidence_sha256": {
+    "account.json": "2ad6aa5bc37f103569b56f337a131604e015c82f729405eb86055d0be53e701a",
+    "expected.json": "427ae55f6007ad531cbd0efc9299d344b017d1c32f7e563a9f10d778c3a2f5c2",
+    "first-session.json": "890c13a625fdc720c8b4f3f52622da58d18aa2a4b5619b4db23c2d95ac5a52bd",
+    "live-comparisons.json": "d10d5bf66541a7a03ab51c2af4fb9a5394aa8b08d5f786e35048c9379dff516f",
+    "after-stop.json": "9c6e6b97c02b6815fdd3de987d00e6915e1ad972fd4dab719e669a632f3462cf",
+    "preflight-after-refresh.json": "b8244fb466b511529183bf4f24bf6af8b5f722f1a1764eeb99a68f833ddfeb22"
+  }
+}

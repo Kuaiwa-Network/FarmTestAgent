@@ -55,3 +55,9 @@ account/environment and agreed build. No account/environment was selected here.
 Before autonomous actions, establish physical ownership/cancellation and the
 remaining build/session evidence. Spine defaults alone are not a prerequisite
 for this next session check. See [usage](../../tools/README-farmqa-session-identity.md).
+
+
+Subsequent verification: the user later authorized a dedicated public-test account.
+Authenticated matching and wrong-expectation/post-Stop rejection passed in the
+[live run](../2026-09-17-farmqa-live-session/report.md); its separate startup
+Console finding and remaining limits are recorded there.

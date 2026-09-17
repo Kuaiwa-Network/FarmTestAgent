@@ -53,13 +53,18 @@ physical controller ownership. Those remain separate gates.
 The reflected private schema was reviewed against client `7dbf23b`; it is not a
 stable public API. Unsupported fields/types produce an unavailable observation.
 The probe compiled and its Edit Mode branch ran on the current original client
-`a6dce07`; the authenticated C# branch has not been exercised live. Python tests
+`a6dce07`; the initial report covered Edit Mode only. The later
+[live run](../reports/2026-09-17-farmqa-live-session/report.md) verified one
+authenticated match, wrong-player/route expectations and post-Stop rejection on
+client `65feb61d`. Reconnect and all URI/schema failure branches remain unverified.
+Python tests
 cover comparison and selection/error handling using synthetic samples, not an
 actual login, reconnect or transport. Source review is not runtime proof.
 
-Next verification: use an authorized test account/environment on an agreed build
-under supervision, compare the real session, and test rejection after a mismatch
-or reconnect. Do not enable gameplay through this utility. Complete physical
+For reuse, the dedicated public-test account is recorded privately in the main
+QA checkout at `.local/farmqa/test-accounts.json`, alias `farmqa-windows-public`.
+Revalidate its live identity and actual progress on an agreed build each run.
+Next verification: reconnect and session replacement under supervision. Do not enable gameplay through this utility. Complete physical
 action ownership/cancellation separately.
 
 [Execution evidence](../reports/2026-09-17-farmqa-session-identity/report.md).

@@ -48,6 +48,12 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
 - [Spine import drift investigation and recovery](../reports/2026-09-17-farmqa-import-drift/report.md)
   — during-import preferences creation traced; pinned settings restored and stable
   on two warm reimports, fresh-import prevention and asset effects still unverified
+- [Fresh-import attempt and Editor crash](../reports/2026-09-17-farmqa-fresh-import/report.md)
+  — prepared copy verified, but project switch crashed during shutdown; fresh
+  import never started, original/recovered tracked state preserved, work paused
+- [Editor recovery and crash inspection](../reports/2026-09-17-farmqa-editor-recovery/report.md)
+  — recovered project visible again; tracked settings preserved, MCP restart and
+  final live verification pending; fresh-import work stays paused
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

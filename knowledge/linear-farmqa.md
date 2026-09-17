@@ -263,3 +263,13 @@ gameplay and the positive identity gate stay disabled. Next: preserve the pinned
 settings through a fresh import, validate affected assets and regenerate evidence.
 See [report](../reports/2026-09-17-farmqa-import-drift/report.md) and
 [regression scenario](../tests/scenarios/spine-import-drift.md).
+
+Latest operational state, 2026-09-17: the subsequent fresh-import attempt crashed
+during the recovered Editor's project-switch shutdown. No fresh import ran;
+Unity was closed at the last observation. Both original/recovered tracked states
+were preserved. Fresh-import work is paused; do not automatically retry the
+switch. See [failure report](../reports/2026-09-17-farmqa-fresh-import/report.md).
+Subsequent user-authorized recovery reopened the recovered project visibly;
+the original/recovered tracked states and pinned Spine settings remain unchanged.
+MCP restart and final live verification are pending the user's Start Server
+action. See [recovery report](../reports/2026-09-17-farmqa-editor-recovery/report.md).

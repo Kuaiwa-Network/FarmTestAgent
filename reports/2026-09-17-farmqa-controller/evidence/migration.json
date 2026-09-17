@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-17",
+  "scope": "private backup migration and synthetic reservation fixtures only",
+  "live_database_modified": false,
+  "original_rows_preserved": {
+    "events": 17,
+    "jobs": 13,
+    "sessions": 5,
+    "stops": 3
+  },
+  "exact_preexisting_rows_unchanged_after_initialization": true,
+  "empty_queue_after_migration": true,
+  "independent_connection_blocked_while_reserved": true,
+  "stop_retained_active_slot": true,
+  "other_session_acquired_after_owner_release": true,
+  "game_actions": 0,
+  "external_app_or_linear_calls": 0
+}

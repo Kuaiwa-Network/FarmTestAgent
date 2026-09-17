@@ -29,6 +29,8 @@ Read `../CLAUDE.md` first. Last updated: 2026-09-17.
   — documented interrupt protocol cannot reach the existing desktop inbox
 - [FarmQA session routing and target snapshots](../reports/2026-09-16-farmqa-sessions/report.md)
   — distinct conversations and follow-up context after restart verified; empty-item reader fallback deployed
+- [FarmQA controller reservation queue](../reports/2026-09-17-farmqa-controller/report.md)
+  — persistent FIFO ownership and Stop integration; no game-action worker enabled
 
 Current request: forward **@FarmQA** messages into a Codex desktop task and return
 the task's final reply to Linear. The fixed-reply connection test passed. Gameplay

@@ -20,6 +20,7 @@ import urllib.request
 import uuid
 
 from farmqa_state import SessionStore
+from farmqa_controller import ControllerStore
 
 REPLY = ("FarmQA is connected 🌱 I received your message. "
          "This is a connection test; gameplay testing is not enabled yet.")
@@ -178,6 +179,7 @@ class BridgeService(Service):
         self.db.execute("""UPDATE events SET status='uncertain', error='InterruptedBridgeSend'
                            WHERE status IN ('acknowledging', 'dispatching')""")
         self.sessions = SessionStore(self.db, self.identity["organizationId"])
+        self.controller = ControllerStore(self.db)
         # Existing sessions retain their original shared inbox, including in-flight jobs.
         old_sessions = self.db.execute("""SELECT e.session_id,b.thread_id FROM events e
             JOIN bridge_jobs b USING(event_key) WHERE b.thread_id!=''
@@ -212,6 +214,7 @@ class BridgeService(Service):
             inserted = self.db.execute("INSERT OR IGNORE INTO stop_requests VALUES (?,?,?,?, 'pending',?,NULL,NULL)",
                 (stop_key, session_id, cutoff, str(uuid.uuid4()), time.time())).rowcount
             if inserted:
+                self.controller.stop(self.identity['organizationId'], session_id, cutoff)
                 self.db.execute("""UPDATE bridge_jobs SET stop_outcome='reply_delivery_uncertain'
                     WHERE reply_json IS NOT NULL AND event_key IN
                     (SELECT event_key FROM events WHERE session_id=? AND status IN ('sending','uncertain'))

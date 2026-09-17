@@ -156,3 +156,18 @@ branch/PR extraction, controller ownership/state, and game-action cancellation
 remain future increments. See [setup](../tools/README-farmqa.md),
 [test procedure](../tests/scenarios/farmqa-sessions.md), and the
 [deployment report](../reports/2026-09-16-farmqa-sessions/report.md).
+
+## Controller reservation increment — 2026-09-17
+
+The scheduling portion of the approved shared-controller design is implemented:
+explicit operator enqueue of an authenticated event with a pinned target, one
+durable FIFO reservation, and Stop propagation in the receiver transaction.
+Queued Stop cancels immediately; active Stop retains ownership until the same
+worker releases it. Restart cannot reclaim the slot. The queue does not execute
+actions or enforce ownership on independently called Unity/computer tools.
+93 local tests pass; a private live-ledger copy preserved all existing rows.
+This is observed fixture/migration coverage, not live gameplay/cancellation.
+Loaded Editor identity verification, physical worker enforcement, and bounded
+action cancellation remain unimplemented. See the
+[controller report](../reports/2026-09-17-farmqa-controller/report.md) and
+[operator guide](../tools/README-farmqa-controller.md).

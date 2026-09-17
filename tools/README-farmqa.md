@@ -337,6 +337,7 @@ ledgers and the original backup; do not erase them to force retries.
 ## Authoritative API references
 
 - [Linear agents](https://linear.app/developers/agents)
+- [Local controller reservation queue](README-farmqa-controller.md) — scheduling only; gameplay disabled
 - [Agent session events and activities](https://linear.app/developers/agent-interaction)
 - [Linear stop signals](https://linear.app/developers/agent-signals)
 - [Webhook authentication](https://linear.app/developers/webhooks)

@@ -105,4 +105,7 @@ switch back to the original client or start Play Mode.
 
 No application code changed in this increment. Validation was the actual Editor
 import, fresh live probe, Console read, file hashes and DLL/PDB metadata checks;
-the Python test suite was not rerun for these documentation/evidence changes.
+the Python test suite was not rerun during the build operation. Subsequent PR
+preflight ran `python -m unittest discover -s tests -v`: **121 tests passed**
+in 14.269 seconds. These infrastructure tests do not validate gameplay or remove
+the provenance blockers above.

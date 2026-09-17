@@ -77,6 +77,9 @@ were observed and no server environment was inferred from configuration.
 
 ## Concrete next action and boundary
 
+Historical status below is superseded by the later user approval and
+[controlled-build execution](../2026-09-17-farmqa-controlled-build/report.md).
+
 The [controlled-build proposal](../../docs/farmqa-controlled-build.md) specifies a
 separate client copy, exact commit/Unity/platform, input/output capture, LFS
 verification and preservation rules. This gives the next implementation a

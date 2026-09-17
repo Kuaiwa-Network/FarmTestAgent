@@ -68,3 +68,7 @@ Next verification: reconnect and session replacement under supervision. Do not e
 action ownership/cancellation separately.
 
 [Execution evidence](../reports/2026-09-17-farmqa-session-identity/report.md).
+
+The later [request-bound diagnostic](README-farmqa-request-session.md) reuses this
+probe with immutable expectations and active-owner revalidation. Both utilities
+remain read-only; neither grants a game-action permit.

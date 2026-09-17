@@ -1,5 +1,14 @@
 # FarmQA Linear integration
 
+Latest incremental verification, 2026-09-17: the opt-in
+[request/session diagnostic](../tools/README-farmqa-request-session.md) pins private
+account/server expectations to an active controller owner and rechecks that owner
+after reading Unity. Correct identity, wrong player/route/module and synthetic
+Stop during the live sample passed on client `b8170a5`; Edit Mode rejects the
+session. See the [dated report](../reports/2026-09-17-farmqa-request-session/report.md).
+It remains undeployed, read-only and execution-disabled; no live Linear action
+worker or reusable session permit was introduced.
+
 Last reviewed 2026-09-17. Load this for mention-service work, not gameplay rules.
 Start with the [consolidated architecture](../docs/farmqa-architecture.md) for
 the current component boundaries, memory locations, and implementation gates.

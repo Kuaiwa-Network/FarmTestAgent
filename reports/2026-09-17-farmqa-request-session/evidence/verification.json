@@ -1,0 +1,303 @@
+{
+  "status": "PASS for request-bound read-only session diagnostic",
+  "client_commit": "b8170a559909fccc21b488e47584f20e02a42104",
+  "instance": "Farm-Client@6d4c4b2750085821",
+  "build_target": "StandaloneWindows64",
+  "unity_version": "2022.3.62f3",
+  "account_alias": "farmqa-windows-public",
+  "expectations_source": "Selected public-test directory login endpoint, independently before Unity login; existing player ID matched",
+  "modules": [
+    {
+      "name": "HotUpdate",
+      "mvid": "74aa1b33-262f-4ebd-ace7-dd394e7eca20",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 1297,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "MCPForUnity.Editor",
+      "mvid": "17223216-6d8e-4cad-a969-b5292024a415",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 302,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "AOTScripts",
+      "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 19,
+      "missing": 1,
+      "mismatch": 0
+    },
+    {
+      "name": "Nova.Runtime",
+      "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547",
+      "live_disk_match": true,
+      "pdb_match": true,
+      "source_matches": 15,
+      "missing": 1,
+      "mismatch": 0
+    }
+  ],
+  "login": {
+    "completed": true,
+    "faulted": false,
+    "pointer": {
+      "success": true,
+      "reason": null,
+      "hitTarget": "GRoot..btnStart",
+      "x": 485.548431,
+      "y": 112.280212
+    },
+    "views": {
+      "CurrentViewTypeName": "StoryPlayView",
+      "StackedViewTypeNames": [
+        "MainView"
+      ],
+      "ShowingPopupTypeNames": []
+    },
+    "console_errors": [
+      "[ShopService] QueryShop(13) failed: 2"
+    ]
+  },
+  "cases": [
+    {
+      "label": "correct",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "1d365d41695a4ed5a897536f7b4e9b35",
+        "request_id": "a2263541-ce50-41e4-97bc-1599bf2026ab",
+        "mode": "read_only_request_session",
+        "started_at": 1789636382.063363,
+        "checks": {
+          "source": "match",
+          "editor": "match",
+          "session": "match",
+          "request_current": "match"
+        },
+        "request_session_match": "match",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed",
+        "finished_at": 1789636383.373977
+      }
+    },
+    {
+      "label": "correct_released",
+      "result": {
+        "state": "released"
+      }
+    },
+    {
+      "label": "wrong_player",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "8eb830093bbc4467ae9e352383cfe533",
+        "request_id": "1aaea638-463d-4d29-ad6f-204db9e93c4e",
+        "mode": "read_only_request_session",
+        "started_at": 1789636383.3886554,
+        "checks": {
+          "source": "match",
+          "editor": "match",
+          "session": "mismatch",
+          "request_current": "match"
+        },
+        "request_session_match": "unknown",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed",
+        "finished_at": 1789636383.7419474
+      }
+    },
+    {
+      "label": "wrong_player_released",
+      "result": {
+        "state": "released"
+      }
+    },
+    {
+      "label": "wrong_route",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "dec5c58ef454416f9c64653b096516d1",
+        "request_id": "4587fea3-cbb3-4a3a-841b-b297908da875",
+        "mode": "read_only_request_session",
+        "started_at": 1789636383.755302,
+        "checks": {
+          "source": "match",
+          "editor": "match",
+          "session": "mismatch",
+          "request_current": "match"
+        },
+        "request_session_match": "unknown",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed",
+        "finished_at": 1789636384.3361216
+      }
+    },
+    {
+      "label": "wrong_route_released",
+      "result": {
+        "state": "released"
+      }
+    },
+    {
+      "label": "wrong_module",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "b77c92ccfeff4aa497460a4298dbb4b3",
+        "request_id": "451d3881-be1d-44c4-9fcb-c23f76c5666d",
+        "mode": "read_only_request_session",
+        "started_at": 1789636384.3495913,
+        "checks": {
+          "source": "match",
+          "editor": "mismatch",
+          "session": "match",
+          "request_current": "match"
+        },
+        "request_session_match": "unknown",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed",
+        "finished_at": 1789636384.7528255
+      }
+    },
+    {
+      "label": "wrong_module_released",
+      "result": {
+        "state": "released"
+      }
+    },
+    {
+      "label": "stop_during_sample",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "fefcecc7ca99486db08cd3f5dcfaca29",
+        "request_id": "2b550af5-9fcb-4ec3-8568-8a0629266940",
+        "mode": "read_only_request_session",
+        "started_at": 1789636384.7665067,
+        "checks": {
+          "source": "match",
+          "editor": "match",
+          "session": "match",
+          "request_current": "mismatch"
+        },
+        "request_session_match": "unknown",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "observed",
+        "finished_at": 1789636385.1653523
+      }
+    },
+    {
+      "label": "stopped_owner_rejected",
+      "result": {
+        "rejected": true
+      }
+    },
+    {
+      "label": "stop_during_sample_released",
+      "result": {
+        "state": "cancelled"
+      }
+    },
+    {
+      "label": "cleanup",
+      "result": {
+        "source_unchanged": true,
+        "actions_dispatched": false,
+        "states": [
+          "released",
+          "released",
+          "released",
+          "released",
+          "cancelled"
+        ]
+      }
+    },
+    {
+      "label": "edit_mode",
+      "result": {
+        "schema_version": 1,
+        "observation_id": "800a600d6f2c40fab11f18d383f9319d",
+        "request_id": "310bb3a1-d713-4d01-863a-0968f673a18f",
+        "mode": "read_only_request_session",
+        "started_at": 1789636396.6246378,
+        "checks": {
+          "source": "match",
+          "editor": "mismatch",
+          "session": "unknown",
+          "request_current": "match"
+        },
+        "request_session_match": "unknown",
+        "verdict": "BLOCKED",
+        "execution_enabled": false,
+        "observation_status": "edit_mode",
+        "finished_at": 1789636397.1842124
+      }
+    },
+    {
+      "label": "edit_mode_released",
+      "result": {
+        "state": "released"
+      }
+    },
+    {
+      "label": "cleanup",
+      "result": {
+        "source_unchanged": true,
+        "actions_dispatched": false,
+        "states": [
+          "released"
+        ]
+      }
+    }
+  ],
+  "after": {
+    "source_unchanged": true,
+    "is_playing": false,
+    "scene_dirty": false,
+    "production_queue_count": 0,
+    "production_session_schema_present": false,
+    "modules": [
+      {
+        "name": "HotUpdate",
+        "mvid": "74aa1b33-262f-4ebd-ace7-dd394e7eca20"
+      },
+      {
+        "name": "MCPForUnity.Editor",
+        "mvid": "17223216-6d8e-4cad-a969-b5292024a415"
+      },
+      {
+        "name": "AOTScripts",
+        "mvid": "a8e03f31-d439-452d-999c-760e6510cfa8"
+      },
+      {
+        "name": "Nova.Runtime",
+        "mvid": "63221985-9f77-408a-bf56-7bb5c2fbb547"
+      }
+    ]
+  },
+  "tests_passed": 161,
+  "replay_assertions_strengthened_after_live_run": true,
+  "all_six_recorded_observations_pass_final_cause_specific_assertions": true,
+  "real_reconnect_or_network_fault_tested": false,
+  "game_action_permit_enabled": false,
+  "private_evidence_sha256": {
+    "before.json": "8e352a36e910ce0bff9f7d4d99717cdf1f4a4e671768e8917fdf69cd65d3954a",
+    "preflight.json": "572c0f8552ee50dbfefe5f09e1c163a680ff10cf46bb5284454dd2bc29fa36a7",
+    "expected.json": "6e5652f4cb21059f430f9fc0a1cdca0b6ab7d5fd8eb45085dd9776dee2bdf44d",
+    "login-start.json": "e23b31c50daf7c4ea7fa62e4ed5981c20c37439a93aafd49d29198868d67df06",
+    "login-result.json": "bde8a57abf746087d85c9ee489f2689ea23b880db5fce966068bcc791db29372",
+    "live-1/trace.json": "058330ca8f09e255e909d8183438f23066840153531de9e40bd95c16876e1cf8",
+    "edit-1/trace.json": "8fb245d525c119285a540767829e5b86b5232e2f7e2d5d502cde3aa3bc7bba93",
+    "after.json": "089467f517219ecfa3915410eac4e5024cd34223db8c63c7cb96489c2ab1294a",
+    "unit-tests.txt": "46f27f689b55366d8d1166029e4e05d151b45d761c9280f58e7661f6592b3a9e"
+  }
+}

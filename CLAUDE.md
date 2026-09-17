@@ -64,6 +64,11 @@ lost responses; see `tools/README-farmqa-fixture-adapter.md`. It is not deployed
 and only admits the harmless LoginView panel. Authenticated game-action binding,
 actual worker crash/network-outage recovery and reconnect remain unverified. See
 `tools/README-farmqa-session-identity.md` and the corresponding dated report.
+The next request-bound session diagnostic now verifies immutable account/route
+expectations under active ownership and rejects Stop/target/binding changes during
+observation; see `tools/README-farmqa-request-session.md`. Its matching result is
+still read-only evidence, never a reusable action permit. Live cases passed on
+client `b8170a5`; same-operation session checks at action admission remain next.
 
 ## Every session
 
